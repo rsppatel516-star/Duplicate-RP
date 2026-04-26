@@ -106,7 +106,7 @@ export default function Skills() {
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`flex items-center gap-3 px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-700 border ${activeTab === cat
+              className={`flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-700 border ${activeTab === cat
                 ? 'bg-dark-primary text-dark-bg border-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]'
                 : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
                 }`}

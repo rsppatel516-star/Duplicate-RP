@@ -86,7 +86,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -4 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 hover:border-white/20 overflow-hidden"
+                className="group relative w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-500 overflow-hidden"
               >
 
                 <Icon
@@ -149,7 +149,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className=" bg-white/5 font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-md tracking-widest uppercase transition-all backdrop-blur-md border border-white/20 font-syne"
+                className=" bg-white/5 font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-md tracking-widest uppercase transition-all backdrop-blur-md font-syne"
                 style={{
                   // background: 'linear-gradient(135deg, rgba(124,58,237,0.6), rgba(99,102,241,0.6))',
                   // boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)',

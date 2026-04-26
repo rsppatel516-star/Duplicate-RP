@@ -58,7 +58,7 @@ export default function About() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:auto-rows-[180px]">
 
           {/* Main Bio Card */}
-          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full">
+          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full ">
             <div className="relative z-10">
               <h3 className="text-2xl font-display font-bold mb-4 text-dark-primary">Bio / Process</h3>
               <p className="text-dark-textMuted leading-relaxed mb-6 font-bricolage text-sm md:text-base">
@@ -145,12 +145,12 @@ export default function About() {
                 <h4 className="text-lg font-bold mb-2 text-dark-primary group-hover:text-white transition-colors duration-500">Tech Philosophy</h4>
                 <p className="text-xs md:text-sm text-dark-textMuted font-bricolage leading-relaxed">Building with React, Node.js, and a relentless pursuit of pixel perfection.</p>
               </div>
-              
+
               <div className="p-4 bg-dark-surface/80 backdrop-blur-lg rounded-2xl border border-dark-border font-code text-[10px] md:text-xs text-dark-secondary shrink-0 group-hover:border-dark-secondary/50 transition-all duration-500 hover:scale-105">
                 {"<developer />"}
               </div>
             </div>
-            
+
             {/* Animated Background Decor */}
             <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-gradient-to-tr from-dark-primary/20 to-dark-secondary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             <div className="w-16 h-16 bg-gradient-to-tr from-dark-primary to-dark-secondary rounded-xl rotate-12 blur-sm opacity-10 absolute -right-4 -bottom-4 group-hover:rotate-45 transition-transform duration-1000" />

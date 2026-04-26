@@ -39,7 +39,7 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               onClick={() => setSelectedService(service)}
-              className="card-dark group p-10 flex flex-col items-start relative overflow-hidden cursor-pointer"
+              className="bg-white/10 backdrop-blur-md card-dark rounded-2xl group p-10 flex flex-col items-start relative overflow-hidden cursor-pointer"
             >
               <div className="w-16 h-16 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-3xl text-dark-primary mb-8 group-hover:text-dark-secondary group-hover:border-dark-secondary/50 transition-all duration-500 group-hover:scale-110 shadow-2xl relative z-10">
                 <service.icon />

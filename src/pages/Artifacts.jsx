@@ -64,7 +64,7 @@ export default function Artifacts() {
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-7xl md:text-9xl font-display font-bold leading-[0.85] tracking-tighter"
+                className="text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tighter-tight animated-gradient-text"
               >
                 Featured <br /> <span className="text-gradient">Artifacts</span>.
               </motion.h1>
@@ -82,7 +82,7 @@ export default function Artifacts() {
                 Deep-diving into selected works that define my standards for
                 performance, architecture, and design.
               </p>
-            </motion.div>
+            </motion.div> 
           </div>
 
           {/* Count pill */}
