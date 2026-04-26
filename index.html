@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rudra Patel - Full Stack Developer & iOS Developer. Creating responsive, user-centric web experiences and mobile applications. Specializing in React, JavaScript, Swift, and modern web technologies.">
+    <meta name="keywords" content="Rudra Patel, Full Stack Developer, Web Developer, iOS Developer, React Developer, JavaScript, Swift, Portfolio, Web Design, UI/UX">
+    <meta name="author" content="Rudra Patel">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rudrapatel.dev/">
+    <meta property="og:title" content="Rudra Patel - Full Stack Developer & iOS Developer">
+    <meta property="og:description" content="Creating responsive, user-centric web experiences and mobile applications. Specializing in React, JavaScript, Swift, and modern web technologies.">
+    <meta property="og:image" content="/img/Home img.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rudrapatel.dev/">
+    <meta property="twitter:title" content="Rudra Patel - Full Stack Developer & iOS Developer">
+    <meta property="twitter:description" content="Creating responsive, user-centric web experiences and mobile applications.">
+    <meta property="twitter:image" content="/img/Home img.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://rudrapatel.dev/">
+
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/public/images/LOGO-RP.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Rudra Patel | Full-Stack & Mobile App Developer</title>
+    <meta name="description" content="Rudra Patel is a Full-Stack and Mobile App Developer specializing in React, Node.js, and Flutter. Available for freelance work." />
+    <meta name="keywords" content="Rudra Patel, Full-Stack Developer, Mobile App Developer, React, Flutter, Node.js" />
+    <!-- Preemptively set dark mode to prevent FOUC -->
+    <script>
+      (function() {
+        try {
+          var isDark = localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
+
+     <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Rudra Patel",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://rudrapatel.dev",
+      "sameAs": [
+        "https://www.linkedin.com/in/rudra-patel-265258313/",
+        "https://github.com/Rudraptl16",
+        "https://www.instagram.com/rudraa_ptll/",
+        "https://www.facebook.com/profile.php?id=100082469136911",
+        "https://www.youtube.com/@rudrapatel4172"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vadodara",
+        "addressRegion": "Gujarat",
+        "addressCountry": "India"
+      },
+      "email": "patelrudra99098@gmail.com",
+      "telephone": "+91-6354-825-621",
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Parul University"
+      },
+      "knowsAbout": [
+        "Web Development",
+        "iOS Development",
+        "React",
+        "JavaScript",
+        "Swift",
+        "SwiftUI",
+        "Full Stack Development",
+        "UI/UX Design"
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

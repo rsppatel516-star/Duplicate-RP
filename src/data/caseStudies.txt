@@ -1,0 +1,54 @@
+{
+    id: ,
+    title: "",
+    subtitle: "",
+    role: "",
+    liveUrl: "",
+    description: "",
+    image: "",
+    category: "",
+    tags: [],
+    keyFeatures: [],
+    problem: "",
+    solution: "",
+    results: "",
+    techDetails: [],
+    featured: true
+}
+
+{
+  "title": "HiLink - Travel Adventure Website",
+  "subtitle": "Comprehensive Travel Planning & Booking Platform",
+  "role": "Full-Stack Developer",
+  "liveUrl": "http://localhost:3000",
+  "description": "Modern Next.js travel application with offline maps, adventure planning, trip itineraries, AR navigation, user authentication, booking system, budget tracking, wishlist, multi-language & currency support. Join thousands planning outdoor adventures.",
+  "image": "/public/hilink-logo.svg",
+  "category": "Web Application",
+  "tags": ["Next.js", "React", "Tailwind CSS", "TypeScript", "Travel App", "Booking System", "Authentication", "Responsive", "PWA-ready"],
+  "keyFeatures": [
+    "Offline Maps & GPS Tracking",
+    "Adventure Scheduling with Friends",
+    "AI-powered Trip Planner",
+    "AR Navigation",
+    "Complete Booking System",
+    "Budget & Expense Tracking",
+    "Wishlist & Saved Destinations",
+    "Multi-language Support",
+    "Currency Converter",
+    "Weather Integration",
+    "User Dashboard & Profile",
+    "Protected Routes & Auth"
+  ],
+  "problem": "Travelers lack integrated platform for planning, booking, and managing trips with offline capabilities, multi-language support, and comprehensive features like budget tracking, packing lists, and AR navigation.",
+  "solution": "Built full-featured travel app using Next.js App Router with React Context state management, Tailwind responsive design, TypeScript safety, covering entire user journey from discovery to booking management.",
+  "results": "Production-ready responsive website with 18+ pages, 35+ components, 120+ files. Complete auth flow, 20+ features implemented, SEO optimized, scalable architecture supporting global users.",
+  "techDetails": [
+    "Next.js 13.5.4 (App Router, SSR/SSG)",
+    "React 18, TypeScript 5 (strict mode)",
+    "Tailwind CSS v3 (custom theme)",
+    "React Context API (Auth, Wishlist, Language, Currency)",
+    "LocalStorage persistence",
+    "Responsive design (xs-4xl breakpoints)",
+    "SEO: sitemap.xml, robots.txt"
+  ]
+}

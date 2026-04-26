@@ -1,0 +1,19 @@
+{
+    id: ,
+    title: '',
+    subtitle: '',
+    description: '',
+    image: '',
+    tags: [],
+    skillsUsed: [],
+    keyFeatures: [],
+    problem: '',
+    solution: '',
+    results: '',
+    status: '',
+    category: '',
+    liveUrl: '',
+    githubUrl: '',
+    caseStudyId: '',
+    featured: true
+}

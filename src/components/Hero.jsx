@@ -1,0 +1,242 @@
+import React, { useState, useEffect } from 'react';
+import { TypeAnimation } from 'react-type-animation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link as ScrollLink } from 'react-scroll';
+import {
+  Github, Linkedin, Instagram, Youtube, Facebook, ArrowRight
+} from 'lucide-react';
+import Hero3D from './canvas/Hero3D';
+
+// Animated shimmer gradient CSS injected once
+const shimmerStyle = `
+  @keyframes gradientShimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hero-gradient-text {
+    background: linear-gradient(135deg, #a855f7, #7c3aed, #6366f1, #818cf8, #a855f7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShimmer 4s ease infinite;
+  }
+`;
+
+const socialLinks = [
+  { icon: Facebook, href: 'https://facebook.com', color: '#1877f2' },
+  { icon: Instagram, href: 'https://www.instagram.com/rudraa_ptll/', color: '#C13584' },
+  { icon: Github, href: 'https://github.com/Rudraptl16', color: '#ffffff' },
+  { icon: Youtube, href: 'https://www.youtube.com/@rudrapatel4172', color: '#ff0000' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/rudra-patel-265258313/', color: '#0077b5' },
+];
+
+export default function Hero() {
+  const [showBadge, setShowBadge] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBadge(false);
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12 } }
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  return (
+    <section
+      id="home"
+      className="min-h-screen relative flex items-center overflow-hidden "
+      style={{ background: '#050510' }}
+    >
+      {/* Starfield / 3D Background */}
+      <div className="absolute inset-0 z-0 opacity-60">
+        <Hero3D />
+      </div>
+
+      {/* Subtle glow blobs */}
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center pt-32 lg:pt-20">
+
+        {/* ── LEFT: Text Content ─────────────────────────── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-5 order-2 lg:order-1 text-center lg:text-left flex flex-col items-center lg:items-start"
+        >
+          {/* Social Icons Row */}
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4 mb-4">
+            {socialLinks.map(({ icon: Icon, href, color }, i) => (
+              <motion.a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 hover:border-white/20 overflow-hidden"
+              >
+                {/* Individual Icon Glow Background */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                  style={{ backgroundColor: color }}
+                />
+                
+                <Icon 
+                  className="w-5 h-5 md:w-6 md:h-6 relative z-10 transition-transform duration-500 group-hover:scale-110" 
+                  style={{ color }} 
+                  strokeWidth={2}
+                />
+                
+                {/* Subtle bottom line indicator on hover */}
+                <div 
+                  className="absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"
+                  style={{ backgroundColor: color }}
+                />
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* Main Heading — types once then animates gradient forever */}
+          <style>{shimmerStyle}</style>
+          <motion.div variants={itemVariants} className="space-y-1">
+            <TypeAnimation
+              sequence={[
+                "Hi, I'm Rudra\nPatel", 0,
+              ]}
+              wrapper="h1"
+              speed={60}
+              repeat={0}
+              cursor={false}
+              className="hero-gradient-text text-4xl md:text-5xl font-display font-black tracking-tight whitespace-pre-line animated-gradient-text"
+            />
+          </motion.div>
+
+          {/* Animated Subtitle — Syne font, cycles */}
+          <motion.div variants={itemVariants}>
+            <TypeAnimation
+              sequence={[
+                'iOS Developer', 2200,
+                'Full Stack Developer', 2200,
+                'Creative Engineer', 2200,
+                'UI Designer', 2200,
+              ]}
+              wrapper="p"
+              speed={60}
+              repeat={Infinity}
+              className="text-2xl md:text-3xl font-bold font-display tracking-wide text-muted"
+            />
+          </motion.div>
+
+          {/* Description */}
+          <motion.p
+            variants={itemVariants}
+            className="font-display text-white/50 text-lg md:text-xl max-w-md leading-relaxed tracking-wide"
+          >
+            Building high-performance web & mobile experiences 🚀 that drive engagement 📈 and conversions 💡
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.div variants={itemVariants}>
+            <ScrollLink to="contact" smooth duration={1000}>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-black text-md tracking-widest uppercase transition-all backdrop-blur-md border border-white/20 font-syne"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(124,58,237,0.6), rgba(99,102,241,0.6))',
+                  boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)',
+                }}
+              >
+                Contact Me <ArrowRight size={20} />
+              </motion.button>
+            </ScrollLink>
+          </motion.div>
+        </motion.div>
+
+        {/* ── RIGHT: Portrait Photo ──────────────────────── */}
+        {/* Outer entrance animation */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="flex justify-center lg:justify-end order-1 lg:order-2"
+        >
+          {/* Floating up-down wrapper */}
+          <motion.div
+            animate={{ y: [0, -18, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.03 }}
+            className="relative cursor-pointer"
+          >
+            {/* Outer glow — intensifies on hover */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl blur-2xl scale-105"
+              animate={{ opacity: [0.25, 0.4, 0.25] }}
+              whileHover={{ opacity: 0.6 }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            {/* Photo frame */}
+            <div className="relative w-[340px] md:w-[400px] lg:w-[450px] aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+              <img
+                src="/images/IMG_0130.JPG"
+                alt="Rudra Patel"
+                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Bottom gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050510]/60 via-transparent to-transparent" />
+              {/* Hover shimmer overlay
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(99,102,241,0.08))' }}
+              /> */}
+            </div>
+          </motion.div>
+        </motion.div>
+
+
+      </div>
+
+      {/* Welcome Badge */}
+      <AnimatePresence>
+        {showBadge && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+            className="absolute bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 w-max"
+          >
+            <div id="homeWelcomeBadge" className="bg-white/5 backdrop-blur-2xl border border-white/10 px-6 py-3 lg:px-8 lg:py-4 rounded-2xl flex flex-col relative overflow-hidden group hover:border-white/20 transition-all" aria-live="polite" role="status">
+                <div className="flex items-center gap-3 z-10 mb-[2px]">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+                    </span>
+                    <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to Case Study 💻</span>
+                </div>
+                {/* Progress Bar */}
+                <motion.div 
+                  initial={{ width: "100%" }}
+                  animate={{ width: "0%" }}
+                  transition={{ duration: 6.5, ease: "linear" }}
+                  className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-violet-600 to-indigo-400" 
+                />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}

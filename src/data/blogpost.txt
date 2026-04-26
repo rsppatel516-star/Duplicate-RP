@@ -1,0 +1,41 @@
+id:
+title:
+excert:
+date:
+readTime:
+category:
+author:
+    name:
+    role:
+    avatar:
+tags:
+image:
+featured:
+content:
+    type:"paragraph"
+    text: ""
+
+    type:"quote"
+    text: ""
+    author: ""
+
+    type:"heading"
+    text:""
+
+    type:"paragraph"
+    text:""
+
+    type:"list"
+    items:[
+        ""
+        ""
+        ""
+    ]
+
+    type:"code"
+    language:""
+    code:""
+
+    type:"paragraph"
+    text:""
+
