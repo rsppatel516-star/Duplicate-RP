@@ -6,7 +6,6 @@ import { Menu, X, ArrowRight, MessageSquare } from 'lucide-react';
 const featureLinks = [
   { name: 'HOME', to: '/' },
   { name: 'ARTIFACTS', to: '/artifacts' },
-  { name: 'BLOG', to: '/blog' },
 ];
 
 const FeatureNavLink = ({ link, mobile, close }) => {
