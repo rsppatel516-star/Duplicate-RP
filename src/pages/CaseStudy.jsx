@@ -88,7 +88,7 @@ export default function CaseStudy() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-white/70 hover:text-dark-primary transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-dark-bg/20 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-full border border-white/5"
+            className="flex items-center gap-3 text-dark-textMuted hover:text-black transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-dark-bg/20 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-full border border-white/5"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1.5" />
             Artifacts

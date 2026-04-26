@@ -82,7 +82,7 @@ export default function Artifacts() {
                 Deep-diving into selected works that define my standards for
                 performance, architecture, and design.
               </p>
-            </motion.div> 
+            </motion.div>
           </div>
 
           {/* Count pill */}
@@ -101,7 +101,7 @@ export default function Artifacts() {
           </motion.div>
         </motion.div>
 
-        {/* ── Artifact List ── */}
+        {/* ── Artifact List ──   */}
         <div className="space-y-48">
           {featuredArtifacts.map((project, idx) => {
             const hasCaseStudy = caseStudyIds.has(project.id);
