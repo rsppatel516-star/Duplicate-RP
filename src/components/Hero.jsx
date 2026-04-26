@@ -38,7 +38,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowBadge(false);
-    }, 8000);
+    }, 6500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -88,20 +88,15 @@ export default function Hero() {
                 whileTap={{ scale: 0.95 }}
                 className="group relative w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 hover:border-white/20 overflow-hidden"
               >
-                {/* Individual Icon Glow Background */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                  style={{ backgroundColor: color }}
-                />
-                
-                <Icon 
-                  className="w-5 h-5 md:w-6 md:h-6 relative z-10 transition-transform duration-500 group-hover:scale-110" 
-                  style={{ color }} 
+
+                <Icon
+                  className="w-5 h-5 md:w-6 md:h-6 relative z-10 transition-transform duration-500 group-hover:scale-110"
+                  style={{ color }}
                   strokeWidth={2}
                 />
-                
+
                 {/* Subtle bottom line indicator on hover */}
-                <div 
+                <div
                   className="absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"
                   style={{ backgroundColor: color }}
                 />
@@ -154,10 +149,10 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className="font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-black text-md tracking-widest uppercase transition-all backdrop-blur-md border border-white/20 font-syne"
+                className=" bg-white/5 font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-md tracking-widest uppercase transition-all backdrop-blur-md border border-white/20 font-syne"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(124,58,237,0.6), rgba(99,102,241,0.6))',
-                  boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)',
+                  // background: 'linear-gradient(135deg, rgba(124,58,237,0.6), rgba(99,102,241,0.6))',
+                  // boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)',
                 }}
               >
                 Contact Me <ArrowRight size={20} />
@@ -188,15 +183,16 @@ export default function Hero() {
               whileHover={{ opacity: 0.6 }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             />
-            {/* Photo frame */}
-            <div className="relative w-[340px] md:w-[400px] lg:w-[450px] aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+            {/* Photo frame */} {/*border border-white/10 shadow-2xl group*/}
+            <div className="relative w-[340px] md:w-[400px] lg:w-[450px] aspect-[3/4] rounded-3xl overflow-hidden ">
               <img
-                src="/images/IMG_0130.JPG"
+                src="/images/about.png"
                 alt="Rudra Patel"
+                fetchPriority="high"
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
               />
-              {/* Bottom gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050510]/60 via-transparent to-transparent" />
+              {/* Bottom gradient overlay */} {/*bg-gradient-to-t from-[#050510]/60 */}
+              <div className="absolute inset-0 via-transparent to-transparent" />
               {/* Hover shimmer overlay
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(99,102,241,0.08))' }}
@@ -219,20 +215,20 @@ export default function Hero() {
             className="absolute top-24 md:top-auto md:bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 w-max"
           >
             <div id="homeWelcomeBadge" className="bg-white/5 backdrop-blur-2xl border border-white/10 px-6 py-3 lg:px-8 lg:py-4 rounded-2xl flex flex-col relative overflow-hidden group hover:border-white/20 transition-all" aria-live="polite" role="status">
-                <div className="flex items-center gap-3 z-10 mb-[2px]">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
-                    </span>
-                    <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to Case Study 💻</span>
-                </div>
-                {/* Progress Bar */}
-                <motion.div 
-                  initial={{ width: "100%" }}
-                  animate={{ width: "0%" }}
-                  transition={{ duration: 6.5, ease: "linear" }}
-                  className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-violet-600 to-indigo-400" 
-                />
+              <div className="flex items-center gap-3 z-10 mb-[2px]">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+                </span>
+                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to Case Study 💻</span>
+              </div>
+              {/* Progress Bar */}
+              <motion.div
+                initial={{ width: "100%" }}
+                animate={{ width: "0%" }}
+                transition={{ duration: 6.5, ease: "linear" }}
+                className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-violet-600 to-indigo-400"
+              />
             </div>
           </motion.div>
         )}

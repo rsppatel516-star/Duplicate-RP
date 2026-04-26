@@ -18,8 +18,8 @@ function App() {
 
       {/* Main Content Layer */}
       <div className="relative z-10 flex flex-col min-h-screen">
-      {/* Conditionally render Navbar or FeatureNavbar */}
-      {isFeaturePage ? <FeatureNavbar /> : <Navbar />}
+        {/* Conditionally render Navbar or FeatureNavbar */}
+        {isFeaturePage ? <FeatureNavbar /> : <Navbar />}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />

@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>RUDRA | Digital Architect & Full-Stack Engineer</title>
+        <title>RUDRA | Digital Architect & Full-Stack Engineer </title>
         <meta name="description" content="Portfolio of Rudra Patel, a Digital Architect specializing in premium web experiences, high-performance mobile apps, and robust full-stack engineering." />
         <meta name="keywords" content="Rudra Patel, Digital Architect, Full-Stack Developer, Mobile App Developer, React, Flutter, Node.js, Midnight Glass Design" />
         <meta property="og:title" content="RUDRA | Digital Architect Portfolio" />
         <meta property="og:description" content="Immersive digital experiences and high-performance engineering." />
-        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:image" content="/images/about.png" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://patelrudra.in/" />
       </Helmet>
