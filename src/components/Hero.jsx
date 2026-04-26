@@ -216,7 +216,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-            className="absolute bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 w-max"
+            className="absolute top-24 md:top-auto md:bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 w-max"
           >
             <div id="homeWelcomeBadge" className="bg-white/5 backdrop-blur-2xl border border-white/10 px-6 py-3 lg:px-8 lg:py-4 rounded-2xl flex flex-col relative overflow-hidden group hover:border-white/20 transition-all" aria-live="polite" role="status">
                 <div className="flex items-center gap-3 z-10 mb-[2px]">
