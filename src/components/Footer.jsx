@@ -99,11 +99,11 @@ export default function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-secondary flex items-center gap-2 ">
               <Globe size={16} /> Services
             </h4>
-            <ul className="space-y-4 text-dark-textMuted font-medium text-sm font-bricolage">
-              <li><span className="hover:text-white cursor-default transition-colors block">Web Design</span></li>
-              <li><span className="hover:text-white cursor-default transition-colors block">Web Development</span></li>
-              <li><span className="hover:text-white cursor-default transition-colors block">Live website Working</span></li>
-              <li><span className="hover:text-white cursor-default transition-colors block">Responsive Design</span></li>
+            <ul className="space-y-4 text-dark-textMuted font-medium text-[15px] font-bricolage">
+              <li><span className="hover:text-dark-primary cursor-default transition-colors block">Web Design</span></li>
+              <li><span className="hover:text-dark-primary cursor-default transition-colors block">Web Development</span></li>
+              <li><span className="hover:text-dark-primary cursor-default transition-colors block">Live website Working</span></li>
+              <li><span className="hover:text-dark-primary cursor-default transition-colors block">Responsive Design</span></li>
             </ul>
           </div>
 

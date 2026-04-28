@@ -35,9 +35,10 @@ export const featuredArtifacts = [
     githubUrl: 'https://github.com/Rudraptl16/Rudraptl16',
     featured: true,
   },
+
   {
     id: 2,
-    title: 'Zerodha Trading Platform',
+    title: 'Hilink Landing Page',
     subtitle: 'High-Performance Editorial Experience',
     description:
       'A radical, editorial split-screen portfolio engineered with a "Midnight Glass" neo-brutalist aesthetic. Built for performance, immersive 3D backgrounds, and sophisticated Framer Motion interactions across every section.',
@@ -61,7 +62,7 @@ export const featuredArtifacts = [
     solution: 'Implemented a motion-first architecture using Framer Motion and a global particle system to create an immersive "Midnight Glass" aesthetic.',
     results: 'Achieved ultra-fast load times and a unique brand identity that stands out in the developer ecosystem.',
     status: 'Active Maintenance',
-    category: 'Full-stack',
+    category: 'Frontend',
     liveUrl: '#',
     githubUrl: 'https://github.com/Rudraptl16/Rudraptl16',
     featured: true,

@@ -135,7 +135,7 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     whileHover={{ y: -8, scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className={`w-14 h-14 rounded-2xl bg-dark-surface/50 backdrop-blur-md border border-dark-border flex items-center justify-center text-dark-textMuted transition-all duration-500 hover:border-dark-primary/40 hover:bg-dark-surface hover:shadow-[0_0_20px_rgba(99,102,241,0.1)] ${social.color}`}
+                    className={`w-14 h-14 rounded-2xl  backdrop-blur-md border border-white/30 flex items-center justify-center text-dark-textMuted transition-all duration-500 hover:border-dark-primary/40 hover:bg-dark-surface hover:shadow-[0_0_20px_rgba(99,102,241,0.1)] ${social.color}`}
                   >
                     {social.icon}
                   </motion.a>
@@ -272,10 +272,10 @@ export default function Contact() {
                 </div>
 
                 <div className="pt-6">
-                  <MagneticButton disabled={isSubmitting} className="w-full">
+                  <MagneticButton disabled={isSubmitting} className="w-full cursor-pointer">
                     <button
                       type="submit"
-                      className={`w-full py-6 rounded-2xl font-display font-black text-1md tracking-tighter-tight transition-all duration-500 relative overflow-hidden group ${isSubmitting
+                      className={`w-full py-6 rounded-2xl font-display font-black text-[15px] leading-[0.85] tracking-tighter transition-all duration-500 relative overflow-hidden group ${isSubmitting
                         ? 'bg-dark-surface text-dark-textMuted cursor-not-allowed border border-dark-border'
                         : 'bg-dark-primary text-dark-bg hover:shadow-[0_0_40px_rgba(99,102,241,0.2)]'
                         }`}

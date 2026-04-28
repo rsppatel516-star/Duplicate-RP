@@ -230,8 +230,8 @@ export const projects = [
     "Job Details"
   ],
   status: "Completed",
-  category: "Javascript",
-  liveUrl: "https://job-portal-9a78d.web.app/",
+  category: "React",
+  liveUrl: "https://calculator-rp16.vercel.app",
   githubUrl: "https://github.com/Rudraptl16",
   caseStudyId: 6,
   featured: true

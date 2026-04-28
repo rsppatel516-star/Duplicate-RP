@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
-import {
-  Github, Linkedin, Instagram, Youtube, Facebook, ArrowRight
-} from 'lucide-react';
+import { Github, Linkedin, Instagram, Youtube, Facebook, ArrowRight } from 'lucide-react';
 import Hero3D from './canvas/Hero3D';
 
 // Animated shimmer gradient CSS injected once
@@ -220,9 +218,9 @@ export default function Hero() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
                 </span>
-                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to Case Study 💻</span>
+                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome 👋👋</span>
               </div>
-              {/* Progress Bar */}
+              {/* Progress Bar  Welcome to Case Study 💻 */}
               <motion.div
                 initial={{ width: "100%" }}
                 animate={{ width: "0%" }}

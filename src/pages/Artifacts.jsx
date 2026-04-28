@@ -78,10 +78,7 @@ export default function Artifacts() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="max-w-md"
             >
-              <p className="text-dark-textMuted text-xl border-l-2 border-dark-secondary/40 px-8 py-2 font-medium leading-relaxed ">
-                Deep-diving into selected works that define my standards for
-                performance, architecture, and design.
-              </p>
+
             </motion.div>
           </div>
 
@@ -152,9 +149,9 @@ export default function Artifacts() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="absolute -top-6 -left-6 px-7 py-3 bg-dark-surface/90 backdrop-blur-xl border border-white/5 rounded-2xl z-20 shadow-2xl"
+                    className="absolute -top-6 -left-6 px-7 py-3 bg-white/10 backdrop-blur-xl border border-white/5 rounded-2xl z-20 shadow-2xl"
                   >
-                    <span className="text-xs font-black uppercase tracking-[0.25em] text-dark-secondary">
+                    <span className="text-md font-black uppercase tracking-[0.25em] text-black font-bricolage">
                       {project.category}
                     </span>
                   </motion.div>

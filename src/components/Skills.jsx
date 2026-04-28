@@ -12,7 +12,8 @@ import {
 } from 'react-icons/fa';
 import {
   SiNextdotjs, SiTailwindcss, SiExpress, SiFlutter, SiMongodb,
-  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker
+  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker,
+  SiReact
 } from 'react-icons/si';
 import { BiServer } from 'react-icons/bi';
 import { DiGit } from 'react-icons/di';
@@ -167,7 +168,7 @@ export default function Skills() {
         >
           <div className="flex items-center gap-8">
             <div className="flex -space-x-3">
-              {['react', 'nodejs', 'nextjs', 'flutter'].map((icon, i) => (
+              {['swift', 'nodejs', 'nextjs'].map((icon, i) => (
                 <div key={i} className={`w-10 h-10 rounded-full border-2 border-dark-bg bg-dark-surface flex items-center justify-center text-lg transition-transform hover:z-10 hover:scale-110 cursor-default ${techColors[icon]}`}>
                   {iconMap[icon]}
                 </div>
