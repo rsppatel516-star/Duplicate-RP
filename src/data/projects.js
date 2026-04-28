@@ -206,28 +206,31 @@ export const projects = [
 
   id:7,
   title: "Calculator App",
-  subtitle: "An online platform for job seekers and recruiters",
-  description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
+  subtitle: "An online calculator web application with basic arithmetic operations",
+  description: "A calculator web application with basic arithmetic operations.",
   image: "/project img/Calculator.png",
   tags: [
-    "Job Portal", 
-    "Career", 
-    "Web App"
+    "Calculator", 
+    "Web App", 
+    "React"
     ],
   skillsUsed: [
     "HTML",
-    "CSS",
+    "Tailwind CSS",
     "JavaScript",
+    "React",
+    "Vercel",
     "Animation",
     "Responsive Design",
-    "Firebase Hosting",
+    "Git",
+    "Github"
   ],
   keyFeatures: [
-    "Job listings",
-    "Search and filter jobs",
-    "User authentication",
-    "Apply for jobs",
-    "Job Details"
+    "Add numbers",
+    "Subtract numbers",
+    "Multiply numbers",
+    "Divide numbers",
+    "Clear display"
   ],
   status: "Completed",
   category: "React",
