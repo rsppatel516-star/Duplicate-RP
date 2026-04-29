@@ -18,7 +18,7 @@ const navLinks = [
 /* shared scroll-link / button for a nav item */
 const NavLink = ({ link, mobile, isHome, close, handleClick }) => {
   const cls = mobile
-    ? 'flex items-center justify-between w-full px-4 py-3.5 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.06] transition-all text-base cursor-pointer'
+    ? 'flex items-center justify-between w-full px-4 py-3.5 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.06] transition-transform-all duration-300 hover:-translate-y-1 cursor-default text-base cursor-pointer'
     : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300 relative group cursor-pointer';
 
   return isHome ? (
