@@ -188,7 +188,7 @@ export default function Projects() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-dark-surface border border-dark-border p-6 md:p-10 rounded-3xl max-w-5xl w-full relative overflow-hidden flex flex-col max-h-[90vh]"
+              className="bg-dark-surface/50 border border-dark-border/50   p-6 md:p-10 rounded-3xl max-w-5xl w-full relative overflow-hidden flex flex-col max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -221,12 +221,12 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 font-bricolage ">
                       <a
                         href={selectedProject.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-center gap-3 w-full py-4 bg-dark-primary text-dark-bg font-bold rounded-2xl hover:bg-white hover:text-black transition-colors"
+                        className="flex items-center justify-center gap-3 w-full py-4 bg-dark-primary text-dark-bg font-bold rounded-2xl hover:bg-white/15 hover:text-white transition-transform duration-400 hover:scale-95 "
                       >
                         <ExternalLink size={20} /> Launch Project
                       </a>
@@ -234,7 +234,7 @@ export default function Projects() {
                         href={selectedProject.githubUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center justify-center gap-3 w-full py-4 bg-dark-surface text-white font-bold rounded-2xl border border-dark-border hover:border-dark-textMuted transition-colors"
+                        className="flex items-center justify-center gap-3 w-full py-4 text-white font-bold rounded-2xl border border-dark-border hover:border-dark-primary transition-colors bg-dark-surface/15 hover:text-white"
                       >
                         <Github size={20} /> Source Code
                       </a>
@@ -244,8 +244,12 @@ export default function Projects() {
                   {/* Right Column: Details */}
                   <div className="lg:col-span-7 flex flex-col pt-2 md:pt-4 lg:pr-4">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="flex items-center gap-2 px-2 py-2 bg-dark-primary/30 border border-dark-border rounded-full text-xs font-bold text-dark-textMuted uppercase tracking-wider">
-                        <span className={`w-2 h-2 rounded-full ${selectedProject.status === 'Completed' ? 'bg-dark-accent' : 'bg-dark-secondary'}`} />
+                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border backdrop-blur-sm ${selectedProject.status === 'Completed'
+                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
+                          : 'text-amber-400 bg-amber-500/10 border-amber-500/25'
+                        }`}>
+                        <span className={`w-2 h-2 rounded-full ${selectedProject.status === 'Completed' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-pulse'
+                          }`} />
                         {selectedProject.status}
                       </div>
                     </div>
@@ -262,9 +266,9 @@ export default function Projects() {
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {selectedProject.keyFeatures.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-3 bg-dark-bg/50 p-4 rounded-xl border border-dark-border/50 shadow-sm group hover:border-dark-secondary/50 transition-colors">
-                              <span className="mt-[4px] w-2 h-2 rounded-full bg-dark-secondary shrink-0 transition-all duration-300" />
-                              <span className="text-white text-sm group-hover:translate-x-1 transition-transform duration-300">{feature}</span>
+                            <li key={idx} className="flex items-start gap-3 bg-dark-surface/50 p-4 rounded-xl border border-dark-border/50 shadow-sm group transition-colors">
+                              <span className="mt-[4px] w-2 h-2 rounded-xl bg-dark-secondary shrink-0 transition-all duration-300" />
+                              <span className="text-white text-sm group-hover:translate-x-2 transition-transform duration-300">{feature}</span>
                             </li>
                           ))}
                         </ul>

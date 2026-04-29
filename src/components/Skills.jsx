@@ -61,6 +61,18 @@ const techColors = {
   docker: 'text-[#2496ED]',swift: 'text-[#FA7343]'
 };
 
+const techHexColors = {
+  html5: '#E34F26', css3: '#1572B6', javascript: '#F7DF1E',
+  react: '#61DAFB', nextjs: '#ffffff', tailwindcss: '#06B6D4',
+  nodejs: '#339933', express: '#ffffff', api: '#00E5FF',
+  php: '#777BB4', java: '#007396', flutter: '#02569B',
+  reactnative: '#61DAFB', dart: '#0175C2', mongodb: '#47A248',
+  mysql: '#4479A1', firebase: '#FFCA28', git: '#F05032',
+  github: '#ffffff', vscode: '#007ACC', figma: '#F24E1E',
+  vercel: '#ffffff', postman: '#FF6C37', aws: '#FF9900',
+  docker: '#2496ED', swift: '#FA7343'
+};
+
 const categoryIcons = {
   'Frontend': <Layout size={14} />,
   'Backend': <Server size={14} />,
@@ -71,6 +83,7 @@ const categoryIcons = {
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState(skills[0].category);
+  const [hoveredTech, setHoveredTech] = useState(null);
 
   const categories = skills.map(s => s.category);
   const activeSkills = skills.find(s => s.category === activeTab)?.technologies || [];
@@ -136,7 +149,13 @@ export default function Skills() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                   whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  className="group relative h-48 bg-dark-surface/30 backdrop-blur-md border border-dark-border rounded-3xl p-8 flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-500 hover:border-dark-primary/40 hover:bg-dark-surface/50"
+                  onMouseEnter={() => setHoveredTech(tech.name)}
+                  onMouseLeave={() => setHoveredTech(null)}
+                  style={{
+                    borderColor: hoveredTech === tech.name ? `${techHexColors[tech.icon]}60` : undefined,
+                    boxShadow: hoveredTech === tech.name ? `0 0 25px -5px ${techHexColors[tech.icon]}30` : undefined
+                  }}
+                  className="group relative h-48 bg-dark-surface/30 backdrop-blur-md border border-dark-border rounded-3xl p-8 flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-500 hover:bg-dark-surface/50"
                 >
                   {/* Floating Brand Glow */}
                   <div className={`absolute -bottom-10 -right-10 text-9xl opacity-[0.02] group-hover:opacity-[0.1] transition-opacity duration-700 pointer-events-none ${techColors[tech.icon]}`}>

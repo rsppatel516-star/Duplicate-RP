@@ -147,13 +147,13 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
-                className=" bg-white/5 font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-md tracking-widest uppercase transition-all backdrop-blur-md font-syne"
-                style={{
-                  // background: 'linear-gradient(135deg, rgba(124,58,237,0.6), rgba(99,102,241,0.6))',
-                  // boxShadow: '0 0 30px rgba(124, 58, 237, 0.4)',
-                }}
+                className="relative group font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-md tracking-widest uppercase transition-all backdrop-blur-md font-syne overflow-hidden"
               >
-                Contact Me <ArrowRight size={20} />
+                <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-600 via-indigo-500 to-violet-600 opacity-20 blur-sm transition-opacity group-hover:opacity-40 duration-500" />
+                <span className="absolute inset-[1px] bg-[#0a0a12]/90 backdrop-blur-md rounded-2xl z-0 transition-colors group-hover:bg-[#0a0a12]/80" />
+                <span className="relative z-10 flex items-center gap-3">
+                  Contact Me <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
               </motion.button>
             </ScrollLink>
           </motion.div>
@@ -176,7 +176,7 @@ export default function Hero() {
           >
             {/* Outer glow — intensifies on hover */}
             <motion.div
-              className="absolute inset-0 rounded-3xl blur-2xl scale-105"
+              className="absolute inset-0 rounded-3xl blur-2xl scale-105 bg-gradient-to-r from-violet-600/30 to-indigo-500/30"
               animate={{ opacity: [0.25, 0.4, 0.25] }}
               whileHover={{ opacity: 0.6 }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}

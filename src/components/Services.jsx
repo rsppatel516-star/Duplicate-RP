@@ -20,7 +20,7 @@ export default function Services() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="flex items-center gap-3 mb-6 text-dark-primary font-code text-sm tracking-widest uppercase"
-            > 
+            >
               <Zap size={18} />
               <span>Core Capabilities</span>
             </motion.div>

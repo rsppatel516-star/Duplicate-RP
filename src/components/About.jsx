@@ -62,7 +62,7 @@ export default function About() {
             <div className="relative z-10">
               <h3 className="text-2xl font-display font-bold mb-4 text-dark-primary">Bio / Process</h3>
               <p className="text-dark-textMuted leading-relaxed mb-6 font-bricolage text-sm md:text-base">
-                I am Rudra Patel, a passionate Full Stack Programmer based in India, currently pursuing a Bachelor's degree in Computer Science Engineering at Parul University. I specialize in creating unique, modern, and responsive websites with exceptional user experiences. My expertise spans from frontend design to backend development, and  I love building scalable solutions that make a real impact.
+                I'm Rudra Patel, a passionate Full Stack Programmer based in India, currently pursuing a Bachelor's degree in Computer Science Engineering at Parul University. I specialize in creating unique, modern, and responsive websites with exceptional user experiences. My expertise spans from frontend design to backend development, and  I love building scalable solutions that make a real impact.
                 My philosophy is simple: <span className="text-dark-textMain font-medium">Design for the future, build for the performance.</span>
               </p>
               <div className="flex gap-4">
@@ -95,7 +95,7 @@ export default function About() {
           <BentoCard className="col-span-1 md:col-span-2 lg:col-span-1 md:row-span-1 hover:border-dark-secondary/40 transition-colors group relative overflow-hidden h-auto md:h-full">
             <a href="/Rudra Patel.pdf" download className="flex flex-col h-full justify-between group cursor-pointer relative z-10">
               <div className="flex justify-between items-start">
-                <div className="p-3 bg-dark-secondary/10 rounded-xl border border-dark-secondary/20 group-hover:bg-dark-secondary/20 transition-colors">
+                <div className="p-3 rounded-xl  group-hover:bg-dark-secondary/20 transition-colors">
                   <Download className="text-dark-secondary group-hover:scale-110 transition-transform" size={20} />
                 </div>
               </div>
@@ -114,7 +114,7 @@ export default function About() {
 
           {stats.map((stat, i) => (
             <BentoCard key={stat.label} className="col-span-1 lg:col-span-1 text-center items-center justify-center p-4 animated-gradient-text h-auto min-h-[120px] md:h-full" delay={0.1 * i}>
-              <span className="text-2xl md:text-3xl font-display font-extrabold text-gradient font-poppins ">
+              <span className="text-2xl md:text-3xl font-extrabold text-gradient font-bricolage ">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} delay={0.3 + (i * 0.1)} />
               </span>
               <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold text-dark-textMuted mt-1 font-bricolage">{stat.label}</span>

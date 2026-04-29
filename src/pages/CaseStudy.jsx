@@ -235,7 +235,7 @@ export default function CaseStudy() {
                     className="flex items-center gap-5 p-6 bg-white/[0.02] border border-white/5 rounded-2xl group hover:border-dark-secondary/40 hover:bg-dark-secondary/[0.03] transition-all"
                   >
                     <div className="w-10 h-10 rounded-full bg-dark-secondary/10 flex items-center justify-center group-hover:bg-dark-secondary/20 transition-colors">
-                      <CheckCircle2 size={20} className="text-dark-secondary group-hover:scale-110 transition-transform" />
+                      <CheckCircle2 size={20} className="text-dark-secondary group-hover:scale-110 transition-transform-all duration-300 hover:-translate-y-1 cursor-default" />
                     </div>
                     <span className="text-base font-medium text-dark-textMuted group-hover:text-white transition-colors">{feature}</span>
                   </motion.div>
@@ -254,7 +254,7 @@ export default function CaseStudy() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, type: "spring", stiffness: 200, damping: 20 }}
-                  className="px-6 py-3 bg-dark-primary/[0.05] border border-dark-primary/10 rounded-2xl text-dark-primary font-bold text-xs uppercase tracking-widest hover:bg-dark-primary hover:text-white transition-all cursor-default"
+                  className="font-bricolage px-6 py-3 bg-dark-primary/[0.05] border border-dark-primary/10 rounded-2xl text-dark-primary font-bold text-xs uppercase tracking-widest hover:bg-dark-primary hover:text-white transition-transform-duration-500 hover:-translate-y-1 cursor-default"
                 >
                   {tag}
                 </motion.span>

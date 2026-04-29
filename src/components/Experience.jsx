@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { experience, certifications } from '../data/experience';
 import {
   Briefcase, GraduationCap, Trophy,
@@ -18,6 +18,12 @@ const iconMap = {
 
 export default function Experience() {
   const [selectedPdf, setSelectedPdf] = useState(null);
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"]
+  });
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section id="experience" className="py-32  relative overflow-hidden">
@@ -55,7 +61,16 @@ export default function Experience() {
               <h3 className="text-2xl font-display font-bold">Professional Path</h3>
             </div>
 
-            <div className="relative border-l border-dark-border/50 ml-5 space-y-12">
+            <div ref={timelineRef} className="relative ml-5 space-y-12">
+              {/* Background Line */}
+              <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-dark-border/50" />
+              
+              {/* Laser Glowing Line */}
+              <motion.div 
+                style={{ scaleY, transformOrigin: 'top' }}
+                className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary shadow-[0_0_15px_rgba(0,212,255,0.5)]"
+              />
+
               {experience.map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -65,7 +80,7 @@ export default function Experience() {
                   transition={{ delay: idx * 0.1 }}
                   className="relative pl-10 group"
                 >
-                  <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-dark-primary group-hover:scale-125 transition-transform" />
+                  <div className="absolute -left-[5.5px] top-1.5 w-[12px] h-[12px] rounded-full bg-[#050510] border-2 border-dark-border group-hover:border-dark-primary transition-all duration-800 z-10" />
 
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 text-dark-primary font-bold text-xs tracking-widest uppercase mb-1">
