@@ -169,8 +169,44 @@ export const projects = [
   featured: true
 },
 {
-
   id:6,
+  title: 'Note Sphere',
+  subtitle: 'Smart and Simple Note Management App',
+  description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
+  image: '/project img/Note.png',
+  tags: [
+    "Notes App",
+    "Productivity", 
+    "Web App", 
+    "CRUD", 
+    "Note Management"
+  ],
+  skillsUsed: [
+    "HTML", 
+    "Tailwind CSS", 
+    "JavaScript", 
+    "React", 
+    "Next.js",
+    "Local Storage", 
+    "UI/UX Design"
+  ],
+  keyFeatures: [
+    "Create, edit, and delete notes",
+    "Real-time updates of notes",
+    "Fast and lightweight performance",
+    "Simple and clean UI",
+    "Real-time updates"
+  ],
+  status: 'Completed',
+  category: 'React',
+  liveUrl: 'https://note-sphere-16.vercel.app/',
+  githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
+  caseStudyId: '6',
+  featured: true
+},
+{
+
+  id:7,
   title: "Job Portal Website",
   subtitle: "An online platform for job seekers and recruiters",
   description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
@@ -199,12 +235,12 @@ export const projects = [
   category: "Javascript",
   liveUrl: "https://job-portal-9a78d.web.app/",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 6,
+  caseStudyId: 7,
   featured: true
 },
 {
 
-  id:7,
+  id:8,
   title: "Calculator App",
   subtitle: "An online calculator web application with basic arithmetic operations",
   description: "A calculator web application with basic arithmetic operations.",
@@ -236,11 +272,11 @@ export const projects = [
   category: "React",
   liveUrl: "https://calculator-rp16.vercel.app",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 6,
+  caseStudyId: 8,
   featured: true
 },
 {
-  id:8,
+  id:9,
   title: "Nexify Landing Page",
   subtitle: "AI-powered workflow automation platform",
   description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
@@ -266,11 +302,11 @@ export const projects = [
   category: "HTML / CSS",
   liveUrl: "https://rudraptl16.github.io/Nexify/",
   githubUrl: "https://github.com/Rudraptl16/Nexify",
-  caseStudyId: 8,
+  caseStudyId: 9,
   featured: true
 },
 {
-  id:9,
+  id:10,
   title: "Health Care Website",
   subtitle: "An online platform for healthcare services and information",
   image: "/project img/Health.png",
@@ -297,7 +333,7 @@ export const projects = [
   category: "HTML / CSS",
   liveUrl: "https://health-care-4a149.web.app/",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 7,
+  caseStudyId: 10,
   featured: true
 }
 ];

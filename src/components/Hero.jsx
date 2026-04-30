@@ -23,10 +23,13 @@ const shimmerStyle = `
 `;
 
 const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com', color: '#1877f2' },
+  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100082469136911', color: '#1877f2' },
   { icon: Instagram, href: 'https://www.instagram.com/rudraa_ptll/', color: '#C13584' },
   { icon: Github, href: 'https://github.com/Rudraptl16', color: '#ffffff' },
-  { icon: Youtube, href: 'https://www.youtube.com/@rudrapatel4172', color: '#ff0000' },
+  {
+    icon: Youtube, href: 'https://www.youtube.com/@rudrapatel4172', color: '#ff0000'
+
+  },
   { icon: Linkedin, href: 'https://www.linkedin.com/in/rudra-patel-265258313/', color: '#0077b5' },
 ];
 

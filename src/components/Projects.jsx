@@ -147,7 +147,7 @@ export default function Projects() {
           {/* Load More — shows more cards inline */}
           {visibleCount < filteredProjects.length && (
             <MagneticButton
-              onClick={() => setVisibleCount(prev => prev + 3)}
+              onClick={() => setVisibleCount(filteredProjects.length)}
               className="px-12 py-5 bg-dark-surface border border-dark-border rounded-full font-bold hover:border-dark-primary transition-all group overflow-hidden relative font-syne tracking-tighter-tight"
             >
               <span className="relative z-10 flex items-center gap-3 uppercase tracking-widest">
