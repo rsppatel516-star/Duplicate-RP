@@ -5,11 +5,13 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Artifacts from './pages/Artifacts';
 import CaseStudy from './pages/CaseStudy';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import GlobalParticles from './components/canvas/GlobalParticles';
 
 function App() {
   const location = useLocation();
-  const isFeaturePage = location.pathname.startsWith('/artifacts');
+  const isFeaturePage = location.pathname.startsWith('/artifacts') || location.pathname.startsWith('/blog');
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-bg text-dark-textMain relative">
@@ -25,6 +27,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/artifacts" element={<Artifacts />} />
             <Route path="/artifacts/:id" element={<CaseStudy />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
           </Routes>
         </main>
         {!isFeaturePage && <Footer />}

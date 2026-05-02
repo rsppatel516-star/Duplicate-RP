@@ -187,7 +187,7 @@ export default function Hero() {
             {/* Photo frame */} {/*border border-white/10 shadow-2xl group*/}
             <div className="relative w-[340px] md:w-[400px] lg:w-[450px] aspect-[3/4] rounded-3xl overflow-hidden ">
               <img
-                src="/images/about.png"
+                src="/images/pic.jpeg"
                 alt="Rudra Patel"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
@@ -221,7 +221,7 @@ export default function Hero() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
                 </span>
-                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome 👋👋</span>
+                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to Case Study 💻</span>
               </div>
               {/* Progress Bar  Welcome to Case Study 💻 */}
               <motion.div
