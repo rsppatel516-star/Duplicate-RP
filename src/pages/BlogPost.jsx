@@ -53,8 +53,10 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen text-dark-textMain bg-dark-bg overflow-x-hidden pb-32">
       <Helmet>
-        <title>{post.title} | Blog | Rudra Patel</title>
-        <meta name="description" content={post.excerpt} />
+        <title>{post.seo?.metaTitle || `${post.title} | Blog | Rudra Patel`}</title>
+        <meta name="description" content={post.seo?.metaDescription || post.excerpt} />
+        {post.seo?.keywords && <meta name="keywords" content={post.seo.keywords.join(', ')} />}
+        {post.seo?.canonical && <link rel="canonical" href={post.seo.canonical} />}
       </Helmet>
 
       {/* Progress Bar */}
@@ -85,7 +87,7 @@ export default function BlogPost() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-white hover:text-dark-primary transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-white/10 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-full border border-white/10 shadow-lg"
+            className="flex items-center gap-3 text-white hover:text-black transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-white/10 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-full border border-white/10 shadow-lg"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1.5" />
             Back to Blog
@@ -148,6 +150,16 @@ export default function BlogPost() {
                 <p className="text-sm font-medium text-white">{post.readTime}</p>
               </div>
             </motion.div>
+
+            {post.tags && (
+              <motion.div variants={sv} className="flex flex-wrap gap-2 pt-2 md:pt-0">
+                {post.tags.map(tag => (
+                  <div key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] uppercase tracking-[0.2em] text-white/40">
+                    #{tag}
+                  </div>
+                ))}
+              </motion.div>
+            )}
           </motion.div>
         </div>
 
@@ -187,8 +199,12 @@ export default function BlogPost() {
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] uppercase tracking-[0.2em] font-black text-dark-primary">Written By</p>
-                <h3 className="text-xl font-display font-bold text-white">Rudra Patel</h3>
-                <p className="text-sm text-dark-textMuted max-w-[200px]">Alchemist of digital experiences and full-stack architecture.</p>
+                <h3 className="text-xl font-display font-bold text-white">{post.author || "Rudra Patel"}</h3>
+                <p className="text-sm text-dark-textMuted max-w-[200px]">
+                  {post.author === "Rudra Patel" || !post.author 
+                    ? "Alchemist of digital experiences and full-stack architecture." 
+                    : `Expert contributor in ${post.category}.`}
+                </p>
               </div>
             </div>
 
