@@ -69,7 +69,35 @@ export const projects = [
     featured: true
 },
 {
-    id: 3 ,
+    id:"3" ,
+    title: 'Panto - Furniture Landing Page',
+    subtitle: 'Furniture e-commerce landing page with modern design and responsive layout',
+    description: 'A modern and visually appealing landing page for a furniture e-commerce website. It features a clean design, responsive layout, and smooth animations to showcase products effectively and attract potential customers.',
+    image: '/project img/Panto - Furniture Landing Page Design.png',
+    tags: [
+      "E-commerce", 
+      "Landing Page", 
+      "Web Design"
+    ],
+    skillsUsed: [
+      "Figma",
+      "UI Design",
+      "Prototyping",
+      "Web Application Design",
+    ],
+    keyFeatures: [
+      "Modern and clean design",
+      "Product showcase with high-quality images",
+      "Smooth animations and interactions",
+      "Clear call-to-action buttons",
+    ],
+    status: 'Completed',
+    category: 'UI Design',
+    caseStudyId: '3',
+    featured: true
+},
+{
+    id: 4 ,
     title: "Travel Website",
   subtitle: "A travel booking and destination showcase platform",
   description: "A responsive travel website that allows users to explore destinations, view travel packages, and get detailed information about trips.",
@@ -98,11 +126,11 @@ export const projects = [
     category: 'Javascript',
     liveUrl: 'https://travel-94546.web.app/',
     githubUrl: 'https://github.com/Rudraptl16',
-    caseStudyId: 3,
+    caseStudyId: 4,
     featured: true
 },
 {
-    id: 4,
+    id: 5,
     title: "Personal Project Manager",
     subtitle: "A task and project management web application",
     description: "A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priorities, and progress tracking.",
@@ -131,11 +159,11 @@ export const projects = [
     category: 'Javascript',
     liveUrl: 'https://personal-project-manager-16pr.web.app/',
     githubUrl: 'https://github.com/Rudraptl16',
-    caseStudyId: 4,
+    caseStudyId: 5,
     featured: true
 },
 {
-  id:5,
+  id: 6,
   title: "Todo List Application",
   subtitle: "A simple task management and productivity tool",
   description: "A lightweight to-do list application that allows users to add, update, and delete daily tasks for better productivity.",
@@ -165,11 +193,11 @@ export const projects = [
   category: "Javascript",
   liveUrl: "https://todo-list-16pr.web.app/",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 5,
+  caseStudyId: 6,
   featured: true
 },
 {
-  id:6,
+  id: 7,
   title: 'Note Sphere',
   subtitle: 'Smart and Simple Note Management App',
   description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
@@ -201,12 +229,12 @@ export const projects = [
   category: 'React',
   liveUrl: 'https://note-sphere-16.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
-  caseStudyId: '6',
+  caseStudyId: '7',
   featured: true
 },
 {
 
-  id:7,
+  id: 8,
   title: "Job Portal Website",
   subtitle: "An online platform for job seekers and recruiters",
   description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
@@ -235,12 +263,12 @@ export const projects = [
   category: "Javascript",
   liveUrl: "https://job-portal-9a78d.web.app/",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 7,
+  caseStudyId: 8,
   featured: true
 },
 {
 
-  id:8,
+  id: 9,
   title: "Calculator App",
   subtitle: "An online calculator web application with basic arithmetic operations",
   description: "A calculator web application with basic arithmetic operations.",
@@ -272,11 +300,11 @@ export const projects = [
   category: "React",
   liveUrl: "https://calculator-rp16.vercel.app",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 8,
+  caseStudyId: 9,
   featured: true
 },
 {
-  id:9,
+  id: 10,
   title: "Nexify Landing Page",
   subtitle: "AI-powered workflow automation platform",
   description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
@@ -302,11 +330,11 @@ export const projects = [
   category: "HTML / CSS",
   liveUrl: "https://rudraptl16.github.io/Nexify/",
   githubUrl: "https://github.com/Rudraptl16/Nexify",
-  caseStudyId: 9,
+  caseStudyId: 10,
   featured: true
 },
 {
-  id:10,
+  id: 11,
   title: "Health Care Website",
   subtitle: "An online platform for healthcare services and information",
   image: "/project img/Health.png",
@@ -333,7 +361,7 @@ export const projects = [
   category: "HTML / CSS",
   liveUrl: "https://health-care-4a149.web.app/",
   githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 10,
+  caseStudyId: 11,
   featured: true
 }
 ];

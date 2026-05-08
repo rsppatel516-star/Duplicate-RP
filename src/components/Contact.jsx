@@ -94,7 +94,7 @@ export default function Contact() {
                 whileHover={{ x: 10 }}
                 className="flex items-center gap-6 group"
               >
-                <div className="p-4 bg-dark-surface border border-dark-border rounded-2xl text-dark-primary transition-all group-hover:border-dark-primary/50 ">
+                <div className="p-4 border border-dark-border rounded-2xl text-dark-primary transition-all group-hover:border-dark-primary/50 ">
                   <Mail size={24} />
                 </div>
                 <div>
@@ -109,7 +109,7 @@ export default function Contact() {
                 whileHover={{ x: 10 }}
                 className="flex items-center gap-6 group"
               >
-                <div className="p-4 bg-dark-surface border border-dark-border rounded-2xl text-dark-primary transition-all group-hover:border-dark-primary/50">
+                <div className="p-4 border border-dark-border rounded-2xl text-dark-primary transition-all group-hover:border-dark-primary/50">
                   <MapPin size={24} />
                 </div>
                 <div>

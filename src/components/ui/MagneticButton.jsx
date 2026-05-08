@@ -20,17 +20,20 @@ export default function MagneticButton({ children, className, onClick, ...props 
 
   const { x, y } = position;
   return (
-    <motion.button
+    <motion.div
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       onClick={onClick}
       animate={{ x, y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={className}
+      className={`inline-block ${className || ''}`}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') onClick(); } : undefined}
       {...props}
     >
       {children}
-    </motion.button>
+    </motion.div>
   );
 }

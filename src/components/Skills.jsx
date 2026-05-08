@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '../data/skills';
 import {
@@ -19,6 +19,7 @@ import { BiServer } from 'react-icons/bi';
 import { DiGit } from 'react-icons/di';
 import { TbBrandReactNative, TbBrandVscode } from 'react-icons/tb';
 import GridBackground from './ui/GridBackground';
+import MagneticButton from './ui/MagneticButton';
 
 const iconMap = {
   html5: <FaHtml5 />,
@@ -81,6 +82,43 @@ const categoryIcons = {
   'Tools & Platforms': <Layers size={14} />,
 };
 
+const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const buttonRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!buttonRef.current) return;
+    const { left, top } = buttonRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
+
+  return (
+    <MagneticButton onClick={() => setActiveTab(cat)}>
+      <button
+        ref={buttonRef}
+        onMouseMove={handleMouseMove}
+        className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${
+          activeTab === cat
+            ? 'bg-dark-primary text-dark-bg border-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]'
+            : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
+        }`}
+      >
+        <div
+          className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.25), transparent)`,
+          }}
+        />
+        
+        <span className="relative z-10 flex items-center gap-3">
+          {icon}
+          {cat}
+        </span>
+      </button>
+    </MagneticButton>
+  );
+};
+
 export default function Skills() {
   const [activeTab, setActiveTab] = useState(skills[0].category);
   const [hoveredTech, setHoveredTech] = useState(null);
@@ -117,17 +155,13 @@ export default function Skills() {
         {/* System Tabs Controller */}
         <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-20">
           {categories.map((cat) => (
-            <button
+            <FilterButton
               key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-700 border ${activeTab === cat
-                ? 'bg-dark-primary text-dark-bg border-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]'
-                : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
-                }`}
-            >
-              {categoryIcons[cat]}
-              {cat}
-            </button>
+              cat={cat}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              icon={categoryIcons[cat]}
+            />
           ))}
         </div>
 

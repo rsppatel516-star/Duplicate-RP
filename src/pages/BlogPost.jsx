@@ -174,7 +174,7 @@ export default function BlogPost() {
           [&>p]:text-lg [&>p]:md:text-xl [&>p]:mb-6
           [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:mb-6
           [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:mb-6
-          [&>a]:text-dark-primary hover:[&>a]:text-dark-secondary [&>a]:underline
+          [&>a]:text-dark-primary hover:[&>a]:text-dark-secondary
           [&>strong]:text-white [&>strong]:font-bold
           [&>blockquote]:border-l-4 [&>blockquote]:border-dark-primary [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-white/90"
           dangerouslySetInnerHTML={{ __html: post.content }}

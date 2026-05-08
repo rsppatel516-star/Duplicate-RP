@@ -57,7 +57,7 @@ export default function Blog() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tighter leading-none"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight sm:tracking-tighter leading-none"
             >
               Curated <br /> <span className="text-gradient">Knowledge</span>.
             </motion.h1>
@@ -230,11 +230,11 @@ export default function Blog() {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute top-4 left-4">
-                          <span className="px-3 py-1.5 bg-dark-bg/80 backdrop-blur-md border border-white/10 rounded-xl text-[9px] font-black uppercase tracking-widest text-dark-primary shadow-2xl">
+                          <span className="px-3 py-1.5 bg-dark-bg/80 backdrop-blur-md border border-white/10 rounded-lg text-[10px] font-black uppercase tracking-widest text-dark-primary shadow-2xl">
                             {blog.category}
                           </span>
                         </div>
-                      </div>
+                      </div>  
 
                       <div className="p-8 flex flex-col flex-grow">
                         <div className="flex items-center gap-4 text-[9px] font-code text-white/30 mb-6 uppercase tracking-widest">

@@ -1,9 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, projectFilters } from '../data/projects';
 import { ExternalLink, Github, Briefcase, ArrowUpRight, X, Zap, ArrowRight, FolderOpen, Tag, Calendar, Layout } from 'lucide-react';
 import MagneticButton from './ui/MagneticButton';
+
+const ProjectFilterButton = ({ filter, activeFilter, onClick }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const buttonRef = useRef(null);
+  const isActive = activeFilter === filter;
+
+  const handleMouseMove = (e) => {
+    if (!buttonRef.current) return;
+    const { left, top } = buttonRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
+
+  return (
+    <MagneticButton onClick={onClick}>
+      <motion.button
+        ref={buttonRef}
+        onMouseMove={handleMouseMove}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
+        className="relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-colors duration-300 focus:outline-none overflow-hidden group/btn"
+        style={
+          isActive
+            ? {
+              background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 60%, #5b21b6 100%)',
+              color: '#ffffff',
+              boxShadow: '0 0 22px rgba(124,58,237,0.55), 0 0 6px rgba(124,58,237,0.3)',
+              border: '1px solid rgba(139,92,246,0.6)',
+            }
+            : {
+              background: 'rgba(255,255,255,0.03)',
+              color: '#9ca3af',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }
+        }
+      >
+        {/* Spotlight Effect */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(124, 58, 237, 0.3), transparent)`,
+          }}
+        />
+        
+        {/* Hover tint for inactive */}
+        {!isActive && (
+          <span className="absolute inset-0 bg-white/0 hover:bg-white/[0.04] transition-colors duration-300 rounded-xl pointer-events-none" />
+        )}
+        <span className="relative z-10">{filter}</span>
+      </motion.button>
+    </MagneticButton>
+  );
+};
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -54,39 +106,15 @@ export default function Projects() {
         {/* Filter Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-16">
           {/* Individual Filter Buttons */}
-          <div className="flex flex-wrap items-center gap-3 font-syne">
-            {filters.map((filter) => {
-              const isActive = activeFilter === filter;
-              return (
-                <motion.button
-                  key={filter}
-                  onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-colors duration-300 focus:outline-none overflow-hidden"
-                  style={
-                    isActive
-                      ? {
-                        background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 60%, #5b21b6 100%)',
-                        color: '#ffffff',
-                        boxShadow: '0 0 22px rgba(124,58,237,0.55), 0 0 6px rgba(124,58,237,0.3)',
-                        border: '1px solid rgba(139,92,246,0.6)',
-                      }
-                      : {
-                        background: 'rgba(255,255,255,0.03)',
-                        color: '#9ca3af',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                      }
-                  }
-                >
-                  {/* Hover tint for inactive */}
-                  {!isActive && (
-                    <span className="absolute inset-0 bg-white/0 hover:bg-white/[0.04] transition-colors duration-300 rounded-xl pointer-events-none" />
-                  )}
-                  <span className="relative z-10">{filter}</span>
-                </motion.button>
-              );
-            })}
+          <div className="flex flex-wrap items-center gap-6 font-syne">
+            {filters.map((filter) => (
+              <ProjectFilterButton
+                key={filter}
+                filter={filter}
+                activeFilter={activeFilter}
+                onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}
+              />
+            ))}
           </div>
 
           {/* Project Count — right side */}
