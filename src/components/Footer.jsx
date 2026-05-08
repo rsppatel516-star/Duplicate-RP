@@ -156,7 +156,7 @@ export default function Footer() {
         <div className="pt-3 mt-10 border-t border-dark-border flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-[10px] font-code text-dark-textMuted uppercase tracking-widest text-center md:text-left animated-gradient-text">
             <Globe size={18} className="text-dark-primary hidden md:block" />
-            <span>&copy; {currentYear} <a href="https://www.linkedin.com/in/rudra-patel-265258313/">Rudra Patel.</a></span>
+            <span>{currentYear} <a href="https://www.linkedin.com/in/rudra-patel-265258313/">Rudra Patel.</a></span>
             <span className="hidden md:inline border-r border-dark-border h-3" />
             <span>Built with precision and passion.</span>
             <span className="hidden md:inline border-r border-dark-border h-3" />

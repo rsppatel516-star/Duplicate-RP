@@ -23,22 +23,19 @@ const ProjectFilterButton = ({ filter, activeFilter, onClick }) => {
         onMouseMove={handleMouseMove}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.97 }}
-        className="relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-colors duration-300 focus:outline-none overflow-hidden group/btn"
-        style={
-          isActive
-            ? {
-              background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 60%, #5b21b6 100%)',
-              color: '#ffffff',
-              boxShadow: '0 0 22px rgba(124,58,237,0.55), 0 0 6px rgba(124,58,237,0.3)',
-              border: '1px solid rgba(139,92,246,0.6)',
-            }
-            : {
-              background: 'rgba(255,255,255,0.03)',
-              color: '#9ca3af',
-              border: '1px solid rgba(255,255,255,0.1)',
-            }
-        }
+        className={`relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 focus:outline-none overflow-hidden group/btn border ${isActive
+            ? 'text-white border-transparent'
+            : 'text-dark-textMuted bg-white/5 border-white/10 hover:border-dark-primary/50'
+          }`}
       >
+        {isActive && (
+          <motion.div
+            layoutId="activeProjectFilter"
+            className="absolute inset-0 bg-gradient-to-br from-[#7c3aed] to-[#5b21b6] shadow-[0_0_25px_rgba(124,58,237,0.4)]"
+            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+
         {/* Spotlight Effect */}
         <div
           className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -46,16 +43,36 @@ const ProjectFilterButton = ({ filter, activeFilter, onClick }) => {
             background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(124, 58, 237, 0.3), transparent)`,
           }}
         />
-        
-        {/* Hover tint for inactive */}
-        {!isActive && (
-          <span className="absolute inset-0 bg-white/0 hover:bg-white/[0.04] transition-colors duration-300 rounded-xl pointer-events-none" />
-        )}
+
         <span className="relative z-10">{filter}</span>
       </motion.button>
     </MagneticButton>
   );
 };
+
+const filterContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const filterItemVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -106,16 +123,23 @@ export default function Projects() {
         {/* Filter Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-16">
           {/* Individual Filter Buttons */}
-          <div className="flex flex-wrap items-center gap-6 font-syne">
+          <motion.div
+            variants={filterContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap items-center gap-6 font-syne"
+          >
             {filters.map((filter) => (
-              <ProjectFilterButton
-                key={filter}
-                filter={filter}
-                activeFilter={activeFilter}
-                onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}
-              />
+              <motion.div key={filter} variants={filterItemVariants}>
+                <ProjectFilterButton
+                  filter={filter}
+                  activeFilter={activeFilter}
+                  onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Project Count — right side */}
           <div className="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] text-lg font-medium text-dark-textMuted whitespace-nowrap font-syne hover:bg-dark-primary/10 hover:text-white transition-colors duration-300">
@@ -273,8 +297,8 @@ export default function Projects() {
                   <div className="lg:col-span-7 flex flex-col pt-2 md:pt-4 lg:pr-4">
                     <div className="flex items-center gap-3 mb-6">
                       <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border backdrop-blur-sm ${selectedProject.status === 'Completed'
-                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
-                          : 'text-amber-400 bg-amber-500/10 border-amber-500/25'
+                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
+                        : 'text-amber-400 bg-amber-500/10 border-amber-500/25'
                         }`}>
                         <span className={`w-2 h-2 rounded-full ${selectedProject.status === 'Completed' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-pulse'
                           }`} />

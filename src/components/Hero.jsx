@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
 import { Github, Linkedin, Instagram, Youtube, Facebook, ArrowRight } from 'lucide-react';
 import Hero3D from './canvas/Hero3D';
+import MagneticButton from './ui/MagneticButton';
+
 
 // Animated shimmer gradient CSS injected once
 const shimmerStyle = `
@@ -45,13 +47,41 @@ export default function Hero() {
   }, []);
 
   const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } }
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      } 
+    }
   };
+
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: 'blur(0px)',
+      transition: { 
+        duration: 0.8, 
+        ease: [0.16, 1, 0.3, 1] 
+      } 
+    }
   };
+
+  const blobVariants = {
+    animate: {
+      scale: [1, 1.2, 1],
+      opacity: [0.1, 0.15, 0.1],
+      transition: {
+        duration: 8,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
 
   return (
     <section
@@ -60,13 +90,52 @@ export default function Hero() {
       style={{ background: '#050510' }}
     >
       {/* Starfield / 3D Background */}
-      <div className="absolute inset-0 z-0 opacity-60">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0 z-0"
+      >
         <Hero3D />
-      </div>
+      </motion.div>
 
       {/* Subtle glow blobs */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" />
+      <motion.div 
+        variants={blobVariants}
+        animate="animate"
+        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[180px] pointer-events-none" 
+      />
+      <motion.div 
+        variants={blobVariants}
+        animate="animate"
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" 
+      />
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full"
+            initial={{ 
+              x: Math.random() * 100 + "%", 
+              y: Math.random() * 100 + "%",
+              opacity: 0 
+            }}
+            animate={{ 
+              y: [null, "-20%"],
+              opacity: [0, 1, 0]
+            }}
+            transition={{ 
+              duration: Math.random() * 5 + 5, 
+              repeat: Infinity, 
+              ease: "linear",
+              delay: Math.random() * 5
+            }}
+          />
+        ))}
+      </div>
+
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center pt-32 lg:pt-20">
 
@@ -78,32 +147,50 @@ export default function Hero() {
           className="space-y-5 order-2 lg:order-1 text-center lg:text-left flex flex-col items-center lg:items-start"
         >
           {/* Social Icons Row */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4 mb-4">
+          <motion.div 
+            variants={containerVariants}
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4 mb-4"
+          >
             {socialLinks.map(({ icon: Icon, href, color }, i) => (
-              <motion.a
-                key={i}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-500 overflow-hidden"
-              >
+              <motion.div key={i} variants={itemVariants}>
+                <MagneticButton>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <motion.div
+                      whileHover={{ y: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 overflow-hidden"
+                    >
+                      <Icon
+                        className="w-5 h-5 md:w-6 md:h-6 relative z-10 transition-transform duration-500 group-hover:scale-110"
+                        style={{ color }}
+                        strokeWidth={2}
+                      />
 
-                <Icon
-                  className="w-5 h-5 md:w-6 md:h-6 relative z-10 transition-transform duration-500 group-hover:scale-110"
-                  style={{ color }}
-                  strokeWidth={2}
-                />
+                      {/* Spotlight Effect */}
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(circle 50px at center, ${color}33, transparent)`,
+                        }}
+                      />
 
-                {/* Subtle bottom line indicator on hover */}
-                <div
-                  className="absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"
-                  style={{ backgroundColor: color }}
-                />
-              </motion.a>
+                      {/* Subtle bottom line indicator on hover */}
+                      <div
+                        className="absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"
+                        style={{ backgroundColor: color }}
+                      />
+                    </motion.div>
+                  </a>
+                </MagneticButton>
+              </motion.div>
             ))}
+
           </motion.div>
+
 
           {/* Main Heading — types once then animates gradient forever */}
           <style>{shimmerStyle}</style>
@@ -163,44 +250,60 @@ export default function Hero() {
         </motion.div>
 
         {/* ── RIGHT: Portrait Photo ──────────────────────── */}
-        {/* Outer entrance animation */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          initial={{ opacity: 0, scale: 0.8, filter: 'blur(20px)' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
           className="flex justify-center lg:justify-end order-1 lg:order-2"
         >
           {/* Floating up-down wrapper */}
           <motion.div
-            animate={{ y: [0, -18, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            whileHover={{ scale: 1.03 }}
-            className="relative cursor-pointer"
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.02 }}
+            className="relative cursor-pointer group"
           >
             {/* Outer glow — intensifies on hover */}
             <motion.div
-              className="absolute inset-0 rounded-3xl blur-2xl scale-105 bg-gradient-to-r from-violet-600/30 to-indigo-500/30"
-              animate={{ opacity: [0.25, 0.4, 0.25] }}
-              whileHover={{ opacity: 0.6 }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute inset-0 rounded-3xl blur-3xl scale-110 bg-gradient-to-r from-violet-600/20 to-indigo-500/20"
+              animate={{ 
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1.1, 1.15, 1.1]
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             />
-            {/* Photo frame */} {/*border border-white/10 shadow-2xl group*/}
-            <div className="relative w-[340px] md:w-[400px] lg:w-[450px] aspect-[3/4] rounded-3xl overflow-hidden ">
+            
+            {/* Photo frame */}
+            <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl">
               <img
                 src="/images/pic.jpeg"
                 alt="Rudra Patel"
                 fetchPriority="high"
-                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110"
               />
-              {/* Bottom gradient overlay */} {/*bg-gradient-to-t from-[#050510]/60 */}
-              <div className="absolute inset-0 via-transparent to-transparent" />
-              {/* Hover shimmer overlay
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(99,102,241,0.08))' }}
-              /> */}
+              
+              {/* Animated Inner Border */}
+              <div className="absolute inset-0 border border-white/10 rounded-[2.5rem] pointer-events-none z-10" />
+              
+              {/* Glassy overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>
+
+            {/* Floating Info Badge
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="absolute -right-6 bottom-12 bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl hidden md:block"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">Available for Projects</span>
+              </div>
+            </motion.div> */}
           </motion.div>
         </motion.div>
+
 
 
       </div>
@@ -234,6 +337,22 @@ export default function Hero() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Scroll Indicator 
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30">Scroll</span>
+        <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] h-12 bg-gradient-to-b from-dark-primary to-transparent"
+        />
+      </motion.div>*/}
     </section>
+
   );
 }

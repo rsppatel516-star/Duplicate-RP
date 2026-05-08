@@ -99,10 +99,18 @@ const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
         onMouseMove={handleMouseMove}
         className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${
           activeTab === cat
-            ? 'bg-dark-primary text-dark-bg border-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]'
+            ? 'text-dark-bg border-dark-primary'
             : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
         }`}
       >
+        {activeTab === cat && (
+          <motion.div
+            layoutId="activeSkillTab"
+            className="absolute inset-0 bg-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]"
+            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+          />
+        )}
+
         <div
           className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
@@ -118,6 +126,29 @@ const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
     </MagneticButton>
   );
 };
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState(skills[0].category);
@@ -141,7 +172,7 @@ export default function Skills() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center lg:justify-start gap-4 mb-8 text-dark-primary/60 font-code text-xs font-black tracking-[0.5em] uppercase"
+              className="flex items-center justify-center lg:justify-start gap-5 mb-8 text-dark-primary/60 font-code text-xs font-black tracking-[0.5em] uppercase"
             >
               <Target size={16} />
               <span>THE ARSENAL</span>
@@ -153,17 +184,24 @@ export default function Skills() {
         </div>
 
         {/* System Tabs Controller */}
-        <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-20">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center lg:justify-start gap-6 mb-20"
+        >
           {categories.map((cat) => (
-            <FilterButton
-              key={cat}
-              cat={cat}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              icon={categoryIcons[cat]}
-            />
+            <motion.div key={cat} variants={itemVariants}>
+              <FilterButton
+                cat={cat}
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                icon={categoryIcons[cat]}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Skill Matrix */}
         <div className="min-h-[400px]">

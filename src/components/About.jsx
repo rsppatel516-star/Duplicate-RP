@@ -5,13 +5,40 @@ import { Link as ScrollLink } from 'react-scroll';
 import MagneticButton from './ui/MagneticButton';
 import AnimatedCounter from './ui/AnimatedCounter';
 
-const BentoCard = ({ children, className = "", delay = 0 }) => (
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { 
+      type: "spring",
+      damping: 15,
+      stiffness: 100
+    } 
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const BentoCard = ({ children, className = "" }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay }}
-    className={`card-dark p-6 flex flex-col justify-between ${className}`}
+    variants={cardVariants}
+    whileHover={{ 
+      y: -10, 
+      scale: 1.01,
+      transition: { duration: 0.3, ease: "easeOut" } 
+    }}
+    className={`card-dark p-6 flex flex-col justify-between group/card ${className}`}
   >
     {children}
   </motion.div>
@@ -55,7 +82,13 @@ export default function About() {
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:auto-rows-[180px]">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:auto-rows-[180px]"
+        >
 
           {/* Main Bio Card */}
           <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full ">
@@ -113,9 +146,9 @@ export default function About() {
           </BentoCard>
 
           {stats.map((stat, i) => (
-            <BentoCard key={stat.label} className="col-span-1 lg:col-span-1 text-center items-center justify-center p-4 animated-gradient-text h-auto min-h-[120px] md:h-full" delay={0.1 * i}>
+            <BentoCard key={stat.label} className="col-span-1 lg:col-span-1 text-center items-center justify-center p-4 animated-gradient-text h-auto min-h-[120px] md:h-full">
               <span className="text-2xl md:text-3xl font-extrabold text-gradient font-bricolage ">
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} delay={0.3 + (i * 0.1)} />
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} delay={0.6 + (i * 0.1)} />
               </span>
               <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold text-dark-textMuted mt-1 font-bricolage">{stat.label}</span>
             </BentoCard>
@@ -156,7 +189,7 @@ export default function About() {
             <div className="w-16 h-16 bg-gradient-to-tr from-dark-primary to-dark-secondary rounded-xl rotate-12 blur-sm opacity-10 absolute -right-4 -bottom-4 group-hover:rotate-45 transition-transform duration-1000" />
           </BentoCard>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );
