@@ -8,6 +8,7 @@ import CaseStudy from './pages/CaseStudy';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import GlobalParticles from './components/canvas/GlobalParticles';
+import ClickSpark from './components/ui/ClickSpark';
 
 function App() {
   const location = useLocation();
@@ -18,21 +19,29 @@ function App() {
       {/* Global Particle Background */}
       <GlobalParticles />
 
-      {/* Main Content Layer */}
-      <div className="relative z-10 flex flex-col min-h-screen">
-        {/* Conditionally render Navbar or FeatureNavbar */}
-        {isFeaturePage ? <FeatureNavbar /> : <Navbar />}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/artifacts" element={<Artifacts />} />
-            <Route path="/artifacts/:id" element={<CaseStudy />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-          </Routes>
-        </main>
-        {!isFeaturePage && <Footer />}
-      </div>
+      {/* Main Content Layer wrapped with ClickSpark */}
+      <ClickSpark
+        sparkColor='#6366f1'
+        sparkSize={24}
+        sparkRadius={25}
+        sparkCount={12}
+        duration={600}
+      >
+        <div className="relative z-10 flex flex-col min-h-screen">
+          {/* Conditionally render Navbar or FeatureNavbar */}
+          {isFeaturePage ? <FeatureNavbar /> : <Navbar />}
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/artifacts" element={<Artifacts />} />
+              <Route path="/artifacts/:id" element={<CaseStudy />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+            </Routes>
+          </main>
+          {!isFeaturePage && <Footer />}
+        </div>
+      </ClickSpark>
     </div>
   );
 }
