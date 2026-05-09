@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { experience, certifications } from '../data/experience';
 import {
   Briefcase, GraduationCap, Trophy,
-  Award, Calendar, CheckCircle2, ArrowUpRight, X
+  Award, Calendar, CheckCircle2, ArrowUpRight
 } from 'lucide-react';
 import { FaAws, FaReact, FaNodeJs, FaDatabase, FaShieldAlt, FaGithub } from 'react-icons/fa';
 
@@ -17,7 +17,6 @@ const iconMap = {
 };
 
 export default function Experience() {
-  const [selectedPdf, setSelectedPdf] = useState(null);
   const timelineRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: timelineRef,
@@ -27,7 +26,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="py-32  relative overflow-hidden">
-      
+
       {/* Background Orbs */}
       <div className="absolute top-1/2 right-[-5%] w-[400px] h-[400px]  rounded-full blur-[120px] pointer-events-none" />
 
@@ -64,9 +63,9 @@ export default function Experience() {
             <div ref={timelineRef} className="relative ml-5 space-y-12">
               {/* Background Line */}
               <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-dark-border/50" />
-              
+
               {/* Laser Glowing Line */}
-              <motion.div 
+              <motion.div
                 style={{ scaleY, transformOrigin: 'top' }}
                 className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary shadow-[0_0_15px_rgba(0,212,255,0.5)]"
               />
@@ -124,7 +123,7 @@ export default function Experience() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
-                  onClick={() => cert.pdfUrl && setSelectedPdf(cert.pdfUrl)}
+                  onClick={() => cert.pdfUrl && window.open(cert.pdfUrl, '_blank')}
                   className={`card group p-6 flex items-center gap-6 relative overflow-hidden ${cert.pdfUrl ? 'cursor-pointer' : ''}`}
                 >
                   <div className="w-16 h-16 rounded-2xl bg-dark-bg border border-dark-border flex items-center justify-center text-3xl shrink-0 group-hover:border-dark-secondary/50 group-hover:scale-110 transition-all duration-500">
@@ -166,38 +165,7 @@ export default function Experience() {
         </div>
       </div>
 
-      {/* PDF View Modal */}
-      <AnimatePresence>
-        {selectedPdf && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-dark-bg/90 backdrop-blur-md"
-            onClick={() => setSelectedPdf(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-dark-surface border border-dark-border p-2 md:p-3 rounded-3xl max-w-5xl w-full relative overflow-hidden flex flex-col h-[85vh] shadow-[0_0_40px_rgba(0,0,0,0.5)]"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedPdf(null)}
-                className="absolute top-5 right-6 z-20 p-2.5 bg-dark-bg/90 backdrop-blur-md rounded-full text-white hover:text-dark-secondary transition-colors border border-dark-border shadow-lg"
-              >
-                <X size={20} />
-              </button>
 
-              <div className="w-full h-full rounded-2xl overflow-hidden bg-dark-bg relative">
-                <iframe
-                  src={`${selectedPdf}#toolbar=0`}
-                  className="w-full h-full border-none absolute inset-0 bg-white"
-                  title="Certificate PDF"
-                />
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

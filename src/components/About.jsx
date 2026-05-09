@@ -1,3 +1,4 @@
+// MagicBento Integration Test
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, Download, Github, Twitter, Linkedin, MapPin, Clock } from 'lucide-react';
@@ -7,15 +8,15 @@ import AnimatedCounter from './ui/AnimatedCounter';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.9 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     scale: 1,
-    transition: { 
+    transition: {
       type: "spring",
       damping: 15,
       stiffness: 100
-    } 
+    }
   }
 };
 
@@ -33,10 +34,10 @@ const containerVariants = {
 const BentoCard = ({ children, className = "" }) => (
   <motion.div
     variants={cardVariants}
-    whileHover={{ 
-      y: -10, 
+    whileHover={{
+      y: -10,
       scale: 1.01,
-      transition: { duration: 0.3, ease: "easeOut" } 
+      transition: { duration: 0.3, ease: "easeOut" }
     }}
     className={`card-dark p-6 flex flex-col justify-between group/card ${className}`}
   >
@@ -82,7 +83,7 @@ export default function About() {
         </div>
 
         {/* Bento Grid Layout */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

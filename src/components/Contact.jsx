@@ -51,7 +51,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
-      
+
       <Toaster
         toastOptions={{
           style: {

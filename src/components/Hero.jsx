@@ -48,25 +48,25 @@ export default function Hero() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.15,
         delayChildren: 0.3
-      } 
+      }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       filter: 'blur(0px)',
-      transition: { 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] 
-      } 
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
     }
   };
 
@@ -90,25 +90,25 @@ export default function Hero() {
       style={{ background: '#050510' }}
     >
       {/* Starfield / 3D Background */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 20 }}
         className="absolute inset-0 z-0"
       >
         <Hero3D />
       </motion.div>
 
       {/* Subtle glow blobs */}
-      <motion.div 
+      <motion.div
         variants={blobVariants}
         animate="animate"
-        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[180px] pointer-events-none" 
+        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[180px] pointer-events-none"
       />
-      <motion.div 
+      <motion.div
         variants={blobVariants}
         animate="animate"
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none" 
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none"
       />
 
       {/* Floating Decorative Elements */}
@@ -117,18 +117,18 @@ export default function Hero() {
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full"
-            initial={{ 
-              x: Math.random() * 100 + "%", 
+            initial={{
+              x: Math.random() * 100 + "%",
               y: Math.random() * 100 + "%",
-              opacity: 0 
+              opacity: 0
             }}
-            animate={{ 
+            animate={{
               y: [null, "-20%"],
               opacity: [0, 1, 0]
             }}
-            transition={{ 
-              duration: Math.random() * 5 + 5, 
-              repeat: Infinity, 
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
               ease: "linear",
               delay: Math.random() * 5
             }}
@@ -147,7 +147,7 @@ export default function Hero() {
           className="space-y-5 order-2 lg:order-1 text-center lg:text-left flex flex-col items-center lg:items-start"
         >
           {/* Social Icons Row */}
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4 mb-4"
           >
@@ -203,7 +203,7 @@ export default function Hero() {
               speed={60}
               repeat={0}
               cursor={false}
-              className="hero-gradient-text text-4xl md:text-5xl font-display font-black tracking-tight whitespace-pre-line animated-gradient-text"
+              className="hero-gradient-text text-4xl md:text-5xl font-display font-bold tracking-tighter whitespace-pre-line animated-gradient-text"
             />
           </motion.div>
 
@@ -266,13 +266,13 @@ export default function Hero() {
             {/* Outer glow — intensifies on hover */}
             <motion.div
               className="absolute inset-0 rounded-3xl blur-3xl scale-110 bg-gradient-to-r from-violet-600/20 to-indigo-500/20"
-              animate={{ 
+              animate={{
                 opacity: [0.3, 0.5, 0.3],
                 scale: [1.1, 1.15, 1.1]
               }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             />
-            
+
             {/* Photo frame */}
             <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl">
               <img
@@ -281,10 +281,10 @@ export default function Hero() {
                 fetchPriority="high"
                 className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110"
               />
-              
+
               {/* Animated Inner Border */}
               <div className="absolute inset-0 border border-white/10 rounded-[2.5rem] pointer-events-none z-10" />
-              
+
               {/* Glassy overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </div>

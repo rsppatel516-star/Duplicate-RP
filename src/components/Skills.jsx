@@ -12,8 +12,7 @@ import {
 } from 'react-icons/fa';
 import {
   SiNextdotjs, SiTailwindcss, SiExpress, SiFlutter, SiMongodb,
-  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker,
-  SiReact
+  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker
 } from 'react-icons/si';
 import { BiServer } from 'react-icons/bi';
 import { DiGit } from 'react-icons/di';
