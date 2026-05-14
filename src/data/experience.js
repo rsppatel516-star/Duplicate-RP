@@ -49,14 +49,12 @@ export const certifications = [
     issuer: "Microsoft / AWS", 
     date: "2024",
     icon: "aws",
-    pdfUrl: "/Microsoft Azure .pdf"
   },
   {
     title: "React.js Development",
     issuer: "Code With Harry",
     date: "2024",
     icon: "react",
-    pdfUrl: "/Microsoft Azure .pdf"
   },
   {
     title: "Node.js Backend Development",

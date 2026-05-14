@@ -15,7 +15,7 @@ export default function Blog() {
   const filteredBlogs = useMemo(() => {
     return blogs.filter(blog => {
       const matchesCategory = activeCategory === 'All' || blog.category === activeCategory;
-      const matchesSearch = 
+      const matchesSearch =
         blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
         blog.tags?.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -95,11 +95,10 @@ export default function Blog() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 relative group ${
-                  activeCategory === cat
+                className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 relative group ${activeCategory === cat
                     ? 'text-dark-bg'
                     : 'text-white/50 hover:text-white bg-white/[0.02] border border-white/5 hover:border-white/10'
-                }`}
+                  }`}
               >
                 {activeCategory === cat && (
                   <motion.div
@@ -174,7 +173,7 @@ export default function Blog() {
                             </span>
                           </div>
 
-                          <h2 className="text-4xl md:text-5xl xl:text-6xl font-display font-black text-white mb-6 group-hover:text-dark-primary transition-colors duration-500 leading-tight">
+                          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-black text-white mb-6 group-hover:text-dark-primary transition-colors duration-500 leading-tight break-words">
                             {featuredBlog.title}
                           </h2>
 
@@ -234,7 +233,7 @@ export default function Blog() {
                             {blog.category}
                           </span>
                         </div>
-                      </div>  
+                      </div>
 
                       <div className="p-8 flex flex-col flex-grow">
                         <div className="flex items-center gap-4 text-[9px] font-code text-white/30 mb-6 uppercase tracking-widest">

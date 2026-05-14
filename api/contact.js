@@ -18,12 +18,30 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log('Incoming contact request:', { method: req.method, body: req.body });
+    
     await dbConnect();
+    console.log('Successfully connected to MongoDB');
 
     const { user_name, user_email, subject, message } = req.body;
 
+    // Basic validation
     if (!user_name || !user_email || !message) {
-      return res.status(400).json({ message: 'Missing required fields' });
+      console.warn('Validation failed: Missing required fields');
+      return res.status(400).json({ 
+        success: false,
+        message: 'Missing required fields. Please ensure name, email, and message are provided.' 
+      });
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(user_email)) {
+      console.warn('Validation failed: Invalid email format', user_email);
+      return res.status(400).json({ 
+        success: false,
+        message: 'Invalid email format. Please provide a valid communication frequency.' 
+      });
     }
 
     const newContact = new Contact({
@@ -34,16 +52,28 @@ export default async function handler(req, res) {
     });
 
     await newContact.save();
+    console.log('Successfully saved contact to database');
 
     return res.status(201).json({ 
       success: true, 
       message: 'Transmission received. Data secured in MongoDB.' 
     });
   } catch (error) {
-    console.error('API Error:', error);
+    console.error('CRITICAL API Error:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+
+    // Determine if it's a database connection error or something else
+    const isDbError = error.name === 'MongooseServerSelectionError' || error.name === 'MongoNetworkError';
+    const clientMessage = isDbError 
+      ? 'Database connection failure. Please try again later or contact me directly via email.'
+      : 'Internal Server Error. Transmission failed. Our systems are currently undergoing maintenance.';
+
     return res.status(500).json({ 
       success: false, 
-      message: 'Internal Server Error. Transmission failed.' 
+      message: clientMessage 
     });
   }
 }

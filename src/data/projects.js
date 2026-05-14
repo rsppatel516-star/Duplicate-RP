@@ -69,7 +69,7 @@ export const projects = [
     featured: true
 },
 {
-    id:"3" ,
+    id: 3 ,
     title: 'Panto - Furniture Landing Page',
     subtitle: 'Furniture e-commerce landing page with modern design and responsive layout',
     description: 'A modern and visually appealing landing page for a furniture e-commerce website. It features a clean design, responsive layout, and smooth animations to showcase products effectively and attract potential customers.',
@@ -93,7 +93,7 @@ export const projects = [
     ],
     status: 'Completed',
     category: 'UI Design',
-    caseStudyId: '3',
+    caseStudyId: 3,
     featured: true
 },
 {
@@ -229,7 +229,7 @@ export const projects = [
   category: 'React',
   liveUrl: 'https://note-sphere-16.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
-  caseStudyId: '7',
+  caseStudyId: 7,
   featured: true
 },
 {

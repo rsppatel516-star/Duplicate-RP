@@ -31,19 +31,39 @@ const containerVariants = {
   }
 };
 
-const BentoCard = ({ children, className = "" }) => (
-  <motion.div
-    variants={cardVariants}
-    whileHover={{
-      y: -10,
-      scale: 1.01,
-      transition: { duration: 0.3, ease: "easeOut" }
-    }}
-    className={`card-dark p-6 flex flex-col justify-between group/card ${className}`}
-  >
-    {children}
-  </motion.div>
-);
+const BentoCard = ({ children, className = "" }) => {
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const cardRef = React.useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const { left, top } = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      variants={cardVariants}
+      whileHover={{
+        y: -8,
+        scale: 1.01,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
+      className={`card-dark p-6 md:p-8 flex flex-col justify-between group/card relative overflow-hidden ${className}`}
+    >
+      {/* Spotlight Effect */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(circle 250px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.1), transparent)`,
+        }}
+      />
+      {children}
+    </motion.div>
+  );
+};
 
 export default function About() {
   const stats = [
@@ -92,24 +112,43 @@ export default function About() {
         >
 
           {/* Main Bio Card */}
-          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full ">
-            <div className="relative z-10">
-              <h3 className="text-2xl font-display font-bold mb-4 text-dark-primary">Bio / Process</h3>
-              <p className="text-dark-textMuted leading-relaxed mb-6 font-bricolage text-sm md:text-base">
-                I'm Rudra Patel, a passionate Full Stack Programmer based in India, currently pursuing a Bachelor's degree in Computer Science Engineering at Parul University. I specialize in creating unique, modern, and responsive websites with exceptional user experiences. My expertise spans from frontend design to backend development, and  I love building scalable solutions that make a real impact.
-                My philosophy is simple: <span className="text-dark-textMain font-medium">Design for the future, build for the performance.</span>
-              </p>
-              <div className="flex gap-4">
-                <a href="https://github.com/Rudraptl16" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 backdrop-blur-md rounded-full hover:text-dark-primary transition-colors border border-white/5">
-                  <Github size={20} />
+          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full">
+            <div className="relative z-10 h-full flex flex-col">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-display font-bold text-dark-primary">Bio / Process</h3>
+                <div className="p-2 bg-white/5 rounded-lg border border-white/10 group-hover/card:border-dark-primary/30 transition-colors">
+                  <User size={20} className="text-dark-primary/60" />
+                </div>
+              </div>
+
+              <div className="space-y-6 flex-grow">
+                <p className="text-dark-textMuted leading-loose font-bricolage text-sm md:text-base opacity-90">
+                  I'm <span className="text-white font-bold">Rudra Patel</span>, a passionate Full Stack Programmer based in India. I specialize in creating unique, modern, and responsive websites with exceptional user experiences.
+                </p>
+                <p className="text-dark-textMuted leading-loose font-bricolage text-sm md:text-base opacity-90">
+                  My expertise spans from frontend design to backend development, building scalable solutions that make a real impact.
+                </p>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-dark-textMain font-medium font-display italic text-lg">
+                    "Design for the future, build for performance."
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 mt-8">
+                <a href="https://github.com/Rudraptl16" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 backdrop-blur-md rounded-xl hover:text-dark-primary transition-all border border-white/5 hover:border-dark-primary/30 group/icon">
+                  <Github size={20} className="group-hover/icon:scale-110 transition-transform" />
                 </a>
-                <a href="https://www.linkedin.com/in/rudra-patel-265258313/" className="p-3 bg-white/5 backdrop-blur-md rounded-full hover:text-dark-secondary transition-colors border border-white/5">
-                  <Linkedin size={20} />
+                <a href="https://www.linkedin.com/in/rudra-patel-265258313/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 backdrop-blur-md rounded-xl hover:text-dark-secondary transition-all border border-white/5 hover:border-dark-secondary/30 group/icon">
+                  <Linkedin size={20} className="group-hover/icon:scale-110 transition-transform" />
                 </a>
               </div>
             </div>
-            {/* Subtle background interaction */}
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-dark-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+            {/* Decorative Background Text */}
+            <div className="absolute -bottom-4 -right-4 text-[120px] font-display font-black text-white/[0.02] pointer-events-none select-none group-hover/card:text-white/[0.04] transition-colors duration-1000">
+              RP
+            </div>
           </BentoCard>
 
           {/* Availability Card */}

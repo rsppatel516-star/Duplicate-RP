@@ -22,10 +22,10 @@ function App() {
       {/* Main Content Layer wrapped with ClickSpark */}
       <ClickSpark
         sparkColor='#6366f1'
-        sparkSize={24}
-        sparkRadius={25}
-        sparkCount={12}
-        duration={600}
+        sparkSize={8}
+        sparkRadius={20}
+        sparkCount={15}
+        duration={400}
       >
         <div className="relative z-10 flex flex-col min-h-screen">
           {/* Conditionally render Navbar or FeatureNavbar */}

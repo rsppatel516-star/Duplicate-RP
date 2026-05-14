@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { projects, projectFilters } from '../data/projects';
 import { ExternalLink, Github, Briefcase, ArrowUpRight, X, Zap, ArrowRight, FolderOpen, Tag, Calendar, Layout } from 'lucide-react';
 import MagneticButton from './ui/MagneticButton';
+import ClickSpark from './ui/ClickSpark';
 
-const ProjectFilterButton = ({ filter, activeFilter, onClick }) => {
+const ProjectFilterButton = ({ filter, activeFilter, setActiveFilter, setVisibleCount }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const buttonRef = useRef(null);
-  const isActive = activeFilter === filter;
 
   const handleMouseMove = (e) => {
     if (!buttonRef.current) return;
@@ -17,62 +17,38 @@ const ProjectFilterButton = ({ filter, activeFilter, onClick }) => {
   };
 
   return (
-    <MagneticButton onClick={onClick}>
-      <motion.button
+    <MagneticButton onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}>
+      <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.97 }}
-        className={`relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 focus:outline-none overflow-hidden group/btn border ${isActive
-          ? 'text-white border-transparent'
-          : 'text-dark-textMuted bg-white/5 border-white/10 hover:border-dark-primary/50'
-          }`}
+        className={`relative flex items-center gap-3 px-6 md:px-8 py-3 md:py-3.5 rounded-xl text-sm md:text-[18px] font-bold transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${
+          activeFilter === filter
+            ? 'text-dark-bg border-dark-primary'
+            : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
+        }`}
       >
-        {isActive && (
+        {activeFilter === filter && (
           <motion.div
-            layoutId="activeProjectFilter"
-            className="absolute inset-0 bg-gradient-to-br from-[#7c3aed] to-[#5b21b6] shadow-[0_0_25px_rgba(124,58,237,0.4)]"
+            layoutId="activeProjectTab"
+            className="absolute inset-0 bg-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]"
             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
           />
         )}
 
-        {/* Spotlight Effect */}
         <div
           className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
-            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(124, 58, 237, 0.3), transparent)`,
+            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.25), transparent)`,
           }}
         />
-
-        <span className="relative z-10">{filter}</span>
-      </motion.button>
+        
+        <span className="relative z-10">
+          {filter}
+        </span>
+      </button>
     </MagneticButton>
   );
 };
-
-const filterContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const filterItemVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 10 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -114,7 +90,7 @@ export default function Projects() {
             </h2>
 
             {/* Text Section */}
-            <p className="text-dark-textMuted max-w-md text-lg border-l-2 border-dark-secondary px-8 py-2 font-bricolage">
+            <p className="text-dark-textMuted max-w-md text-lg border-l-2 border-dark-secondary px-8 py-2">
               A curated collection of digital products, experimental labs, and full-stack systems built with precision.
             </p>
           </div>
@@ -123,23 +99,17 @@ export default function Projects() {
         {/* Filter Bar */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-16">
           {/* Individual Filter Buttons */}
-          <motion.div
-            variants={filterContainerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="flex flex-wrap items-center gap-6 font-syne"
-          >
+          <div className="flex flex-wrap items-center gap-3 font-syne">
             {filters.map((filter) => (
-              <motion.div key={filter} variants={filterItemVariants}>
-                <ProjectFilterButton
-                  filter={filter}
-                  activeFilter={activeFilter}
-                  onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}
-                />
-              </motion.div>
+              <ProjectFilterButton
+                key={filter}
+                filter={filter}
+                activeFilter={activeFilter}
+                setActiveFilter={setActiveFilter}
+                setVisibleCount={setVisibleCount}
+              />
             ))}
-          </motion.div>
+          </div>
 
           {/* Project Count — right side */}
           <div className="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] text-lg font-medium text-dark-textMuted whitespace-nowrap font-syne hover:bg-dark-primary/10 hover:text-white transition-colors duration-300">
@@ -151,7 +121,7 @@ export default function Projects() {
         </div>
 
         {/* Projects Grid: Exhibit Layout */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           <AnimatePresence mode="popLayout">
             {visibleProjects.map((project, idx) => (
               <motion.div
@@ -162,32 +132,36 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => setSelectedProject(project)}
-                className="group relative h-[500px] rounded-3xl overflow-hidden border border-dark-border bg-dark-surface cursor-pointer"
+                className="group relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden border border-dark-border bg-dark-surface cursor-pointer"
               >
-                {/* Immersive Full Image */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
+                <ClickSpark sparkColor="rgba(var(--dark-primary-rgb), 1)" sparkColor2="rgba(var(--dark-secondary-rgb), 1)">
+                  <div className="w-full h-full relative">
+                    {/* Immersive Full Image */}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
 
-                {/* Dark Hover Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-500 backdrop-blur-[0px] group-hover:backdrop-blur-sm" />
+                    {/* Dark Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-500 backdrop-blur-[0px] group-hover:backdrop-blur-sm" />
 
-                {/* Centered Content Overlay (Only visible on hover) */}
-                <div className="absolute inset-0 p-10 flex flex-col items-center justify-center z-20 pointer-events-none">
-                  <div className="transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <h3 className="text-3xl md:text-5xl font-display font-bold text-white text-center">
-                      {project.title}
-                    </h3>
+                    {/* Centered Content Overlay (Only visible on hover) */}
+                    <div className="absolute inset-0 p-10 flex flex-col items-center justify-center z-20 pointer-events-none">
+                      <div className="transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                        <h3 className="text-3xl md:text-5xl font-display font-bold text-white text-center">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Corner Arrow Indicator */}
+                    <div className="absolute bottom-6 right-6 p-4 bg-dark-primary text-dark-bg rounded-full opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 delay-100 z-20 pointer-events-none">
+                      <ArrowUpRight size={24} />
+                    </div>
                   </div>
-                </div>
-
-                {/* Corner Arrow Indicator */}
-                <div className="absolute bottom-6 right-6 p-4 bg-dark-primary text-dark-bg rounded-full opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 delay-100 z-20 pointer-events-none">
-                  <ArrowUpRight size={24} />
-                </div>
+                </ClickSpark>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -245,7 +219,7 @@ export default function Projects() {
             >
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-20 p-3 backdrop-blur-md rounded-full text-dark-primary hover:bg-blur/50 hover:text-white transition-colors"
+                className="absolute top-6 right-6 z-20 p-3 backdrop-blur-md rounded-full text-dark-primary hover:bg-white/10 hover:text-white transition-colors"
                 aria-label="Close modal"
               >
                 <X size={24} />
@@ -273,7 +247,7 @@ export default function Projects() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-3 font-bricolage ">
+                    <div className="flex flex-col gap-3">
                       <a
                         href={selectedProject.liveUrl}
                         target="_blank"

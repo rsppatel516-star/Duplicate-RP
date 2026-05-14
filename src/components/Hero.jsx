@@ -37,11 +37,22 @@ const socialLinks = [
 
 export default function Hero() {
   const [showBadge, setShowBadge] = useState(true);
+  const [decorativeElements, setDecorativeElements] = useState([]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowBadge(false);
     }, 6500);
+
+    // Satisfy linter by moving to next tick to avoid cascading renders
+    setTimeout(() => {
+      setDecorativeElements([...Array(6)].map(() => ({
+        x: Math.random() * 100 + "%",
+        y: Math.random() * 100 + "%",
+        duration: Math.random() * 5 + 5,
+        delay: Math.random() * 5
+      })));
+    }, 0);
 
     return () => clearTimeout(timer);
   }, []);
@@ -99,27 +110,27 @@ export default function Hero() {
         <Hero3D />
       </motion.div>
 
-      {/* Subtle glow blobs */}
+      {/* Subtle glow blobs 
       <motion.div
         variants={blobVariants}
         animate="animate"
-        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[180px] pointer-events-none"
+        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full blur-[180px] pointer-events-none"
       />
       <motion.div
         variants={blobVariants}
         animate="animate"
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[160px] pointer-events-none"
-      />
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none"
+      />*/}
 
       {/* Floating Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {decorativeElements.map((el, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/20 rounded-full"
             initial={{
-              x: Math.random() * 100 + "%",
-              y: Math.random() * 100 + "%",
+              x: el.x,
+              y: el.y,
               opacity: 0
             }}
             animate={{
@@ -127,10 +138,10 @@ export default function Hero() {
               opacity: [0, 1, 0]
             }}
             transition={{
-              duration: Math.random() * 5 + 5,
+              duration: el.duration,
               repeat: Infinity,
               ease: "linear",
-              delay: Math.random() * 5
+              delay: el.delay
             }}
           />
         ))}

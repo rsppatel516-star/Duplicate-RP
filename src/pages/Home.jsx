@@ -23,13 +23,13 @@ export default function Home() {
       </Helmet>
 
       <div className="relative">
-        <section id="home"><Hero /></section>
-        <section id="about"><About /></section>
-        <section id="skills"><Skills /></section>
-        <section id="experience"><Experience /></section>
-        <section id="services"><Services /></section>
-        <section id="projects"><Projects /></section>
-        <section id="contact"><Contact /></section>
+        <section id="home" className="scroll-mt-24"><Hero /></section>
+        <section id="about" className="scroll-mt-24"><About /></section>
+        <section id="skills" className="scroll-mt-24"><Skills /></section>
+        <section id="experience" className="scroll-mt-24"><Experience /></section>
+        <section id="services" className="scroll-mt-24"><Services /></section>
+        <section id="projects" className="scroll-mt-24"><Projects /></section>
+        <section id="contact" className="scroll-mt-24"><Contact /></section>
       </div>
     </>
   );

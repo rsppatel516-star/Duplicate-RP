@@ -1,0 +1,284 @@
+import React, { useState, useEffect } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ArrowRight, ArrowLeft, Github, Linkedin, Instagram, Youtube, Facebook, Globe, Cpu } from 'lucide-react';
+import { socialLinks } from '../data/socialLinks';
+
+const navLinks = [
+  { name: 'INDEX', to: 'home' },
+  { name: 'ALCHEMIST', to: 'about' },
+  { name: 'ARSENAL', to: 'skills' },
+  { name: 'CHRONICLES', to: 'experience' },
+  { name: 'CAPABILITIES', to: 'services' },
+  { name: 'ARTIFACTS', to: 'projects' },
+  { name: 'CONTACT', to: 'contact' },
+];
+
+/* shared scroll-link / button for a nav item */
+const NavLink = ({ link, mobile, isHome, close, handleClick }) => {
+  const cls = mobile
+    ? 'flex items-center justify-between w-full px-5 py-4 rounded-2xl font-display font-bold text-white/50 hover:text-white hover:bg-white/[0.05] border border-transparent hover:border-white/10 transition-all duration-300 group/nav'
+    : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300 relative group cursor-pointer';
+
+  return isHome ? (
+    <ScrollLink to={link.to} spy smooth offset={-70} duration={800}
+      onClick={close}
+      activeClass={mobile ? '!text-dark-primary !bg-dark-primary/5 !border-dark-primary/20' : '!text-white'}
+      className={cls}
+    >
+      <span className="relative z-10">{link.name}</span>
+      {mobile && <ArrowRight size={16} className="text-dark-primary opacity-0 group-hover/nav:opacity-100 group-hover/nav:translate-x-1 transition-all duration-300" />}
+      {!mobile && <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-white group-hover:w-full transition-all duration-300" />}
+    </ScrollLink>
+  ) : (
+    <button onClick={() => handleClick(link.to)} className={`${cls} text-left`}>
+      <span className="relative z-10">{link.name}</span>
+      {mobile && <ArrowRight size={16} className="text-dark-primary opacity-0 group-hover/nav:opacity-100 group-hover/nav:translate-x-1 transition-all duration-300" />}
+    </button>
+  );
+};
+
+const ContactBtn = ({ full, isHome, close }) => {
+  const cls = `${full ? 'w-full' : ''} flex items-center justify-center gap-3 px-6 py-4 rounded-2xl font-display font-bold text-white text-sm tracking-widest uppercase transition-all backdrop-blur-md border border-white/10 hover:border-white/30 group/contact overflow-hidden relative`;
+  const style = { background: 'linear-gradient(135deg, rgba(124,58,237,0.4), rgba(99,102,241,0.4))' };
+
+  return isHome ? (
+    <ScrollLink to="contact" smooth offset={-70} duration={800} onClick={close} className="block w-full">
+      <button className={cls} style={style}>
+        <span className="relative z-10">Initiate Contact</span>
+        <ArrowRight size={16} className="relative z-10 group-hover/contact:translate-x-2 transition-transform" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent translate-x-[-100%] group-hover/contact:translate-x-0 transition-transform duration-500" />
+      </button>
+    </ScrollLink>
+  ) : (
+    <RouterLink to="/#contact" onClick={close} className="w-full">
+      <button className={cls} style={style}>
+        <span className="relative z-10">Initiate Contact</span>
+        <ArrowRight size={16} className="relative z-10 group-hover/contact:translate-x-2 transition-transform" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent translate-x-[-100%] group-hover/contact:translate-x-0 transition-transform duration-500" />
+      </button>
+    </RouterLink>
+  );
+};
+
+export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === '/';
+  const isArtifactsPage = location.pathname.startsWith('/artifacts');
+
+  /* scroll detection */
+  useEffect(() => {
+    const fn = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn);
+    fn();
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  /* lock body scroll when drawer open */
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
+  const close = () => setMenuOpen(false);
+
+  const handleClick = (to) => {
+    close();
+    if (!isHome) navigate(`/#${to}`);
+  };
+
+  return (
+    <>
+      {/* ── HEADER ─────────────────────────── */}
+      <header className={`fixed top-0 left-0 w-full z-[110] transition-all duration-500 ${isScrolled ? ' backdrop-blur-xl py-4 md:py-5 bg-dark-bg/60 border-b border-white/5' : 'bg-transparent py-6 md:py-8'
+        }`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4">
+
+          {/* Logo */}
+          <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }}
+            className="flex items-center gap-2.5 shrink-0 z-10 group">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-to-tr from-dark-primary to-dark-secondary flex items-center justify-center text-dark-bg font-black text-lg shadow-[0_0_20px_rgba(99,102,241,0.3)] group-hover:scale-110 transition-transform">
+              R
+            </div>
+            <span className="text-white font-black text-xl md:text-2xl font-display tracking-tighter animated-gradient-text hidden sm:block">RUDRA</span>
+          </RouterLink>
+
+          {/* Desktop centered links / Back Button */}
+          <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+            {!isArtifactsPage ? (
+              navLinks.map(link => (
+                <NavLink
+                  key={link.name}
+                  link={link}
+                  mobile={false}
+                  isHome={isHome}
+                  close={close}
+                  handleClick={handleClick}
+                />
+              ))
+            ) : (
+              <RouterLink
+                to="/#projects"
+                className="group flex items-center gap-3 px-8 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-dark-primary hover:border-dark-primary transition-all duration-500"
+              >
+                <ArrowLeft size={16} className="text-dark-primary group-hover:text-dark-bg transition-colors" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/80 group-hover:text-dark-bg transition-colors">
+                  Back to Portfolio
+                </span>
+              </RouterLink>
+            )}
+          </nav>
+
+          {/* Right side tools */}
+          <div className="flex items-center gap-6 z-10">
+            {/* Contact Btn — Desktop only */}
+            <div className="hidden lg:block">
+               <ScrollLink to="contact" smooth offset={-70} duration={800} className="cursor-pointer">
+                  <button className="px-6 py-2.5 rounded-xl bg-white/5 border border-white/10 font-display font-bold text-[11px] tracking-widest uppercase hover:bg-white/10 transition-all text-white/80 hover:text-white">
+                    Contact
+                  </button>
+               </ScrollLink>
+            </div>
+
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setMenuOpen(v => !v)}
+              aria-label="Toggle menu"
+              className="lg:hidden relative z-[120] w-12 h-12 rounded-2xl flex items-center justify-center text-white border border-white/10 transition-all overflow-hidden group"
+              style={{ background: isMobileMenuOpen ? 'rgba(124,58,237,0.2)' : 'rgba(255,255,255,0.05)' }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-dark-primary/20 to-dark-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <AnimatePresence mode="wait" initial={false}>
+                {isMobileMenuOpen
+                  ? <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}><X size={24} /></motion.span>
+                  : <motion.span key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}><Menu size={24} /></motion.span>
+                }
+              </AnimatePresence>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ── MOBILE DRAWER ──────────────────── */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              onClick={close}
+              className="fixed inset-0 z-[112] lg:hidden bg-dark-bg/80 backdrop-blur-md"
+            />
+
+            {/* Drawer panel */}
+            <motion.div
+              key="drawer"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed top-0 right-0 h-full w-[85vw] max-w-[400px] z-[115] flex flex-col lg:hidden border-l border-white/5 bg-[#050510]/95 backdrop-blur-2xl"
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Decorative Background Text */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-display font-black text-white/[0.02] pointer-events-none select-none rotate-90">
+                RUDRA
+              </div>
+
+              {/* Drawer header */}
+              <div className="flex items-center justify-between px-8 py-8 border-b border-white/5 relative z-10">
+                <div className="flex items-center gap-3">
+                   <div className="w-10 h-10 rounded-xl bg-dark-primary/20 flex items-center justify-center text-dark-primary">
+                      <Cpu size={20} />
+                   </div>
+                   <div className="flex flex-col">
+                      <span className="font-display font-black text-white text-sm tracking-widest uppercase">System</span>
+                      <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest animate-pulse">Online</span>
+                   </div>
+                </div>
+                <button onClick={close} className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/50 hover:text-white transition-colors border border-white/10">
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Links / Back Button */}
+              <nav className="flex flex-col px-6 py-10 gap-3 flex-grow overflow-y-auto no-scrollbar relative z-10">
+                {isArtifactsPage && (
+                  <RouterLink
+                    to="/#projects"
+                    onClick={close}
+                    className="flex items-center gap-4 w-full px-6 py-4 rounded-2xl bg-dark-primary/10 border border-dark-primary/20 text-dark-primary mb-6 group/back"
+                  >
+                    <ArrowLeft size={20} className="group-hover/back:-translate-x-1 transition-transform" />
+                    <span className="font-display font-bold text-sm tracking-widest uppercase">Portfolio</span>
+                  </RouterLink>
+                )}
+
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
+                    className={isArtifactsPage ? 'opacity-40 grayscale pointer-events-none' : ''}
+                  >
+                    <NavLink
+                      link={link}
+                      mobile
+                      isHome={isHome}
+                      close={close}
+                      handleClick={handleClick}
+                    />
+                  </motion.div>
+                ))}
+              </nav>
+
+              {/* Footer */}
+              <div className="px-8 py-8 border-t border-white/5 space-y-8 relative z-10 bg-dark-bg/40">
+                <div className="flex flex-col gap-6">
+                   <ContactBtn full isHome={isHome} close={close} />
+                   
+                   {/* Social Links Grid */}
+                   <div className="grid grid-cols-5 gap-3">
+                      {socialLinks.map((social, i) => (
+                        <motion.a
+                          key={i}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5 + i * 0.05 }}
+                          className="w-full aspect-square rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all group/social"
+                          style={{ '--social-color': social.color }}
+                        >
+                          <social.icon size={18} className="group-hover/social:scale-110 transition-transform" />
+                        </motion.a>
+                      ))}
+                   </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                   <div className="flex items-center gap-3">
+                      <Globe size={14} className="text-white/20" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">Based in India</span>
+                   </div>
+                   <span className="text-[10px] font-code text-white/20">v2.4.0</span>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+

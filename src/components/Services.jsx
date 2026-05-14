@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { services } from '../data/services';
 import { Zap, Terminal, Cpu, X } from 'lucide-react';
+import ClickSpark from './ui/ClickSpark';
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -72,7 +73,7 @@ export default function Services() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-blur/80 backdrop-blur-md mt-10"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md mt-10"
             onClick={() => setSelectedService(null)}
           >
             <motion.div

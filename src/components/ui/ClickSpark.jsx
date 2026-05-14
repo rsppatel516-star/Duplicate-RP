@@ -1,19 +1,17 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect } from 'react';
 
 const ClickSpark = ({
   sparkColor = '#ec4899',
   sparkColor2 = '#6366f1',
-  sparkSize = 10,
-  sparkRadius = 15,
+  sparkSize = 6,
+  sparkRadius = 20,
   sparkCount = 8,
   duration = 400,
-  easing = 'ease-out',
   extraScale = 1.0,
   children
 }) => {
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
-  const startTimeRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -48,21 +46,7 @@ const ClickSpark = ({
     };
   }, []);
 
-  const easeFunc = useCallback(
-    t => {
-      switch (easing) {
-        case 'linear':
-          return t;
-        case 'ease-in':
-          return t * t;
-        case 'ease-in-out':
-          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-        default:
-          return t * (2 - t);
-      }
-    },
-    [easing]
-  );
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -70,7 +54,6 @@ const ClickSpark = ({
     const ctx = canvas.getContext('2d', { alpha: true });
 
     let animationId;
-    let lastTime = 0;
 
     const draw = timestamp => {
       if (sparksRef.current.length === 0) {
@@ -89,17 +72,18 @@ const ClickSpark = ({
         // Premium Ease Out Expo style for distance
         const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
 
-        const distance = eased * sparkRadius * extraScale;
+        const distance = eased * sparkRadius * spark.speedMultiplier * extraScale;
         
         // Grow then shrink logic for smoother 'pop'
+        let currentSize = sparkSize * spark.sizeMultiplier;
         let lineLength;
-        if (progress < 0.25) {
-          lineLength = sparkSize * (progress / 0.25); // Rapid grow
+        if (progress < 0.2) {
+          lineLength = currentSize * (progress / 0.2); // Rapid grow
         } else {
-          lineLength = sparkSize * (1 - (progress - 0.25) / 0.75); // Gradual shrink
+          lineLength = currentSize * (1 - (progress - 0.2) / 0.8); // Gradual shrink
         }
         
-        const opacity = 1 - Math.pow(progress, 3); // More gradual fade out at first, then rapid
+        const opacity = 1 - Math.pow(progress, 2); // Slightly faster fade
 
         const x1 = spark.x + distance * Math.cos(spark.angle);
         const y1 = spark.y + distance * Math.sin(spark.angle);
@@ -114,7 +98,7 @@ const ClickSpark = ({
         gradient.addColorStop(1, sparkColor2);
 
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2 * (1 - progress * 0.5); // Slightly thin out
+        ctx.lineWidth = 1.5 * (1 - progress); // Thinner, tapers off
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(x1, y1);
@@ -134,8 +118,6 @@ const ClickSpark = ({
       }
     };
 
-    // Expose startAnimation to handleClick or just let it run if sparks exist
-    // But we need to handle the initial click.
     canvas.startAnimation = startAnimation;
 
     return () => {
@@ -154,7 +136,9 @@ const ClickSpark = ({
     const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
       x,
       y,
-      angle: (2 * Math.PI * i) / sparkCount + (Math.random() * 0.2), // Add tiny random variance
+      angle: (2 * Math.PI * i) / sparkCount + (Math.random() - 0.5) * 0.3,
+      speedMultiplier: 0.8 + Math.random() * 0.6,
+      sizeMultiplier: 0.6 + Math.random() * 0.8,
       startTime: now
     }));
 
