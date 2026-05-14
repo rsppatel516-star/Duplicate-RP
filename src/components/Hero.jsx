@@ -110,7 +110,7 @@ export default function Hero() {
         <Hero3D />
       </motion.div>
 
-      {/* Subtle glow blobs 
+      {/* Subtle glow blobs */}
       <motion.div
         variants={blobVariants}
         animate="animate"
@@ -120,7 +120,7 @@ export default function Hero() {
         variants={blobVariants}
         animate="animate"
         className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none"
-      />*/}
+      />
 
       {/* Floating Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

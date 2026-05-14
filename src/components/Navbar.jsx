@@ -122,11 +122,8 @@ export default function Navbar() {
 
           {/* Logo */}
           <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }}
-            className="flex items-center gap-2.5 shrink-0 z-10 group">
-            {/*<div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-dark-primary to-dark-secondary flex items-center justify-center text-dark-bg font-black text-sm shadow-lg group-hover:scale-110 transition-transform">
-              R
-            </div>*/}
-            <span className="text-white font-black text-lg md:text-xl font-bricolage tracking-tight animated-gradient-text">RUDRA</span>
+            className="flex items-center gap-2.5 shrink-0 z-10">
+            <span className="text-white dark:text-white font-display font-black text-lg tracking-tight font-syne animated-gradient-text">RUDRA<span className="text-dark-primary"> </span></span>
           </RouterLink>
 
           {/* Desktop centered links / Back Button */}

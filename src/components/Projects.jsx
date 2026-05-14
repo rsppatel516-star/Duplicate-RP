@@ -21,11 +21,13 @@ const ProjectFilterButton = ({ filter, activeFilter, setActiveFilter, setVisible
       <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
-        className={`relative flex items-center gap-3 px-6 md:px-8 py-3 md:py-3.5 rounded-xl text-sm md:text-[18px] font-bold transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${
-          activeFilter === filter
-            ? 'text-dark-bg border-dark-primary'
-            : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
-        }`}
+
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.97 }}
+        className={`relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 focus:outline-none overflow-hidden group/btn border ${isActive
+          ? 'text-white border-transparent'
+          : 'text-dark-textMuted bg-white/5 border-white/10 hover:border-dark-primary/50'
+          }`}
       >
         {activeFilter === filter && (
           <motion.div

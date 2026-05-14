@@ -31,39 +31,20 @@ const containerVariants = {
   }
 };
 
-const BentoCard = ({ children, className = "" }) => {
-  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
-  const cardRef = React.useRef(null);
+const BentoCard = ({ children, className = "" }) => (
+  <motion.div
+    variants={cardVariants}
+    whileHover={{
+      y: -10,
+      scale: 1.01,
+      transition: { duration: 0.3, ease: "easeOut" }
+    }}
+    className={`card-dark p-6 flex flex-col justify-between group/card ${className}`}
+  >
+    {children}
+  </motion.div>
+);
 
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const { left, top } = cardRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - left, y: e.clientY - top });
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      variants={cardVariants}
-      whileHover={{
-        y: -8,
-        scale: 1.01,
-        transition: { duration: 0.3, ease: "easeOut" }
-      }}
-      className={`card-dark p-6 md:p-8 flex flex-col justify-between group/card relative overflow-hidden ${className}`}
-    >
-      {/* Spotlight Effect */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle 250px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.1), transparent)`,
-        }}
-      />
-      {children}
-    </motion.div>
-  );
-};
 
 export default function About() {
   const stats = [
