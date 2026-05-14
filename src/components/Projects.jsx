@@ -21,10 +21,7 @@ const ProjectFilterButton = ({ filter, activeFilter, setActiveFilter, setVisible
       <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
-
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.97 }}
-        className={`relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 focus:outline-none overflow-hidden group/btn border ${isActive
+        className={`relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 focus:outline-none overflow-hidden group/btn border ${activeFilter === filter
           ? 'text-white border-transparent'
           : 'text-dark-textMuted bg-white/5 border-white/10 hover:border-dark-primary/50'
           }`}
