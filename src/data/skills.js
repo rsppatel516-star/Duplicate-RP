@@ -16,17 +16,19 @@ export const skills = [
       { name: 'Node.js', icon: 'nodejs' },
       { name: 'Express.js', icon: 'express' },
       { name: 'REST APIs', icon: 'api' }, // We'll map 'api' to a relevant icon
-      { name: 'PHP', icon: 'php' },
+      //{ name: 'PHP', icon: 'php' },
       { name: 'Java', icon: 'java' } // From HTML "DSA Java"
     ]
   },
   {
     category: 'Mobile',
     technologies: [
-      { name: 'Flutter', icon: 'flutter' },
-      { name: 'React Native', icon: 'reactnative' },
-      { name: 'Dart', icon: 'dart' },
-      { name: 'Swift', icon: 'swift' }
+      //{ name: 'Flutter', icon: 'flutter' },
+      //{ name: 'React Native', icon: 'reactnative' },
+      //{ name: 'Dart', icon: 'dart' },
+      { name: 'Swift', icon: 'swift' },
+      { name: 'Storyboard', icon: 'storyboard' },
+      { name: 'Mobile Design', icon: 'mobiledesign' }
     ]
   },
   {

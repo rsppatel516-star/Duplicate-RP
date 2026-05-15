@@ -46,7 +46,9 @@ const iconMap = {
   vercel: <SiVercel />,
   postman: <SiPostman />,
   aws: <FaAws />,
-  docker: <SiDocker />
+  docker: <SiDocker />,
+  storyboard: <Layers />,
+  mobiledesign: <Smartphone />
 };
 
 const techColors = {
@@ -58,7 +60,8 @@ const techColors = {
   mysql: 'text-[#4479A1]', firebase: 'text-[#FFCA28]', git: 'text-[#F05032]',
   github: 'text-white', vscode: 'text-[#007ACC]', figma: 'text-[#F24E1E]',
   vercel: 'text-white', postman: 'text-[#FF6C37]', aws: 'text-[#FF9900]',
-  docker: 'text-[#2496ED]',swift: 'text-[#FA7343]'
+  docker: 'text-[#2496ED]',swift: 'text-[#FA7343]',
+  storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]'
 };
 
 const techHexColors = {
@@ -70,7 +73,8 @@ const techHexColors = {
   mysql: '#4479A1', firebase: '#FFCA28', git: '#F05032',
   github: '#ffffff', vscode: '#007ACC', figma: '#F24E1E',
   vercel: '#ffffff', postman: '#FF6C37', aws: '#FF9900',
-  docker: '#2496ED', swift: '#FA7343'
+  docker: '#2496ED', swift: '#FA7343',
+  storyboard: '#818CF8', mobiledesign: '#F43F5E'
 };
 
 const categoryIcons = {
