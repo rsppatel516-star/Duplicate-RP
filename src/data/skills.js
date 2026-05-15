@@ -28,7 +28,8 @@ export const skills = [
       //{ name: 'Dart', icon: 'dart' },
       { name: 'Swift', icon: 'swift' },
       { name: 'Storyboard', icon: 'storyboard' },
-      { name: 'Mobile Design', icon: 'mobiledesign' }
+      { name: 'Mobile Design', icon: 'mobiledesign' },
+      { name: 'UIKit', icon: 'uikit' }
     ]
   },
   {

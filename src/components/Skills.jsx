@@ -48,7 +48,8 @@ const iconMap = {
   aws: <FaAws />,
   docker: <SiDocker />,
   storyboard: <Layers />,
-  mobiledesign: <Smartphone />
+  mobiledesign: <Smartphone />,
+  uikit: <Layout />
 };
 
 const techColors = {
@@ -61,7 +62,8 @@ const techColors = {
   github: 'text-white', vscode: 'text-[#007ACC]', figma: 'text-[#F24E1E]',
   vercel: 'text-white', postman: 'text-[#FF6C37]', aws: 'text-[#FF9900]',
   docker: 'text-[#2496ED]',swift: 'text-[#FA7343]',
-  storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]'
+  storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]',
+  uikit: 'text-[#2AC3FF]'
 };
 
 const techHexColors = {
@@ -74,7 +76,8 @@ const techHexColors = {
   github: '#ffffff', vscode: '#007ACC', figma: '#F24E1E',
   vercel: '#ffffff', postman: '#FF6C37', aws: '#FF9900',
   docker: '#2496ED', swift: '#FA7343',
-  storyboard: '#818CF8', mobiledesign: '#F43F5E'
+  storyboard: '#818CF8', mobiledesign: '#F43F5E',
+  uikit: '#2AC3FF'
 };
 
 const categoryIcons = {
