@@ -61,7 +61,7 @@ const techColors = {
   mysql: 'text-[#4479A1]', firebase: 'text-[#FFCA28]', git: 'text-[#F05032]',
   github: 'text-white', vscode: 'text-[#007ACC]', figma: 'text-[#F24E1E]',
   vercel: 'text-white', postman: 'text-[#FF6C37]', aws: 'text-[#FF9900]',
-  docker: 'text-[#2496ED]',swift: 'text-[#FA7343]',
+  docker: 'text-[#2496ED]', swift: 'text-[#FA7343]',
   storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]',
   uikit: 'text-[#2AC3FF]'
 };
@@ -103,11 +103,10 @@ const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
       <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
-        className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${
-          activeTab === cat
+        className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${activeTab === cat
             ? 'text-dark-bg border-dark-primary'
             : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
-        }`}
+          }`}
       >
         {activeTab === cat && (
           <motion.div
@@ -123,7 +122,7 @@ const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
             background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.25), transparent)`,
           }}
         />
-        
+
         <span className="relative z-10 flex items-center gap-3">
           {icon}
           {cat}
@@ -166,9 +165,9 @@ export default function Skills() {
   return (
     <section id="skills" className="py-4 relative overflow-hidden">
       {/* Decorative Grid / Lines */}
-      <GridBackground 
-        opacity="05" 
-        mask="radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)" 
+      <GridBackground
+        opacity="05"
+        mask="radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)"
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -190,7 +189,7 @@ export default function Skills() {
         </div>
 
         {/* System Tabs Controller */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
