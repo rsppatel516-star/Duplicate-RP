@@ -52,22 +52,22 @@ export default function Experience() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
 
           {/* Timeline Section */}
-          <div className="space-y-12">
+          <div className="space-y-12 relative">
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-10 h-10 bg-dark-surface rounded-xl border border-dark-border flex items-center justify-center text-dark-primary">
-                <Briefcase size={20} />
+              <div className="w-12 h-12 bg-dark-surface rounded-2xl border border-dark-border flex items-center justify-center text-dark-primary shadow-[0_0_20px_rgba(124,58,237,0.15)]">
+                <Briefcase size={22} />
               </div>
-              <h3 className="text-2xl font-display font-bold">Professional Path</h3>
+              <h3 className="text-2xl font-display font-bold tracking-tight">Professional Path</h3>
             </div>
 
-            <div ref={timelineRef} className="relative ml-5 space-y-12">
+            <div ref={timelineRef} className="relative ml-6 space-y-12">
               {/* Background Line */}
-              <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-dark-border/50" />
+              <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-dark-border/30" />
 
               {/* Laser Glowing Line */}
               <motion.div
                 style={{ scaleY, transformOrigin: 'top' }}
-                className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary shadow-[0_0_15px_rgba(0,212,255,0.5)]"
+                className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary shadow-[0_0_15px_rgba(124,58,237,0.5)]"
               />
 
               {experience.map((item, idx) => (
@@ -76,30 +76,43 @@ export default function Experience() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="relative pl-10 group"
+                  transition={{ delay: idx * 0.1, duration: 0.6 }}
+                  className="relative pl-12 group"
                 >
-                  <div className="absolute -left-[5.5px] top-1.5 w-[12px] h-[12px] rounded-full bg-[#050510] border-2 border-dark-border group-hover:border-dark-primary transition-all duration-800 z-10" />
+                  {/* Timeline Point */}
+                  <div className="absolute -left-[6.5px] top-2 w-[14px] h-[14px] rounded-full bg-dark-bg border-2 border-dark-border group-hover:border-dark-primary transition-all duration-500 z-10">
+                    <div className="absolute inset-0 rounded-full bg-dark-primary/0 group-hover:bg-dark-primary/20 animate-pulse" />
+                  </div>
 
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-dark-primary font-bold text-xs tracking-widest uppercase mb-1">
-                      <Calendar size={14} />
-                      {item.duration}
+                  <div className="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:border-dark-primary/30 hover:bg-white/[0.04] transition-all duration-500 group-hover:-translate-y-1 relative overflow-hidden">
+                    {/* Subtle Gradient Background on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-dark-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    <div className="relative z-10 space-y-4">
+                      <div className="flex items-center gap-3 text-dark-primary font-bold text-[10px] tracking-[0.3em] uppercase opacity-70 group-hover:opacity-100 transition-opacity">
+                        <Calendar size={14} className="text-dark-secondary" />
+                        {item.duration}
+                      </div>
+
+                      <div className="space-y-1">
+                        <h4 className="text-2xl font-bold font-display text-white group-hover:text-dark-primary transition-colors duration-300">
+                          {item.role}
+                        </h4>
+                        <p className="text-md font-bold text-dark-textMuted group-hover:text-dark-textMain transition-colors flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-dark-primary/40 group-hover:bg-dark-primary" />
+                          {item.company}
+                        </p>
+                      </div>
+
+                      <ul className="space-y-4 mt-6">
+                        {item.points.map((point, i) => (
+                          <li key={i} className="flex gap-4 text-[13px] text-dark-textMuted leading-relaxed font-bricolage group/item">
+                            <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-dark-secondary/30 group-hover/item:bg-dark-secondary transition-colors shrink-0" />
+                            <span className="group-hover/item:text-dark-textMain transition-colors">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <h4 className="text-2xl font-bold font-display text-white group-hover:text-dark-primary transition-colors">
-                      {item.role}
-                    </h4>
-                    <p className="text-lg font-bold text-dark-textMuted flex items-center gap-2">
-                      {item.company}
-                    </p>
-                    <ul className="space-y-3 mt-4">
-                      {item.points.map((point, i) => (
-                        <li key={i} className="flex gap-3 text-sm text-dark-textMuted leading-relaxed">
-                          <CheckCircle2 size={16} className="text-dark-secondary shrink-0 mt-0.5" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 </motion.div>
               ))}
