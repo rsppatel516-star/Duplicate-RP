@@ -50,8 +50,7 @@ export const skills = [
       { name: 'Vercel', icon: 'vercel' },
       { name: 'Postman', icon: 'postman' },
       { name: 'AWS', icon: 'aws' },
-      { name: 'Docker', icon: 'docker' },
-      
+      { name: 'Docker', icon: 'docker' }
     ]
   }
 ];
