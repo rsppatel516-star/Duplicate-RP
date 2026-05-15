@@ -126,9 +126,13 @@ export default function About() {
               </div>
             </div>
 
-            {/* Decorative Background Text */}
-            <div className="absolute -bottom-4 -right-4 text-[120px] font-display font-black text-white/[0.02] pointer-events-none select-none group-hover/card:text-white/[0.04] transition-colors duration-1000">
-              RP
+            {/* Decorative Background Logo */}
+            <div className="absolute -bottom-16 -right-10 w-64 h-64 opacity-[0.05] pointer-events-none select-none group-hover/card:opacity-[0.1] group-hover/card:scale-110 transition-all duration-1000">
+              <img 
+                src="/images/RP%20-%20LOGO.png" 
+                alt="RP Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
           </BentoCard>
 
@@ -149,7 +153,7 @@ export default function About() {
           <BentoCard className="col-span-1 md:col-span-2 lg:col-span-1 md:row-span-1 hover:border-dark-secondary/40 transition-colors group relative overflow-hidden h-auto md:h-full">
             <a href="/Rudra Patel.pdf" download className="flex flex-col h-full justify-between group cursor-pointer relative z-10">
               <div className="flex justify-between items-start">
-                <div className="p-3 rounded-xl  group-hover:bg-dark-secondary/20 transition-colors">
+                <div className="p-3 rounded-xl group-hover:bg-dark-secondary/20 transition-colors">
                   <Download className="text-dark-secondary group-hover:scale-110 transition-transform" size={20} />
                 </div>
               </div>
@@ -162,8 +166,8 @@ export default function About() {
                 </div>
               </div>
             </a>
-            {/* Background design element */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-dark-secondary/10 to-transparent opacity-50 pointer-events-none" />
+            {/* Background design element 
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-dark-secondary/10 to-transparent opacity-50 pointer-events-none" />*/}
           </BentoCard>
 
           {stats.map((stat, i) => (
