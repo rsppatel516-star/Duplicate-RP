@@ -38,16 +38,28 @@ const MenuButton = ({ isOpen, onClick }) => {
   );
 };
 
-const FeatureNavLink = ({ link, mobile, close }) => {
+const FeatureNavLink = ({ link, mobile, close, index }) => {
   const cls = mobile
     ? 'flex items-center justify-between w-full px-4 py-3.5 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.06] transition-all text-base cursor-pointer'
-    : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors duration-300 relative group cursor-pointer';
+    : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all duration-300 relative group cursor-pointer py-2 px-1';
 
   return (
     <RouterLink to={link.to} onClick={close} className={cls}>
-      {link.name}
+      <motion.span
+        initial={!mobile ? { opacity: 0, y: -10 } : {}}
+        animate={!mobile ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.1 + (index * 0.1), duration: 0.5 }}
+        className="relative z-10 block"
+      >
+        {link.name}
+        {!mobile && (
+          <motion.span 
+            className="absolute -bottom-1 left-0 w-0 h-[2px] bg-dark-primary rounded-full group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(124,58,237,0.5)]"
+            whileHover={{ width: '100%' }}
+          />
+        )}
+      </motion.span>
       {mobile && <ArrowRight size={15} className="opacity-30 shrink-0" />}
-      {!mobile && <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-white group-hover:w-full transition-all duration-300" />}
     </RouterLink>
   );
 };
@@ -78,13 +90,49 @@ export default function FeatureNavbar() {
           : 'top-4 left-4 right-4 md:left-8 md:right-8 lg:top-0 lg:left-0 lg:w-full py-4 lg:py-8 bg-white/[0.03] lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none border border-white/5 lg:border-none rounded-2xl lg:rounded-none'
         }`}>
         <div className="max-w-7xl mx-auto px-5 lg:px-6 flex items-center justify-between gap-4">
-          <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }} className="flex items-center gap-2.5 shrink-0 z-10 group">
-            <span className="text-white font-black text-lg md:text-xl font-bricolage tracking-tight animated-gradient-text">RUDRA</span>
+          <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }} className="flex items-center gap-2.5 shrink-0 z-10 group relative">
+            <motion.div
+              animate={{ 
+                y: [0, -5, 0],
+                filter: [
+                  'drop-shadow(0 0 0px rgba(124,58,237,0))',
+                  'drop-shadow(0 0 15px rgba(124,58,237,0.3))',
+                  'drop-shadow(0 0 0px rgba(124,58,237,0))'
+                ]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative overflow-hidden"
+            >
+              <img 
+                src="/images/nav%20logo.png" 
+                alt="Logo" 
+                className="h-10 md:h-8 w-auto object-contain transition-all"
+              />
+              {/* Shine effect overlay 
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[30deg]"
+                animate={{ 
+                  left: ['-150%', '150%']
+                }}
+                transition={{ 
+                  duration: 2.5, 
+                  repeat: Infinity, 
+                  repeatDelay: 3,
+                  ease: "linear"
+                }}
+              />*/}
+            </motion.div>
           </RouterLink>
 
           <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
-            {featureLinks.map(link => (
-              <FeatureNavLink key={link.name} link={link} mobile={false} close={close} />
+            {featureLinks.map((link, i) => (
+              <FeatureNavLink key={link.name} link={link} mobile={false} close={close} index={i} />
             ))}
           </nav>
 
@@ -124,11 +172,13 @@ export default function FeatureNavbar() {
                 {/* Header */}
                 <div className="px-8 pt-8 pb-4 flex items-center justify-between relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-sm flex items-center justify-center text-dark-primary">
-                      <Laptop size={25} />
-                    </div>
+                    <img 
+                      src="/images/nav%20logo.png" 
+                      alt="Logo" 
+                      className="h-8 w-auto object-contain"
+                    />
                     <div className="flex flex-col">
-                      <span className="font-bricolage font-black text-white text-lg tracking-wider">MENU</span>
+                      <span className="font-bricolage font-black text-white text-base tracking-wider uppercase">Menu</span>
                       <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest animate-pulse">Explore My Work</span>
                     </div>
                   </div>

@@ -32,7 +32,7 @@ export default function Footer() {
                 <img src='/images/about.png' alt='logo' className='w-full h-full object-cover rounded-2xl' />
               </div>
               <div>
-                <h3 className="text-2xl md:text-2xl font-syne font-black text-gradient animated-gradient-text font-poppins">Rudra Patel</h3>
+                <h3 className="text-2xl md:text-2xl font-syne font-black text-gradient animated-gradient-text">Rudra Patel</h3>
                 {/*<p className="text-[10px] font-code text-gradient tracking-[0.3em] font-bold uppercase mt-1">BY RUDRA PATEL</p>*/}
               </div>
             </div>
