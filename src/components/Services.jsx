@@ -102,7 +102,7 @@ export default function Services() {
                   {selectedService.description}
                 </p>
 
-                {selectedService.features && (
+                {/*{selectedService.features && (
                   <div className="mb-8">
                     <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
                       <Terminal size={16} className="text-dark-primary" /> What's Included
@@ -116,7 +116,7 @@ export default function Services() {
                       ))}
                     </ul>
                   </div>
-                )}
+                )}*/}
 
                 {selectedService.keyBenefits && (
                   <div className="mb-8">

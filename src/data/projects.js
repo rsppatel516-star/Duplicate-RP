@@ -16,21 +16,18 @@ export const projects = [
     "CSS",
     "JavaScript",
     "3D Particles",
-    "Framer Motion",
     "Firebase Hosting"
   ],
     keyFeatures: [
     "Responsive design for mobile and desktop",
     "Project showcase section",
-    "About and skills section",
-    "Contact form / contact details",
-    "Smooth UI and animations",
+    "smooth UI and animations",
     "3D Particles",
   ],
     status: 'Completed',
     category: 'Javascript',
     liveUrl: 'https://portfolio-16rp.web.app/',
-    githubUrl: 'https://github.com/Rudraptl16',
+    githubUrl: 'https://github.com/Rudraptl16/Portfolio-',
     caseStudyId: 1,
     featured: false
   },
@@ -57,14 +54,12 @@ export const projects = [
     "Product showcase",
     "Category filtering",
     "Modern UI design",
-    "Responsive layout",
-    "Smooth animations",
     "Interactive elements",
   ],
     status: 'Completed',
     category: 'Javascript',
     liveUrl: 'https://watch-showroom-16pr.web.app/',
-    githubUrl: 'https://github.com/Rudraptl16',
+    githubUrl: '#',
     caseStudyId: 2,
     featured: true
 },
@@ -118,14 +113,13 @@ export const projects = [
     keyFeatures: [
       "Destination browsing",
       "Travel package listings",
-      "Responsive design",
       "Interactive UI",
       "Smooth animations",
     ],
     status: 'Completed',
     category: 'Javascript',
     liveUrl: 'https://travel-94546.web.app/',
-    githubUrl: 'https://github.com/Rudraptl16',
+    githubUrl: 'https://github.com/Rudraptl16/Travel-123',
     caseStudyId: 4,
     featured: true
 },
@@ -152,13 +146,11 @@ export const projects = [
      "Task tracking with status",
      "Deadline management",
      "User-friendly dashboard",
-     "Responsive design",
-     "Smooth animations",
     ],
     status: 'Completed',
     category: 'Javascript',
     liveUrl: 'https://personal-project-manager-16pr.web.app/',
-    githubUrl: 'https://github.com/Rudraptl16',
+    githubUrl: '#',
     caseStudyId: 5,
     featured: true
 },
@@ -182,9 +174,7 @@ export const projects = [
     "Firebase Hosting",
   ],
   keyFeatures: [
-    "Add tasks",
-    "Update tasks",
-    "Delete tasks",
+    "Add, Update, Delete tasks",
     "Mark tasks as completed",
     "Simple and clean UI",
     "Real-time updates"
@@ -192,7 +182,7 @@ export const projects = [
   status: "Completed",
   category: "Javascript",
   liveUrl: "https://todo-list-16pr.web.app/",
-  githubUrl: "https://github.com/Rudraptl16",
+  githubUrl: "#",
   caseStudyId: 6,
   featured: true
 },
@@ -210,18 +200,14 @@ export const projects = [
     "Note Management"
   ],
   skillsUsed: [
-    "HTML", 
     "Tailwind CSS", 
     "JavaScript", 
     "React", 
-    "Next.js",
-    "Local Storage", 
-    "UI/UX Design"
+    "Next.js", 
   ],
   keyFeatures: [
     "Create, edit, and delete notes",
     "Real-time updates of notes",
-    "Fast and lightweight performance",
     "Simple and clean UI",
     "Real-time updates"
   ],
@@ -254,15 +240,14 @@ export const projects = [
   ],
   keyFeatures: [
     "Job listings",
-    "Search and filter jobs",
+    "Search jobs and Apply for jobs",
     "User authentication",
-    "Apply for jobs",
     "Job Details"
   ],
   status: "Completed",
   category: "Javascript",
   liveUrl: "https://job-portal-9a78d.web.app/",
-  githubUrl: "https://github.com/Rudraptl16",
+  githubUrl: "#",
   caseStudyId: 8,
   featured: true
 },
@@ -279,27 +264,21 @@ export const projects = [
     "React"
     ],
   skillsUsed: [
-    "HTML",
     "Tailwind CSS",
     "JavaScript",
     "React",
-    "Vercel",
-    "Animation",
-    "Responsive Design",
-    "Git",
     "Github"
   ],
   keyFeatures: [
-    "Add numbers",
-    "Subtract numbers",
-    "Multiply numbers",
-    "Divide numbers",
-    "Clear display"
+    "add ,subtract,multiply,divide numbers",
+    "Fast and efficient",
+    "Simple and clean UI",
+    "Responsive Design"
   ],
   status: "Completed",
   category: "React",
   liveUrl: "https://calculator-rp16.vercel.app",
-  githubUrl: "https://github.com/Rudraptl16",
+  githubUrl: "https://github.com/Rudraptl16/Calculator-",
   caseStudyId: 9,
   featured: true
 },
@@ -317,8 +296,6 @@ export const projects = [
     "CSS",
     "Animation",
     "Responsive Design",
-    "Git",
-    "Github"
   ],
   keyFeatures: [
     "Responsive layout",
@@ -347,9 +324,7 @@ export const projects = [
   skillsUsed: [
     "HTML",
     "CSS",
-    "JavaScript",
     "Animation",
-    "Responsive Design",
     "Firebase Hosting",
   ],
   keyFeatures: [

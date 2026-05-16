@@ -32,7 +32,7 @@ const socialLinks = [
     icon: Youtube, href: 'https://www.youtube.com/@rudrapatel4172', color: '#ff0000'
 
   },
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/rudra-patel-265258313/', color: '#0077b5' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/rudrapatel816/', color: '#0077b5' },
 ];
 
 export default function Hero() {
