@@ -39,9 +39,9 @@ export const featuredArtifacts = [
   {
     id: 2,
     title: 'Hilink Landing Page',
-    subtitle: 'High-Performance Editorial Experience',
+    subtitle: 'Hilink - Modern Adventure Travel UI',
     description:
-      'A radical, editorial split-screen portfolio engineered with a "Midnight Glass" neo-brutalist aesthetic. Built for performance, immersive 3D backgrounds, and sophisticated Framer Motion interactions across every section.',
+      'A premium, high-fidelity travel landing page and utility platform designed to empower adventurers with offline maps, trip planning tools, and immersive camping guides for seamless outdoor exploration',
     image: '/case img/Hilink.png',
     tags: ['React 19', 'Framer Motion', 'Tailwind v4', 'Vite', 'Three.js'],
     skillsUsed: [

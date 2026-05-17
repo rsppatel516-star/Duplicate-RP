@@ -53,7 +53,7 @@ const FeatureNavLink = ({ link, mobile, close, index }) => {
       >
         {link.name}
         {!mobile && (
-          <motion.span 
+          <motion.span
             className="absolute -bottom-1 left-0 w-0 h-[2px] bg-dark-primary rounded-full group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(124,58,237,0.5)]"
             whileHover={{ width: '100%' }}
           />
@@ -92,7 +92,7 @@ export default function FeatureNavbar() {
         <div className="max-w-7xl mx-auto px-5 lg:px-6 flex items-center justify-between gap-4">
           <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }} className="flex items-center gap-2.5 shrink-0 z-10 group relative">
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, -5, 0],
                 filter: [
                   'drop-shadow(0 0 0px rgba(124,58,237,0))',
@@ -100,18 +100,18 @@ export default function FeatureNavbar() {
                   'drop-shadow(0 0 0px rgba(124,58,237,0))'
                 ]
               }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative overflow-hidden"
             >
-              <img 
-                src="/images/nav%20logo.png" 
-                alt="Logo" 
+              <img
+                src="/images/nav%20logo.png"
+                alt="Logo"
                 className="h-10 md:h-8 w-auto object-contain transition-all"
               />
               {/* Shine effect overlay 
@@ -172,9 +172,9 @@ export default function FeatureNavbar() {
                 {/* Header */}
                 <div className="px-8 pt-8 pb-4 flex items-center justify-between relative z-10">
                   <div className="flex items-center gap-3">
-                    <img 
-                      src="/images/nav%20logo.png" 
-                      alt="Logo" 
+                    <img
+                      src="/images/nav%20logo.png"
+                      alt="Logo"
                       className="h-8 w-auto object-contain"
                     />
                     <div className="flex flex-col">

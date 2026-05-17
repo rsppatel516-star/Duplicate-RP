@@ -40,7 +40,7 @@ const ProjectFilterButton = ({ filter, activeFilter, setActiveFilter, setVisible
             background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.25), transparent)`,
           }}
         />
-        
+
         <span className="relative z-10">
           {filter}
         </span>

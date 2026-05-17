@@ -73,50 +73,57 @@ export default function CaseStudy() {
       /> */}
 
       {/* ── HERO BANNER ─────────────────────────── */}
-      <section className="relative h-[100vh] min-h-[500px] flex items-end overflow-hidden bg-dark-bg/20 backdrop-blur-md">
-        <motion.div style={{ opacity: heroOpacity, scale: heroScale, y: heroY }} className="absolute inset-0 z-0">
+      <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <motion.div
+          style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+          className="absolute inset-0 z-0"
+        >
           <img
             src={study.image}
             alt={study.title}
             className="w-full h-full object-cover object-center"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/60 to-transparent z-10" />
+          <div className="absolute inset-0 bg-black/40 z-[5]" />
         </motion.div>
-        <div className="absolute inset-0 bg-black/20 z-[1]" />
 
         {/* Back Nav */}
-        <Link to="/artifacts" className="absolute top-20 left-4 md:top-24 md:left-8 z-30 group">
+        <Link
+          to="/artifacts"
+          className="absolute top-12 left-6 md:top-16 md:left-12 z-30 group"
+        >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-dark-textMuted hover:text-black transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-dark-bg/20 backdrop-blur-md px-4 py-2.5 md:px-5 md:py-3 rounded-full border border-white/5"
+            className="flex items-center gap-3 text-white/70 hover:text-white transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-white/5 backdrop-blur-md px-5 py-3 md:px-6 md:py-3.5 rounded-full border border-white/10 hover:border-white/20"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1.5" />
             Artifacts
           </motion.div>
         </Link>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-12 md:pb-20 w-full top-5">
+        <div className="relative z-20 max-w-6xl mx-auto px-6 pt-10 md:pt-20 w-full text-center">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={container}
-            className="space-y-6"
+            className="space-y-6 md:space-y-8"
           >
-            {/*<motion.div variants={sv}>
-              <span className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-dark-primary/30 bg-dark-primary/10 text-dark-primary text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-dark-primary animate-ping" />
+            <motion.div variants={sv} className="flex justify-center">
+              <span className="inline-flex items-center gap-3 px-3 py-1 md:px-4 md:py-1.5 rounded-full border border-dark-primary/30 bg-dark-primary/10 text-dark-primary text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-dark-primary animate-pulse" />
                 Deep Dive artifact
               </span>
-            </motion.div>*/}
+            </motion.div>
 
-            <div className="overflow-hidden ">
+            <div className="overflow-hidden">
               <motion.h1
                 variants={{
-                  hidden: { opacity: 0, y: 120 },
+                  hidden: { opacity: 0, y: 100 },
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl md:text-6xl lg:text-7xl font-display font-black leading-[0.9] md:leading-[0.8] tracking-[-0.04em] text-white mb-6 md:mb-10"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white tracking-tighter leading-[0.9] sm:leading-tight md:leading-[0.9]"
               >
                 {study.title}
               </motion.h1>
@@ -124,23 +131,23 @@ export default function CaseStudy() {
 
             <motion.p
               variants={sv}
-              className="text-lg md:text-2xl font-light text-dark-primary/70 max-w-2xl leading-relaxed"
+              className="text-base sm:text-lg md:text-2xl font-light text-white/60 max-w-3xl mx-auto leading-relaxed"
             >
               {study.subtitle}
             </motion.p>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-3"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
         >
-          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">Scroll</span>
+          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/20">Explore</span>
           <div className="w-[1px] h-12 bg-gradient-to-t from-dark-primary/60 to-transparent" />
-        </motion.div>*/}
+        </motion.div>
       </section>
 
       <div className="relative z-10">

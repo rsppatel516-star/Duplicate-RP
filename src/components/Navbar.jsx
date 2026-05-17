@@ -49,7 +49,7 @@ const NavLink = ({ link, mobile, isHome, close, handleClick, index }) => {
     : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all duration-300 relative group cursor-pointer py-2 px-1';
 
   const content = (
-    <motion.span 
+    <motion.span
       initial={!mobile ? { opacity: 0, y: -10 } : {}}
       animate={!mobile ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 0.1 + (index * 0.1), duration: 0.5 }}
@@ -57,7 +57,7 @@ const NavLink = ({ link, mobile, isHome, close, handleClick, index }) => {
     >
       {link.name}
       {!mobile && (
-        <motion.span 
+        <motion.span
           className="absolute -bottom-1 left-0 w-0 h-[2px] bg-dark-primary rounded-full group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(124,58,237,0.5)]"
           whileHover={{ width: '100%' }}
         />
@@ -140,7 +140,7 @@ export default function Navbar() {
           <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }}
             className="flex items-center gap-2.5 shrink-0 z-10 relative group">
             <motion.div
-              animate={{ 
+              animate={{
                 y: [0, -5, 0],
                 filter: [
                   'drop-shadow(0 0 0px rgba(124,58,237,0))',
@@ -148,18 +148,18 @@ export default function Navbar() {
                   'drop-shadow(0 0 0px rgba(124,58,237,0))'
                 ]
               }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative overflow-hidden"
             >
-              <img 
-                src="/images/nav%20logo.png" 
-                alt="Logo" 
+              <img
+                src="/images/nav%20logo.png"
+                alt="Logo"
                 className="h-10 md:h-8 w-auto object-contain transition-all"
               />
               {/* Shine effect overlay 
@@ -254,9 +254,9 @@ export default function Navbar() {
                 {/* Header */}
                 <div className="px-8 pt-8 pb-4 flex items-center justify-between relative z-10">
                   <div className="flex items-center gap-3">
-                    <img 
-                      src="/images/nav%20logo.png" 
-                      alt="Logo" 
+                    <img
+                      src="/images/nav%20logo.png"
+                      alt="Logo"
                       className="h-8 w-auto object-contain"
                     />
                     <div className="flex flex-col">
