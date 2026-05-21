@@ -19,6 +19,10 @@ const DSAIcon = () => (
   <img src="/certificate img/ac logo.png" alt="Data Structures & Algorithms" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
 );
 
+const FullStackIcon = () => (
+  <img src="/certificate img/ac logo.png" alt="Full-Stack Development" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
+);
+
 const OSIcon = () => (
   <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 24 24" fill="none" stroke="#00E676" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
     <rect x="4" y="4" width="16" height="16" rx="2.5" fill="#00E676" fillOpacity="0.2" />
@@ -27,11 +31,24 @@ const OSIcon = () => (
   </svg>
 );
 
+const iOSIcon = () => (
+  <svg
+    className="w-8 h-8 md:w-10 md:h-10"
+    viewBox="-56.24 0 608.728 608.728"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="white"
+  >
+    <path d="M273.81 52.973C313.806.257 369.41 0 369.41 0s8.271 49.562-31.463 97.306c-42.426 50.98-90.649 42.638-90.649 42.638s-9.055-40.094 26.512-86.971zM252.385 174.662c20.576 0 58.764-28.284 108.471-28.284 85.562 0 119.222 60.883 119.222 60.883s-65.833 33.659-65.833 115.331c0 92.133 82.01 123.885 82.01 123.885s-57.328 161.357-134.762 161.357c-35.565 0-63.215-23.967-100.688-23.967-38.188 0-76.084 24.861-100.766 24.861C89.33 608.73 0 455.666 0 332.628c0-121.052 75.612-184.554 146.533-184.554 46.105 0 81.883 26.588 105.852 26.588z" />
+  </svg>
+);
+
 const iconMap = {
   azure: <AzureIcon />,
   python: <PythonIcon />,
   dsa: <DSAIcon />,
-  os: <OSIcon />
+  fullstack: <FullStackIcon />,
+  os: <OSIcon />,
+  ios: <iOSIcon />
 };
 
 const certifications = [
@@ -81,19 +98,19 @@ const certifications = [
     skills: ['Java Development', 'Data Structures', 'Algorithmic Complexity', 'Problem Solving']
   },
   {
-    id: 'full-stack development',
-    title: 'Full-stack Development',
+    id: 'fullstack-development',
+    title: 'Full-Stack Development',
     issuer: 'Apna College',
     date: 'March 2026',
-    verificationId: 'Delta Development ',
+    verificationId: 'Delta Development',
     verificationHash: '699dbfb7150d54f6eb04e686',
-    description: 'Verifies mastery of algorithmic complexity, sorting/searching paradigms, advanced trees, graphs, dynamic programming, and Java-based memory representation.',
-    brandColor: '#f2ff00c7',
-    iconName: 'dsa',
+    description: 'Validates end-to-end web development proficiency spanning responsive React frontends, Node.js/Express backend APIs, MongoDB data modeling, REST architecture, CI/CD pipelines, and scalable deployment practices.',
+    brandColor: '#00d4aa',
+    iconName: 'fullstack',
     imagePath: '/certificate img/Sigma-Development.jpg',
     pdfPath: '',
     externalUrl: 'https://www.apnacollege.in/',
-    skills: ['Node.js', 'Express.js', 'Mongo DB', 'React.js', 'Rest API', 'CI/CD']
+    skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'CI/CD']
   },
   {
     id: 'operating-systems',
@@ -109,6 +126,26 @@ const certifications = [
     pdfPath: '',
     externalUrl: 'https://www.credly.com/badges/6e2fbaff-f008-4dd4-b2ad-eabc0f4dc515/',
     skills: ['Process Management', 'Memory Allocation', 'Concurrency & Locks', 'Kernel Architecture']
+  },
+  {
+    id: 'ios-development-workshop',
+    title: 'iOS Development Workshop',
+    issuer: 'Apple / WWDC',
+    date: 'May 2026',
+    verificationId: 'iOS Dev Workshop',
+    verificationHash: 'SwiftUI & UIKit Track',
+    description: 'Hands-on workshop covering native iOS app development with Swift, SwiftUI layout system, UIKit fundamentals, Xcode toolchain, App Store publishing pipeline, and Apple Human Interface Guidelines.',
+    brandColor: '#007AFF',
+    iconName: 'ios',
+    imagePath: '/images/iOS Workshop 1.jpeg',
+    images: [
+      '/images/iOS Workshop 1.jpeg',
+      '/images/iOS Workshop 2.jpeg',
+      '/images/iOS Workshop 4.jpeg'
+    ],
+    pdfPath: '',
+    externalUrl: 'https://developer.apple.com/',
+    skills: ['Swift', 'SwiftUI', 'UIKit', 'Xcode', 'App Store Connect', 'HIG']
   }
 ];
 
@@ -282,6 +319,7 @@ export default function Achievements() {
   const [selectedCert, setSelectedCert] = useState(null);
   const [zoomScale, setZoomScale] = useState(1);
   const [copiedHash, setCopiedHash] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
   const handleCopyHash = (hash) => {
     navigator.clipboard.writeText(hash);
@@ -368,6 +406,7 @@ export default function Achievements() {
               cert={cert}
               onOpen={() => {
                 setZoomScale(1);
+                setGalleryIndex(0);
                 setSelectedCert(cert);
               }}
               cardVariants={cardVariants}
@@ -517,7 +556,60 @@ export default function Achievements() {
                       }}
                     />
 
-                    {selectedCert.imagePath ? (
+                    {selectedCert.images ? (
+                      /* ── Multi-image gallery carousel ── */
+                      <div className="relative w-full h-full flex flex-col">
+                        {/* Main image */}
+                        <div className="flex-1 flex items-center justify-center p-3 overflow-hidden">
+                          <motion.img
+                            key={galleryIndex}
+                            initial={{ opacity: 0, x: 30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -30 }}
+                            transition={{ type: 'spring', stiffness: 260, damping: 28 }}
+                            src={selectedCert.images[galleryIndex]}
+                            alt={`${selectedCert.title} — ${galleryIndex + 1}`}
+                            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl border border-white/5"
+                          />
+                        </div>
+
+                        {/* Prev / Next arrows */}
+                        {galleryIndex > 0 && (
+                          <button
+                            onClick={() => setGalleryIndex(i => i - 1)}
+                            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-dark-bg/80 border border-dark-border/60 flex items-center justify-center text-white/70 hover:text-white hover:bg-dark-bg transition-all duration-200 backdrop-blur-sm z-20 cursor-pointer"
+                          >
+                            <ArrowRight size={15} className="rotate-180" />
+                          </button>
+                        )}
+                        {galleryIndex < selectedCert.images.length - 1 && (
+                          <button
+                            onClick={() => setGalleryIndex(i => i + 1)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-dark-bg/80 border border-dark-border/60 flex items-center justify-center text-white/70 hover:text-white hover:bg-dark-bg transition-all duration-200 backdrop-blur-sm z-20 cursor-pointer"
+                          >
+                            <ArrowRight size={15} />
+                          </button>
+                        )}
+
+                        {/* Dot indicators + counter */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-dark-bg/85 border border-dark-border/60 px-4 py-2 rounded-xl shadow-xl z-20 backdrop-blur-md">
+                          {selectedCert.images.map((_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setGalleryIndex(i)}
+                              style={i === galleryIndex ? { backgroundColor: selectedCert.brandColor } : {}}
+                              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${i === galleryIndex ? 'scale-125' : 'bg-white/25 hover:bg-white/50'
+                                }`}
+                            />
+                          ))}
+                          <div className="h-3 w-[1px] bg-dark-border/40" />
+                          <span className="text-[10px] font-code text-white/60 font-bold select-none">
+                            {galleryIndex + 1} / {selectedCert.images.length}
+                          </span>
+                        </div>
+                      </div>
+                    ) : selectedCert.imagePath ? (
+                      /* ── Single-image viewer with zoom ── */
                       <div className="w-full h-full overflow-auto flex items-center justify-center p-3 select-none">
                         <motion.img
                           animate={{ scale: zoomScale }}
@@ -535,8 +627,8 @@ export default function Achievements() {
                       </div>
                     )}
 
-                    {/* Interactive Zoom Controls HUD */}
-                    {selectedCert.imagePath && (
+                    {/* Interactive Zoom Controls HUD — single image only */}
+                    {!selectedCert.images && selectedCert.imagePath && (
                       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-dark-bg/85 border border-dark-border/60 px-4 py-2 rounded-xl flex items-center gap-4 shadow-xl z-20 backdrop-blur-md">
                         <button
                           onClick={handleZoomOut}
