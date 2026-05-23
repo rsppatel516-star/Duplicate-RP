@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { blogposts } from '../data/blogposts';
+import { blogposts as fallbackBlogs } from '../data/blogposts';
 import { ArrowLeft, Clock, Tag, Calendar, Twitter, Linkedin, Link as LinkIcon, User } from 'lucide-react';
 
 const SectionLabel = ({ icon: IconComponent, label, color = "text-dark-primary" }) => (
@@ -14,14 +14,45 @@ const SectionLabel = ({ icon: IconComponent, label, color = "text-dark-primary" 
 
 export default function BlogPost() {
   const { id } = useParams();
-  const post = blogposts.find(p => p.id === parseInt(id));
+  const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const fetchPost = async () => {
+      try {
+        const res = await fetch('/api/admin/blogs');
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          const found = data.data.find(p => p._id === id || p.id === parseInt(id));
+          if (found) {
+            setPost(found);
+            return;
+          }
+        }
+        // Fallback
+        setPost(fallbackBlogs.find(p => p.id === parseInt(id)));
+      } catch (error) {
+        setPost(fallbackBlogs.find(p => p.id === parseInt(id)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPost();
+  }, [id]);
 
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.4], [0.4, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
 
-  useEffect(() => { window.scrollTo(0, 0); }, [id]);
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-dark-bg text-dark-textMain">
+        <div className="w-8 h-8 border-4 border-dark-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   if (!post) {
     return (

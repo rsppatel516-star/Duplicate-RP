@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
 import {
@@ -13,6 +13,45 @@ export default function Footer() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // ── Live FPS counter ──
+  const [fps, setFps] = useState(0);
+  const frameRef = useRef(0);
+  const timeRef  = useRef(performance.now());
+  const rafRef   = useRef(null);
+  const tick = useCallback(() => {
+    frameRef.current += 1;
+    const now = performance.now();
+    const elapsed = now - timeRef.current;
+    if (elapsed >= 1000) {
+      setFps(Math.round((frameRef.current * 1000) / elapsed));
+      frameRef.current = 0;
+      timeRef.current  = now;
+    }
+    rafRef.current = requestAnimationFrame(tick);
+  }, []);
+  useEffect(() => {
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [tick]);
+
+  // ── Live Ping ──
+  const [ping, setPing] = useState(0);
+  useEffect(() => {
+    const measure = () => {
+      const url = `/favicon.ico?_=${Date.now()}`;
+      const t0 = performance.now();
+      fetch(url, { method: 'HEAD', cache: 'no-store' })
+        .catch(() => {})
+        .finally(() => setPing(Math.round(performance.now() - t0)));
+    };
+    measure();
+    const id = setInterval(measure, 3000);
+    return () => clearInterval(id);
+  }, []);
+
+  const fpsColor  = fps  >= 55 ? '#22c55e' : fps  >= 30 ? '#facc15' : '#ef4444';
+  const pingColor = ping <= 50 ? '#22c55e' : ping <= 150 ? '#facc15' : '#ef4444';
 
   // Live ticking clock in IST (Vadodara local timezone standard context)
   useEffect(() => {
@@ -112,7 +151,7 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <h3 className="text-2xl font-syne font-black tracking-tight text-gradient animated-gradient-text">Rudra Patel</h3>
+                <h3 className="text-2xl font-poppins font-bold tracking-tight text-gradient animated-gradient-text">Rudra Patel</h3>
                 <p className="text-[9px] font-code text-white/40 tracking-[0.25em] uppercase font-bold mt-1">Digital Architect</p>
               </div>
             </div>
@@ -166,8 +205,13 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-primary flex items-center gap-2 font-display">
-              <Code2 size={16} /> Quick Links
+            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-primary flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
+              {/* hover underline glow */}
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 group-hover/hdr:w-full bg-gradient-to-r from-dark-primary to-transparent transition-all duration-500 ease-out" />
+              <Code2 size={16} className="transition-transform duration-300 group-hover/hdr:rotate-12 group-hover/hdr:scale-110" />
+              <span className="relative transition-colors duration-300 group-hover/hdr:drop-shadow-[0_0_8px_#6366f1]">
+                Quick Links
+              </span>
             </h4>
             <ul className="space-y-3.5 text-dark-textMuted font-medium text-[13px] font-bricolage">
               {quickLinks.map((item) => (
@@ -190,8 +234,12 @@ export default function Footer() {
 
           {/* Column 3: Services Grid */}
           <div className="lg:col-span-3 space-y-6">
-            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-secondary flex items-center gap-2 font-display">
-              <Globe size={16} /> Services
+            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-secondary flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 group-hover/hdr:w-full bg-gradient-to-r from-dark-secondary to-transparent transition-all duration-500 ease-out" />
+              <Globe size={16} className="transition-transform duration-300 group-hover/hdr:rotate-12 group-hover/hdr:scale-110" />
+              <span className="relative transition-colors duration-300 group-hover/hdr:drop-shadow-[0_0_8px_#8b5cf6]">
+                Services
+              </span>
             </h4>
             <ul className="space-y-4 text-dark-textMuted font-medium text-[14px] font-bricolage">
               {[
@@ -212,8 +260,12 @@ export default function Footer() {
 
           {/* Column 4: Premium Quick Connect Form */}
           <div className="lg:col-span-3 space-y-6 relative">
-            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#FF2E93] flex items-center gap-2 font-display">
-              <Mail size={16} /> Quick Connect
+            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#FF2E93] flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 group-hover/hdr:w-full bg-gradient-to-r from-[#FF2E93] to-transparent transition-all duration-500 ease-out" />
+              <Mail size={16} className="transition-transform duration-300 group-hover/hdr:scale-110 group-hover/hdr:-rotate-6" />
+              <span className="relative transition-colors duration-300 group-hover/hdr:drop-shadow-[0_0_8px_#FF2E93]">
+                Quick Connect
+              </span>
             </h4>
             <p className="text-[13px] text-dark-textMuted leading-relaxed">
               Submit your email to connect instantly, receive custom showcases, or launch a direct portfolio inquiry.
@@ -287,9 +339,9 @@ export default function Footer() {
               <span>&copy; {currentYear} <a href="https://www.linkedin.com/in/rudra-patel-265258313/" target="_blank" rel="noreferrer" className="hover:text-dark-primary font-bold transition-colors">Rudra Patel</a></span>
             </div>
             <span className="hidden sm:inline border-r border-white/10 h-2.5" />
-            <span>FPS: <span className="text-emerald-400 font-bold">60</span></span>
+            <span>FPS: <span className="font-bold transition-colors duration-500" style={{ color: fpsColor }}>{fps}</span></span>
             <span className="hidden sm:inline border-r border-white/10 h-2.5" />
-            <span>PING: <span className="text-emerald-400 font-bold">12ms</span></span>
+            <span>PING: <span className="font-bold transition-colors duration-500" style={{ color: pingColor }}>{ping}ms</span></span>
             <span className="hidden sm:inline border-r border-white/10 h-2.5" />
             <span>SECURE: <span className="text-dark-primary font-bold">SSL_TLS</span></span>
             <span className="hidden sm:inline border-r border-white/10 h-2.5" />

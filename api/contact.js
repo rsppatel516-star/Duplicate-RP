@@ -1,16 +1,5 @@
 import dbConnect from './_lib/db.js';
-import mongoose from 'mongoose';
-
-// Define the Contact schema if it hasn't been defined yet
-const ContactSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  subject: { type: String },
-  message: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
-});
-
-const Contact = mongoose.models.Contact || mongoose.model('Contact', ContactSchema);
+import { Contact } from './_lib/models.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -40,7 +29,7 @@ export default async function handler(req, res) {
       console.warn('Validation failed: Invalid email format', user_email);
       return res.status(400).json({ 
         success: false,
-        message: 'Invalid email format. Please provide a valid communication frequency.' 
+        message: 'Invalid email format. Please provide a valid email address.' 
       });
     }
 

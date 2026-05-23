@@ -1,16 +1,37 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Search, ArrowRight, Calendar, Clock, User, Hash } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
-import { blogposts as blogs } from '../data/blogposts';
+import { blogposts as fallbackBlogs } from '../data/blogposts';
 
 const categories = ['All', 'IT Technology', 'Designer', 'Developer & Development', 'AI', 'Artificial Intelligence / Development'];
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [blogs, setBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch('/api/admin/blogs');
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          setBlogs(data.data);
+        } else {
+          setBlogs(fallbackBlogs); // Fallback to hardcoded if no DB connection or empty
+        }
+      } catch (error) {
+        setBlogs(fallbackBlogs);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   const filteredBlogs = useMemo(() => {
     return blogs.filter(blog => {
@@ -21,7 +42,7 @@ export default function Blog() {
         blog.tags?.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [blogs, activeCategory, searchQuery]);
 
   const featuredBlog = filteredBlogs.length > 0 ? filteredBlogs[0] : null;
   const standardBlogs = filteredBlogs.slice(1);

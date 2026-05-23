@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { featuredArtifacts } from '../data/featuredArtifacts';
+import { featuredArtifacts as fallbackArtifacts } from '../data/featuredArtifacts';
 import { caseStudies } from '../data/caseStudies';
 import { ArrowUpRight, Briefcase } from 'lucide-react';
 import MagneticButton from '../components/ui/MagneticButton';
@@ -11,6 +11,36 @@ import MagneticButton from '../components/ui/MagneticButton';
 const caseStudyIds = new Set(caseStudies.map((cs) => cs.id));
 
 export default function Artifacts() {
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch('/api/admin/projects');
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          setProjects(data.data);
+        } else {
+          setProjects(fallbackArtifacts);
+        }
+      } catch (error) {
+        setProjects(fallbackArtifacts);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-dark-bg text-dark-textMain">
+        <div className="w-8 h-8 border-4 border-dark-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
       <Helmet>
@@ -92,7 +122,7 @@ export default function Artifacts() {
             className="mt-12 flex items-center gap-2 w-fit px-6 py-3 rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm text-base font-medium text-dark-textMuted hover:border-dark-secondary/30 transition-colors cursor-default"
           >
             <span className="text-dark-secondary font-extrabold text-2xl leading-none">
-              {featuredArtifacts.length}
+              {projects.length}
             </span>
             <span className="tracking-wide">artifacts in the vault</span>
           </motion.div>
@@ -100,7 +130,7 @@ export default function Artifacts() {
 
         {/* ── Artifact List ──   */}
         <div className="space-y-48">
-          {featuredArtifacts.map((project, idx) => {
+          {projects.map((project, idx) => {
             const hasCaseStudy = caseStudyIds.has(project.id);
             const isEven = idx % 2 === 0;
 
@@ -163,7 +193,7 @@ export default function Artifacts() {
                     transition={{ delay: 0.6 }}
                     className="absolute -top-6 -right-6 z-20"
                   >
-                    {/*{hasCaseStudy ? (
+                    {hasCaseStudy ? (
                       <Link to={`/artifacts/${project.id}`}>
                         <MagneticButton>
                           <div className="flex items-center gap-3 px-7 py-3 bg-dark-textMain text-dark-bg rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] border border-white/10 hover:shadow-dark-primary/40 transition-all cursor-pointer group">
@@ -190,7 +220,7 @@ export default function Artifacts() {
                           {project.status}
                         </span>
                       </div>
-                    )}*/}
+                    )}
                   </motion.div>
                 </motion.div>
 

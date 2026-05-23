@@ -268,8 +268,8 @@ export default function Contact() {
                   </motion.div>
                 </div>
 
-                {/* Pill-Selector for Project Scope / Type - Commented exactly as selected */}
-                {/* <div className="space-y-4">
+                {/* Pill-Selector for Project Scope / Type */}
+                <div className="space-y-4">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted flex items-center gap-2">
                     <DollarSign size={12} className="text-dark-secondary" />
                     Project Scope / Category
@@ -291,7 +291,7 @@ export default function Contact() {
                     ))}
                   </div>
                   <input type="hidden" name="project_type" value={selectedProjectType} />
-                </div> */}
+                </div>
 
                 {/* Subject Input */}
                 <motion.div variants={itemVariants} className="space-y-3 relative group/input">

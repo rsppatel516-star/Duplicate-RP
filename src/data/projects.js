@@ -92,7 +92,38 @@ export const projects = [
     featured: true
 },
 {
-    id: 4 ,
+  id: 4,
+  title: ' Furniqlo Premium Furniture Store',
+  subtitle: ' Premium Furniture Store Landing Page',
+  description: 'Furniqlo is a premium, modern e-commerce furniture store built with React 19, TypeScript, and Vite. It delivers a stunning shopping experience with fluid animations, a fully functional cart, and an immersive product catalogue.',
+  image: '/project img/Furniture.png',
+  tags: [
+    "E-commerce",
+    "Furniture",
+    "Landing Page",
+    "Web App"
+  ],
+  skillsUsed: [
+    "React 19 / TypeScript", 
+    "Vanilla CSS", 
+    "React Router DOM v7", 
+    "i18next", 
+  ],
+  keyFeatures: [
+    "Create, edit, and delete notes",
+    "Real-time updates of notes",
+    "Simple and clean UI",
+    "Real-time updates"
+  ],
+  status: 'Completed',
+  category: 'React',
+  liveUrl: 'https://furniqlo-store.vercel.app/',
+  githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
+  caseStudyId: 7,
+  featured: true
+},
+{
+    id: 5,
     title: "Travel Website",
   subtitle: "A travel booking and destination showcase platform",
   description: "A responsive travel website that allows users to explore destinations, view travel packages, and get detailed information about trips.",
@@ -124,7 +155,7 @@ export const projects = [
     featured: true
 },
 {
-    id: 5,
+    id: 6,
     title: "Personal Project Manager",
     subtitle: "A task and project management web application",
     description: "A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priorities, and progress tracking.",
@@ -155,7 +186,7 @@ export const projects = [
     featured: true
 },
 {
-  id: 6,
+  id: 7,
   title: "Todo List Application",
   subtitle: "A simple task management and productivity tool",
   description: "A lightweight to-do list application that allows users to add, update, and delete daily tasks for better productivity.",
@@ -187,7 +218,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 7,
+  id: 8,
   title: 'Note Sphere',
   subtitle: 'Smart and Simple Note Management App',
   description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
@@ -220,7 +251,7 @@ export const projects = [
 },
 {
 
-  id: 8,
+  id: 9,
   title: "Job Portal Website",
   subtitle: "An online platform for job seekers and recruiters",
   description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
@@ -253,7 +284,7 @@ export const projects = [
 },
 {
 
-  id: 9,
+  id: 10,
   title: "Calculator App",
   subtitle: "An online calculator web application with basic arithmetic operations",
   description: "A calculator web application with basic arithmetic operations.",
@@ -283,7 +314,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 10,
+  id: 11,
   title: "Nexify Landing Page",
   subtitle: "AI-powered workflow automation platform",
   description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
@@ -311,7 +342,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 11,
+  id: 12,
   title: "Health Care Website",
   subtitle: "An online platform for healthcare services and information",
   image: "/project img/Health.png",
