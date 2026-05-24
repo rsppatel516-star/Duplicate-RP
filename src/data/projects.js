@@ -110,16 +110,16 @@ export const projects = [
     "i18next", 
   ],
   keyFeatures: [
-    "Create, edit, and delete notes",
-    "Real-time updates of notes",
-    "Simple and clean UI",
-    "Real-time updates"
+    "Premium furniture catalog with detailed product pages",
+    "Multi-language support (English, Hindi, Marathi)",
+    "Light/Dark mode toggle",
+    "Responsive 3D card hover effects"
   ],
   status: 'Completed',
   category: 'React',
-  liveUrl: 'https://furniqlo-store.vercel.app/',
-  githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
-  caseStudyId: 7,
+  liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
+  githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
+  caseStudyId: 4,
   featured: true
 },
 {

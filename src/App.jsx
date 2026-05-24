@@ -30,12 +30,13 @@ function App() {
 
       {/* Main Content Layer wrapped with ClickSpark */}
       <ClickSpark
-        sparkColor='#6366f1'
-
-        sparkSize={24}
-        sparkRadius={25}
+        sparkColor="#ec4899"
+        sparkColor2="#6366f1"
+        sparkSize={11}
+        sparkRadius={21}
         sparkCount={12}
-        duration={600}
+        duration={1000}
+        extraScale={0.8}
       >
         <div className="relative z-10 flex flex-col min-h-screen">
           {/* Conditionally render Navbar or FeatureNavbar (unless on Admin pages) */}
@@ -49,7 +50,7 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
-              
+
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route element={<ProtectedRoute />}>

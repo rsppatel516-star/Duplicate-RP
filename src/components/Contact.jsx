@@ -98,9 +98,9 @@ export default function Contact() {
         }}
       />
 
-      {/* Dynamic Ambient Background Glows */}
+      {/* Dynamic Ambient Background Glows 
       <div className="absolute -bottom-48 -left-48 w-[400px] h-[400px] bg-dark-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute -top-48 -right-48 w-[400px] h-[400px] bg-dark-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -top-48 -right-48 w-[400px] h-[400px] bg-dark-secondary/10 rounded-full blur-[120px] pointer-events-none" />*/}
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
@@ -280,11 +280,10 @@ export default function Contact() {
                         key={type.id}
                         type="button"
                         onClick={() => setSelectedProjectType(type.label)}
-                        className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative ${
-                          selectedProjectType === type.label
-                            ? 'text-dark-primary border border-dark-primary bg-dark-primary/5 shadow-[0_0_15px_rgba(0,212,255,0.15)] font-extrabold'
-                            : 'text-dark-textMuted border border-dark-border/40 bg-dark-bg/10 hover:border-dark-primary/30 hover:text-dark-textMain'
-                        }`}
+                        className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative ${selectedProjectType === type.label
+                          ? 'text-dark-primary border border-dark-primary bg-dark-primary/5 font-extrabold'
+                          : 'text-dark-textMuted border border-dark-border/40 bg-dark-bg/10 hover:border-dark-primary/30 hover:text-dark-textMain'
+                          }`}
                       >
                         {type.label}
                       </button>

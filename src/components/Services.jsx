@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { services } from '../data/services';
 import { Zap, Terminal, Cpu, X } from 'lucide-react';
-import ClickSpark from './ui/ClickSpark';
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -58,8 +57,8 @@ export default function Services() {
                 <span>View Details</span>
               </div>
 
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-dark-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              {/* Decorative corner 
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-dark-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />*/}
             </motion.div>
           ))}
         </div>

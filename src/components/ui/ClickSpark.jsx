@@ -73,7 +73,7 @@ const ClickSpark = ({
         const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
 
         const distance = eased * sparkRadius * spark.speedMultiplier * extraScale;
-        
+
         // Grow then shrink logic for smoother 'pop'
         let currentSize = sparkSize * spark.sizeMultiplier;
         let lineLength;
@@ -82,7 +82,7 @@ const ClickSpark = ({
         } else {
           lineLength = currentSize * (1 - (progress - 0.2) / 0.8); // Gradual shrink
         }
-        
+
         const opacity = 1 - Math.pow(progress, 2); // Slightly faster fade
 
         const x1 = spark.x + distance * Math.cos(spark.angle);
@@ -92,7 +92,7 @@ const ClickSpark = ({
 
         ctx.save();
         ctx.globalAlpha = opacity;
-        
+
         const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
         gradient.addColorStop(0, sparkColor);
         gradient.addColorStop(1, sparkColor2);

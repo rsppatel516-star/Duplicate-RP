@@ -185,43 +185,6 @@ export default function Artifacts() {
                       {project.category}
                     </span>
                   </motion.div>
-
-                  {/* Action Badge (Case Study or Status) */}
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="absolute -top-6 -right-6 z-20"
-                  >
-                    {hasCaseStudy ? (
-                      <Link to={`/artifacts/${project.id}`}>
-                        <MagneticButton>
-                          <div className="flex items-center gap-3 px-7 py-3 bg-dark-textMain text-dark-bg rounded-2xl shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] border border-white/10 hover:shadow-dark-primary/40 transition-all cursor-pointer group">
-                            <div className="relative">
-                              <div className="w-2.5 h-2.5 rounded-full bg-dark-bg animate-ping absolute opacity-50" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-dark-bg relative" />
-                            </div>
-                            <span className="text-xs font-black uppercase tracking-[0.2em]">
-                              Read Case Study
-                            </span>
-                            <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform stroke-[3px]" />
-                          </div>
-                        </MagneticButton>
-                      </Link>
-                    ) : (
-                      <div className="flex items-center gap-3 px-6 py-3 bg-dark-surface/90 backdrop-blur-xl border border-white/5 rounded-2xl shadow-2xl">
-                        <div className="relative">
-                          <div className={`w-2.5 h-2.5 rounded-full ${project.status === 'Completed' ? 'bg-emerald-400' : 'bg-dark-secondary'
-                            } animate-ping absolute opacity-50`} />
-                          <div className={`w-2.5 h-2.5 rounded-full ${project.status === 'Completed' ? 'bg-emerald-400' : 'bg-dark-secondary'
-                            } relative`} />
-                        </div>
-                        <span className="text-xs font-black uppercase tracking-[0.2em] text-dark-textMuted">
-                          {project.status}
-                        </span>
-                      </div>
-                    )}
-                  </motion.div>
                 </motion.div>
 
                 {/* ── Content Side ── */}
