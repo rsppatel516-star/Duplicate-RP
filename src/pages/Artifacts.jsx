@@ -94,7 +94,7 @@ export default function Artifacts() {
                   visible: { opacity: 1, y: 0 }
                 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tighter-tight animated-gradient-text"
+                className="text-5xl md:text-6xl lg:text-7xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text"
               >
                 Featured <br /> <span className="text-gradient">Artifacts</span>.
               </motion.h1>

@@ -1,4 +1,10 @@
 import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+
+// Automatically load .env if MONGODB_URI is not present in process.env
+if (!process.env.MONGODB_URI) {
+  dotenv.config();
+}
 
 const MONGODB_URI = process.env.MONGODB_URI;
 

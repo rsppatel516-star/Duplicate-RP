@@ -14,7 +14,7 @@ export default function ProtectedRoute() {
         });
         const data = await res.json();
         setIsAuthenticated(data.success);
-      } catch (error) {
+      } catch {
         setIsAuthenticated(false);
       }
     };

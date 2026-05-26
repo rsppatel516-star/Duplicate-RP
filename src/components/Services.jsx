@@ -24,7 +24,7 @@ export default function Services() {
               <Zap size={18} />
               <span>Core Capabilities</span>
             </motion.div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tighter-tight animated-gradient-text">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
               Solving <span className="text-gradient">Complex</span> <br /> Problems with Code
             </h2>
           </div>

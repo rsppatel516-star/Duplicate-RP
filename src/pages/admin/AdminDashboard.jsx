@@ -30,7 +30,9 @@ export default function AdminDashboard() {
         body: JSON.stringify({ action: 'logout' }),
       });
       toast.success('Logged out');
-    } catch { }
+    } catch (err) {
+      // Ignore network errors on logout since we redirect anyway
+    }
     navigate('/admin/login');
   };
 
@@ -61,9 +63,11 @@ export default function AdminDashboard() {
         {/* Logo */}
         <div className="px-5 py-6 border-b border-dark-border flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-dark-primary to-dark-secondary flex items-center justify-center text-white font-black text-sm shadow-lg">
-              R
-            </div>
+            <img
+              src="/images/nav logo.png"
+              alt="Logo"
+              className="h-8 w-auto object-contain shrink-0"
+            />
             <div>
               <p className="font-display font-black text-white text-sm leading-none">Admin Panel</p>
               <p className="text-[10px] text-dark-textMuted font-code tracking-widest mt-0.5">CONTROL CENTER</p>

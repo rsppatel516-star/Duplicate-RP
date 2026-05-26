@@ -94,7 +94,7 @@ export default function OverviewTab() {
               </div>
             </div>
           </div>
- 
+
           {/* Quick Actions Panel */}
           <div className="flex items-center gap-2 bg-dark-bg/60 p-2 border border-dark-border rounded-xl flex-shrink-0 self-start md:self-auto">
             <button
@@ -230,6 +230,6 @@ export default function OverviewTab() {
         </div>
       </motion.div>
     </div>
-    
+
   );
 }

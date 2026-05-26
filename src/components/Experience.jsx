@@ -43,7 +43,7 @@ export default function Experience() {
               <Award size={18} />
               <span>Career & Growth</span>
             </motion.div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tighter-tight animated-gradient-text">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
               Architecting <span className="text-gradient">Success</span> One Milestone at a Time
             </h2>
           </div>

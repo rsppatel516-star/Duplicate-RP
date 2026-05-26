@@ -1,10 +1,6 @@
 import { useRef, useEffect, useCallback, useState } from 'react';
 import { gsap } from 'gsap';
-<<<<<<< HEAD
-
-=======
 import './MagicBento.css';
->>>>>>> 6871805347dd91a9c1a1974b7aaeb70be6b014c8
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
@@ -387,10 +383,7 @@ const GlobalSpotlight = ({
 const MagicBento = ({
   data = [],
   textAutoHide = true,
-<<<<<<< HEAD
-=======
   enableStars = true,
->>>>>>> 6871805347dd91a9c1a1974b7aaeb70be6b014c8
   enableSpotlight = true,
   enableBorderGlow = true,
   disableAnimations = false,

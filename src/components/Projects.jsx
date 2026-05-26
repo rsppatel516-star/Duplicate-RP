@@ -84,7 +84,7 @@ export default function Projects() {
           </motion.div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tighter-tight animated-gradient-text">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
               Featured <br /> <span className="text-gradient">Artifacts</span>
             </h2>
 
