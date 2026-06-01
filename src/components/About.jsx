@@ -119,9 +119,9 @@ export default function About() {
 
             {/* Decorative Background Logo */}
             <div className="absolute -bottom-16 -right-10 w-64 h-64 opacity-[0.04] pointer-events-none select-none group-hover/card:opacity-[0.08] group-hover/card:scale-110 group-hover/card:rotate-[3deg] transition-all duration-[1200ms]">
-              <img 
-                src="/images/RP%20-%20LOGO.png" 
-                alt="RP Logo" 
+              <img
+                src="/images/RP%20-%20LOGO.png"
+                alt="RP Logo"
                 className="w-full h-full object-contain"
               />
             </div>
@@ -201,8 +201,8 @@ export default function About() {
               <div className="flex flex-col gap-3 w-full sm:w-auto shrink-0">
                 <div className="flex flex-wrap gap-1.5 max-w-[320px]">
                   {['React', 'Node.js', 'Vite', 'GSAP', 'Framer Motion', 'Tailwind'].map(tech => (
-                    <span 
-                      key={tech} 
+                    <span
+                      key={tech}
                       className="px-2.5 py-1 text-[10px] font-code font-bold uppercase tracking-wider bg-white/5 border border-white/10 rounded-lg text-dark-textMuted hover:text-dark-primary hover:border-dark-primary/30 hover:bg-dark-primary/5 transition-all duration-300 cursor-default"
                     >
                       {tech}

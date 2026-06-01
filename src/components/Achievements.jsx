@@ -31,7 +31,7 @@ const OSIcon = () => (
   </svg>
 );
 
-const iOSIcon = () => (
+const IOSIcon = () => (
   <svg
     className="w-8 h-8 md:w-10 md:h-10"
     viewBox="-56.24 0 608.728 608.728"
@@ -48,7 +48,7 @@ const iconMap = {
   dsa: <DSAIcon />,
   fullstack: <FullStackIcon />,
   os: <OSIcon />,
-  ios: <iOSIcon />
+  ios: <IOSIcon />
 };
 
 const certifications = [
@@ -131,7 +131,7 @@ const certifications = [
     id: 'ios-development-workshop',
     title: 'iOS Development Workshop',
     issuer: 'Apple / WWDC',
-    date: 'May 2026',
+    date: 'July 2025',
     verificationId: 'iOS Dev Workshop',
     verificationHash: 'SwiftUI & UIKit Track',
     description: 'Hands-on workshop covering native iOS app development with Swift, SwiftUI layout system, UIKit fundamentals, Xcode toolchain, App Store publishing pipeline, and Apple Human Interface Guidelines.',
@@ -197,9 +197,10 @@ const CredentialCard = ({ cert, onOpen, cardVariants }) => {
       onMouseLeave={() => setIsHovered(false)}
       transition={{ type: "spring", stiffness: 200, damping: 15 }}
       style={{
-        borderColor: `${cert.brandColor}30`,
+        borderColor: isHovered ? `${cert.brandColor}80` : 'rgba(255,255,255,0.05)',
+        boxShadow: isHovered ? `0 0 35px ${cert.brandColor}15` : 'none'
       }}
-      className="group relative bg-dark-surface/20 backdrop-blur-xl border border-dark-border/40 rounded-3xl p-8 flex flex-col justify-between overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:bg-dark-surface/40 hover:border-opacity-100 transition-all duration-500 cursor-pointer"
+      className="group relative bg-dark-surface/20 backdrop-blur-xl border rounded-3xl p-8 flex flex-col justify-between overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:bg-dark-surface/30 transition-all duration-500 cursor-pointer"
       onClick={onOpen}
     >
       {/* Corner brackets */}
@@ -221,8 +222,8 @@ const CredentialCard = ({ cert, onOpen, cardVariants }) => {
         <div className="flex items-start justify-between gap-6 mb-6">
           <div className="flex items-center gap-5">
             <div
-              style={{ color: cert.brandColor }}
-              className="w-14 h-14 bg-dark-bg/50 border border-dark-border/50 rounded-2xl flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-500 shrink-0"
+              style={{ color: cert.brandColor, borderColor: isHovered ? `${cert.brandColor}50` : 'rgba(255,255,255,0.08)' }}
+              className="w-14 h-14 bg-dark-bg/50 border rounded-2xl flex items-center justify-center shadow-inner group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shrink-0"
             >
               {iconMap[cert.iconName]}
             </div>
@@ -251,10 +252,11 @@ const CredentialCard = ({ cert, onOpen, cardVariants }) => {
             <span
               key={index}
               style={{
-                borderColor: `${cert.brandColor}20`,
-                color: `${cert.brandColor}`
+                borderColor: `${cert.brandColor}25`,
+                color: `${cert.brandColor}`,
+                backgroundColor: isHovered ? `${cert.brandColor}10` : 'transparent'
               }}
-              className="text-[9px] font-code bg-white/[0.01] border px-2.5 py-1 rounded-lg select-none"
+              className="text-[9px] font-code border px-2.5 py-1 rounded-lg select-none transition-all duration-500"
             >
               {skill}
             </span>
@@ -276,6 +278,7 @@ const CredentialCard = ({ cert, onOpen, cardVariants }) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
+              style={{ borderColor: isHovered ? `${cert.brandColor}30` : '' }}
               className="p-3 bg-dark-bg/30 hover:bg-dark-bg/60 border border-dark-border/50 rounded-xl text-dark-textMuted hover:text-white transition-all duration-300"
               title="Verify Externally"
             >
@@ -303,7 +306,11 @@ const CredentialCard = ({ cert, onOpen, cardVariants }) => {
               e.stopPropagation();
               onOpen();
             }}
-            className="flex items-center gap-2.5 px-5 py-3 bg-dark-primary text-dark-bg text-[10px] font-black uppercase tracking-wider rounded-xl hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-500 group/btn cursor-pointer"
+            style={{
+              backgroundColor: cert.brandColor,
+              boxShadow: isHovered ? `0 0 20px ${cert.brandColor}40` : ''
+            }}
+            className="flex items-center gap-2.5 px-5 py-3 text-dark-bg text-[10px] font-black uppercase tracking-wider rounded-xl transition-all duration-500 hover:brightness-110 group/btn cursor-pointer"
           >
             View Credential
             <ArrowRight size={12} className="group-hover/btn:translate-x-1.5 transition-transform" />
@@ -431,7 +438,11 @@ export default function Achievements() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-              className="relative w-full max-w-6xl max-h-[92vh] overflow-y-auto bg-dark-bg border border-dark-border/60 rounded-3xl shadow-3xl pointer-events-auto flex flex-col justify-between"
+              style={{
+                borderColor: `${selectedCert.brandColor}40`,
+                boxShadow: `0 0 50px ${selectedCert.brandColor}15`
+              }}
+              className="relative w-full max-w-6xl max-h-[92vh] overflow-y-auto bg-dark-bg border rounded-3xl shadow-3xl pointer-events-auto flex flex-col justify-between"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Top Close Button */}
@@ -524,7 +535,8 @@ export default function Achievements() {
                       <span className="text-[9px] font-code text-dark-textMuted uppercase block mb-1">Cryptographic Checksum</span>
                       <button
                         onClick={() => handleCopyHash(selectedCert.verificationHash)}
-                        className="w-full text-[10px] font-mono text-left text-dark-primary hover:text-white bg-dark-bg/40 hover:bg-dark-bg/80 border border-dark-border/40 px-3.5 py-2.5 rounded-lg flex items-center justify-between group transition-all duration-300 cursor-pointer"
+                        style={{ color: selectedCert.brandColor, borderColor: `${selectedCert.brandColor}20` }}
+                        className="w-full text-[10px] font-mono text-left hover:text-white bg-dark-bg/40 hover:bg-dark-bg/80 border px-3.5 py-2.5 rounded-lg flex items-center justify-between group transition-all duration-300 cursor-pointer"
                         title="Click to copy hash"
                       >
                         <span className="truncate mr-4">{selectedCert.verificationHash}</span>
@@ -701,7 +713,11 @@ export default function Achievements() {
                       toast.success(`Credential link verified: ${selectedCert.verificationId}`);
                       window.open(selectedCert.externalUrl, '_blank');
                     }}
-                    className="flex items-center gap-2.5 px-6 py-3.5 bg-dark-primary text-dark-bg text-xs font-black uppercase tracking-wider rounded-xl hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all duration-500 cursor-pointer"
+                    style={{
+                      backgroundColor: selectedCert.brandColor,
+                      boxShadow: `0 0 25px ${selectedCert.brandColor}30`
+                    }}
+                    className="flex items-center gap-2.5 px-6 py-3.5 text-dark-bg text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-500 hover:brightness-110 cursor-pointer"
                   >
                     Verify Issuer
                     <ExternalLink size={14} />

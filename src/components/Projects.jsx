@@ -16,32 +16,41 @@ const ProjectFilterButton = ({ filter, activeFilter, setActiveFilter, setVisible
     setMousePos({ x: e.clientX - left, y: e.clientY - top });
   };
 
+  const isActive = activeFilter === filter;
+
   return (
     <MagneticButton onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}>
       <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
-        className={`relative px-8 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 focus:outline-none overflow-hidden group/btn border ${activeFilter === filter
-          ? 'text-white border-transparent'
-          : 'text-dark-textMuted bg-white/5 border-white/10 hover:border-dark-primary/50'
+        className={`relative px-7 py-3.5 rounded-xl text-base md:text-lg font-bold transition-all duration-300 focus:outline-none overflow-hidden group/btn border tracking-wide cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${isActive
+          ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
+          : 'text-dark-textMuted bg-white/[0.01] border-white/5 hover:border-violet-500/30 hover:text-white hover:bg-white/[0.03]'
           }`}
       >
-        {activeFilter === filter && (
+        {isActive && (
           <motion.div
             layoutId="activeProjectTab"
-            className="absolute inset-0 bg-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]"
-            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+            className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 backdrop-blur-md"
+            transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
           />
         )}
 
         <div
           className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
-            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.25), transparent)`,
+            background: `radial-gradient(circle 80px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.18), transparent)`,
           }}
         />
 
-        <span className="relative z-10">
+        <span className="relative z-10 flex items-center gap-2 justify-center">
+          {isActive && (
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 shadow-[0_0_8px_#a78bfa]"
+            />
+          )}
           {filter}
         </span>
       </button>
@@ -61,6 +70,14 @@ export default function Projects() {
     : projects.filter(p => p.category === activeFilter);
 
   const visibleProjects = filteredProjects.slice(0, visibleCount);
+
+  // Math calculation for circular progress ring
+  const totalCount = projects.length;
+  const filteredCount = filteredProjects.length;
+  const percentage = totalCount > 0 ? (filteredCount / totalCount) * 100 : 0;
+  const radius = 8;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
     <section id="projects" className="py-32  relative overflow-hidden">
@@ -110,12 +127,37 @@ export default function Projects() {
             ))}
           </div>
 
-          {/* Project Count — right side */}
-          <div className="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] text-lg font-medium text-dark-textMuted whitespace-nowrap font-syne hover:bg-dark-primary/10 hover:text-white transition-colors duration-300">
-            <span className="text-dark-secondary font-extrabold text-xl leading-none">
-              {filteredProjects.length}
+          {/* Project Count — right side with animated circular progress indicator */}
+          <div className="flex items-center gap-3 px-5 py-3.5 rounded-xl border border-white/5 bg-white/[0.01] backdrop-blur-md text-base md:text-lg font-medium text-dark-textMuted whitespace-nowrap font-syne hover:border-violet-500/30 hover:shadow-[0_0_25px_rgba(124,58,237,0.15)] transition-all duration-500">
+            <svg className="w-5 h-5 -rotate-90 shrink-0" viewBox="0 0 20 20">
+              {/* Track */}
+              <circle
+                cx="10"
+                cy="10"
+                r={radius}
+                className="stroke-dark-border/30 fill-none"
+                strokeWidth="2.5"
+              />
+              {/* Progress */}
+              <motion.circle
+                cx="10"
+                cy="10"
+                r={radius}
+                className="stroke-violet-400 fill-none [filter:drop-shadow(0_0_3px_rgba(167,139,250,0.6))]"
+                strokeWidth="2.5"
+                strokeDasharray={circumference}
+                initial={{ strokeDashoffset: circumference }}
+                animate={{ strokeDashoffset }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="text-white font-black text-lg md:text-xl leading-none">
+              {filteredCount}
             </span>
-            <span>of {projects.length} projects</span>
+            <span className="text-sm">
+              of <span className="font-semibold text-white">{totalCount}</span> projects
+            </span>
           </div>
         </div>
 
@@ -173,9 +215,9 @@ export default function Projects() {
           {visibleCount < filteredProjects.length && (
             <MagneticButton
               onClick={() => setVisibleCount(filteredProjects.length)}
-              className="px-12 py-5 bg-dark-surface border border-dark-border rounded-full font-bold hover:border-dark-primary transition-all group overflow-hidden relative font-syne tracking-tighter-tight"
+              className="px-6 py-3.5 sm:px-10 sm:py-4.5 bg-dark-surface border border-dark-border rounded-full font-bold hover:border-dark-primary transition-all group overflow-hidden relative font-syne tracking-tighter-tight"
             >
-              <span className="relative z-10 flex items-center gap-3 uppercase tracking-widest">
+              <span className="relative z-10 flex items-center gap-2 sm:gap-3 uppercase tracking-wider sm:tracking-widest whitespace-nowrap text-xs sm:text-sm">
                 More Artifacts
                 <motion.span animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
                   ↓
@@ -186,11 +228,11 @@ export default function Projects() {
           )}
 
           {/* Explore Case Studies → /artifacts page */}
-          <Link to="/artifacts">
-            <MagneticButton className="px-12 py-5 bg-dark-primary text-dark-bg rounded-full font-bold hover:scale-105 transition-all group overflow-hidden relative">
-              <span className="font-display relative z-10 flex items-center gap-3 uppercase tracking-widest">
+          <Link to="/artifacts" className="inline-block">
+            <MagneticButton className="px-6 py-3.5 sm:px-10 sm:py-4.5 bg-dark-primary text-dark-bg rounded-full font-bold hover:scale-105 transition-all group overflow-hidden relative">
+              <span className="font-display relative z-10 flex items-center gap-2 sm:gap-3 uppercase tracking-wider sm:tracking-widest whitespace-nowrap text-xs sm:text-sm">
                 Explore Case Studies
-                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 group-hover:translate-x-2 transition-transform" />
               </span>
             </MagneticButton>
           </Link>
@@ -291,7 +333,7 @@ export default function Projects() {
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {selectedProject.keyFeatures.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-3 bg-dark-surface/50 p-4 rounded-xl border border-dark-border/50 shadow-sm group transition-colors">
+                            <li key={idx} className="flex items-start gap-3 bg-dark-surface/20 p-4 rounded-xl border border-dark-border/50 shadow-sm group transition-colors">
                               <span className="mt-[4px] w-2 h-2 rounded-xl bg-dark-secondary shrink-0 transition-all duration-300" />
                               <span className="text-white text-sm group-hover:translate-x-2 transition-transform duration-300">{feature}</span>
                             </li>

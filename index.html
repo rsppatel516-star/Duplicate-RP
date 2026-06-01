@@ -10,9 +10,23 @@
     <meta name="description" content="Portfolio of Rudra Patel, a Digital Architect specializing in premium web experiences, high-performance mobile apps, and robust full-stack engineering.">
     <meta name="keywords" content="Rudra Patel, Digital Architect, Full Stack Developer, iOS Developer, React Developer, JavaScript, Swift, Portfolio, Web Design, UI/UX, Vadodara, India">
     <meta name="author" content="Rudra Patel">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="google-site-verification" content="googlea26604ba2a5e8866">
     <meta name="language" content="English">
     <meta name="revisit-after" content="7 days">
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RUDRA_GA"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // Initialize with send_page_view: false since we'll track custom router events in React
+      gtag('config', 'G-RUDRA_GA', { send_page_view: false });
+    </script>
     
     <!-- High-Speed CDN DNS Prefetching and Preconnections -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,42 +68,65 @@
 
     <!-- Structured Data (JSON-LD Schema for Google Rich Snippets) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Rudra Patel",
-      "jobTitle": "Full Stack & iOS Developer",
-      "url": "https://patelrudra.in",
-      "sameAs": [
-        "https://www.linkedin.com/in/rudra-patel-265258313/",
-        "https://github.com/Rudraptl16",
-        "https://www.instagram.com/rudraa_ptll/",
-        "https://www.facebook.com/profile.php?id=100082469136911",
-        "https://www.youtube.com/@rudrapatel4172"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Vadodara",
-        "addressRegion": "Gujarat",
-        "addressCountry": "India"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://patelrudra.in/#person",
+        "name": "Rudra Patel",
+        "jobTitle": "Full Stack & iOS Developer",
+        "url": "https://patelrudra.in",
+        "image": "https://patelrudra.in/images/about.png",
+        "sameAs": [
+          "https://www.linkedin.com/in/rudra-patel-265258313/",
+          "https://github.com/Rudraptl16",
+          "https://www.instagram.com/rudraa_ptll/",
+          "https://www.facebook.com/profile.php?id=100082469136911",
+          "https://www.youtube.com/@rudrapatel4172"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Vadodara",
+          "addressRegion": "Gujarat",
+          "addressCountry": "India"
+        },
+        "email": "patelrudra99098@gmail.com",
+        "telephone": "+91-6354-825-621",
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Parul University"
+        },
+        "knowsAbout": [
+          "Web Development",
+          "iOS Development",
+          "React",
+          "JavaScript",
+          "Swift",
+          "SwiftUI",
+          "Full Stack Development",
+          "UI/UX Design",
+          "Node.js",
+          "Tailwind CSS",
+          "Three.js",
+          "Framer Motion"
+        ]
       },
-      "email": "patelrudra99098@gmail.com",
-      "telephone": "+91-6354-825-621",
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Parul University"
-      },
-      "knowsAbout": [
-        "Web Development",
-        "iOS Development",
-        "React",
-        "JavaScript",
-        "Swift",
-        "SwiftUI",
-        "Full Stack Development",
-        "UI/UX Design"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "@id": "https://patelrudra.in/#profile",
+        "url": "https://patelrudra.in",
+        "name": "Rudra Patel's Professional Profile",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Rudra Patel",
+          "sameAs": [
+            "https://www.linkedin.com/in/rudra-patel-265258313/",
+            "https://github.com/Rudraptl16"
+          ]
+        }
+      }
+    ]
     </script>
   </head>
   <body>

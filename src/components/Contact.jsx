@@ -215,8 +215,16 @@ export default function Contact() {
                 <span className="animate-pulse text-emerald-500/50">STATUS: ONLINE</span>
               </div>
               
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-dark-primary/20 rounded-tl-[32px] pointer-events-none" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-dark-secondary/20 rounded-br-[32px] pointer-events-none" />
+              <motion.div
+                animate={{ opacity: [0.25, 0.6, 0.25] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-dark-primary/30 rounded-tl-[32px] pointer-events-none"
+              />
+              <motion.div
+                animate={{ opacity: [0.25, 0.6, 0.25] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 2 }}
+                className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-dark-secondary/30 rounded-br-[32px] pointer-events-none"
+              />
 
               <motion.form
                 ref={formRef}
@@ -231,7 +239,7 @@ export default function Contact() {
                   
                   {/* Name Input */}
                   <motion.div variants={itemVariants} className="space-y-3 relative group/input">
-                    <label htmlFor="user_name" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-secondary transition-colors duration-500 flex items-center gap-2">
+                    <label htmlFor="user_name" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-secondary group-focus-within/input:translate-x-1 transition-all duration-300 flex items-center gap-2">
                       <User size={12} className="group-focus-within/input:animate-pulse" />
                       Mission Identity
                     </label>
@@ -241,16 +249,16 @@ export default function Contact() {
                         name="user_name"
                         id="user_name"
                         required
-                        className="w-full bg-dark-bg/20 border border-dark-border/40 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/25 focus:outline-none focus:border-dark-secondary/50 focus:bg-dark-bg/40 focus:shadow-[0_0_25px_rgba(124,58,237,0.06)] transition-all duration-500"
+                        className="w-full bg-white/[0.01] border border-white/5 focus:border-violet-500/35 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/30 focus:outline-none focus:bg-white/[0.02] focus:shadow-[0_0_20px_rgba(124,58,237,0.04)] transition-all duration-500"
                         placeholder="Your Full Name"
                       />
-                      <div className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gradient-to-r from-dark-primary to-dark-secondary group-focus-within/input:w-full transition-all duration-500" />
+                      <div className="absolute bottom-[1px] left-[5%] right-[5%] h-[1.5px] bg-gradient-to-r from-transparent via-violet-500/80 to-transparent w-0 group-focus-within/input:w-[90%] transition-all duration-500 pointer-events-none" />
                     </div>
                   </motion.div>
 
                   {/* Email Input */}
                   <motion.div variants={itemVariants} className="space-y-3 relative group/input">
-                    <label htmlFor="user_email" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-primary transition-colors duration-500 flex items-center gap-2">
+                    <label htmlFor="user_email" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-primary group-focus-within/input:translate-x-1 transition-all duration-300 flex items-center gap-2">
                       <Mail size={12} className="group-focus-within/input:animate-pulse" />
                       Comms Frequency
                     </label>
@@ -260,10 +268,10 @@ export default function Contact() {
                         name="user_email"
                         id="user_email"
                         required
-                        className="w-full bg-dark-bg/20 border border-dark-border/40 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/25 focus:outline-none focus:border-dark-primary/50 focus:bg-dark-bg/40 focus:shadow-[0_0_25px_rgba(0,212,255,0.06)] transition-all duration-500"
+                        className="w-full bg-white/[0.01] border border-white/5 focus:border-violet-500/35 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/30 focus:outline-none focus:bg-white/[0.02] focus:shadow-[0_0_20px_rgba(124,58,237,0.04)] transition-all duration-500"
                         placeholder="email@example.com"
                       />
-                      <div className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gradient-to-r from-dark-primary to-dark-secondary group-focus-within/input:w-full transition-all duration-500" />
+                      <div className="absolute bottom-[1px] left-[5%] right-[5%] h-[1.5px] bg-gradient-to-r from-transparent via-violet-500/80 to-transparent w-0 group-focus-within/input:w-[90%] transition-all duration-500 pointer-events-none" />
                     </div>
                   </motion.div>
                 </div>
@@ -274,27 +282,47 @@ export default function Contact() {
                     <DollarSign size={12} className="text-dark-secondary" />
                     Project Scope / Category
                   </label>
-                  <div className="flex flex-wrap gap-3">
-                    {projectTypes.map((type) => (
-                      <button
-                        key={type.id}
-                        type="button"
-                        onClick={() => setSelectedProjectType(type.label)}
-                        className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative ${selectedProjectType === type.label
-                          ? 'text-dark-primary border border-dark-primary bg-dark-primary/5 font-extrabold'
-                          : 'text-dark-textMuted border border-dark-border/40 bg-dark-bg/10 hover:border-dark-primary/30 hover:text-dark-textMain'
+                  <div className="flex flex-wrap gap-3 relative">
+                    {projectTypes.map((type) => {
+                      const isActive = selectedProjectType === type.label;
+                      return (
+                        <button
+                          key={type.id}
+                          type="button"
+                          onClick={() => setSelectedProjectType(type.label)}
+                          className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative flex items-center gap-2 overflow-hidden border ${
+                            isActive
+                              ? 'text-white border-transparent'
+                              : 'text-dark-textMuted border-white/5 bg-white/[0.01] hover:border-violet-500/30 hover:text-white hover:bg-white/[0.03]'
                           }`}
-                      >
-                        {type.label}
-                      </button>
-                    ))}
+                        >
+                          {isActive && (
+                            <motion.div
+                              layoutId="activeProjectType"
+                              className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 backdrop-blur-md border border-violet-500/40 shadow-[0_0_25px_rgba(124,58,237,0.25)]"
+                              transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
+                            />
+                          )}
+                          <span className="relative z-10 flex items-center gap-2">
+                            {isActive && (
+                              <motion.span
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                className="w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_6px_#a78bfa]"
+                              />
+                            )}
+                            {type.label}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                   <input type="hidden" name="project_type" value={selectedProjectType} />
                 </div>
 
                 {/* Subject Input */}
                 <motion.div variants={itemVariants} className="space-y-3 relative group/input">
-                  <label htmlFor="subject" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-secondary transition-colors duration-500 flex items-center gap-2">
+                  <label htmlFor="subject" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-secondary group-focus-within/input:translate-x-1 transition-all duration-300 flex items-center gap-2">
                     <Globe size={12} className="group-focus-within/input:animate-pulse" />
                     Mission Objective
                   </label>
@@ -304,16 +332,16 @@ export default function Contact() {
                       name="subject"
                       id="subject"
                       required
-                      className="w-full bg-dark-bg/20 border border-dark-border/40 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/25 focus:outline-none focus:border-dark-secondary/50 focus:bg-dark-bg/40 focus:shadow-[0_0_25px_rgba(124,58,237,0.06)] transition-all duration-500"
+                      className="w-full bg-white/[0.01] border border-white/5 focus:border-violet-500/35 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/30 focus:outline-none focus:bg-white/[0.02] focus:shadow-[0_0_20px_rgba(124,58,237,0.04)] transition-all duration-500"
                       placeholder="Project Inquiry / Job Opportunity / Hello"
                     />
-                    <div className="absolute -bottom-2 left-0 w-0 h-[2px] bg-gradient-to-r from-dark-primary to-dark-secondary group-focus-within/input:w-full transition-all duration-500" />
+                    <div className="absolute bottom-[1px] left-[5%] right-[5%] h-[1.5px] bg-gradient-to-r from-transparent via-violet-500/80 to-transparent w-0 group-focus-within/input:w-[90%] transition-all duration-500 pointer-events-none" />
                   </div>
                 </motion.div>
 
                 {/* Message Textarea */}
                 <motion.div variants={itemVariants} className="space-y-3 relative group/input">
-                  <label htmlFor="message" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-primary transition-colors duration-500 flex items-center gap-2">
+                  <label htmlFor="message" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-primary group-focus-within/input:translate-x-1 transition-all duration-300 flex items-center gap-2">
                     <MessageSquare size={12} className="group-focus-within/input:animate-pulse" />
                     Mission Brief
                   </label>
@@ -323,10 +351,10 @@ export default function Contact() {
                       id="message"
                       rows="5"
                       required
-                      className="w-full bg-dark-bg/20 border border-dark-border/40 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/25 focus:outline-none focus:border-dark-primary/50 focus:bg-dark-bg/40 focus:shadow-[0_0_25px_rgba(0,212,255,0.06)] transition-all duration-500 resize-none"
+                      className="w-full bg-white/[0.01] border border-white/5 focus:border-violet-500/35 rounded-xl px-5 py-4 text-dark-textMain placeholder:text-dark-textMuted/30 focus:outline-none focus:bg-white/[0.02] focus:shadow-[0_0_20px_rgba(124,58,237,0.04)] transition-all duration-500 resize-none"
                       placeholder="Describe your vision or inquiry in detail..."
                     ></textarea>
-                    <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-dark-primary to-dark-secondary group-focus-within/input:w-full transition-all duration-500" />
+                    <div className="absolute bottom-[1px] left-[5%] right-[5%] h-[1.5px] bg-gradient-to-r from-transparent via-violet-500/80 to-transparent w-0 group-focus-within/input:w-[90%] transition-all duration-500 pointer-events-none" />
                   </div>
                 </motion.div>
 
@@ -335,7 +363,7 @@ export default function Contact() {
                   <MagneticButton disabled={isSubmitting} className="w-full cursor-pointer">
                     <button
                       type="submit"
-                      className={`w-full py-6 rounded-2xl font-display font-black text-[15px] leading-[0.85] tracking-tighter transition-all duration-500 relative overflow-hidden group cursor-pointer ${
+                      className={`w-full py-4 sm:py-5.5 rounded-2xl font-display font-black text-[11px] sm:text-xs md:text-sm lg:text-[15px] leading-none tracking-wide sm:tracking-wider transition-all duration-500 relative overflow-hidden group cursor-pointer ${
                         isSubmitting
                           ? 'bg-dark-surface text-dark-textMuted cursor-not-allowed border border-dark-border'
                           : 'bg-dark-primary text-dark-bg hover:shadow-[0_0_40px_rgba(0,212,255,0.25)]'
@@ -344,9 +372,9 @@ export default function Contact() {
                       {/* Sliding Shimmer Highlight */}
                       <div className="absolute inset-0 w-1/2 h-full z-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000 ease-out pointer-events-none" />
 
-                      <div className="relative z-10 flex items-center justify-center gap-4">
+                      <div className="relative z-10 flex items-center justify-center gap-2 sm:gap-4 whitespace-nowrap">
                         {isSubmitting ? (
-                          <span className="flex items-center gap-3">
+                          <span className="flex items-center gap-2 md:gap-3">
                             <div className="w-1.5 h-1.5 bg-dark-textMuted rounded-full animate-bounce [animation-delay:-0.3s]" />
                             <div className="w-1.5 h-1.5 bg-dark-textMuted rounded-full animate-bounce [animation-delay:-0.15s]" />
                             <div className="w-1.5 h-1.5 bg-dark-textMuted rounded-full animate-bounce" />
@@ -355,7 +383,7 @@ export default function Contact() {
                         ) : (
                           <>
                             INITIALIZE CONNECTION
-                            <Send size={18} className="group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform duration-300" />
+                            <Send className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform duration-300" />
                           </>
                         )}
                       </div>

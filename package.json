@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "start node --env-file=.env devserver.js && vite",
     "dev:api": "node --env-file=.env devserver.js",
     "dev:all": "start node --env-file=.env devserver.js && vite",
     "build": "vite build",

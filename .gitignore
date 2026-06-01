@@ -25,3 +25,8 @@ dist-ssr
 
 # Environment
 .env
+
+# Temporary Agent Files
+scratch/
+.gemini/
+

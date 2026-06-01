@@ -34,38 +34,6 @@ export const featuredArtifacts = [
     liveUrl: '#',
     githubUrl: 'https://github.com/Rudraptl16/Rudraptl16',
     featured: true,
-  },
-
-  {
-    id: 2,
-    title: 'Hilink Landing Page',
-    subtitle: 'Hilink - Modern Adventure Travel UI',
-    description:
-      'A premium, high-fidelity travel landing page and utility platform designed to empower adventurers with offline maps, trip planning tools, and immersive camping guides for seamless outdoor exploration',
-    image: '/case img/Hilink.png',
-    tags: ['React 19', 'Framer Motion', 'Tailwind v4', 'Vite', 'Three.js'],
-    skillsUsed: [
-      'Component Architecture',
-      'Animation Orchestration',
-      'Responsive Design',
-      'Theme System Design',
-    ],
-    keyFeatures: [
-      'Vite-based ultra-fast HMR architecture',
-      'Custom CSS variable integration with Tailwind v4',
-      'Global 3D particle background system',
-      'Context-based adaptive dark/light theme engine',
-      'Framer Motion stagger & layout animations',
-      'Magnetic button micro-interactions',
-    ],
-    problem: 'Traditional portfolios often feel static and generic. I wanted to create a high-frequency interaction model that feels like a premium digital magazine.',
-    solution: 'Implemented a motion-first architecture using Framer Motion and a global particle system to create an immersive "Midnight Glass" aesthetic.',
-    results: 'Achieved ultra-fast load times and a unique brand identity that stands out in the developer ecosystem.',
-    status: 'Active Maintenance',
-    category: 'Frontend',
-    liveUrl: '#',
-    githubUrl: 'https://github.com/Rudraptl16/Rudraptl16',
-    featured: true,
   }
 ];
 

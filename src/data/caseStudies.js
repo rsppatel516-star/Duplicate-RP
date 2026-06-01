@@ -24,21 +24,5 @@ export const caseStudies = [
       "Three.js / React Three Fiber for the immersive global particles background."
     ],
     featured: true
-  },
-  {
-    id: 2,
-    title: "Hilink - Modern Adventure Travel UI",
-    subtitle: "A premium, high-fidelity travel landing page and utility platform designed to empower adventurers with offline maps, trip planning tools, and immersive camping guides for seamless outdoor exploration.",
-    role: "Frontend Developer",
-    liveUrl: "https://hilink-psi.vercel.app/",
-    description: "The Hilink project was born from the need for a comprehensive digital companion for modern travelers venturing into remote areas. It bridges the gap between aesthetic inspiration and practical utility, providing a 'one-stop shop' for adventure planning and execution.",
-    image: '/project img/Hilink.png',
-    category: "Frontend",
-    tags: ["Next.js 13.5", "React18", "TypeScript","Tailwind CSS","Google Fonts"],
-    keyFeatures: ["Modern and Responsive travel UI", "Destination discovery and travel guides", "Smooth navigation with clean animations", "Built with scalable Next.js component architecture."],
-    problem: "Building a high-performance, responsive UI that maintains a premium 'Midnight Glass' aesthetic while managing complex state for multiple utilities like offline maps, budget tracking, and real-time widgets without compromising on load speeds.",
-    solution: "Leveraged Next.js 13+ App Router for optimized routing and Tailwind CSS for a scalable, high-fidelity design system. Implemented a modular component architecture that allows for independent state management of utilities, ensuring a seamless and fluid user experience.",
-    results: "A production-ready, visually stunning travel platform that delivers a premium digital experience. It successfully combines high-end design with functional travel tools, resulting in an interface that is as practical as it is beautiful.",
-    featured: true
   }
 ];

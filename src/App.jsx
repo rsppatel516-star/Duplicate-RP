@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import FeatureNavbar from './components/FeatureNavbar';
@@ -17,6 +18,18 @@ import ProtectedRoute from './components/admin/ProtectedRoute';
 
 function App() {
   const location = useLocation();
+  
+  // Track pageviews on client-side route changes
+  useEffect(() => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_path: location.pathname + location.search,
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    }
+  }, [location]);
+
   const isAdminPage = location.pathname.startsWith('/admin');
   const isFeaturePage = location.pathname.startsWith('/artifacts') ||
     location.pathname.startsWith('/blog') ||

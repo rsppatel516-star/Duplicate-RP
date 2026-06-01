@@ -163,16 +163,36 @@ export default function Experience() {
             </div>
 
             {/* Extra context tile */}
-            <div className="p-8 bg-dark-surface border border-dark-border rounded-3xl relative overflow-hidden">
-              <div className="relative z-10 flex flex-col gap-4">
-                <GraduationCap size={40} className="text-dark-primary/20" />
-                <h4 className="text-xl font-bold italic">Continual Learning Protocol</h4>
-                <p className="text-sm text-dark-textMuted italic">
+            <motion.div
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="group/protocol p-8 bg-white/[0.01] backdrop-blur-xl border border-white/5 hover:border-violet-500/30 rounded-3xl relative overflow-hidden transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(124,58,237,0.15)]"
+            >
+              {/* High-Tech Grid background */}
+              <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02] group-hover/protocol:opacity-[0.05] transition-opacity duration-700 pointer-events-none" />
+              
+              <div className="relative z-10 flex flex-col gap-6">
+                <motion.div 
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-600/10 to-indigo-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400 shadow-[0_0_15px_rgba(124,58,237,0.1)] group-hover/protocol:border-violet-500/40 group-hover/protocol:text-violet-300 transition-colors duration-500"
+                >
+                  <GraduationCap size={28} className="group-hover/protocol:rotate-6 transition-transform duration-500" />
+                </motion.div>
+                
+                <h4 className="text-xl font-display font-black tracking-tight text-white group-hover/protocol:text-violet-400 transition-colors duration-500">
+                  Continual Learning Protocol
+                </h4>
+                
+                <p className="text-[23px] text-dark-textMuted font-syne italic leading-relaxed group-hover/protocol:text-white/80 transition-colors duration-500 pl-4 border-l border-violet-500/30">
                   "Actively pursuing new industry standards and advanced architectural patterns. The learning never stops in the dev lab."
                 </p>
               </div>
-              <div className="absolute bottom-[-20px] right-[-20px] w-40 h-40 bg-dark-primary/5 rounded-full blur-[40px]" />
-            </div>
+
+              {/* Glowing Ambient Blobs */}
+              <div className="absolute -bottom-20 -right-20 w-44 h-44 bg-violet-600/10 rounded-full blur-[50px] group-hover/protocol:bg-violet-600/25 transition-all duration-700 pointer-events-none" />
+              <div className="absolute -top-20 -left-20 w-44 h-44 bg-indigo-600/5 rounded-full blur-[50px] group-hover/protocol:bg-indigo-600/15 transition-all duration-700 pointer-events-none" />
+            </motion.div>
           </div>
 
         </div>

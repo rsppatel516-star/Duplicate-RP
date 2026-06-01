@@ -11,6 +11,9 @@ async function seed() {
     await dbConnect();
     console.log('Connected.');
 
+    console.log('Clearing existing blogs from database...');
+    await Blog.deleteMany({});
+
     console.log('Seeding blogs...');
     for (const blog of blogposts) {
       const exists = await Blog.findOne({ title: blog.title });

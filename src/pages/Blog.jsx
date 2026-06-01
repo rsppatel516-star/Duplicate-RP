@@ -78,7 +78,7 @@ export default function Blog() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tight sm:tracking-tighter animated-gradient-text leading-none"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl font-display font-black tracking-tight sm:tracking-tighter animated-gradient-text leading-none"
             >
               Curated <br /> <span className="text-gradient">Knowledge</span>
             </motion.h1>
@@ -116,15 +116,22 @@ export default function Blog() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 relative group ${activeCategory === cat
-                    ? 'text-dark-bg'
-                    : 'text-white/50 hover:text-white bg-white/[0.02] border border-white/5 hover:border-white/10'
+                className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 relative group flex items-center gap-2 border ${activeCategory === cat
+                    ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
+                    : 'text-white/50 hover:text-white bg-white/[0.01] border-white/5 hover:border-violet-500/30'
                   }`}
               >
                 {activeCategory === cat && (
                   <motion.div
                     layoutId="activeCat"
-                    className="absolute inset-0 bg-dark-primary rounded-xl -z-10 "
+                    className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 rounded-xl backdrop-blur-md -z-10"
+                  />
+                )}
+                {activeCategory === cat && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 shadow-[0_0_6px_#a78bfa]"
                   />
                 )}
                 {cat}
@@ -158,7 +165,7 @@ export default function Blog() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7 }}
                 >
-                  <Link to={`/blog/${featuredBlog.id}`} className="group block">
+                  <Link to={`/blog/${featuredBlog.id || featuredBlog._id}`} className="group block">
                     <div className="relative overflow-hidden rounded-[3rem] bg-white/[0.02] border border-white/10 hover:border-dark-primary/30 transition-all duration-700 p-4 lg:p-8">
                       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
                         {/* Image Container */}
@@ -194,7 +201,7 @@ export default function Blog() {
                             </span>
                           </div>
 
-                          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-black text-white mb-6 group-hover:text-dark-primary transition-colors duration-500 leading-tight break-words">
+                          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-black text-white py-2 mb-6 group-hover:text-dark-primary transition-colors duration-500 leading-[1.15] break-words">
                             {featuredBlog.title}
                           </h2>
 
@@ -234,13 +241,13 @@ export default function Blog() {
                 {standardBlogs.map((blog, idx) => (
                   <motion.article
                     layout
-                    key={blog.id}
+                    key={blog.id || blog._id}
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
                     className="group"
                   >
-                    <Link to={`/blog/${blog.id}`} className="flex flex-col h-full rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-dark-primary/30 transition-all duration-500 hover:bg-white/[0.04] overflow-hidden">
+                    <Link to={`/blog/${blog.id || blog._id}`} className="flex flex-col h-full rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-dark-primary/30 transition-all duration-500 hover:bg-white/[0.04] overflow-hidden">
                       <div className="relative h-64 overflow-hidden shrink-0">
                         <motion.img
                           whileHover={{ scale: 1.1 }}

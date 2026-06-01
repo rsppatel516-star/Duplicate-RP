@@ -31,38 +31,6 @@ export const projects = [
     caseStudyId: 1,
     featured: false
   },
-  {
-    id: 2,
-    title: "Watch Showroom Website",
-    subtitle: "An online showcase for luxury and modern watches",
-    description: "A stylish e-commerce-like website for displaying watches with product details, categories, and modern UI design.",
-    image: '/project img/Watch Showroom.png',
-    tags: [
-      "E-commerce", 
-      "UI Design", 
-      "Frontend",
-    ],
-    skillsUsed: [
-      "HTML", 
-      "CSS", 
-      "JavaScript",
-      "Animation",
-      "Responsive Design",
-      "Firebase Hosting",
-    ],
-    keyFeatures: [
-    "Product showcase",
-    "Category filtering",
-    "Modern UI design",
-    "Interactive elements",
-  ],
-    status: 'Completed',
-    category: 'Javascript',
-    liveUrl: 'https://watch-showroom-16pr.web.app/',
-    githubUrl: '#',
-    caseStudyId: 2,
-    featured: true
-},
 {
     id: 3 ,
     title: 'Panto - Furniture Landing Page',
@@ -150,7 +118,7 @@ export const projects = [
     status: 'Completed',
     category: 'Javascript',
     liveUrl: 'https://travel-94546.web.app/',
-    githubUrl: 'https://github.com/Rudraptl16/Travel-123',
+    githubUrl: '#',
     caseStudyId: 4,
     featured: true
 },

@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     await dbConnect();
     console.log('Successfully connected to MongoDB');
 
-    const { user_name, user_email, subject, message } = req.body;
+    const { user_name, user_email, subject, message, project_type } = req.body;
 
     // Basic validation
     if (!user_name || !user_email || !message) {
@@ -37,7 +37,8 @@ export default async function handler(req, res) {
       name: user_name,
       email: user_email,
       subject: subject || 'No Subject',
-      message
+      message,
+      project_type: project_type || 'General Inquiry'
     });
 
     await newContact.save();

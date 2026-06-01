@@ -104,14 +104,14 @@ const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
         ref={buttonRef}
         onMouseMove={handleMouseMove}
         className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${activeTab === cat
-          ? 'text-dark-bg border-dark-primary'
-          : 'bg-dark-surface border-dark-border hover:border-dark-primary/50 text-dark-textMuted'
+          ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
+          : 'bg-white/[0.01] border-white/5 hover:border-violet-500/30 text-dark-textMuted hover:text-white'
           }`}
       >
         {activeTab === cat && (
           <motion.div
             layoutId="activeSkillTab"
-            className="absolute inset-0 bg-dark-primary shadow-[0_0_30px_rgba(99,102,241,0.3)]"
+            className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 backdrop-blur-md"
             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
           />
         )}
