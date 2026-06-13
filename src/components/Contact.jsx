@@ -214,7 +214,7 @@ export default function Contact() {
                 <span>//</span>
                 <span className="animate-pulse text-emerald-500/50">STATUS: ONLINE</span>
               </div>
-              
+
               <motion.div
                 animate={{ opacity: [0.25, 0.6, 0.25] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -236,7 +236,7 @@ export default function Contact() {
                 className="space-y-10 relative z-10 pt-4"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  
+
                   {/* Name Input */}
                   <motion.div variants={itemVariants} className="space-y-3 relative group/input">
                     <label htmlFor="user_name" className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted group-focus-within/input:text-dark-secondary group-focus-within/input:translate-x-1 transition-all duration-300 flex items-center gap-2">
@@ -290,11 +290,10 @@ export default function Contact() {
                           key={type.id}
                           type="button"
                           onClick={() => setSelectedProjectType(type.label)}
-                          className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative flex items-center gap-2 overflow-hidden border ${
-                            isActive
-                              ? 'text-white border-transparent'
-                              : 'text-dark-textMuted border-white/5 bg-white/[0.01] hover:border-violet-500/30 hover:text-white hover:bg-white/[0.03]'
-                          }`}
+                          className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative flex items-center gap-2 overflow-hidden border ${isActive
+                            ? 'text-white border-transparent'
+                            : 'text-dark-textMuted border-white/5 bg-white/[0.01] hover:border-violet-500/30 hover:text-white hover:bg-white/[0.03]'
+                            }`}
                         >
                           {isActive && (
                             <motion.div
@@ -363,11 +362,10 @@ export default function Contact() {
                   <MagneticButton disabled={isSubmitting} className="w-full cursor-pointer">
                     <button
                       type="submit"
-                      className={`w-full py-4 sm:py-5.5 rounded-2xl font-display font-black text-[11px] sm:text-xs md:text-sm lg:text-[15px] leading-none tracking-wide sm:tracking-wider transition-all duration-500 relative overflow-hidden group cursor-pointer ${
-                        isSubmitting
-                          ? 'bg-dark-surface text-dark-textMuted cursor-not-allowed border border-dark-border'
-                          : 'bg-dark-primary text-dark-bg hover:shadow-[0_0_40px_rgba(0,212,255,0.25)]'
-                      }`}
+                      className={`w-full py-4 sm:py-5.5 rounded-2xl font-display font-black text-[11px] sm:text-xs md:text-sm lg:text-[15px] leading-none tracking-wide sm:tracking-wider transition-all duration-500 relative overflow-hidden group cursor-pointer ${isSubmitting
+                        ? 'bg-dark-surface text-dark-textMuted cursor-not-allowed border border-dark-border'
+                        : 'bg-dark-primary text-dark-bg hover:shadow-[0_0_40px_rgba(0,212,255,0.25)]'
+                        }`}
                     >
                       {/* Sliding Shimmer Highlight */}
                       <div className="absolute inset-0 w-1/2 h-full z-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000 ease-out pointer-events-none" />

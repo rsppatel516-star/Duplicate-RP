@@ -17,8 +17,8 @@ export default function Footer() {
   // ── Live FPS counter ──
   const [fps, setFps] = useState(0);
   const frameRef = useRef(0);
-  const timeRef  = useRef(performance.now());
-  const rafRef   = useRef(null);
+  const timeRef = useRef(performance.now());
+  const rafRef = useRef(null);
   const tick = useCallback(() => {
     frameRef.current += 1;
     const now = performance.now();
@@ -26,7 +26,7 @@ export default function Footer() {
     if (elapsed >= 1000) {
       setFps(Math.round((frameRef.current * 1000) / elapsed));
       frameRef.current = 0;
-      timeRef.current  = now;
+      timeRef.current = now;
     }
     rafRef.current = requestAnimationFrame(tick);
   }, []);
@@ -42,7 +42,7 @@ export default function Footer() {
       const url = `/favicon.ico?_=${Date.now()}`;
       const t0 = performance.now();
       fetch(url, { method: 'HEAD', cache: 'no-store' })
-        .catch(() => {})
+        .catch(() => { })
         .finally(() => setPing(Math.round(performance.now() - t0)));
     };
     measure();
@@ -50,7 +50,7 @@ export default function Footer() {
     return () => clearInterval(id);
   }, []);
 
-  const fpsColor  = fps  >= 55 ? '#22c55e' : fps  >= 30 ? '#facc15' : '#ef4444';
+  const fpsColor = fps >= 55 ? '#22c55e' : fps >= 30 ? '#facc15' : '#ef4444';
   const pingColor = ping <= 50 ? '#22c55e' : ping <= 150 ? '#facc15' : '#ef4444';
 
   // Live ticking clock in IST (Vadodara local timezone standard context)
@@ -79,7 +79,7 @@ export default function Footer() {
     e.preventDefault();
     if (!email || !email.includes('@')) return;
     setIsSubmitting(true);
-    
+
     // Simulate premium visual submitting feedback
     setTimeout(() => {
       setIsSubmitting(false);
@@ -127,7 +127,7 @@ export default function Footer() {
     <footer className=" pt-10 pb-12 relative overflow-hidden bg-dark-bg/80 backdrop-blur-2xl">
       {/* Dynamic Scrolling Top Glowing Shimmer Border */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#6366f1] via-[#6366f1] to-transparent opacity-60 animate-pulse" />
-      
+
       {/* Immersive Glowing Backdrop Decor */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-tr from-dark-primary/10 to-dark-secondary/5 rounded-full blur-[140px] pointer-events-none" />
 
@@ -142,16 +142,16 @@ export default function Footer() {
           {/* Column 1: Brand Signature & System Status */}
           <div className="lg:col-span-4 space-y-6 lg:pr-8">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-dark-primary shrink-0 bg-white/5 border border-white/10 p-1 relative overflow-hidden group">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-dark-primary shrink-0 p-1 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-dark-primary/20 to-dark-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <img 
-                  src='/images/about.png' 
-                  alt='Rudra Patel Logo' 
-                  className='w-full h-full object-cover rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-105' 
+                <img
+                  src='/images/about.png'
+                  alt='Rudra Patel Logo'
+                  className='w-16 h-16 object-cover rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-105'
                 />
               </div>
               <div>
-                <h3 className="text-2xl font-poppins font-bold tracking-tight text-gradient animated-gradient-text">Rudra Patel</h3>
+                <h3 className="text-2xl font-poppins font-bold tracking-tight text-[#6366f1]">Rudra Patel</h3>
                 <p className="text-[9px] font-code text-white/40 tracking-[0.25em] uppercase font-bold mt-1">Digital Architect</p>
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function Footer() {
                   <span className="text-[9px] font-code font-bold uppercase tracking-[0.15em] text-violet-400">AVAILABLE FOR HIRE</span>
                 </div>
               </div>
-              
+
               <div className="inline-flex items-center gap-2 bg-[#08080f]/40 py-1.5 px-3.5 rounded-xl border border-white/5 w-max">
                 <Terminal size={12} className="text-dark-primary" />
                 <span className="text-[10px] font-code text-dark-textMuted tracking-wider">
@@ -205,13 +205,9 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="lg:col-span-2 space-y-6">
-            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-primary flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
-              {/* hover underline glow */}
-              <span className="absolute -bottom-0.5 left-0 h-px w-0 group-hover/hdr:w-full bg-gradient-to-r from-dark-primary to-transparent transition-all duration-500 ease-out" />
-              <Code2 size={16} className="transition-transform duration-300 group-hover/hdr:rotate-12 group-hover/hdr:scale-110" />
-              <span className="relative transition-colors duration-300 group-hover/hdr:drop-shadow-[0_0_8px_#6366f1]">
-                Quick Links
-              </span>
+            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1] flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
+              <Code2 size={16} className="transition-transform duration-300 " />
+              Quick Links
             </h4>
             <ul className="space-y-3.5 text-dark-textMuted font-medium text-[13px] font-bricolage">
               {quickLinks.map((item) => (
@@ -234,12 +230,10 @@ export default function Footer() {
 
           {/* Column 3: Services Grid */}
           <div className="lg:col-span-3 space-y-6">
-            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-dark-secondary flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
-              <span className="absolute -bottom-0.5 left-0 h-px w-0 group-hover/hdr:w-full bg-gradient-to-r from-dark-secondary to-transparent transition-all duration-500 ease-out" />
-              <Globe size={16} className="transition-transform duration-300 group-hover/hdr:rotate-12 group-hover/hdr:scale-110" />
-              <span className="relative transition-colors duration-300 group-hover/hdr:drop-shadow-[0_0_8px_#8b5cf6]">
-                Services
-              </span>
+            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1] flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 duration-500 ease-out" />
+              <Globe size={16} className="transition-transform duration-300" />
+              Services
             </h4>
             <ul className="space-y-4 text-dark-textMuted font-medium text-[14px] font-bricolage">
               {[
@@ -260,17 +254,15 @@ export default function Footer() {
 
           {/* Column 4: Premium Quick Connect Form */}
           <div className="lg:col-span-3 space-y-6 relative">
-            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#FF2E93] flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
-              <span className="absolute -bottom-0.5 left-0 h-px w-0 group-hover/hdr:w-full bg-gradient-to-r from-[#FF2E93] to-transparent transition-all duration-500 ease-out" />
-              <Mail size={16} className="transition-transform duration-300 group-hover/hdr:scale-110 group-hover/hdr:-rotate-6" />
-              <span className="relative transition-colors duration-300 group-hover/hdr:drop-shadow-[0_0_8px_#FF2E93]">
-                Quick Connect
-              </span>
+            <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-[#6366f1] flex items-center gap-2 font-display group/hdr cursor-default select-none relative w-max">
+              <span className="absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-500 ease-out" />
+              <Mail size={16} className="transition-transform duration-300" />
+              Quick Connect
             </h4>
             <p className="text-[13px] text-dark-textMuted leading-relaxed">
               Submit your email to connect instantly, receive custom showcases, or launch a direct portfolio inquiry.
             </p>
-                       
+
             {/* Direct Contact Links */}
             <ul className="space-y-3 pt-4 text-dark-textMuted font-medium text-xs font-bricolage border-t border-white/5">
               <li>
@@ -331,7 +323,7 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright & Live Environment Dashboard */}
         <div className="pt-2 flex flex-col md:flex-row justify-between items-center gap-6 -mb-8 mt-8">
-          
+
           {/* Dynamic Technical Metadata Dashboard Grid */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3.5 gap-y-2 text-[10px] font-code text-dark-textMuted uppercase tracking-widest text-center md:text-left">
             <div className="flex items-center gap-2">
@@ -361,7 +353,7 @@ export default function Footer() {
             </div>
             <span className="text-[8px] font-code font-bold tracking-widest uppercase opacity-40 group-hover:opacity-100 group-hover:text-dark-primary transition-all">TOP_UP</span>
           </button>
-          
+
         </div>
       </div>
     </footer>

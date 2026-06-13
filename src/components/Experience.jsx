@@ -170,20 +170,20 @@ export default function Experience() {
             >
               {/* High-Tech Grid background */}
               <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02] group-hover/protocol:opacity-[0.05] transition-opacity duration-700 pointer-events-none" />
-              
+
               <div className="relative z-10 flex flex-col gap-6">
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                   className="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-600/10 to-indigo-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400 shadow-[0_0_15px_rgba(124,58,237,0.1)] group-hover/protocol:border-violet-500/40 group-hover/protocol:text-violet-300 transition-colors duration-500"
                 >
                   <GraduationCap size={28} className="group-hover/protocol:rotate-6 transition-transform duration-500" />
                 </motion.div>
-                
+
                 <h4 className="text-xl font-display font-black tracking-tight text-white group-hover/protocol:text-violet-400 transition-colors duration-500">
                   Continual Learning Protocol
                 </h4>
-                
+
                 <p className="text-[23px] text-dark-textMuted font-syne italic leading-relaxed group-hover/protocol:text-white/80 transition-colors duration-500 pl-4 border-l border-violet-500/30">
                   "Actively pursuing new industry standards and advanced architectural patterns. The learning never stops in the dev lab."
                 </p>

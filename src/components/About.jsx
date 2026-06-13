@@ -1,7 +1,7 @@
 // MagicBento Integration Test
-import React from 'react';
-import { motion } from 'framer-motion';
-import { User, Download, Github, Twitter, Linkedin, MapPin, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { User, Download, Github, Twitter, Linkedin, MapPin, Clock, X } from 'lucide-react';
 import { Link as ScrollLink } from 'react-scroll';
 import MagneticButton from './ui/MagneticButton';
 import AnimatedCounter from './ui/AnimatedCounter';
@@ -47,6 +47,7 @@ const BentoCard = ({ children, className = "" }) => (
 
 
 export default function About() {
+  const [showResumeModal, setShowResumeModal] = useState(false);
   const stats = [
     { label: 'Years Exp', value: 1, suffix: '+' },
     { label: 'Projects', value: 5, suffix: '+' },
@@ -117,14 +118,14 @@ export default function About() {
               </div>
             </div>
 
-            {/* Decorative Background Logo */}
+            {/* Decorative Background Logo 
             <div className="absolute -bottom-16 -right-10 w-64 h-64 opacity-[0.04] pointer-events-none select-none group-hover/card:opacity-[0.08] group-hover/card:scale-110 group-hover/card:rotate-[3deg] transition-all duration-[1200ms]">
               <img
                 src="/images/RP%20-%20LOGO.png"
                 alt="RP Logo"
                 className="w-full h-full object-contain"
               />
-            </div>
+            </div>*/}
           </BentoCard>
 
           {/* Availability Card */}
@@ -141,22 +142,40 @@ export default function About() {
           </BentoCard>
 
           {/* Download Resume Card */}
-          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-1 md:row-span-1 hover:border-dark-secondary/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.1)] transition-all duration-500 group relative overflow-hidden h-auto md:h-full">
-            <a href="/Rudra Patel.pdf" download className="flex flex-col h-full justify-between group cursor-pointer relative z-10">
+          <BentoCard
+            className="col-span-1 md:col-span-2 lg:col-span-1 md:row-span-1 hover:border-dark-secondary/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.1)] transition-all duration-500 group relative overflow-hidden h-auto md:h-full cursor-pointer"
+            onClick={() => setShowResumeModal(true)}
+          >
+            <div className="flex flex-col h-full justify-between relative z-10">
               <div className="flex justify-between items-start">
-                <div className="p-3 bg-white/5 border border-white/10 rounded-xl group-hover:bg-dark-secondary/20 group-hover:border-dark-secondary/30 transition-colors">
-                  <Download className="text-dark-secondary group-hover:scale-110 group-hover:translate-y-[1px] transition-all" size={20} />
-                </div>
+                <a
+                  href="/Rudra Patel Resume.pdf"
+                  download="Rudra Patel Resume.pdf"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowResumeModal(true);
+                  }}
+                  className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-dark-secondary/20 hover:border-dark-secondary/30 transition-colors z-20"
+                  title="Download Resume"
+                >
+                  <Download className="text-dark-secondary hover:scale-110 hover:translate-y-[1px] transition-all" size={20} />
+                </a>
               </div>
               <div>
                 <span className="block font-display font-bold text-lg mt-3 leading-tight text-white/90">Resume</span>
                 <span className="text-[10px] text-dark-textMuted uppercase tracking-widest block mb-3 font-semibold font-code">Technical CV</span>
-                <div className="flex items-center gap-2 py-2 px-3 bg-white/5 rounded-lg border border-white/10 group-hover:border-dark-secondary/50 group-hover:bg-dark-secondary/10 transition-all">
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowResumeModal(true);
+                  }}
+                  className="flex items-center gap-2 py-2 px-3 bg-white/5 rounded-lg border border-white/10 group-hover:border-dark-secondary/50 group-hover:bg-dark-secondary/10 transition-all cursor-pointer"
+                >
                   <span className="text-[10px] font-bold uppercase tracking-wider text-white/80 group-hover:text-white font-code">Get Resume</span>
                   <div className="ml-auto w-1.5 h-1.5 rounded-full bg-dark-secondary animate-pulse" />
                 </div>
               </div>
-            </a>
+            </div>
           </BentoCard>
 
           {stats.map((stat, i) => (
@@ -219,6 +238,93 @@ export default function About() {
 
         </motion.div>
       </div>
+
+      {/* Interactive Premium Resume Showcase Lightbox Modal */}
+      <AnimatePresence>
+        {showResumeModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowResumeModal(false)}
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl cursor-zoom-out"
+            style={{ perspective: 1500 }}
+          >
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.8,
+                rotateX: 45,
+                z: -300,
+                boxShadow: "0 0px 0px rgba(139, 92, 246, 0)"
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                rotateX: 0,
+                z: 0,
+                boxShadow: "0 25px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(139, 92, 246, 0.15)",
+                transition: {
+                  type: "spring",
+                  damping: 22,
+                  stiffness: 85,
+                  mass: 1.1
+                }
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.8,
+                rotateX: -45,
+                z: -300,
+                transition: { duration: 0.35, ease: "easeInOut" }
+              }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-4xl w-full bg-[#07070c]/90 border border-violet-500/20 rounded-3xl p-3 md:p-6 shadow-2xl flex flex-col items-center justify-center overflow-hidden backdrop-blur-md"
+            >
+              {/* Dynamic Scrolling Top Glowing Shimmer Border */}
+              <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-[#8b5cf6] via-[#FF2E93] to-transparent opacity-80" />
+
+              {/* Actions Header bar */}
+              <motion.div
+                initial={{ y: -15, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.15, duration: 0.4 }}
+                className="absolute top-5 right-5 flex items-center gap-3 z-50"
+              >
+                <a
+                  href="/Rudra Patel Resume.pdf"
+                  download="Rudra Patel Resume.pdf"
+                  className="p-2.5 bg-white/5 hover:bg-dark-secondary/20 border border-white/10 hover:border-dark-secondary/30 rounded-xl text-dark-secondary transition-all cursor-pointer flex items-center justify-center shadow-lg"
+                  title="Download Resume PDF"
+                >
+                  <Download size={18} />
+                </a>
+                <button
+                  onClick={() => setShowResumeModal(false)}
+                  className="p-2.5 bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 rounded-xl text-white hover:text-red-400 transition-all cursor-pointer flex items-center justify-center shadow-lg"
+                  title="Close Showcase"
+                >
+                  <X size={18} />
+                </button>
+              </motion.div>
+
+              {/* High Definition Resume Image with Scale Entrance */}
+              <motion.div
+                initial={{ scale: 1.04, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2, type: "spring", damping: 20 }}
+                className="w-full max-h-[80vh] overflow-y-auto rounded-2xl mt-12 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent border border-white/5 bg-[#030306]/60 p-1.5"
+              >
+                <img
+                  src="/Rudra Patel Resume.png"
+                  alt="Rudra Patel Resume Showcase"
+                  className="w-full h-auto object-contain rounded-xl max-h-[76vh] mx-auto shadow-inner"
+                />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

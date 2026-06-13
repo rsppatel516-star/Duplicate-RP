@@ -6,7 +6,7 @@ export const skills = [
       { name: 'CSS3', icon: 'css3' },
       { name: 'JavaScript', icon: 'javascript' },
       { name: 'React.js', icon: 'react' },
-      { name: 'Next.js', icon: 'nextjs' },
+      //{ name: 'Next.js', icon: 'nextjs' },
       { name: 'Tailwind CSS', icon: 'tailwindcss' }
     ]
   },
@@ -14,8 +14,8 @@ export const skills = [
     category: 'Backend',
     technologies: [
       { name: 'Node.js', icon: 'nodejs' },
-      { name: 'Express.js', icon: 'express' },
-      { name: 'REST APIs', icon: 'api' }, // We'll map 'api' to a relevant icon
+      //{ name: 'Express.js', icon: 'express' },
+      //{ name: 'REST APIs', icon: 'api' }, // We'll map 'api' to a relevant icon
       //{ name: 'PHP', icon: 'php' },
       { name: 'Java', icon: 'java' } // From HTML "DSA Java"
     ]
@@ -48,7 +48,7 @@ export const skills = [
       { name: 'VS Code', icon: 'vscode' },
       { name: 'Figma', icon: 'figma' },
       { name: 'Vercel', icon: 'vercel' },
-      { name: 'Postman', icon: 'postman' },
+      //{ name: 'Postman', icon: 'postman' },
       { name: 'AWS', icon: 'aws' },
       { name: 'Docker', icon: 'docker' }
     ]

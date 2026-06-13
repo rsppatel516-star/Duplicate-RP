@@ -218,7 +218,7 @@ export default function Hero() {
               speed={60}
               repeat={0}
               cursor={false}
-              className="hero-gradient-text text-4xl md:text-5xl font-display font-bold tracking-tighter whitespace-pre-line animated-gradient-text"
+              className="text-4xl md:text-5xl font-display font-bold tracking-tighter whitespace-pre-line text-[#6366f1]"
             />
           </motion.div>
 
@@ -253,14 +253,14 @@ export default function Hero() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative group font-display flex items-center gap-2.5 px-8 py-4.5 rounded-2xl font-black text-white text-xs tracking-[0.25em] uppercase transition-all duration-300 overflow-hidden hover:shadow-[0_0_40px_rgba(124,58,237,0.35)] cursor-pointer"
+                  className="relative group font-display flex items-center gap-2.5 px-8 py-4.5 rounded-2xl font-black text-white text-xs tracking-[0.25em] uppercase transition-all duration-300 overflow-hidden cursor-pointer"
                 >
                   {/* Glowing background gradient border */}
                   <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-600 via-indigo-500 to-pink-500 opacity-80 blur-[2px] transition-all group-hover:opacity-100 group-hover:blur-[4px] animate-[gradientShimmer_4s_ease_infinite]" style={{ backgroundSize: '300% 300%' }} />
-                  
+
                   {/* Glassmorphic solid fill inner container */}
                   <span className="absolute inset-[1.5px] bg-[#050510]/95 rounded-[15px] z-0 transition-colors group-hover:bg-[#050510]/80" />
-                  
+
                   {/* Shimmer light bar sweeping across the button on hover */}
                   <span className="absolute top-0 -left-[100%] h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
 
