@@ -121,43 +121,58 @@ export default function Experience() {
 
           {/* Achievements Grid */}
           <div className="space-y-12">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-10 h-10 bg-dark-surface rounded-xl border border-dark-border flex items-center justify-center text-dark-secondary">
-                <Trophy size={20} />
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 bg-dark-surface rounded-2xl border border-dark-border flex items-center justify-center text-dark-primary shadow-[0_0_20px_rgba(124,58,237,0.15)] relative overflow-hidden group">
+                <div className="absolute inset-0 bg-dark-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Trophy size={22} className="relative z-10 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <h3 className="text-2xl font-display font-bold">Badges & Achievements</h3>
+              <h3 className="text-2xl font-display font-bold tracking-tight">Badges & Achievements</h3>
             </div>
 
-            <div className="grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-5">
               {certifications.map((cert, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
                   onClick={() => cert.pdfUrl && window.open(cert.pdfUrl, '_blank')}
-                  className={`card group p-6 flex items-center gap-6 relative overflow-hidden ${cert.pdfUrl ? 'cursor-pointer' : ''}`}
+                  className={`group relative h-full bg-white/[0.01] border border-white/5 hover:border-dark-primary/30 rounded-3xl p-6 flex flex-col justify-between overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:bg-white/[0.03] hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] ${cert.pdfUrl ? 'cursor-pointer' : ''}`}
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-dark-bg border border-dark-border flex items-center justify-center text-3xl shrink-0 group-hover:border-dark-secondary/50 group-hover:scale-110 transition-all duration-500">
-                    {iconMap[cert.icon] || <Trophy className="text-dark-secondary" />}
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-dark-primary/0 via-transparent to-dark-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  
+                  {/* High-Tech Scanline Effect on Hover */}
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-dark-primary/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+
+                  <div className="flex items-start justify-between mb-4 relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-dark-surface/50 border border-dark-border flex items-center justify-center text-3xl shrink-0 group-hover:border-dark-primary/40 group-hover:bg-dark-surface transition-all duration-500 shadow-lg">
+                      <div className="transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 filter drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] group-hover:drop-shadow-[0_0_15px_rgba(124,58,237,0.3)]">
+                        {iconMap[cert.icon] || <Trophy className="text-dark-primary" />}
+                      </div>
+                    </div>
+                    {cert.pdfUrl && (
+                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0 text-dark-primary hover:bg-dark-primary hover:text-white">
+                        <ArrowUpRight size={16} />
+                      </div>
+                    )}
                   </div>
-                  <div className="flex-grow">
-                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-dark-secondary transition-colors">
+
+                  <div className="relative z-10">
+                    <h4 className="text-lg font-bold font-display text-white mb-2 leading-tight group-hover:text-dark-primary transition-colors duration-300 line-clamp-2">
                       {cert.title}
                     </h4>
-                    <p className="text-xs text-dark-textMuted font-bold uppercase tracking-widest">
-                      {cert.issuer} &bull; {cert.date}
-                    </p>
+                    <div className="flex items-center gap-2 mt-auto">
+                      <CheckCircle2 size={12} className="text-dark-secondary" />
+                      <p className="text-[10px] text-dark-textMuted font-bold uppercase tracking-[0.15em] flex items-center gap-1.5">
+                        {cert.issuer} <span className="w-1 h-1 rounded-full bg-dark-border" /> {cert.date}
+                      </p>
+                    </div>
                   </div>
 
-                  {cert.pdfUrl && (
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity z-10 relative">
-                      <ArrowUpRight size={20} className="text-dark-secondary" />
-                    </div>
-                  )}
-
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-dark-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  {/* Corner Accent Glow */}
+                  <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-dark-primary/10 rounded-full blur-[30px] group-hover:bg-dark-primary/20 transition-colors duration-700 pointer-events-none" />
                 </motion.div>
               ))}
             </div>

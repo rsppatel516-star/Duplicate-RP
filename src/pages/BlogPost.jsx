@@ -217,7 +217,7 @@ export default function BlogPost() {
             whileInView="visible" 
             viewport={{ once: true }} 
             variants={container}
-            className="flex flex-col md:flex-row gap-10 items-start justify-between bg-white/[0.02] p-8 rounded-[2rem] border border-white/5"
+            className="flex flex-col md:flex-row gap-10 items-start justify-between bg-white/[0.01] p-8 rounded-[2rem] border border-white/5 hover:border-dark-primary/30 hover:bg-white/[0.02] hover:shadow-[0_15px_40px_-10px_rgba(124,58,237,0.15)] transition-all duration-500"
           >
             {/* Author */}
             <div className="flex items-center gap-6">
