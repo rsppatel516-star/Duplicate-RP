@@ -247,27 +247,32 @@ export default function Hero() {
           </motion.p>
 
           {/* CTA Button */}
-          <motion.div variants={itemVariants} className="pt-2">
+          <motion.div variants={itemVariants} className="pt-6">
             <MagneticButton>
-              <ScrollLink to="contact" smooth duration={1000} className="cursor-pointer">
+              <ScrollLink to="contact" smooth duration={1000} className="cursor-pointer block">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative group font-display flex items-center gap-2.5 px-8 py-4.5 rounded-2xl font-black text-white text-xs tracking-[0.25em] uppercase transition-all duration-300 overflow-hidden cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative group font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-sm tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
                 >
-                  {/* Glowing background gradient border 
-                  <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-600 via-indigo-500 to-pink-500 opacity-80 blur-[2px] transition-all group-hover:opacity-100 group-hover:blur-[4px] animate-[gradientShimmer_4s_ease_infinite]" style={{ backgroundSize: '300% 300%' }} />*/}
+                  {/* Minimalist border */}
+                  <span className="absolute inset-0 bg-white/10 group-hover:bg-white/25 transition-colors duration-500" />
 
                   {/* Glassmorphic solid fill inner container */}
-                  <span className="absolute inset-[1.5px] bg-[#050510]/95 rounded-[15px] z-0 transition-colors group-hover:bg-[#050510]/80" />
+                  <span className="absolute inset-[1px] bg-black/40 backdrop-blur-xl rounded-[15px] z-0 transition-all duration-500 group-hover:bg-black/40" />
 
                   {/* Shimmer light bar sweeping across the button on hover */}
-                  <span className="absolute top-0 -left-[100%] h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
+                  <span className="absolute top-0 -left-[100%] h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
 
                   {/* Button Text with hover icon transition */}
-                  <span className="relative z-10 flex items-center gap-2 text-white">
-                    Connect
-                    <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300 text-dark-secondary group-hover:text-white" />
+                  <span className="relative z-10 flex items-center gap-3 text-white/70 group-hover:text-white transition-colors duration-300">
+                    Connect With Me
+                    <motion.div
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ArrowRight size={18} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
+                    </motion.div>
                   </span>
                 </motion.button>
               </ScrollLink>
@@ -300,16 +305,13 @@ export default function Hero() {
             />
 
             {/* Photo frame */}
-            <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[1rem] overflow-hidden border border-white/5 shadow-2xl">
+            <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[1rem] overflow-hidden">
               <img
                 src="/images/DSC06139.JPG"
                 alt="Rudra Patel"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110"
               />
-
-              {/* Animated Inner Border */}
-              <div className="absolute inset-0 border border-white/10 rounded-[2.5rem] pointer-events-none z-10" />
 
               {/* Glassy overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
