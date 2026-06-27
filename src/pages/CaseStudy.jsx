@@ -61,16 +61,6 @@ export default function CaseStudy() {
         <meta name="description" content={study.description} />
       </Helmet>
 
-      {/* Background Decorative Glows */}
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <div className="absolute top-[10%] -left-20 w-96 h-96 bg-dark-primary/5 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[20%] -right-20 w-[500px] h-[500px] bg-dark-secondary/5 rounded-full blur-[140px]" />
-      </div>
-
-      {/* Progress Bar
-      <motion.div className="fixed top-0 left-0 right-0 h-[3px] z-[200] origin-left"
-        style={{ scaleX, background: 'linear-gradient(to right, var(--color-dark-primary), var(--color-dark-secondary))' }}
-      /> */}
 
       {/* ── HERO BANNER ─────────────────────────── */}
       <section className="relative h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden">
@@ -95,7 +85,7 @@ export default function CaseStudy() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-white/70 hover:text-white transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-white/5 backdrop-blur-md px-5 py-3 md:px-6 md:py-3.5 rounded-full border border-white/10 hover:border-white/20"
+            className="flex items-center gap-3 text-white/70 hover:text-white transition-all text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] bg-white/5 backdrop-blur-md px-5 py-3 md:px-6 md:py-3.5 rounded-full border border-white/10 hover:border-white/20 mt-8"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1.5" />
             Artifacts
@@ -189,7 +179,7 @@ export default function CaseStudy() {
           <motion.section initial="hidden" whileInView="visible" viewport={{ once: true }} variants={sv} className="space-y-8 mb-10">
             <SectionLabel icon={Lightbulb} label="The Narrative" />
             <div className="border-l-2 border-dark-primary/40 pl-8">
-              <p className="text-5lg md:text-2xl leading-relaxed font-light text-white/90 max-w-4xl">
+              <p className="text-sm md:text-lg leading-relaxed font-light text-white/90 max-w-4xl">
                 {study.description}
               </p>
             </div>
@@ -261,7 +251,8 @@ export default function CaseStudy() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, type: "spring", stiffness: 200, damping: 20 }}
-                  className="font-bricolage px-6 py-3 bg-dark-primary/[0.05] border border-dark-primary/10 rounded-2xl text-dark-primary font-bold text-xs uppercase tracking-widest hover:bg-dark-primary hover:text-white transition-transform-duration-500 hover:-translate-y-1 cursor-default"
+                  className="font-bricolage px-6 py-3 bg-dark-primary/[0.05] border border-dark-primary/10 rounded-2xl text-dark-primary font-bold text-xs uppercase tracking-widest hover:bg-dark-primary hover:text-white transition-transform-duration-500 hover:-translate-y-0.5 transition-all
+                  cursor-default"
                 >
                   {tag}
                 </motion.span>

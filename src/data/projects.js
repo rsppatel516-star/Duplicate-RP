@@ -1,38 +1,39 @@
 export const projects = [
-  {
-    id: 1,
-    title: 'Personal Portfolio Website',
-    subtitle: 'A modern responsive developer portfolio to showcase skills and projects.',
-    description: 'This is a personal portfolio website designed to present my skills, projects, and achievements. It features a clean UI, responsive design, and smooth navigation to provide a professional online presence for recruiters and clients.',
-    image: '/project img/Portfolio img.png',
-    tags: [
-    "Portfolio",
-    "Web Development",
-    "Responsive Design",
-    "Frontend"
-  ],
-     skillsUsed: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "3D Particles",
-    "Firebase Hosting"
-  ],
-    keyFeatures: [
-    "Responsive design for mobile and desktop",
-    "Project showcase section",
-    "smooth UI and animations",
-    "3D Particles",
-  ],
-    status: 'Completed',
-    category: 'Javascript',
-    liveUrl: 'https://portfolio-16rp.web.app/',
-    githubUrl: 'https://github.com/Rudraptl16/Portfolio-',
-    caseStudyId: 1,
-    featured: false
-  },
 {
-    id: 3 ,
+  id: 1,
+  title: 'Note Sphere',
+  subtitle: 'Smart and Simple Note Management App',
+  description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
+  image: '/project img/Note.png',
+  tags: [
+    "Notes App",
+    "Productivity", 
+    "Web App", 
+    "CRUD", 
+    "Note Management"
+  ],
+  skillsUsed: [
+    "Tailwind CSS", 
+    "JavaScript", 
+    "React", 
+    "Next.js", 
+  ],
+  keyFeatures: [
+    "Create, edit, and delete notes",
+    "Real-time updates of notes",
+    "Simple and clean UI",
+    "Real-time updates"
+  ],
+  status: 'Completed',
+  category: 'React',
+  liveUrl: 'https://note-sphere-16.vercel.app/',
+  githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
+  caseStudyId: 7,
+  featured: true
+},
+
+{
+    id: 2,
     title: 'Panto - Furniture Landing Page',
     subtitle: 'Furniture e-commerce landing page with modern design and responsive layout',
     description: 'A modern and visually appealing landing page for a furniture e-commerce website. It features a clean design, responsive layout, and smooth animations to showcase products effectively and attract potential customers.',
@@ -60,7 +61,7 @@ export const projects = [
     featured: true
 },
 {
-  id: 4,
+  id: 3,
   title: ' Furniqlo Premium Furniture Store',
   subtitle: ' Premium Furniture Store Landing Page',
   description: 'Furniqlo is a premium, modern e-commerce furniture store built with React 19, TypeScript, and Vite. It delivers a stunning shopping experience with fluid animations, a fully functional cart, and an immersive product catalogue.',
@@ -91,7 +92,7 @@ export const projects = [
   featured: true
 },
 {
-    id: 5,
+    id: 4,
     title: "Travel Website",
   subtitle: "A travel booking and destination showcase platform",
   description: "A responsive travel website that allows users to explore destinations, view travel packages, and get detailed information about trips.",
@@ -123,7 +124,7 @@ export const projects = [
     featured: true
 },
 {
-    id: 6,
+    id: 5,
     title: "Personal Project Manager",
     subtitle: "A task and project management web application",
     description: "A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priorities, and progress tracking.",
@@ -154,7 +155,7 @@ export const projects = [
     featured: true
 },
 {
-  id: 7,
+  id: 6,
   title: "Todo List Application",
   subtitle: "A simple task management and productivity tool",
   description: "A lightweight to-do list application that allows users to add, update, and delete daily tasks for better productivity.",
@@ -185,41 +186,10 @@ export const projects = [
   caseStudyId: 6,
   featured: true
 },
-{
-  id: 8,
-  title: 'Note Sphere',
-  subtitle: 'Smart and Simple Note Management App',
-  description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
-  image: '/project img/Note.png',
-  tags: [
-    "Notes App",
-    "Productivity", 
-    "Web App", 
-    "CRUD", 
-    "Note Management"
-  ],
-  skillsUsed: [
-    "Tailwind CSS", 
-    "JavaScript", 
-    "React", 
-    "Next.js", 
-  ],
-  keyFeatures: [
-    "Create, edit, and delete notes",
-    "Real-time updates of notes",
-    "Simple and clean UI",
-    "Real-time updates"
-  ],
-  status: 'Completed',
-  category: 'React',
-  liveUrl: 'https://note-sphere-16.vercel.app/',
-  githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
-  caseStudyId: 7,
-  featured: true
-},
+
 {
 
-  id: 9,
+  id: 7,
   title: "Job Portal Website",
   subtitle: "An online platform for job seekers and recruiters",
   description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
@@ -252,7 +222,7 @@ export const projects = [
 },
 {
 
-  id: 10,
+  id: 8,
   title: "Calculator App",
   subtitle: "An online calculator web application with basic arithmetic operations",
   description: "A calculator web application with basic arithmetic operations.",
@@ -282,7 +252,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 11,
+  id: 9,
   title: "Nexify Landing Page",
   subtitle: "AI-powered workflow automation platform",
   description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
@@ -310,7 +280,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 12,
+  id: 10,
   title: "Health Care Website",
   subtitle: "An online platform for healthcare services and information",
   image: "/project img/Health.png",

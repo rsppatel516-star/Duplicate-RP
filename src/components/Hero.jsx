@@ -30,7 +30,7 @@ const shimmerStyle = `
 
 const socialLinks = [
   { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100082469136911', color: '#1877f2' },
-  { icon: Instagram, href: 'https://www.instagram.com/rudraa_ptll/', color: '#C13584' },
+  { icon: Instagram, href: 'https://www.instagram.com/rudraa_ptll/', color: '#B72B5F' },
   { icon: Github, href: 'https://github.com/Rudraptl16', color: '#ffffff' },
   {
     icon: Youtube, href: 'https://www.youtube.com/@rudrapatel4172', color: '#ff0000'
@@ -46,7 +46,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowBadge(false);
-    }, 6500);
+    }, 5000);
 
     // Satisfy linter by moving to next tick to avoid cascading renders
     setTimeout(() => {
@@ -255,8 +255,8 @@ export default function Hero() {
                   whileTap={{ scale: 0.95 }}
                   className="relative group font-display flex items-center gap-2.5 px-8 py-4.5 rounded-2xl font-black text-white text-xs tracking-[0.25em] uppercase transition-all duration-300 overflow-hidden cursor-pointer"
                 >
-                  {/* Glowing background gradient border */}
-                  <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-600 via-indigo-500 to-pink-500 opacity-80 blur-[2px] transition-all group-hover:opacity-100 group-hover:blur-[4px] animate-[gradientShimmer_4s_ease_infinite]" style={{ backgroundSize: '300% 300%' }} />
+                  {/* Glowing background gradient border 
+                  <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-600 via-indigo-500 to-pink-500 opacity-80 blur-[2px] transition-all group-hover:opacity-100 group-hover:blur-[4px] animate-[gradientShimmer_4s_ease_infinite]" style={{ backgroundSize: '300% 300%' }} />*/}
 
                   {/* Glassmorphic solid fill inner container */}
                   <span className="absolute inset-[1.5px] bg-[#050510]/95 rounded-[15px] z-0 transition-colors group-hover:bg-[#050510]/80" />
@@ -300,9 +300,9 @@ export default function Hero() {
             />
 
             {/* Photo frame */}
-            <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl">
+            <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[1rem] overflow-hidden border border-white/5 shadow-2xl">
               <img
-                src="/images/pic.jpeg"
+                src="/images/DSC06139.JPG"
                 alt="Rudra Patel"
                 fetchPriority="high"
                 className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-110"
@@ -356,7 +356,7 @@ export default function Hero() {
               <motion.div
                 initial={{ width: "100%" }}
                 animate={{ width: "0%" }}
-                transition={{ duration: 6.5, ease: "linear" }}
+                transition={{ duration: 5, ease: "linear" }}
                 className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-violet-600 to-indigo-400"
               />
             </div>
