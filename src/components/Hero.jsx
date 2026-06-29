@@ -173,6 +173,7 @@ export default function Hero() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Follow on ${href}`}
                   >
                     <motion.div
                       whileHover={{ y: -5 }}

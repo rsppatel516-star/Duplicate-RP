@@ -288,7 +288,7 @@ export default function Projects() {
                       <a
                         href={selectedProject.liveUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="flex items-center justify-center gap-3 w-full py-4 bg-dark-primary text-dark-bg font-bold rounded-2xl hover:bg-white/15 hover:text-white transition-transform duration-400 hover:scale-95 "
                       >
                         <ExternalLink size={20} /> Launch Project
@@ -296,7 +296,7 @@ export default function Projects() {
                       <a
                         href={selectedProject.githubUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="flex items-center justify-center gap-3 w-full py-4 text-white font-bold rounded-2xl border border-dark-border hover:border-dark-primary transition-colors bg-dark-surface/15 hover:text-white"
                       >
                         <Github size={20} /> Source Code

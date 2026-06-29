@@ -167,7 +167,8 @@ export default function Footer() {
                   key={i}
                   href={social.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit my social profile at ${social.url}`}
                   className={`w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 flex items-center justify-center text-dark-textMain transition-all duration-300 transform hover:-translate-y-1.5 ${social.hoverClass}`}
                 >
                   {social.icon}
@@ -328,7 +329,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3.5 gap-y-2 text-[10px] font-code text-dark-textMuted uppercase tracking-widest text-center md:text-left">
             <div className="flex items-center gap-2">
               <Globe size={13} className="text-dark-primary animate-pulse" />
-              <span>&copy; {currentYear} <a href="https://www.linkedin.com/in/rudra-patel-265258313/" target="_blank" rel="noreferrer" className="hover:text-dark-primary font-bold transition-colors">Rudra Patel</a></span>
+              <span>&copy; {currentYear} <a href="https://www.linkedin.com/in/rudra-patel-265258313/" target="_blank" rel="noopener noreferrer" aria-label="Visit Rudra Patel's LinkedIn" className="hover:text-dark-primary font-bold transition-colors">Rudra Patel</a></span>
             </div>
             <span className="hidden sm:inline border-r border-white/10 h-2.5" />
             <span>FPS: <span className="font-bold transition-colors duration-500" style={{ color: fpsColor }}>{fps}</span></span>

@@ -170,6 +170,7 @@ export default function Contact() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit my profile at ${social.url}`}
                     whileHover={{ y: -8, scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     className={`w-14 h-14 rounded-2xl backdrop-blur-md border border-dark-border/60 bg-dark-surface/5 flex items-center justify-center text-dark-textMuted transition-all duration-500 ${social.activeClass}`}
