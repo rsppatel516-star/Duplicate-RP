@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '../data/skills';
 import {
-  Code, Layout, Server, Smartphone,
-  Database, Cpu, Layers, ChevronRight, Zap, Target
+  Code, Layout, Server, Smartphone, Cloud,
+  Database, Cpu, Layers, ChevronRight, Zap, Target, Bot, Sparkles, BrainCircuit
 } from 'lucide-react';
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaJava,
@@ -12,7 +12,7 @@ import {
 } from 'react-icons/fa';
 import {
   SiNextdotjs, SiTailwindcss, SiExpress, SiFlutter, SiMongodb,
-  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker
+  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker, SiOpenai
 } from 'react-icons/si';
 import { BiServer } from 'react-icons/bi';
 import { DiGit } from 'react-icons/di';
@@ -49,7 +49,11 @@ const iconMap = {
   docker: <SiDocker />,
   storyboard: <Layers />,
   mobiledesign: <Smartphone />,
-  uikit: <Layout />
+  uikit: <Layout />,
+  openai: <SiOpenai />,
+  cursor: <Sparkles />,
+  copilot: <FaGithub />,
+  claude: <BrainCircuit />
 };
 
 const techColors = {
@@ -63,7 +67,8 @@ const techColors = {
   vercel: 'text-white', postman: 'text-[#FF6C37]', aws: 'text-[#FF9900]',
   docker: 'text-[#2496ED]', swift: 'text-[#FA7343]',
   storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]',
-  uikit: 'text-[#2AC3FF]'
+  uikit: 'text-[#2AC3FF]',
+  openai: 'text-[#10A37F]', cursor: 'text-white', copilot: 'text-white', claude: 'text-[#D97757]'
 };
 
 const techHexColors = {
@@ -77,7 +82,8 @@ const techHexColors = {
   vercel: '#ffffff', postman: '#FF6C37', aws: '#FF9900',
   docker: '#2496ED', swift: '#FA7343',
   storyboard: '#818CF8', mobiledesign: '#F43F5E',
-  uikit: '#2AC3FF'
+  uikit: '#2AC3FF',
+  openai: '#10A37F', cursor: '#ffffff', copilot: '#ffffff', claude: '#D97757'
 };
 
 const categoryIcons = {
@@ -86,6 +92,8 @@ const categoryIcons = {
   'Mobile': <Smartphone size={14} />,
   'Database': <Database size={14} />,
   'Tools & Platforms': <Layers size={14} />,
+  'Cloud & DevOps': <Cloud size={14} />,
+  'AI Tools': <Bot size={14} />,
 };
 
 const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
@@ -287,9 +295,39 @@ export default function Skills() {
             <Zap size={14} />
           </div>
         </motion.div>
+
+        {/* Core Competencies Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-24"
+        >
+          <div className="flex items-center justify-center gap-5 mb-8 text-dark-primary/60 font-code text-xs font-black tracking-[0.5em] uppercase">
+            <Cpu size={16} />
+            <span>CORE COMPETENCIES</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { name: 'System Architecture', desc: 'Designing scalable & robust systems for optimal performance.' },
+              { name: 'Agile Methodology', desc: 'Iterative development, sprint planning & fast delivery.' },
+              { name: 'Problem Solving', desc: 'Analytical approach to complex technical challenges.' },
+              { name: 'UI/UX Excellence', desc: 'Crafting premium, intuitive, and highly interactive interfaces.' },
+            ].map((comp, idx) => (
+              <motion.div 
+                key={idx} 
+                whileHover={{ y: -5 }}
+                className="group relative bg-dark-surface/20 border border-dark-border/50 rounded-2xl p-6 text-center hover:bg-dark-surface/40 transition-all duration-500 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <h4 className="relative z-10 text-white font-poppins font-bold text-sm tracking-wider mb-3 uppercase">{comp.name}</h4>
+                <p className="relative z-10 text-dark-textMuted text-xs leading-relaxed">{comp.desc}</p>
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-dark-primary/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
-

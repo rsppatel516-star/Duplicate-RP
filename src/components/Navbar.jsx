@@ -6,12 +6,12 @@ import { Menu, X, ArrowRight, ArrowLeft, Laptop, Globe } from 'lucide-react';
 import { socialLinks } from '../data/socialLinks';
 
 const navLinks = [
-  { name: 'INDEX', to: 'home' },
-  { name: 'ALCHEMIST', to: 'about' },
-  { name: 'ARSENAL', to: 'skills' },
-  { name: 'CHRONICLES', to: 'experience' },
-  { name: 'CAPABILITIES', to: 'services' },
-  { name: 'ARTIFACTS', to: 'projects' },
+  { name: 'HOME', to: 'home' },
+  { name: 'ABOUT', to: 'about' },
+  { name: 'SKILLS', to: 'skills' },
+  { name: 'EXPERIENCE', to: 'experience' },
+  { name: 'SERVICES', to: 'services' },
+  { name: 'PROJECTS', to: 'projects' },
   { name: 'CONTACT', to: 'contact' },
 ];
 

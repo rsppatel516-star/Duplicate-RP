@@ -105,10 +105,6 @@ export default function Projects() {
               Featured <br /> <span className="text-gradient">Artifacts</span>
             </h2>
 
-            {/* Text Section */}
-            <p className="text-dark-textMuted max-w-md text-lg border-l-2 border-dark-secondary px-8 py-2">
-              A curated collection of digital products, experimental labs, and full-stack systems built with precision.
-            </p>
           </div>
         </div>
 

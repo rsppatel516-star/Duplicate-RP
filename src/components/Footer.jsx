@@ -114,12 +114,12 @@ export default function Footer() {
 
   // Properly aligned targeting IDs in sync with Home.jsx section elements
   const quickLinks = [
-    { name: 'INDEX', to: 'home' },
-    { name: 'ALCHEMIST', to: 'about' },
-    { name: 'ARSENAL', to: 'skills' },
-    { name: 'CHRONICLES', to: 'experience' },
-    { name: 'CAPABILITIES', to: 'services' },
-    { name: 'ARTIFACTS', to: 'projects' },
+    { name: 'HOME', to: 'home' },
+    { name: 'ABOUT', to: 'about' },
+    { name: 'SKILLS', to: 'skills' },
+    { name: 'EXPERIENCE', to: 'experience' },
+    { name: 'SERVICES', to: 'services' },
+    { name: 'PROJECTS', to: 'projects' },
     { name: 'CONTACT', to: 'contact' },
   ];
 

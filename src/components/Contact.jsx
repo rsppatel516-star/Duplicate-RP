@@ -36,17 +36,9 @@ const itemVariants = {
 export default function Contact() {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedProjectType, setSelectedProjectType] = useState('');
 
-  const projectTypes = [
-    { id: 'web', label: 'Web App' },
-    { id: 'mobile', label: 'Mobile App' },
-    { id: 'design', label: 'UI/UX Design' },
-    { id: 'consulting', label: 'Consulting' },
-    { id: 'other', label: 'Other' }
-  ];
 
-  const sendEmail = async (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     setIsSubmitting(true);
@@ -70,7 +62,6 @@ export default function Contact() {
         toast.dismiss(loadingToast);
         toast.success(result.message || 'Transmission successful. Data secured in MongoDB.');
         formRef.current.reset();
-        setSelectedProjectType('');
       } else {
         toast.dismiss(loadingToast);
         toast.error(result.message || 'Transmission failed. Retrying sync...');
@@ -128,13 +119,6 @@ export default function Contact() {
               >
                 Ready to <br /> <span className="text-gradient">Scale?</span>
               </motion.h2>
-
-              <motion.p
-                variants={itemVariants}
-                className="text-dark-textMuted text-lg font-light leading-relaxed mb-12 border-l border-dark-primary/30 pl-8 max-w-sm"
-              >
-                Currently accepting new architectural challenges. Let's sync and build something that matters.
-              </motion.p>
 
               {/* Info Cards */}
               <div className="space-y-6 mb-12">
@@ -228,7 +212,7 @@ export default function Contact() {
 
               <motion.form
                 ref={formRef}
-                onSubmit={sendEmail}
+                onSubmit={submitForm}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -276,48 +260,7 @@ export default function Contact() {
                   </motion.div>
                 </div>
 
-                {/* Pill-Selector for Project Scope / Type */}
-                <div className="space-y-4">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-dark-textMuted flex items-center gap-2">
-                    <DollarSign size={12} className="text-dark-secondary" />
-                    Project Scope / Category
-                  </label>
-                  <div className="flex flex-wrap gap-3 relative">
-                    {projectTypes.map((type) => {
-                      const isActive = selectedProjectType === type.label;
-                      return (
-                        <button
-                          key={type.id}
-                          type="button"
-                          onClick={() => setSelectedProjectType(type.label)}
-                          className={`px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer relative flex items-center gap-2 overflow-hidden border ${isActive
-                            ? 'text-white border-transparent'
-                            : 'text-dark-textMuted border-white/5 bg-white/[0.01] hover:border-violet-500/30 hover:text-white hover:bg-white/[0.03]'
-                            }`}
-                        >
-                          {isActive && (
-                            <motion.div
-                              layoutId="activeProjectType"
-                              className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 backdrop-blur-md border border-violet-500/40 shadow-[0_0_25px_rgba(124,58,237,0.25)]"
-                              transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
-                            />
-                          )}
-                          <span className="relative z-10 flex items-center gap-2">
-                            {isActive && (
-                              <motion.span
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                className="w-1.5 h-1.5 rounded-full bg-violet-400 shadow-[0_0_6px_#a78bfa]"
-                              />
-                            )}
-                            {type.label}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <input type="hidden" name="project_type" value={selectedProjectType} />
-                </div>
+
 
                 {/* Subject Input */}
                 <motion.div variants={itemVariants} className="space-y-3 relative group/input">

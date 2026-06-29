@@ -18,7 +18,7 @@ import ProtectedRoute from './components/admin/ProtectedRoute';
 
 function App() {
   const location = useLocation();
-  
+
   // Track pageviews on client-side route changes
   useEffect(() => {
     if (typeof window.gtag === 'function') {
