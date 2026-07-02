@@ -16,7 +16,7 @@ function AnimatedSphere() {
     <Float speed={2} rotationIntensity={1} floatIntensity={2}>
       <Sphere ref={meshRef} args={[1, 100, 200]} scale={1.8}>
         <MeshDistortMaterial
-          color="#FF2E93"
+          color="#00ff4cff"
           attach="material"
           distort={0.4}
           speed={2}

@@ -31,7 +31,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-console.log("main.jsx is executing!");
+
 try {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -46,7 +46,7 @@ try {
       </ErrorBoundary>
     </React.StrictMode>
   );
-  console.log("main.jsx successfully created root and rendered App!");
+
 } catch (e) {
   document.getElementById('root').innerHTML = "<h1>Error initializing root: " + e.message + "</h1>";
   console.error("Root initialization error", e);

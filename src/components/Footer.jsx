@@ -272,12 +272,12 @@ export default function Footer() {
                   <span>patelrudra99098@gmail.com</span>
                 </a>
               </li>
-              <li>
+             {/* <li>
                 <a href="tel:+916354825621" className="flex items-center gap-3 hover:text-white transition-colors group">
                   <Phone size={14} className="text-[#6366f1] group-hover:text-white transition-colors" />
                   <span>+91 6354 825 621</span>
                 </a>
-              </li>
+              </li>*/}
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-[#6366f1] mt-0.5 shrink-0" />
                 <span className="text-dark-textMain font-bold">Vadodara, Gujarat, India</span>

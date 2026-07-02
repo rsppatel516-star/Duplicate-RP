@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, ArrowLeft, Laptop, Globe } from 'lucide-react';
-import { socialLinks } from '../data/socialLinks';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { Menu, X, ArrowRight, ArrowLeft, Globe } from 'lucide-react';
 
 const navLinks = [
   { name: 'HOME', to: 'home' },
@@ -43,72 +42,73 @@ const MenuButton = ({ isOpen, onClick }) => {
 };
 
 /* shared scroll-link / button for a nav item */
-const NavLink = ({ link, mobile, isHome, close, handleClick, index }) => {
+const NavLink = ({ link, mobile, isHome, close, handleClick, index, activeSection, setActiveSection }) => {
   const cls = mobile
-    ? 'flex items-center justify-between w-full px-4 py-3.5 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.06] transition-transform-all duration-300 hover:-translate-y-1 cursor-default text-base cursor-pointer'
-    : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all duration-300 relative group cursor-pointer py-2 px-1';
+    ? 'flex items-center justify-between w-full px-4 py-3.5 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.06] transition-transform-all duration-300 hover:-translate-y-1 cursor-pointer text-base'
+    : 'text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300 relative py-2 px-4 flex items-center justify-center cursor-pointer';
 
   const content = (
-    <motion.span
-      initial={!mobile ? { opacity: 0, y: -10 } : {}}
-      animate={!mobile ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: 0.1 + (index * 0.1), duration: 0.5 }}
-      className="relative z-10 block"
-    >
+    <span className="relative z-10 block text-white/60 group-hover:text-white transition-colors duration-300">
       {link.name}
-      {!mobile && (
-        <motion.span
-          className="absolute -bottom-1 left-0 w-0 h-[2px] bg-dark-primary rounded-full group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(124,58,237,0.5)]"
-          whileHover={{ width: '100%' }}
-        />
-      )}
-    </motion.span>
+    </span>
+  );
+
+  const activeCapsule = !mobile && activeSection === link.to && (
+    <motion.span
+      layoutId="activeTabCapsule"
+      className="absolute inset-0 bg-white/5 border border-white/10 rounded-full z-0"
+      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+    />
   );
 
   return (link.type === 'route' || link.to.startsWith('/')) ? (
-    <RouterLink to={link.to} onClick={close} className={cls}>
+    <RouterLink to={link.to} onClick={close} className={`${cls} group`}>
+      {activeCapsule}
       {content}
       {mobile && <ArrowRight size={15} className="opacity-30 shrink-0" />}
     </RouterLink>
   ) : isHome ? (
-    <ScrollLink to={link.to} spy smooth offset={-70} duration={800}
+    <ScrollLink
+      to={link.to}
+      spy
+      smooth
+      offset={-70}
+      duration={800}
       onClick={close}
-      activeClass={mobile ? '!text-white !bg-white/[0.06]' : '!text-white'}
-      className={cls}
+      onSetActive={() => setActiveSection(link.to)}
+      activeClass={mobile ? '!text-white !bg-white/[0.06]' : ''}
+      className={`${cls} group`}
     >
+      {activeCapsule}
       {content}
       {mobile && <ArrowRight size={15} className="opacity-30 shrink-0" />}
     </ScrollLink>
   ) : (
-    <button onClick={() => handleClick(link.to)} className={`${cls} text-left`}>
+    <button onClick={() => handleClick(link.to)} className={`${cls} text-left group`}>
+      {activeCapsule}
       {content}
       {mobile && <ArrowRight size={15} className="opacity-30 shrink-0" />}
     </button>
   );
 };
 
-const ContactBtn = ({ full, isHome, close }) => {
-  const cls = `${full ? 'w-full' : ''} flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-display font-bold text-white text-xs tracking-widest uppercase transition-all backdrop-blur-md border border-white/20`;
-  const style = { background: 'linear-gradient(135deg, rgba(124,58,237,0.65), rgba(99,102,241,0.65))', boxShadow: '0 0 20px rgba(124,58,237,0.35)' };
-
-  return isHome ? (
-    <ScrollLink to="contact" smooth offset={-70} duration={800} onClick={close} className="block">
-      <button className={cls} style={style}>Contact <ArrowRight size={14} /></button>
-    </ScrollLink>
-  ) : (
-    <RouterLink to="/#contact" onClick={close}>
-      <button className={cls} style={style}>Contact <ArrowRight size={14} /></button>
-    </RouterLink>
-  );
-};
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [ping, setPing] = useState(24);
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === '/';
   const isArtifactsPage = location.pathname.startsWith('/artifacts');
+
+  // Scroll Progress logic
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   /* scroll detection */
   useEffect(() => {
@@ -124,6 +124,14 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
 
+  /* random realistic ping simulation */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPing(Math.floor(Math.random() * 8) + 20);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const close = () => setMenuOpen(false);
 
   const handleClick = (to) => {
@@ -133,6 +141,12 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── SCROLL PROGRESS BAR ────────────────── */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-violet-500 via-indigo-500 to-pink-500 origin-left z-[130] shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+        style={{ scaleX }}
+      />
+
       {/* ── HEADER ─────────────────────────── */}
       <header className={`fixed z-[110] transition-all duration-500 
         ${isScrolled
@@ -163,28 +177,15 @@ export default function Navbar() {
               className="relative overflow-hidden"
             >
               <img
-                src="/images/nav%20logo.png"
+                src="/images/nav logo.png"
                 alt="Logo"
                 className="h-10 md:h-8 w-auto object-contain transition-all"
               />
-              {/* Shine effect overlay 
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[30deg]"
-                animate={{ 
-                  left: ['-150%', '150%']
-                }}
-                transition={{ 
-                  duration: 2.5, 
-                  repeat: Infinity, 
-                  repeatDelay: 3,
-                  ease: "linear"
-                }}
-              />*/}
             </motion.div>
           </RouterLink>
 
           {/* Desktop centered links / Back Button */}
-          <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
             {!isArtifactsPage ? (
               navLinks.map((link, i) => (
                 <NavLink
@@ -195,6 +196,8 @@ export default function Navbar() {
                   close={close}
                   handleClick={handleClick}
                   index={i}
+                  activeSection={activeSection}
+                  setActiveSection={setActiveSection}
                 />
               ))
             ) : (
@@ -212,6 +215,18 @@ export default function Navbar() {
 
           {/* Right side tools */}
           <div className="flex items-center gap-4 z-10">
+            {/* Latency Widget */}
+            <div className="hidden xl:flex items-center gap-3 text-[9px] font-code text-dark-textMuted/50 border border-white/5 bg-white/[0.01] px-3.5 py-2 rounded-xl backdrop-blur-md">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]" />
+                SYS: ONLINE
+              </span>
+              <span className="text-white/20">|</span>
+              <span>PORT: 5173</span>
+              <span className="text-white/20">|</span>
+              <span>PING: {ping}ms</span>
+            </div>
+
             {/* Hamburger — mobile only */}
             <MenuButton isOpen={isMobileMenuOpen} onClick={() => setMenuOpen(v => !v)} />
           </div>
@@ -235,8 +250,8 @@ export default function Navbar() {
                 background: 'rgba(2, 2, 10, 0.72)',
                 backdropFilter: 'blur(18px)',
                 WebkitBackdropFilter: 'blur(18px)',
-                pointerEvents: 'all',      /* blocks all taps on background */
-                touchAction: 'none',       /* prevents scroll-through on mobile */
+                pointerEvents: 'all',
+                touchAction: 'none',
               }}
             />
 
@@ -260,7 +275,7 @@ export default function Navbar() {
                 <div className="px-8 pt-8 pb-4 flex items-center justify-between relative z-10">
                   <div className="flex items-center gap-3">
                     <img
-                      src="/images/nav%20logo.png"
+                      src="/images/nav logo.png"
                       alt="Logo"
                       className="h-8 w-auto object-contain"
                     />
@@ -304,6 +319,8 @@ export default function Navbar() {
                         isHome={isHome}
                         close={close}
                         handleClick={handleClick}
+                        activeSection={activeSection}
+                        setActiveSection={setActiveSection}
                       />
                     </motion.div>
                   ))}
@@ -324,4 +341,3 @@ export default function Navbar() {
     </>
   );
 }
-
