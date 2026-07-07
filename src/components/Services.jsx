@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion as motionFramer, AnimatePresence as AnimatePresenceFramer } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { services } from '../data/services';
 import { Zap, Terminal, Cpu, X, Calculator, ShieldCheck, DollarSign, Calendar, Settings } from 'lucide-react';
 import MagneticButton from './ui/MagneticButton';
@@ -67,7 +67,7 @@ export default function Services() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
-            <motionFramer.div
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -75,7 +75,7 @@ export default function Services() {
             >
               <Zap size={18} />
               <span>Core Capabilities</span>
-            </motionFramer.div>
+            </motion.div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.2] animated-gradient-text">
               Solving <span className="text-gradient">Complex</span> <br /> Problems with Code
             </h2>
@@ -85,7 +85,7 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
           {services.map((service, idx) => (
-            <motionFramer.div
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -126,12 +126,12 @@ export default function Services() {
                 <Terminal size={12} />
                 <span>View Details</span>
               </div>
-            </motionFramer.div>
+            </motion.div>
           ))}
         </div>
 
         {/* ── PROJECT BUDGET ESTIMATOR CALCULATOR ─────────────────────────── */}
-        <motionFramer.div
+        <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -277,21 +277,21 @@ export default function Services() {
             </div>
 
           </div>
-        </motionFramer.div>
+        </motion.div>
 
       </div>
 
       {/* Recommended Stack Modal */}
-      <AnimatePresenceFramer>
+      <AnimatePresence>
         {selectedService && (
-          <motionFramer.div
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
             onClick={() => setSelectedService(null)}
           >
-            <motionFramer.div
+            <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -350,10 +350,10 @@ export default function Services() {
                   </div>
                 )}
               </div>
-            </motionFramer.div>
-          </motionFramer.div>
+            </motion.div>
+          </motion.div>
         )}
-      </AnimatePresenceFramer>
+      </AnimatePresence>
     </section>
   );
 }
