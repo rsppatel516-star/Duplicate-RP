@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Search, ArrowRight, Calendar, Clock, User, Hash } from 'lucide-react';
 
@@ -51,10 +51,11 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
-      <Helmet>
-        <title>Insights & Thoughts | Rudra Patel</title>
-        <meta name="description" content="Deep dives into AI, full-stack development, and modern design principles." />
-      </Helmet>
+      <SEO 
+        title="Insights & Thoughts"
+        description="Deep dives into AI, full-stack development, and modern design principles."
+        canonical="https://patelrudra.in/blog"
+      />
 
       {/* Background Decorative Elements */}
       <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-dark-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />

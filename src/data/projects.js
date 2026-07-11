@@ -4,7 +4,7 @@ export const projects = [
   title: 'Note Sphere',
   subtitle: 'Smart and Simple Note Management App',
   description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
-  image: '/project img/Note.png',
+  image: '/project img/Note.webp',
   tags: [
     "Notes App",
     "Productivity", 
@@ -37,7 +37,7 @@ export const projects = [
     title: 'Panto - Furniture Landing Page',
     subtitle: 'Furniture e-commerce landing page with modern design and responsive layout',
     description: 'A modern and visually appealing landing page for a furniture e-commerce website. It features a clean design, responsive layout, and smooth animations to showcase products effectively and attract potential customers.',
-    image: '/project img/Panto - Furniture Landing Page Design.png',
+    image: '/project img/Panto - Furniture Landing Page Design.webp',
     tags: [
       "E-commerce", 
       "Landing Page", 
@@ -65,7 +65,7 @@ export const projects = [
   title: ' Furniqlo Premium Furniture Store',
   subtitle: ' Premium Furniture Store Landing Page',
   description: 'Furniqlo is a premium, modern e-commerce furniture store built with React 19, TypeScript, and Vite. It delivers a stunning shopping experience with fluid animations, a fully functional cart, and an immersive product catalogue.',
-  image: '/project img/Furniture.png',
+  image: '/project img/Furniture.webp',
   tags: [
     "E-commerce",
     "Furniture",
@@ -96,7 +96,7 @@ export const projects = [
     title: "Travel Website",
   subtitle: "A travel booking and destination showcase platform",
   description: "A responsive travel website that allows users to explore destinations, view travel packages, and get detailed information about trips.",
-    image: '/project img/Travel img.png',
+    image: '/project img/Travel img.webp',
     tags: [
       "Travel",
       "UI Design", 
@@ -128,7 +128,7 @@ export const projects = [
     title: "Personal Project Manager",
     subtitle: "A task and project management web application",
     description: "A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priorities, and progress tracking.",
-    image: '/project img/Project Management.png',
+    image: '/project img/Project Management.webp',
     tags: [
       "Productivity", 
       "Task Management", 
@@ -159,7 +159,7 @@ export const projects = [
   title: "Todo List Application",
   subtitle: "A simple task management and productivity tool",
   description: "A lightweight to-do list application that allows users to add, update, and delete daily tasks for better productivity.",
-  image: "/project img/Todo.png",
+  image: "/project img/Todo.webp",
   tags: [
     "Productivity", 
     "Todo App", 
@@ -193,7 +193,7 @@ export const projects = [
   title: "Job Portal Website",
   subtitle: "An online platform for job seekers and recruiters",
   description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
-  image: "/project img/Job Portal.png",
+  image: "/project img/Job Portal.webp",
   tags: [
     "Job Portal", 
     "Career", 
@@ -226,7 +226,7 @@ export const projects = [
   title: "Calculator App",
   subtitle: "An online calculator web application with basic arithmetic operations",
   description: "A calculator web application with basic arithmetic operations.",
-  image: "/project img/Calculator.png",
+  image: "/project img/Calculator.webp",
   tags: [
     "Calculator", 
     "Web App", 
@@ -256,7 +256,7 @@ export const projects = [
   title: "Nexify Landing Page",
   subtitle: "AI-powered workflow automation platform",
   description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
-  image: "/project img/Nexify landing page.png",
+  image: "/project img/Nexify landing page.webp",
   tags: [
     "Landing Page","Product Launch","AI Platform", "Web Design"
     ],
@@ -283,7 +283,7 @@ export const projects = [
   id: 10,
   title: "Health Care Website",
   subtitle: "An online platform for healthcare services and information",
-  image: "/project img/Health.png",
+  image: "/project img/Health.webp",
   description: "A healthcare website that provides information about medical services, doctors, and health-related resources for users.",
   tags: [
     "Healthcare", 

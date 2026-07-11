@@ -7,9 +7,12 @@
     "dev": "start node --env-file=.env devserver.js && vite",
     "dev:api": "node --env-file=.env devserver.js",
     "dev:all": "start node --env-file=.env devserver.js && vite",
-    "build": "vite build",
+    "build:client": "vite build",
+    "build:server": "vite build --ssr src/entry-server.jsx --outDir dist-server",
+    "build": "npm run build:client && npm run build:server && node prerender.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "optimize-images": "node optimize-images.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -54,6 +57,7 @@
     "express": "^5.2.1",
     "globals": "^17.4.0",
     "postcss": "^8.5.8",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.2.2",
     "vite": "^8.0.1"
   }

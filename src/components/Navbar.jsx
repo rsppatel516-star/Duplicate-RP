@@ -163,7 +163,7 @@ export default function Navbar() {
               className="relative overflow-hidden"
             >
               <img
-                src="/images/nav%20logo.png"
+                src="/images/nav%20logo.webp"
                 alt="Logo"
                 className="h-10 md:h-8 w-auto object-contain transition-all"
               />
@@ -260,7 +260,7 @@ export default function Navbar() {
                 <div className="px-8 pt-8 pb-4 flex items-center justify-between relative z-10">
                   <div className="flex items-center gap-3">
                     <img
-                      src="/images/nav%20logo.png"
+                      src="/images/nav%20logo.webp"
                       alt="Logo"
                       className="h-8 w-auto object-contain"
                     />

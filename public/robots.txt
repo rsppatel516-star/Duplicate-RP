@@ -4,5 +4,41 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin
 
+# Allow AI Search & Citation Agents (GEO/AEO Optimizations)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
+User-agent: CohereBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+
 # Sitemaps
 Sitemap: https://patelrudra.in/sitemap.xml

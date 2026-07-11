@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { blogposts as fallbackBlogs } from '../data/blogposts';
 import { ArrowLeft, Clock, Tag, Calendar, Twitter, Linkedin, Link as LinkIcon, User } from 'lucide-react';
@@ -14,8 +14,12 @@ const SectionLabel = ({ icon: IconComponent, label, color = "text-dark-primary" 
 
 export default function BlogPost() {
   const { id } = useParams();
-  const [post, setPost] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [post, setPost] = useState(() => {
+    return fallbackBlogs.find(p => p.id === parseInt(id));
+  });
+  const [isLoading, setIsLoading] = useState(() => {
+    return !fallbackBlogs.some(p => p.id === parseInt(id));
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -81,14 +85,45 @@ export default function BlogPost() {
     }
   };
 
+  const schema = post ? {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `https://patelrudra.in/blog/${post.id || post._id}#entry`,
+    "mainEntityOfPage": `https://patelrudra.in/blog/${post.id || post._id}`,
+    "headline": post.title,
+    "description": post.seo?.metaDescription || post.excerpt,
+    "image": post.image.startsWith('http') ? post.image : `https://patelrudra.in${post.image}`,
+    "datePublished": post.date,
+    "author": {
+      "@type": "Person",
+      "name": post.author || "Rudra Patel",
+      "url": "https://patelrudra.in"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Rudra Patel",
+      "url": "https://patelrudra.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://patelrudra.in/images/RP%20-%20LOGO.webp"
+      }
+    },
+    "keywords": post.seo?.keywords?.join(', ') || post.tags?.join(', ') || post.category,
+    "articleBody": post.excerpt
+  } : null;
+
   return (
     <div className="min-h-screen text-dark-textMain bg-dark-bg overflow-x-hidden pb-32">
-      <Helmet>
-        <title>{post.seo?.metaTitle || `${post.title} | Blog | Rudra Patel`}</title>
-        <meta name="description" content={post.seo?.metaDescription || post.excerpt} />
-        {post.seo?.keywords && <meta name="keywords" content={post.seo.keywords.join(', ')} />}
-        {post.seo?.canonical && <link rel="canonical" href={post.seo.canonical} />}
-      </Helmet>
+      <SEO 
+        title={post.seo?.metaTitle || `${post.title} | Blog`}
+        description={post.seo?.metaDescription || post.excerpt}
+        keywords={post.seo?.keywords?.join(', ') || post.tags?.join(', ')}
+        ogTitle={post.seo?.metaTitle || post.title}
+        ogDescription={post.seo?.metaDescription || post.excerpt}
+        ogImage={post.image}
+        canonical={post.seo?.canonical || `https://patelrudra.in/blog/${post.id || post._id}`}
+        schema={schema}
+      />
 
       {/* Progress Bar */}
       <motion.div 
@@ -223,7 +258,7 @@ export default function BlogPost() {
             <div className="flex items-center gap-6">
               <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-dark-primary/30">
                 <img 
-                  src="/images/pic.jpeg" 
+                  src="/images/about.webp" 
                   alt="Rudra Patel" 
                   className="w-full h-full object-cover"
                 />

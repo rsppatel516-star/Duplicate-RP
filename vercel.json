@@ -5,6 +5,14 @@
       "destination": "/api/$1"
     },
     {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.js"
+    },
+    {
+      "source": "/feed.xml",
+      "destination": "/api/feed.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

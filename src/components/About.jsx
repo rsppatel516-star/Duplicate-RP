@@ -136,7 +136,7 @@ export default function About() {
 
               <div className="space-y-4 flex-grow text-white/70">
                 <p className="text-dark-textMuted leading-loose font-bricolage text-sm md:text-base opacity-95">
-                  I'm <span className="text-white font-bold">Rudra Patel</span>, a passionate Full Stack Developer based in India. I specialize in creating unique, modern, and responsive applications with exceptional user experiences.
+                  I'm <span className="text-white font-bold">Rudra Patel</span>, a passionate Full-stack Developer based in Vadodara, Gujarat. I specialize in creating unique, modern, and responsive web and iOS mobile applications.
                 </p>
                 <p className="text-dark-textMuted leading-loose font-bricolage text-sm md:text-base opacity-95">
                   My expertise spans from frontend interface design to backend microservice deployment, engineering scalable solutions that provide high business value.

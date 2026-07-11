@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Skills from '../components/Skills';
@@ -11,16 +11,15 @@ import Contact from '../components/Contact';
 export default function Home() {
   return (
     <>
-      <Helmet>
-        <title>RUDRA | Digital Architect & Full-Stack Engineer </title>
-        <meta name="description" content="Portfolio of Rudra Patel, a Digital Architect specializing in premium web experiences, high-performance mobile apps, and robust full-stack engineering." />
-        <meta name="keywords" content="Rudra Patel, Digital Architect, Full-Stack Developer, Mobile App Developer, React, Flutter, Node.js, Midnight Glass Design" />
-        <meta property="og:title" content="RUDRA | Digital Architect Portfolio" />
-        <meta property="og:description" content="Immersive digital experiences and high-performance engineering." />
-        <meta property="og:image" content="/images/about.png" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://patelrudra.in/" />
-      </Helmet>
+      <SEO 
+        title="Rudra Patel | Digital Architect & Full-Stack Engineerr"
+        description="Portfolio of Rudra Patel, a specialized Full-stack developer in Vadodara, Gujarat and iOS developer in India. Engineering high-performance web solutions and SwiftUI apps."
+        keywords="Rudra Patel, Full-stack developer Vadodara, iOS developer Gujarat, React developer India, Swift developer Vadodara, MERN stack developer India, mobile app developer Vadodara, Gujarat software engineer"
+        ogTitle="RUDRA | Full-Stack & iOS Developer Portfolio"
+        ogDescription="Premium full-stack web engineering and native iOS application development based in Vadodara, Gujarat, India."
+        ogImage="/images/about.webp"
+        canonical="https://patelrudra.in/"
+      />
 
       <div className="relative">
         <section id="home" className="scroll-mt-24"><Hero /></section>

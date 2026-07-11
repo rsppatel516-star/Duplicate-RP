@@ -62,7 +62,7 @@ const certifications = [
     description: 'Demonstrates foundational level knowledge of cloud services and how those services are provided with Microsoft Azure, including security, privacy, compliance, and trust.',
     brandColor: '#0089D6',
     iconName: 'azure',
-    imagePath: '/certificate img/Microsoft Azure.jpg',
+    imagePath: '/certificate img/Microsoft Azure.webp',
     pdfPath: '/Microsoft Azure .pdf',
     externalUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/',
     skills: ['Cloud Architecture', 'Azure Services', 'Cloud Security', 'Compliance Frameworks']
@@ -77,7 +77,7 @@ const certifications = [
     description: 'Validates advanced proficiency in Python concepts, object-oriented software patterns, memory structures, multithreading, and algorithmic analysis.',
     brandColor: '#3776AB',
     iconName: 'python',
-    imagePath: '/certificate img/Python.jpg',
+    imagePath: '/certificate img/Python.webp',
     pdfPath: '',
     externalUrl: 'https://www.credly.com/badges/955b2f66-1a2b-43a1-a087-c595295d52f8/',
     skills: ['Python 3', 'Object-Oriented Programming', 'Script Automation', 'Data Analysis']
@@ -92,7 +92,7 @@ const certifications = [
     description: 'Verifies mastery of algorithmic complexity, sorting/searching paradigms, advanced trees, graphs, dynamic programming, and Java-based memory representation.',
     brandColor: '#FF3E00',
     iconName: 'dsa',
-    imagePath: '/certificate img/DSA.jpg',
+    imagePath: '/certificate img/DSA.webp',
     pdfPath: '',
     externalUrl: 'https://www.apnacollege.in/',
     skills: ['Java Development', 'Data Structures', 'Algorithmic Complexity', 'Problem Solving']
@@ -107,7 +107,7 @@ const certifications = [
     description: 'Validates end-to-end web development proficiency spanning responsive React frontends, Node.js/Express backend APIs, MongoDB data modeling, REST architecture, CI/CD pipelines, and scalable deployment practices.',
     brandColor: '#00d4aa',
     iconName: 'fullstack',
-    imagePath: '/certificate img/Sigma-Development.jpg',
+    imagePath: '/certificate img/Sigma-Development.webp',
     pdfPath: '',
     externalUrl: 'https://www.apnacollege.in/',
     skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'CI/CD']
@@ -122,7 +122,7 @@ const certifications = [
     description: 'Verifies fundamental knowledge of thread scheduling, process synchronization, paging & virtual memory, disk management, and secure POSIX kernel architectures.',
     brandColor: '#00E676',
     iconName: 'os',
-    imagePath: '/certificate img/Operating System.jpg',
+    imagePath: '/certificate img/Operating System.webp',
     pdfPath: '',
     externalUrl: 'https://www.credly.com/badges/6e2fbaff-f008-4dd4-b2ad-eabc0f4dc515/',
     skills: ['Process Management', 'Memory Allocation', 'Concurrency & Locks', 'Kernel Architecture']
@@ -137,11 +137,11 @@ const certifications = [
     description: 'Hands-on workshop covering native iOS app development with Swift, SwiftUI layout system, UIKit fundamentals, Xcode toolchain, App Store publishing pipeline, and Apple Human Interface Guidelines.',
     brandColor: '#007AFF',
     iconName: 'ios',
-    imagePath: '/images/iOS Workshop 1.jpeg',
+    imagePath: '/images/iOS Workshop 1.webp',
     images: [
-      '/images/iOS Workshop 1.jpeg',
-      '/images/iOS Workshop 2.jpeg',
-      '/images/iOS Workshop 4.jpeg'
+      '/images/iOS Workshop 1.webp',
+      '/images/iOS Workshop 2.webp',
+      '/images/iOS Workshop 4.webp'
     ],
     pdfPath: '',
     externalUrl: 'https://developer.apple.com/',
@@ -380,14 +380,14 @@ export default function Achievements() {
             <span>CREDENTIALS</span>
           </motion.div>
 
-          <motion.h2
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-display font-black tracking-tight mb-6 animated-gradient-text"
           >
             Badges & <span className="text-gradient">Achievements</span>
-          </motion.h2>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

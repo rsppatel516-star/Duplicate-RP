@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { featuredArtifacts as fallbackArtifacts } from '../data/featuredArtifacts';
@@ -11,8 +11,8 @@ import MagneticButton from '../components/ui/MagneticButton';
 const caseStudyIds = new Set(caseStudies.map((cs) => cs.id));
 
 export default function Artifacts() {
-  const [projects, setProjects] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [projects, setProjects] = useState(() => fallbackArtifacts);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -43,13 +43,11 @@ export default function Artifacts() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
-      <Helmet>
-        <title>Featured Artifacts | Rudra Patel</title>
-        <meta
-          name="description"
-          content="A curated collection of digital products and technical case studies by Rudra Patel."
-        />
-      </Helmet>
+      <SEO 
+        title="Featured Artifacts"
+        description="A curated collection of digital products and technical case studies by Rudra Patel."
+        canonical="https://patelrudra.in/artifacts"
+      />
 
       {/* Background Orbs */}
       <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-dark-primary/10 rounded-full blur-[120px] pointer-events-none" />
@@ -167,7 +165,7 @@ export default function Artifacts() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} featured artifact - ${project.category} by Rudra Patel`}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />

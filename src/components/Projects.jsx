@@ -176,7 +176,7 @@ export default function Projects() {
                     {/* Immersive Full Image */}
                     <img
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} project preview - ${project.category} by Rudra Patel`}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
@@ -270,7 +270,7 @@ export default function Projects() {
                     <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden relative shadow-2xl border border-dark-border/50 group">
                       <img
                         src={selectedProject.image}
-                        alt={selectedProject.title}
+                        alt={`${selectedProject.title} project case study image - ${selectedProject.category} by Rudra Patel`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/90 pb-8 items-end flex to-transparent opacity-90" />

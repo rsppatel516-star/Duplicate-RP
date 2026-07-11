@@ -145,7 +145,7 @@ export default function Footer() {
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-dark-primary shrink-0 p-1 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-tr from-dark-primary/20 to-dark-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <img
-                  src='/images/about.png'
+                  src='/images/about.webp'
                   alt='Rudra Patel Logo'
                   className='w-16 h-16 object-cover rounded-xl relative z-10 transition-transform duration-500 group-hover:scale-105'
                 />
@@ -272,7 +272,7 @@ export default function Footer() {
                   <span>patelrudra99098@gmail.com</span>
                 </a>
               </li>
-             {/* <li>
+              {/* <li>
                 <a href="tel:+916354825621" className="flex items-center gap-3 hover:text-white transition-colors group">
                   <Phone size={14} className="text-[#6366f1] group-hover:text-white transition-colors" />
                   <span>+91 6354 825 621</span>

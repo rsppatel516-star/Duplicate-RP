@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '../data/skills';
+import { projects } from '../data/projects';
 import {
   Code, Layout, Server, Smartphone, Cloud,
-  Database, Cpu, Layers, ChevronRight, Zap, Target, Bot, Sparkles, BrainCircuit
+  Database, Cpu, Layers, ChevronRight, Zap, Target, Bot, Sparkles, BrainCircuit,
+  Search, X, ExternalLink, Globe
 } from 'lucide-react';
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaJava,
@@ -96,7 +98,7 @@ const categoryIcons = {
   'AI Tools': <Bot size={14} />,
 };
 
-const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
+const FilterButton = ({ cat, activeTab, onSelect, icon }) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const buttonRef = useRef(null);
 
@@ -107,13 +109,13 @@ const FilterButton = ({ cat, activeTab, setActiveTab, icon }) => {
   };
 
   return (
-    <MagneticButton onClick={() => setActiveTab(cat)}>
+    <MagneticButton onClick={onSelect}>
       <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
         className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${activeTab === cat
           ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
-          : 'bg-white/[0.01] border-white/5 hover:border-violet-500/30 text-dark-textMuted hover:text-white'
+          : ' bg-white/[0.01] border-white/5 hover:border-violet-500/30 text-dark-textMuted hover:text-white'
           }`}
       >
         {activeTab === cat && (
@@ -145,7 +147,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
@@ -162,171 +164,214 @@ const itemVariants = {
   },
 };
 
-
 export default function Skills() {
   const [activeTab, setActiveTab] = useState(skills[0].category);
   const [hoveredTech, setHoveredTech] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const categories = skills.map(s => s.category);
-  const activeSkills = skills.find(s => s.category === activeTab)?.technologies || [];
+
+  // Flattened system technologies for global querying
+  const allSkills = skills.flatMap(cat => 
+    cat.technologies.map(t => ({ ...t, category: cat.category }))
+  );
+
+  const filteredSkills = searchQuery.trim() === ''
+    ? skills.find(s => s.category === activeTab)?.technologies || []
+    : allSkills.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  // Dynamic system project matcher for the project count stamp
+  const getRelatedProjectsCount = (techName) => {
+    if (!techName) return 0;
+
+    const isMatch = (projSkill, selectedName) => {
+      const p = projSkill.toLowerCase().trim();
+      const t = selectedName.toLowerCase().trim();
+      if (p === t) return true;
+
+      // Standardize naming variants (React/React.js, Express/Express.js, HTML5/HTML, CSS3/CSS)
+      const normalize = (name) => {
+        return name.toLowerCase()
+          .replace(/\.js$/, '')
+          .replace(/5$/, '')
+          .replace(/3$/, '')
+          .replace(/[^a-z0-9]/g, '');
+      };
+
+      return normalize(projSkill) === normalize(selectedName);
+    };
+
+    return projects.filter(proj => 
+      proj.skillsUsed?.some(s => isMatch(s, techName)) ||
+      proj.tags?.some(t => isMatch(t, techName))
+    ).length;
+  };
+
+  const handleCategorySelect = (cat) => {
+    setSearchQuery('');
+    setActiveTab(cat);
+  };
 
   return (
-    <section id="skills" className="py-4 relative overflow-hidden">
-      {/* Decorative Grid / Lines */}
+    <section id="skills" className="py-20 relative overflow-hidden text-white">
       <GridBackground
         opacity="05"
         mask="radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)"
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12 text-center lg:text-left">
+        
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-12 text-center lg:text-left">
           <div className="max-w-3xl mx-auto lg:mx-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center lg:justify-start gap-5 mb-8 text-dark-primary/60 font-code text-xs font-black tracking-[0.5em] uppercase"
+              className="flex items-center justify-center lg:justify-start gap-3 mb-6 text-indigo-400 font-mono text-xs font-black tracking-[0.4em] uppercase"
             >
-              <Target size={16} />
+              <Target size={14} className="animate-pulse" />
               <span>THE ARSENAL</span>
             </motion.div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
-              Technical <br /> <span className="text-gradient">Engine</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-none text-white">
+              Technical <br /> <span className="hero-gradient-text block mt-1">Engine & Stack</span>
             </h2>
           </div>
         </div>
 
-        {/* System Tabs Controller */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center lg:justify-start gap-6 mb-20"
-        >
-          {categories.map((cat) => (
-            <motion.div key={cat} variants={itemVariants}>
-              <FilterButton
-                cat={cat}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-                icon={categoryIcons[cat]}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* System Category Controller */}
+        {searchQuery.trim() === '' && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center lg:justify-start gap-4 mb-16"
+          >
+            {categories.map((cat) => (
+              <motion.div key={cat} variants={itemVariants}>
+                <FilterButton
+                  cat={cat}
+                  activeTab={activeTab}
+                  onSelect={() => handleCategorySelect(cat)}
+                  icon={categoryIcons[cat]}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+
+        {/* Query Status Readout */}
+        {searchQuery.trim() !== '' && (
+          <div className="mb-8 font-mono text-[10px] text-indigo-400 tracking-wider text-center lg:text-left flex items-center gap-2 justify-center lg:justify-start">
+            <span className="w-1 h-1 rounded-full bg-indigo-400 animate-ping" />
+            <span>FOUND {filteredSkills.length} MATCHING COMPONENT(S) IN CYBER ENGINE</span>
+          </div>
+        )}
 
         {/* Skill Matrix */}
-        <div className="min-h-[400px]">
+        <div className="min-h-[380px]">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-            >
-              {activeSkills.map((tech, index) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                  onMouseEnter={() => setHoveredTech(tech.name)}
-                  onMouseLeave={() => setHoveredTech(null)}
-                  style={{
-                    borderColor: hoveredTech === tech.name ? `${techHexColors[tech.icon]}60` : undefined,
-                    boxShadow: hoveredTech === tech.name ? `0 0 25px -5px ${techHexColors[tech.icon]}30` : undefined
-                  }}
-                  className="group relative h-48 bg-dark-surface/30 backdrop-blur-md border border-dark-border rounded-3xl p-8 flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-500 hover:bg-dark-surface/50"
-                >
-                  {/* Floating Brand Glow */}
-                  <div className={`absolute -bottom-10 -right-10 text-9xl opacity-[0.02] group-hover:opacity-[0.1] transition-opacity duration-700 pointer-events-none ${techColors[tech.icon]}`}>
-                    {iconMap[tech.icon]}
-                  </div>
+            {filteredSkills.length === 0 ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col items-center justify-center py-20 text-center"
+              >
+                <Cpu className="text-white/20 w-12 h-12 mb-4 animate-bounce" />
+                <p className="font-mono text-xs text-white/40 uppercase tracking-widest">No matching nodes in database</p>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeTab + searchQuery}
+                initial={{ opacity: 0, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, scale: 0.95, filter: 'blur(15px)' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
+              >
+                {filteredSkills.map((tech, index) => {
+                  const matchProjCount = getRelatedProjectsCount(tech.name);
+                  return (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.04 }}
+                      whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                      onMouseEnter={() => setHoveredTech(tech.name)}
+                      onMouseLeave={() => setHoveredTech(null)}
+                      style={{
+                        borderColor: hoveredTech === tech.name ? `${techHexColors[tech.icon]}45` : undefined,
+                        boxShadow: hoveredTech === tech.name ? `0 0 25px -5px ${techHexColors[tech.icon]}25` : undefined
+                      }}
+                      className="group relative h-48 bg-white/[0.02] border border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-500 hover:bg-white/[0.04] cursor-default"
+                    >
+                     
 
-                  <div className={`text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-700 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${techColors[tech.icon]}`}>
-                    {iconMap[tech.icon]}
-                  </div>
+                      {/* Project Count Tech Stamp */}
+                      <div className="absolute top-4 left-4 text-[7px] font-mono font-bold text-white/30 group-hover:text-white/60 transition-colors uppercase tracking-widest">
+                        [{matchProjCount || tech.projectsCount || 0} PROJ]
+                      </div>
 
-                  <span className="text-[14px] uppercase font-black tracking-[0.2em] text-dark-textMuted group-hover:text-dark-textMain transition-colors duration-500 relative z-10 font-poppins">
-                    {tech.name}
-                  </span>
+                      {/* Floating Large Brand Glow */}
+                      <div className={`absolute -bottom-10 -right-10 text-9xl opacity-[0.01] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none ${techColors[tech.icon]}`}>
+                        {iconMap[tech.icon]}
+                      </div>
 
-                  {/* High-Tech Scanline Effect on Hover */}
-                  <div className="absolute top-46.5 left-0 w-full h-1 bg-gradient-to-r from-transparent via-dark-primary to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </motion.div>
-              ))}
-            </motion.div>
+                      {/* Main Skill Icon */}
+                      <div className={`text-5xl mb-5 transform group-hover:scale-105 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.03)] group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.08)] ${techColors[tech.icon]}`}>
+                        {iconMap[tech.icon]}
+                      </div>
+
+                      {/* Skill Name */}
+                      <span className="text-[12px] uppercase font-black tracking-[0.25em] text-white/50 group-hover:text-white transition-colors duration-300 relative z-10 font-mono">
+                        {tech.name}
+                      </span>
+
+                      {/* High-Tech Scanline Scan Effect */}
+                      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
 
-        {/* Technical Footer Detail */}
+        {/* Technical Footer Telemetry */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-10 pt-6 border-t border-dark-border/30 flex flex-col sm:flex-row items-center justify-between gap-12"
+          className="mt-16 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-8"
         >
           <div className="flex items-center gap-8">
             <div className="flex -space-x-3">
               {['swift', 'nodejs', 'nextjs'].map((icon, i) => (
-                <div key={i} className={`w-10 h-10 rounded-full border-2 border-dark-bg bg-dark-surface flex items-center justify-center text-lg transition-transform hover:z-10 hover:scale-110 cursor-default ${techColors[icon]}`}>
+                <div key={i} className={`w-9 h-9 rounded-full border-2 border-black bg-white/5 flex items-center justify-center text-base transition-transform hover:z-10 hover:scale-110 cursor-default ${techColors[icon]}`}>
                   {iconMap[icon]}
                 </div>
               ))}
-              <div className="w-10 h-10 rounded-full border-2 border-dark-bg bg-dark-surface flex items-center justify-center text-lg text-dark-textMuted/40 relative group/soon">
-                <div className="absolute inset-0 rounded-full bg-dark-primary/10 animate-pulse" />
+              <div className="w-9 h-9 rounded-full border-2 border-black bg-white/5 flex items-center justify-center text-base text-white/40 relative group/soon">
+                <div className="absolute inset-0 rounded-full bg-indigo-500/10 animate-pulse" />
                 <SiDocker className="opacity-40 group-hover/soon:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-dark-surface/90 backdrop-blur-md border border-dark-primary/20 rounded-lg text-[7px] font-black uppercase tracking-[0.2em] opacity-0 group-hover/soon:opacity-100 group-hover/soon:-top-12 transition-all duration-500 whitespace-nowrap pointer-events-none shadow-[0_0_20px_rgba(0,0,0,0.5)] flex items-center gap-2">
-                  <div className="w-1 h-1 rounded-full bg-dark-primary animate-ping" />
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/90 backdrop-blur-md border border-indigo-500/20 rounded-lg text-[7px] font-black uppercase tracking-[0.2em] opacity-0 group-hover/soon:opacity-100 group-hover/soon:-top-12 transition-all duration-500 whitespace-nowrap pointer-events-none shadow-[0_0_20px_rgba(0,0,0,0.5)] flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-indigo-500 animate-ping" />
                   Coming Soon: Docker
                 </div>
               </div>
             </div>
-            <p className="text-[10px] font-code uppercase tracking-widest text-dark-textMuted">System Integrity: Nominal // Neural Expansion Active</p>
+            <p className="text-[9px] font-mono uppercase tracking-widest text-white/40">Console: Nominal // System Diagnostics Online</p>
           </div>
 
-          <div className="flex items-center gap-4 text-dark-textMuted/40">
-            <Zap size={14} />
-            <span className="text-[10px] font-code uppercase tracking-widest">Always Learning . Always Building</span>
-            <Zap size={14} />
+          <div className="flex items-center gap-4 text-white/30">
+            <Zap size={12} className="text-violet-400" />
+            <span className="text-[9px] font-mono uppercase tracking-widest">Always Learning . Always Building</span>
+            <Zap size={12} className="text-violet-400" />
           </div>
         </motion.div>
-
-        {/* Core Competencies Section 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-24"
-        >
-          <div className="flex items-center justify-center gap-5 mb-8 text-dark-primary/60 font-code text-xs font-black tracking-[0.5em] uppercase">
-            <Cpu size={16} />
-            <span>CORE COMPETENCIES</span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: 'System Architecture', desc: 'Designing scalable & robust systems for optimal performance.' },
-              { name: 'Agile Methodology', desc: 'Iterative development, sprint planning & fast delivery.' },
-              { name: 'Problem Solving', desc: 'Analytical approach to complex technical challenges.' },
-              { name: 'UI/UX Excellence', desc: 'Crafting premium, intuitive, and highly interactive interfaces.' },
-            ].map((comp, idx) => (
-              <motion.div 
-                key={idx} 
-                whileHover={{ y: -5 }}
-                className="group relative bg-dark-surface/20 border border-dark-border/50 rounded-2xl p-6 text-center hover:bg-dark-surface/40 transition-all duration-500 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <h4 className="relative z-10 text-white font-poppins font-bold text-sm tracking-wider mb-3 uppercase">{comp.name}</h4>
-                <p className="relative z-10 text-dark-textMuted text-xs leading-relaxed">{comp.desc}</p>
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-dark-primary/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>*/}
       </div>
     </section>
   );

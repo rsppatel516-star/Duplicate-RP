@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { caseStudies } from '../data/caseStudies';
 import {
@@ -54,12 +54,44 @@ export default function CaseStudy() {
     }
   };
 
+  const schema = study ? {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": `https://patelrudra.in/artifacts/${study.id}#artifact`,
+    "mainEntityOfPage": `https://patelrudra.in/artifacts/${study.id}`,
+    "name": study.title,
+    "headline": study.title,
+    "alternativeHeadline": study.subtitle,
+    "description": study.description,
+    "image": study.image.startsWith('http') ? study.image : `https://patelrudra.in${study.image}`,
+    "url": `https://patelrudra.in/artifacts/${study.id}`,
+    "creator": {
+      "@type": "Person",
+      "name": "Rudra Patel",
+      "jobTitle": "Digital Architect & Full-Stack Engineer",
+      "url": "https://patelrudra.in"
+    },
+    "genre": study.category,
+    "keywords": study.tags?.join(', '),
+    "abstract": study.problem,
+    "hasPart": study.keyFeatures?.map(feature => ({
+      "@type": "CreativeWork",
+      "name": feature
+    }))
+  } : null;
+
   return (
     <div className="min-h-screen text-dark-textMain overflow-x-hidden">
-      <Helmet>
-        <title>{study.title} | Case Study | Rudra Patel</title>
-        <meta name="description" content={study.description} />
-      </Helmet>
+      <SEO 
+        title={`${study.title} | Case Study`}
+        description={study.description}
+        keywords={study.tags?.join(', ') || study.category}
+        ogTitle={`${study.title} — Technical Case Study by Rudra Patel`}
+        ogDescription={study.subtitle || study.description}
+        ogImage={study.image}
+        canonical={`https://patelrudra.in/artifacts/${study.id}`}
+        schema={schema}
+      />
 
 
       {/* ── HERO BANNER ─────────────────────────── */}
@@ -70,7 +102,7 @@ export default function CaseStudy() {
         >
           <img
             src={study.image}
-            alt={study.title}
+            alt={`${study.title} technical case study banner - ${study.category} by Rudra Patel`}
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/60 to-transparent z-10" />

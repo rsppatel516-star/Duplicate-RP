@@ -6,7 +6,7 @@ export const caseStudies = [
     role: "Full-Stack Architect",
     liveUrl: "https://rudrapatel.me",
     description: "Zerodha is a modern, high-performance digital presence 🚀 engineered to showcase architectural precision and sophisticated motion design. The goal of this project was to build a radical, editorial split-screen experience 🎨 that helps users engage with content without friction. Every transition is crafted with high-frequency interaction and a user-friendly flow 🌊.",
-    image: '/case img/Zerodha.png',
+    image: '/case img/Zerodha.webp',
     category: "Landing Page",
     tags: ["React 19", "Framer Motion", "Tailwind v4", "Three.js"],
     keyFeatures: [

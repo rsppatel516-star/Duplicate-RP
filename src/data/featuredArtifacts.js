@@ -10,7 +10,7 @@ export const featuredArtifacts = [
     subtitle: 'High-Performance Editorial Experience',
     description:
       'A radical, editorial split-screen portfolio engineered with a "Midnight Glass" neo-brutalist aesthetic. Built for performance, immersive 3D backgrounds, and sophisticated Framer Motion interactions across every section.',
-    image: '/case img/Zerodha.png',
+    image: '/case img/Zerodha.webp',
     tags: ['React 19', 'Framer Motion', 'Tailwind v4', 'Vite', 'Three.js'],
     skillsUsed: [
       'Component Architecture',

@@ -16,6 +16,8 @@ import blogsHandler from './api/admin/blogs.js';
 import projectsHandler from './api/admin/projects.js';
 import replyHandler from './api/admin/reply.js';
 import contactHandler from './api/contact.js';
+import sitemapHandler from './api/sitemap.js';
+import feedHandler from './api/feed.js';
 
 const app = express();
 const PORT = 3000;
@@ -41,6 +43,8 @@ app.all('/api/admin/reply', makeHandler(replyHandler));
 
 // --- Public Routes ---
 app.all('/api/contact', makeHandler(contactHandler));
+app.all('/sitemap.xml', makeHandler(sitemapHandler));
+app.all('/feed.xml', makeHandler(feedHandler));
 
 app.listen(PORT, () => {
   console.log(`\n✅ Dev API server running at http://localhost:${PORT}`);

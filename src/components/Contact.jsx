@@ -33,9 +33,10 @@ const itemVariants = {
   }
 };
 
-export default function Contact() {
+export default function Contact({ isPage = false }) {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const HeadingTag = isPage ? motion.h1 : motion.h2;
 
 
   const submitForm = async (e) => {
@@ -113,12 +114,12 @@ export default function Contact() {
                 <MessageSquare size={24} />
               </motion.div>
 
-              <motion.h2
+              <HeadingTag
                 variants={itemVariants}
                 className="text-6xl font-black font-display leading-[0.85] mb-8 tracking-tighter animated-gradient-text"
               >
                 Ready to <br /> <span className="text-gradient">Scale?</span>
-              </motion.h2>
+              </HeadingTag>
 
               {/* Info Cards */}
               <div className="space-y-6 mb-12">

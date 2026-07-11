@@ -64,7 +64,7 @@ export default function AdminDashboard() {
         <div className="px-5 py-6 border-b border-dark-border flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src="/images/nav logo.png"
+              src="/images/nav logo.webp"
               alt="Logo"
               className="h-8 w-auto object-contain shrink-0"
             />
