@@ -119,6 +119,7 @@ export default function Contact({ isPage = false }) {
                 className="text-6xl font-black font-display leading-[0.85] mb-8 tracking-tighter animated-gradient-text"
               >
                 Ready to <br /> <span className="text-gradient">Scale?</span>
+                
               </HeadingTag>
 
               {/* Info Cards */}
@@ -154,6 +155,19 @@ export default function Contact({ isPage = false }) {
                     <p className="text-md md:text-lg font-bold text-dark-textMain font-bricolage group-hover:text-dark-secondary transition-colors">Gujarat, India</p>
                   </div>
                 </motion.div>
+
+                {/* Contact Animation SVG Showcase 
+                <motion.div
+                  variants={itemVariants}
+                  className="relative w-full max-w-[280px] h-44 sm:h-52 mx-auto lg:mx-0 flex items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-950/20 via-black/40 to-violet-950/20 border border-white/10 p-3 group/anim shadow-[0_0_30px_rgba(99,102,241,0.15)] hover:border-indigo-500/30 transition-all duration-500 my-2"
+                >
+                  <div className="absolute inset-0 bg-indigo-500/10 rounded-2xl blur-xl group-hover/anim:bg-indigo-500/20 transition-all duration-500 pointer-events-none" />
+                  <img
+                    src="/contact animation.svg"
+                    alt="Contact Communication Animation"
+                    className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-transform duration-500 group-hover/anim:scale-105 select-none pointer-events-none"
+                  />
+                </motion.div>*/}
               </div>
             </div>
 

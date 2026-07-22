@@ -90,21 +90,38 @@ export default function Projects() {
 
         {/* Header Section */}
         <div className="mb-20">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3 mb-6 text-dark-secondary font-code text-sm tracking-widest uppercase"
-          >
-            <Briefcase size={18} />
-            <span>The Exhibit</span>
-          </motion.div>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3 mb-4 text-dark-secondary font-code text-sm tracking-widest uppercase"
+              >
+                <Briefcase size={18} />
+                <span>The Exhibit</span>
+              </motion.div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
-              Featured <br /> <span className="text-gradient">Artifacts</span>
-            </h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
+                Featured <br /> <span className="text-gradient">Artifacts</span>
+              </h2>
+            </div>
 
+            {/* Project Animation SVG */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative w-44 h-44 sm:w-92 sm:h-92 md:w-92 md:h-92 shrink-0 self-center lg:self-auto flex items-center justify-center rounded-2xl  transition-all duration-500"
+            >
+              <div className="absolute inset-0 transition-all duration-500 pointer-events-none" />
+              <img
+                src="/project animation.svg"
+                alt="Project Showcase Animation"
+                className="w-500 h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-transform duration-500 group-hover/anim:scale-105 select-none pointer-events-none"
+              />
+            </motion.div>
           </div>
         </div>
 

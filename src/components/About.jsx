@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, Download, Github, MapPin, Clock, X, Terminal, Code2 } from 'lucide-react';
+import { User, Download, MapPin, Clock, X, Code2, Sparkles, Briefcase, FolderOpen, Award } from 'lucide-react';
 import { Link as ScrollLink } from 'react-scroll';
-import { GitHubCalendar } from 'react-github-calendar';
 import MagneticButton from './ui/MagneticButton';
 import AnimatedCounter from './ui/AnimatedCounter';
 
@@ -66,13 +65,13 @@ const BentoCard = ({ children, className = "", onClick = null }) => {
         <div
           className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
           style={{
-            background: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(99, 102, 241, 0.12), transparent 80%)`,
+            background: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(99, 102, 241, 0.14), transparent 80%)`,
             border: '1px solid rgba(99, 102, 241, 0.35)',
             borderRadius: 'inherit'
           }}
         />
       )}
-      <div className="relative z-10 h-full flex flex-col justify-between gap-4">
+      <div className="relative z-10 h-full flex flex-col justify-between gap-3">
         {children}
       </div>
     </motion.div>
@@ -82,30 +81,32 @@ const BentoCard = ({ children, className = "", onClick = null }) => {
 export default function About() {
   const [showResumeModal, setShowResumeModal] = useState(false);
   const stats = [
-    { label: 'Years Exp', value: 1, suffix: '+' },
-    { label: 'Projects', value: 10, suffix: '+' },
-    { label: 'Certificates', value: 6, suffix: '+' },
+    { label: 'Years Exp', value: 1, suffix: '+', icon: Briefcase, color: 'text-indigo-400', sub: 'Industry' },
+    { label: 'Projects', value: 10, suffix: '+', icon: FolderOpen, color: 'text-purple-400', sub: 'Shipped' },
+    { label: 'Certificates', value: 6, suffix: '+', icon: Award, color: 'text-emerald-400', sub: 'Verified' },
   ];
 
   return (
     <section id="about" className="py-32 relative overflow-hidden">
       {/* Background Decorative Glows */}
-      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-dark-primary/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-dark-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-dark-primary/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-dark-secondary/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 gap-8 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-14 gap-8 text-left">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center md:justify-start gap-3 mb-4 text-[#6366f1] font-code text-sm tracking-widest uppercase"
+              className="flex items-center gap-3 mb-4 text-[#6366f1] font-code text-sm tracking-widest uppercase"
             >
               <User size={18} />
               <span>Identity Profile</span>
             </motion.div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] animated-gradient-text">
               Crafting Digital <span className="text-gradient">Gold</span> from Lines of Code
             </h2>
           </div>
@@ -125,28 +126,55 @@ export default function About() {
           className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:auto-rows-[180px]"
         >
           {/* Main Bio Card */}
-          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full">
+          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full border-white/10 hover:border-indigo-500/30 transition-all duration-500">
             <div className="relative z-10 h-full flex flex-col justify-between">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-display font-bold text-[#6366f1]">Bio / Process</h3>
-                <div className="p-2.5 bg-white/5 rounded-xl border border-white/10 group-hover/card:border-dark-primary/30 group-hover/card:bg-dark-primary/5 transition-colors">
-                  <User size={20} className="text-indigo-400" />
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400">
+                    <User size={20} />
+                  </div>
+                  <h3 className="text-2xl font-display font-bold text-white">Bio / Process</h3>
+                </div>
+                <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1 rounded-full">
+                  <Sparkles size={12} className="text-indigo-400 animate-pulse" />
+                  <span className="text-[10px] font-code font-bold uppercase tracking-wider text-dark-textMuted">Full-Stack Engineer</span>
                 </div>
               </div>
 
               <div className="space-y-4 flex-grow text-white/70">
-                <p className="text-dark-textMuted leading-loose font-bricolage text-sm md:text-base opacity-95">
-                  I'm <span className="text-white font-bold">Rudra Patel</span>, a passionate Full-stack Developer based in Vadodara, Gujarat. I specialize in creating unique, modern, and responsive web and iOS mobile applications.
+                <p className="text-dark-textMuted leading-relaxed font-bricolage text-sm md:text-base opacity-95">
+                  I'm <span className="text-white font-bold">Rudra Patel</span>, a Full-stack Developer based in Vadodara, Gujarat. I specialize in building modern, performant web platforms and mobile applications.
                 </p>
-                <p className="text-dark-textMuted leading-loose font-bricolage text-sm md:text-base opacity-95">
-                  My expertise spans from frontend interface design to backend microservice deployment, engineering scalable solutions that provide high business value.
+                <p className="text-dark-textMuted leading-relaxed font-bricolage text-sm md:text-base opacity-95">
+                  My architecture spans frontend design to backend microservice deployment, engineering scalable solutions that drive measurable business value.
                 </p>
-                <div className="pt-4 border-t border-white/5 mt-4">
-                  <p className="text-dark-textMain font-medium font-display italic text-lg leading-relaxed text-[#8b5cf6]">
+                <div className="pt-4 border-t border-white/5 mt-2">
+                  <p className="text-dark-textMain font-medium font-display italic text-base md:text-lg leading-relaxed text-[#8b5cf6]">
                     "Design for the future, build for performance."
                   </p>
                 </div>
               </div>
+            </div>
+          </BentoCard>
+
+          {/* Developer Animation Showcase Card */}
+          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group/animCard flex flex-col justify-between h-auto md:h-full border-indigo-500/20 hover:border-indigo-500/40 hover:shadow-[0_0_35px_rgba(99,102,241,0.18)] transition-all duration-500">
+            <div className="flex items-center justify-between z-10 mb-2">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400">
+                  <Code2 size={18} />
+                </div>
+                <h3 className="text-xl font-display font-bold text-white">Engineering Workspace</h3>
+              </div>
+            </div>
+
+            {/* SVG Animation display */}
+            <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden rounded-2xl p-2 group/svg my-1">
+              <img
+                src="/developer animation.svg"
+                alt="Developer Coding Animation Showcase"
+                className="w-full h-full max-h-[320px] md:max-h-[360px] lg:max-h-[380px] object-contain relative z-10 scale-105 sm:scale-110 md:scale-115 drop-shadow-[0_0_25px_rgba(99,102,241,0.35)] transition-transform duration-500 group-hover/animCard:scale-120 select-none pointer-events-none"
+              />
             </div>
           </BentoCard>
 
@@ -160,9 +188,9 @@ export default function About() {
                 </div>
                 <span className="text-emerald-400 font-bold tracking-widest uppercase text-[9px] font-code">Active & Available</span>
               </div>
-              <div className="mt-4">
-                <h4 className="text-xl font-display font-bold text-dark-primary group-hover:text-emerald-400 transition-colors duration-300">Open for Collaboration</h4>
-                <p className="text-sm text-dark-textMuted mt-1 font-bricolage leading-relaxed">Accepting freelance / full-time remote roles.</p>
+              <div className="mt-2">
+                <h4 className="text-xl font-display font-bold text-white group-hover:text-emerald-400 transition-colors duration-300">Open for Collaboration</h4>
+                <p className="text-xs text-dark-textMuted mt-1 font-bricolage leading-relaxed">Accepting freelance / full-time remote roles.</p>
               </div>
             </div>
           </BentoCard>
@@ -181,39 +209,54 @@ export default function About() {
                     e.stopPropagation();
                     setShowResumeModal(true);
                   }}
-                  className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-dark-secondary/20 hover:border-dark-secondary/30 transition-colors z-20"
+                  className="p-2.5 bg-white/5 border border-white/10 rounded-xl hover:bg-dark-secondary/20 hover:border-dark-secondary/30 transition-colors z-20"
                   title="Download Resume"
                 >
-                  <Download className="text-indigo-400 hover:scale-110 hover:translate-y-[1px] transition-all" size={20} />
+                  <Download className="text-indigo-400 hover:scale-110 hover:translate-y-[1px] transition-all" size={18} />
                 </a>
               </div>
               <div>
-                <span className="block font-display font-bold text-lg mt-3 leading-tight text-white/90">Resume</span>
-                <span className="text-[10px] text-dark-textMuted uppercase tracking-widest block mb-3 font-semibold font-code">Technical CV</span>
+                <span className="block font-display font-bold text-base mt-2 leading-tight text-white/90">Resume</span>
+                <span className="text-[9px] text-dark-textMuted uppercase tracking-widest block mb-2 font-semibold font-code">Technical CV</span>
                 <div
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowResumeModal(true);
                   }}
-                  className="flex items-center gap-2 py-2 px-3 bg-white/5 rounded-lg border border-white/10 group-hover:border-dark-secondary/50 group-hover:bg-dark-secondary/10 transition-all cursor-pointer"
+                  className="flex items-center gap-2 py-1.5 px-2.5 bg-white/5 rounded-lg border border-white/10 group-hover:border-dark-secondary/50 group-hover:bg-dark-secondary/10 transition-all cursor-pointer"
                 >
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-white/80 group-hover:text-white font-code">Get Resume</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-white/80 group-hover:text-white font-code">Get Resume</span>
                   <div className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
                 </div>
               </div>
             </div>
           </BentoCard>
 
-          {stats.map((stat, i) => (
-            <BentoCard key={stat.label} className="col-span-1 lg:col-span-1 text-center items-center justify-center p-4 h-auto min-h-[120px] md:h-full hover:border-dark-primary/30 hover:shadow-[0_0_20px_rgba(0,212,255,0.08)] transition-all duration-500">
-              <div className="flex flex-col items-center justify-center">
-                <span className="text-2xl md:text-3xl font-extrabold text-gradient font-bricolage">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} delay={0.4 + (i * 0.1)} />
-                </span>
-                <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold text-dark-textMuted mt-1 font-code">{stat.label}</span>
-              </div>
-            </BentoCard>
-          ))}
+          {/* Stats Counters */}
+          {stats.map((stat, i) => {
+            const IconComp = stat.icon;
+            return (
+              <BentoCard key={stat.label} className="col-span-1 lg:col-span-1 p-4 flex flex-col justify-between h-auto md:h-full hover:border-indigo-500/30 hover:shadow-[0_0_25px_rgba(99,102,241,0.12)] transition-all duration-500 group/stat">
+                <div className="flex items-center justify-between">
+                  <div className="p-2 bg-white/5 border border-white/10 rounded-xl group-hover/stat:border-indigo-500/30 group-hover/stat:bg-indigo-500/10 transition-colors">
+                    <IconComp size={16} className={stat.color} />
+                  </div>
+                  <span className="text-[9px] font-code font-bold uppercase text-dark-textMuted/70">{stat.sub}</span>
+                </div>
+
+                <div className="my-auto py-1">
+                  <div className="text-2xl md:text-3xl font-extrabold text-gradient font-bricolage tracking-tight leading-none mb-1">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} delay={0.4 + (i * 0.1)} />
+                  </div>
+                  <span className="text-[9px] md:text-[10px] uppercase tracking-wider font-bold text-dark-textMuted block font-code">{stat.label}</span>
+                </div>
+
+                {/*<div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                  <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full w-2/3 group-hover/stat:w-full transition-all duration-500" />
+                </div>*/}
+              </BentoCard>
+            );
+          })}
 
           {/* Location / Clock Card */}
           <BentoCard className="col-span-2 md:col-span-2 lg:col-span-2 md:row-span-1 font-bricolage h-auto md:h-full hover:border-dark-primary/30 hover:shadow-[0_0_30px_rgba(0,212,255,0.1)] transition-all duration-500">
@@ -237,7 +280,7 @@ export default function About() {
             </div>
           </BentoCard>
 
-          {/* Tech Philosophy */}
+          {/* Tech Philosophy Card */}
           <BentoCard className="col-span-2 md:col-span-4 lg:col-span-4 md:row-span-1 relative overflow-hidden h-auto md:h-full group hover:border-[#8b5cf6]/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] transition-all duration-500">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center h-full gap-6 relative z-10 w-full">
               <div className="max-w-full sm:max-w-[55%]">
@@ -263,34 +306,6 @@ export default function About() {
               </div>
             </div>
           </BentoCard>
-
-          {/* GitHub Contributions Calendar Card */}
-          <BentoCard className="col-span-2 md:col-span-4 lg:col-span-6 min-h-[220px] h-auto flex flex-col justify-between relative overflow-hidden group hover:border-[#6366f1]/30 transition-all duration-500">
-            <div className="flex flex-col justify-between h-full w-full gap-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Github size={20} className="text-indigo-400" />
-                  <span className="font-display font-bold text-lg text-white">GitHub Contribution Matrix</span>
-                </div>
-                <span className="text-[10px] font-code font-bold uppercase tracking-widest text-[#6366f1] bg-[#6366f1]/10 border border-[#6366f1]/20 px-3 py-1 rounded-full">
-                  @Rudraptl16
-                </span>
-              </div>
-              
-              <div className="w-full flex items-center justify-center p-2 overflow-x-auto no-scrollbar">
-                <GitHubCalendar
-                  username="Rudraptl16"
-                  blockSize={12}
-                  blockMargin={4}
-                  colorScheme="dark"
-                  theme={{
-                    dark: ['#11111b', '#312e81', '#4338ca', '#6366f1', '#a5b4fc'],
-                  }}
-                />
-              </div>
-            </div>
-          </BentoCard>
-
         </motion.div>
       </div>
 
