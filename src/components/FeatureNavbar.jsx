@@ -1,304 +1,221 @@
 import React, { useState, useEffect } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowLeft, Globe, MessageSquare, Sparkles, X, ChevronRight } from 'lucide-react';
-import MagneticButton from './ui/MagneticButton';
+import { Menu, X, ArrowRight, ArrowLeft, Laptop, Globe } from 'lucide-react';
+import { socialLinks } from '../data/socialLinks';
 
 const featureLinks = [
-  { name: 'Home', to: '/' },
-  { name: 'Artifacts', to: '/artifacts' },
-  { name: 'Credentials', to: '/achievements' },
-  { name: 'Blog', to: '/blog' },
-  { name: 'Contact', to: '/contact' }
+  { name: 'HOME', to: '/' },
+  { name: 'ARTIFACTS', to: '/artifacts' },
+  { name: 'CREDENTIALS', to: '/achievements' },
+  { name: 'BLOG', to: '/blog' },
+  { name: 'CONTACT', to: '/contact' }
 ];
 
-/* Custom Animated Hamburger Button with Micro Morph */
+/* Custom Animated Hamburger Button */
 const MenuButton = ({ isOpen, onClick }) => {
   return (
-    <motion.button
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.92 }}
+    <button
       onClick={onClick}
-      className="lg:hidden relative z-[120] w-11 h-11 rounded-full flex items-center justify-center text-white bg-white/10 border border-white/15 backdrop-blur-xl transition-all hover:bg-white/20 hover:border-dark-primary/50 overflow-hidden group shadow-lg"
+      className="lg:hidden relative z-[120] w-11 h-11 rounded-xl flex items-center justify-center text-white bg-white/5 border border-white/10 transition-all hover:bg-white/10 overflow-hidden group"
       aria-label="Toggle menu"
     >
-      <div className="relative w-4 h-3.5 flex flex-col justify-between items-center">
+      <div className="absolute inset-0 bg-gradient-to-tr from-dark-primary/20 to-dark-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="relative w-5 h-4 flex flex-col justify-between items-center">
         <motion.span
-          animate={isOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
-          transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+          animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
           className="w-full h-0.5 bg-white rounded-full origin-center"
         />
         <motion.span
           animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-          transition={{ duration: 0.2 }}
           className="w-full h-0.5 bg-white rounded-full"
         />
         <motion.span
-          animate={isOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
-          transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+          animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
           className="w-full h-0.5 bg-white rounded-full origin-center"
         />
       </div>
-    </motion.button>
+    </button>
+  );
+};
+
+const FeatureNavLink = ({ link, mobile, close, index }) => {
+  const cls = mobile
+    ? 'flex items-center justify-between w-full px-4 py-3.5 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.06] transition-all text-base cursor-pointer'
+    : 'text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all duration-300 relative group cursor-pointer py-2 px-1';
+
+  return (
+    <RouterLink to={link.to} onClick={close} className={cls}>
+      <motion.span
+        initial={!mobile ? { opacity: 0, y: -10 } : {}}
+        animate={!mobile ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.1 + (index * 0.1), duration: 0.5 }}
+        className="relative z-10 block"
+      >
+        {link.name}
+        {!mobile && (
+          <motion.span
+            className="absolute -bottom-1 left-0 w-0 h-[2px] bg-dark-primary rounded-full group-hover:w-full transition-all duration-300 shadow-[0_0_8px_rgba(124,58,237,0.5)]"
+            whileHover={{ width: '100%' }}
+          />
+        )}
+      </motion.span>
+      {mobile && <ArrowRight size={15} className="opacity-30 shrink-0" />}
+    </RouterLink>
   );
 };
 
 export default function FeatureNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setMenuOpen] = useState(false);
-  const [hoveredNav, setHoveredNav] = useState(null);
-  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    const fn = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', fn);
+    fn();
+    return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  /* Lock body scroll when mobile drawer open */
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
 
-  const closeMenu = () => setMenuOpen(false);
+  const close = () => setMenuOpen(false);
 
   return (
     <>
-      {/* ── FLOATING ISLAND GLASS NAVBAR HEADER WITH ENHANCED ANIMATIONS ─────────────────────────── */}
-      <header className="fixed top-4 inset-x-0 z-[110] px-4 md:px-6 pointer-events-none">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          
-          {/* Main Floating Glass Pill Container */}
-          <motion.div
-            initial={{ y: -40, opacity: 0, scale: 0.96 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className={`pointer-events-auto w-full flex items-center justify-between px-4 py-2.5 md:px-6 md:py-3 rounded-full border transition-all duration-700 relative overflow-hidden ${
-              isScrolled
-                ? 'bg-dark-surface/90 backdrop-blur-2xl border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.7),0_0_35px_rgba(99,102,241,0.18)]'
-                : 'bg-white/[0.04] backdrop-blur-xl border-white/10 shadow-xl'
-            }`}
-          >
-            {/* Animated Edge Shimmer Wave */}
+      <header className={`fixed z-[110] transition-all duration-500 
+        ${isScrolled
+          ? 'top-4 left-4 right-4 md:left-8 md:right-8 lg:top-0 lg:left-0 lg:w-full py-3 lg:py-5 bg-dark-bg/40 lg:bg-dark-bg/60 backdrop-blur-xl border border-white/10 lg:border-none lg:border-b lg:border-white/5 rounded-2xl lg:rounded-none shadow-2xl lg:shadow-none'
+          : 'top-4 left-4 right-4 md:left-8 md:right-8 lg:top-0 lg:left-0 lg:w-full py-4 lg:py-8 bg-white/[0.03] lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none border border-white/5 lg:border-none rounded-2xl lg:rounded-none'
+        }`}>
+        <div className="max-w-7xl mx-auto px-5 lg:px-6 flex items-center justify-between gap-4">
+          <RouterLink to="/" onClick={() => { window.scrollTo(0, 0); close(); }} className="flex items-center gap-2.5 shrink-0 z-10 group relative">
             <motion.div
-              className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-dark-primary/60 to-transparent pointer-events-none"
               animate={{
-                x: ['-100%', '100%']
+                y: [0, -5, 0],
+                filter: [
+                  'drop-shadow(0 0 0px rgba(124,58,237,0))',
+                  'drop-shadow(0 0 15px rgba(124,58,237,0.3))',
+                  'drop-shadow(0 0 0px rgba(124,58,237,0))'
+                ]
               }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: 'linear'
+                ease: "easeInOut"
               }}
-            />
-
-            {/* Logo with Pulsing Glow & Hover Float */}
-            <RouterLink
-              to="/"
-              onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); closeMenu(); }}
-              className="flex items-center gap-3 shrink-0 group relative z-10"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative overflow-hidden"
             >
-              <motion.div
-                whileHover={{ scale: 1.08, rotate: -2 }}
-                whileTap={{ scale: 0.95 }}
-                animate={{
-                  filter: [
-                    'drop-shadow(0 0 0px rgba(99,102,241,0))',
-                    'drop-shadow(0 0 12px rgba(99,102,241,0.4))',
-                    'drop-shadow(0 0 0px rgba(99,102,241,0))'
-                  ]
+              <img
+                src="/images/nav%20logo.webp"
+                alt="Logo"
+                className="h-10 md:h-8 w-auto object-contain transition-all"
+              />
+              {/* Shine effect overlay 
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[30deg]"
+                animate={{ 
+                  left: ['-150%', '150%']
                 }}
-                transition={{
-                  filter: { duration: 3.5, repeat: Infinity, ease: 'easeInOut' },
-                  scale: { duration: 0.2 }
+                transition={{ 
+                  duration: 2.5, 
+                  repeat: Infinity, 
+                  repeatDelay: 3,
+                  ease: "linear"
                 }}
-                className="relative overflow-hidden"
-              >
-                <img
-                  src="/images/nav%20logo.webp"
-                  alt="Rudra Patel Logo"
-                  className="h-8 md:h-9 w-auto object-contain transition-all"
-                />
-              </motion.div>
-            </RouterLink>
+              />*/}
+            </motion.div>
+          </RouterLink>
 
-            {/* Desktop Center Nav Links with Stagger Entrance & Sliding Active Pill */}
-            <nav className="hidden lg:flex items-center gap-1 bg-white/[0.03] border border-white/10 p-1.5 rounded-full backdrop-blur-md relative">
-              {featureLinks.map((link, idx) => {
-                const isActive = location.pathname === link.to || (link.to !== '/' && location.pathname.startsWith(link.to));
+          <nav className="hidden lg:flex items-center gap-10 absolute left-1/2 -translate-x-1/2">
+            {featureLinks.map((link, i) => (
+              <FeatureNavLink key={link.name} link={link} mobile={false} close={close} index={i} />
+            ))}
+          </nav>
 
-                return (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 + idx * 0.05 }}
-                    className="relative"
-                    onMouseEnter={() => setHoveredNav(link.to)}
-                    onMouseLeave={() => setHoveredNav(null)}
-                  >
-                    <RouterLink
-                      to={link.to}
-                      onClick={closeMenu}
-                      className={`relative z-10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors duration-300 block ${
-                        isActive ? 'text-white' : 'text-white/60 hover:text-white'
-                      }`}
-                    >
-                      <motion.span whileHover={{ y: -1 }} className="block">
-                        {link.name}
-                      </motion.span>
-                    </RouterLink>
-
-                    {/* Sliding Active Pill Highlight with Spring Physics */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="featureActiveNavHighlight"
-                        className="absolute inset-0 bg-gradient-to-r from-dark-primary to-indigo-600 rounded-full shadow-[0_0_20px_rgba(99,102,241,0.6)] z-0"
-                        transition={{ type: 'spring', stiffness: 420, damping: 28 }}
-                      />
-                    )}
-
-                    {/* Hover Sub-Glow for Inactive Links */}
-                    {!isActive && hoveredNav === link.to && (
-                      <motion.div
-                        layoutId="featureHoverNavHighlight"
-                        className="absolute inset-0 bg-white/10 rounded-full z-0"
-                        transition={{ duration: 0.2 }}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </nav>
-
-            {/* Right Action: Live Pulsing Status & Animated Contact CTA */}
-            <div className="flex items-center gap-3 shrink-0">
-              {/* Status Badge with Multi-Ring Ripple */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 }}
-                className="hidden xl:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[10px] font-bold uppercase tracking-widest text-emerald-400 backdrop-blur-md"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                </span>
-                <span>Available for Work</span>
-              </motion.div>
-
-              {/* Contact CTA with Shimmer & Magnetic Hover */}
-              <div className="hidden sm:block">
-                <MagneticButton>
-                  <RouterLink to="/#contact">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="group relative overflow-hidden px-5 py-2 rounded-full bg-gradient-to-r from-dark-primary via-purple-600 to-indigo-600 text-white text-xs font-black uppercase tracking-wider flex items-center gap-2 shadow-[0_0_25px_rgba(99,102,241,0.4)] transition-all"
-                    >
-                      <span className="relative z-10">Let's Talk</span>
-                      <ArrowRight size={14} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                      <motion.div
-                        className="absolute inset-0 bg-white/20 skew-x-[30deg]"
-                        animate={{ left: ['-150%', '150%'] }}
-                        transition={{ duration: 3, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
-                      />
-                    </motion.button>
-                  </RouterLink>
-                </MagneticButton>
-              </div>
-
-              {/* Hamburger Button (Mobile) */}
-              <MenuButton isOpen={isMobileMenuOpen} onClick={() => setMenuOpen(v => !v)} />
-            </div>
-
-          </motion.div>
-
+          <div className="flex items-center gap-4 z-10">
+            <MenuButton isOpen={isMobileMenuOpen} onClick={() => setMenuOpen(v => !v)} />
+          </div>
         </div>
       </header>
 
-      {/* ── MOBILE DRAWER MODAL WITH SMOOTH STAGGER ANIMATIONS ─────────────────────────── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop Blur */}
             <motion.div
-              key="backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={closeMenu}
-              className="fixed inset-0 z-[112] lg:hidden bg-black/80 backdrop-blur-xl"
+              onClick={close}
+              className="fixed inset-0 z-[112] lg:hidden bg-dark-bg/80 backdrop-blur-md"
             />
 
-            {/* Modal Drawer */}
+            {/* Modal panel */}
             <div className="fixed inset-0 z-[115] flex items-center justify-center p-4 lg:hidden pointer-events-none">
               <motion.div
                 key="modal"
-                initial={{ opacity: 0, scale: 0.88, y: 30 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.88, y: 30 }}
-                transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-                className="w-full max-w-md bg-dark-surface/95 backdrop-blur-2xl border border-white/15 rounded-3xl p-6 shadow-2xl pointer-events-auto relative overflow-hidden space-y-6"
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="w-full max-w-md bg-[#0a0a15]/90 backdrop-blur-xl border border-white/10 rounded-[1.5rem] overflow-hidden flex flex-col shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] pointer-events-auto"
                 onClick={e => e.stopPropagation()}
               >
-                {/* Header */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-3">
-                    <img src="/images/nav%20logo.webp" alt="Logo" className="h-7 w-auto" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-white/60">Navigation</span>
-                  </div>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={closeMenu}
-                    className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white"
-                  >
-                    <X size={18} />
-                  </motion.button>
+                {/* Decorative Background Text */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-display font-black text-white/[0.03] pointer-events-none select-none">
+                  EXPLORE
                 </div>
 
-                {/* Nav Links */}
-                <nav className="flex flex-col gap-2">
+                {/* Header */}
+                <div className="px-8 pt-8 pb-4 flex items-center justify-between relative z-10">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src="/images/nav%20logo.webp"
+                      alt="Logo"
+                      className="h-8 w-auto object-contain"
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-bricolage font-black text-white text-base tracking-wider uppercase">Menu</span>
+                      <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-widest animate-pulse">Explore My Work</span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={close}
+                    className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-white/40 hover:text-white transition-all border border-white/10 hover:bg-white/10"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                {/* Links */}
+                <nav className="px-6 py-4 flex flex-col gap-1 relative z-10 max-h-[60vh] overflow-y-auto no-scrollbar">
                   {featureLinks.map((link, i) => (
                     <motion.div
                       key={link.name}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.04 + 0.1 }}
+                      transition={{ delay: 0.1 + i * 0.05 }}
                     >
-                      <RouterLink
-                        to={link.to}
-                        onClick={closeMenu}
-                        className="flex items-center justify-between px-5 py-3.5 rounded-2xl text-sm font-bold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/10 transition-all group"
-                      >
-                        <span>{link.name}</span>
-                        <ChevronRight size={16} className="text-white/30 group-hover:translate-x-1 group-hover:text-dark-primary transition-all" />
-                      </RouterLink>
+                      <FeatureNavLink
+                        link={link}
+                        mobile
+                        close={close}
+                      />
                     </motion.div>
                   ))}
                 </nav>
 
-                {/* Footer CTA */}
-                <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
-                  <RouterLink to="/#contact" onClick={closeMenu}>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-dark-primary to-indigo-600 text-white text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg"
-                    >
-                      <span>Let's Talk</span>
-                      <ArrowRight size={16} />
-                    </motion.button>
-                  </RouterLink>
+                {/* Footer */}
+                <div className="p-2 mt-2 relative z-10 bg-white/[0.02] border-t border-white/5 rounded-t-[1rem]">
+                  <div className="mt-4 mb-4 flex items-center justify-center gap-3 opacity-20 hover:opacity-40 transition-opacity">
+                    <Globe size={12} className="text-white" />
+                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white">Case Study 💻</span>
+                  </div>
                 </div>
-
               </motion.div>
             </div>
           </>
@@ -307,3 +224,4 @@ export default function FeatureNavbar() {
     </>
   );
 }
+
