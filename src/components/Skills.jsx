@@ -55,7 +55,7 @@ const iconMap = {
   openai: <SiOpenai />,
   cursor: <Sparkles />,
   copilot: <FaGithub />,
-  claude: <BrainCircuit />
+  claude: <img src="/claude-skill.svg" alt="Claude AI" className="w-[1em] h-[1em] inline-block object-contain" />
 };
 
 const techColors = {
