@@ -58,10 +58,10 @@ export const skills = [
     category: 'AI Tools',
     technologies: [
       { name: 'ChatGPT', icon: 'openai', proficiency: 95, projectsCount: 15 },
+      { name: 'Copilot', icon: 'copilot', proficiency: 90, projectsCount: 10 },
+      { name: 'Claude', icon: 'claude', proficiency: 92, projectsCount: 10 },
       { name: 'Antigravity', icon: 'antigravity', proficiency: 95, projectsCount: 12 },
       { name: 'Gemini', icon: 'gemini', proficiency: 92, projectsCount: 10 },
-      { name: 'Copilot', icon: 'copilot', proficiency: 90, projectsCount: 10 },
-      { name: 'Claude', icon: 'claude', proficiency: 92, projectsCount: 10 }
     ]
   }
 ];
