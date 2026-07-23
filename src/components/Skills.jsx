@@ -53,7 +53,8 @@ const iconMap = {
   mobiledesign: <Smartphone />,
   uikit: <Layout />,
   openai: <SiOpenai />,
-  cursor: <Sparkles />,
+  antigravity: <img src="/antigravity-skill.svg" alt="Antigravity" className="w-[1em] h-[1em] inline-block object-contain" />,
+  gemini: <img src="/gemini-skill.svg" alt="Gemini" className="w-[1em] h-[1em] inline-block object-contain" />,
   copilot: <FaGithub />,
   claude: <img src="/claude-skill.svg" alt="Claude AI" className="w-[1em] h-[1em] inline-block object-contain" />
 };
@@ -70,7 +71,7 @@ const techColors = {
   docker: 'text-[#2496ED]', swift: 'text-[#FA7343]',
   storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]',
   uikit: 'text-[#2AC3FF]',
-  openai: 'text-[#10A37F]', cursor: 'text-white', copilot: 'text-white', claude: 'text-[#D97757]'
+  openai: 'text-[#10A37F]', antigravity: 'text-[#3186FF]', gemini: 'text-[#8E75FF]', copilot: 'text-white', claude: 'text-[#D97757]'
 };
 
 const techHexColors = {
@@ -85,7 +86,7 @@ const techHexColors = {
   docker: '#2496ED', swift: '#FA7343',
   storyboard: '#818CF8', mobiledesign: '#F43F5E',
   uikit: '#2AC3FF',
-  openai: '#10A37F', cursor: '#ffffff', copilot: '#ffffff', claude: '#D97757'
+  openai: '#10A37F', antigravity: '#3186FF', gemini: '#8E75FF', copilot: '#ffffff', claude: '#D97757'
 };
 
 const categoryIcons = {
