@@ -1,5 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 
+/**
+ * ModernBackground (Global Background)
+ * Replaces legacy particle dots/lines with a high-end ambient aurora light mesh,
+ * interactive cursor spotlight, dynamic tech grid, and subtle light shimmers.
+ */
 export default function GlobalParticles() {
   const canvasRef = useRef(null);
 
@@ -9,147 +14,220 @@ export default function GlobalParticles() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     let animationFrameId;
-    let particles = [];
-    const maxParticles = 90; // Density sweet spot for visual appeal and performance
-    const connectionDistance = 110;
-    
-    // Mouse coordinates tracking
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    // Responsive canvas resizing
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    // Mouse position tracking with smooth lerp
     const mouse = {
-      x: null,
-      y: null,
-      radius: 130
+      targetX: width / 2,
+      targetY: height / 2,
+      x: width / 2,
+      y: height / 2,
+      active: false
     };
 
     const handleMouseMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      mouse.active = true;
     };
 
     const handleMouseLeave = () => {
-      mouse.x = null;
-      mouse.y = null;
+      mouse.active = false;
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    // Ambient Aurora Light Orbs
+    const orbs = [
+      {
+        x: width * 0.25,
+        y: height * 0.3,
+        radius: Math.max(width, height) * 0.35,
+        vx: 0.25,
+        vy: 0.18,
+        colorStart: 'rgba(99, 102, 241, 0.16)', // Indigo
+        colorEnd: 'rgba(99, 102, 241, 0)',
+        phase: 0
+      },
+      {
+        x: width * 0.75,
+        y: height * 0.2,
+        radius: Math.max(width, height) * 0.4,
+        vx: -0.2,
+        vy: 0.22,
+        colorStart: 'rgba(168, 85, 247, 0.14)', // Purple
+        colorEnd: 'rgba(168, 85, 247, 0)',
+        phase: Math.PI / 2
+      },
+      {
+        x: width * 0.5,
+        y: height * 0.75,
+        radius: Math.max(width, height) * 0.38,
+        vx: 0.18,
+        vy: -0.15,
+        colorStart: 'rgba(6, 182, 212, 0.12)', // Cyan
+        colorEnd: 'rgba(6, 182, 212, 0)',
+        phase: Math.PI
+      },
+      {
+        x: width * 0.85,
+        y: height * 0.8,
+        radius: Math.max(width, height) * 0.32,
+        vx: -0.22,
+        vy: -0.2,
+        colorStart: 'rgba(236, 72, 153, 0.10)', // Pink / Magenta
+        colorEnd: 'rgba(236, 72, 153, 0)',
+        phase: (Math.PI * 3) / 2
+      }
+    ];
 
-    // Particle properties generator
-    const createParticle = (initRandomY = false) => {
-      const colors = [
-        'rgba(139, 92, 246, ',  // Violet
-        'rgba(99, 102, 241, ',   // Indigo
-        'rgba(236, 72, 153, ',   // Pink
-        'rgba(16, 185, 129, ',   // Emerald
-        'rgba(6, 182, 212, '     // Cyan
-      ];
-      return {
-        x: Math.random() * canvas.width,
-        y: initRandomY ? Math.random() * canvas.height : -10 - Math.random() * 20,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: 0.15 + Math.random() * 0.4, // gentle drifting downwards
-        radius: Math.random() * 2.2 + 0.8,
-        colorBase: colors[Math.floor(Math.random() * colors.length)],
-        opacity: Math.random() * 0.45 + 0.15
-      };
-    };
+    // Subtle Light Shimmer Waves
+    const shimmerWaves = [
+      { x: width * 0.2, speed: 0.35, width: 220, alpha: 0.035 },
+      { x: width * 0.65, speed: -0.25, width: 280, alpha: 0.025 }
+    ];
 
-    // Populate particles
-    for (let i = 0; i < maxParticles; i++) {
-      particles.push(createParticle(true));
-    }
+    let time = 0;
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const render = () => {
+      time += 0.016;
 
-      // 1. Draw web connection lines (constellation network effect)
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const p1 = particles[i];
-          const p2 = particles[j];
-          
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+      ctx.clearRect(0, 0, width, height);
 
-          if (dist < connectionDistance) {
-            const alpha = (1 - dist / connectionDistance) * 0.12;
-            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-            ctx.lineWidth = 0.6;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
+      // Smooth mouse lerp
+      mouse.x += (mouse.targetX - mouse.x) * 0.08;
+      mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+      ctx.globalCompositeOperation = 'screen';
+
+      // 1. Draw Moving Ambient Aurora Light Orbs
+      orbs.forEach((orb) => {
+        if (!prefersReducedMotion) {
+          orb.x += orb.vx + Math.sin(time * 0.5 + orb.phase) * 0.3;
+          orb.y += orb.vy + Math.cos(time * 0.6 + orb.phase) * 0.3;
+
+          // Bounce off boundary padding
+          if (orb.x < -100 || orb.x > width + 100) orb.vx *= -1;
+          if (orb.y < -100 || orb.y > height + 100) orb.vy *= -1;
+        }
+
+        const gradient = ctx.createRadialGradient(
+          orb.x,
+          orb.y,
+          0,
+          orb.x,
+          orb.y,
+          orb.radius
+        );
+        gradient.addColorStop(0, orb.colorStart);
+        gradient.addColorStop(0.5, orb.colorStart.replace(/[\d\.]+\)$/, '0.04)'));
+        gradient.addColorStop(1, orb.colorEnd);
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // 2. Draw Interactive Cursor Spotlight Glow
+      if (mouse.active || mouse.x !== width / 2) {
+        const spotRadius = Math.min(width, height) * 0.28;
+        const spotGrad = ctx.createRadialGradient(
+          mouse.x,
+          mouse.y,
+          0,
+          mouse.x,
+          mouse.y,
+          spotRadius
+        );
+        spotGrad.addColorStop(0, 'rgba(129, 140, 248, 0.18)'); // Soft Violet Spotlight core
+        spotGrad.addColorStop(0.4, 'rgba(99, 102, 241, 0.08)');
+        spotGrad.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+        ctx.fillStyle = spotGrad;
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, spotRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // 3. Draw Vertical Light Shimmer Beams
+      ctx.globalCompositeOperation = 'source-over';
+      shimmerWaves.forEach((wave) => {
+        if (!prefersReducedMotion) {
+          wave.x += wave.speed;
+          if (wave.x > width + wave.width) wave.x = -wave.width;
+          if (wave.x < -wave.width) wave.x = width + wave.width;
+        }
+
+        const beamGrad = ctx.createLinearGradient(wave.x, 0, wave.x + wave.width, 0);
+        beamGrad.addColorStop(0, 'rgba(99, 102, 241, 0)');
+        beamGrad.addColorStop(0.5, `rgba(168, 85, 247, ${wave.alpha})`);
+        beamGrad.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+        ctx.fillStyle = beamGrad;
+        ctx.fillRect(wave.x, 0, wave.width, height);
+      });
+
+      // 4. Draw Subtle Tech Grid Matrix with Distance Illumination
+      const gridSize = 56;
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+
+      for (let x = gridSize / 2; x < width; x += gridSize) {
+        for (let y = gridSize / 2; y < height; y += gridSize) {
+          const dx = x - mouse.x;
+          const dy = y - mouse.y;
+          const distSq = dx * dx + dy * dy;
+          const maxDistSq = 250 * 250;
+
+          let dotAlpha = 0.035; // baseline subtlety
+
+          // Highlight grid dots near cursor spotlight
+          if (distSq < maxDistSq) {
+            const factor = 1 - Math.sqrt(distSq) / 250;
+            dotAlpha += factor * 0.14;
           }
+
+          ctx.fillStyle = `rgba(148, 163, 184, ${dotAlpha})`;
+          ctx.beginPath();
+          ctx.arc(x, y, 1, 0, Math.PI * 2);
+          ctx.fill();
         }
       }
 
-      // 2. Draw and update particle positions
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Interactive mouse repellent force field
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            const forceX = (dx / dist) * force * 0.8;
-            const forceY = (dy / dist) * force * 0.8;
-            
-            p.x += forceX;
-            p.y += forceY;
-          }
-        }
-
-        // horizontal border boundary bounds check
-        if (p.x < 0 || p.x > canvas.width) {
-          p.vx = -p.vx;
-        }
-
-        // Render individual particle circles
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.colorBase}${p.opacity})`;
-        ctx.shadowBlur = p.radius > 2 ? 6 : 0;
-        ctx.shadowColor = 'rgba(124, 58, 237, 0.4)';
-        ctx.fill();
-        ctx.shadowBlur = 0; // reset shadow parameter
-
-        // Respawn particle at top if it floats below screen bottom
-        if (p.y > canvas.height + 10) {
-          Object.assign(p, createParticle(false));
-        }
-      });
-
-      animationFrameId = requestAnimationFrame(draw);
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(render);
+      }
     };
 
-    draw();
+    render();
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-40"
-      style={{ mixBlendMode: 'screen' }}
+      className="fixed inset-0 w-full h-full pointer-events-none z-0"
+      style={{ opacity: 0.85 }}
     />
   );
 }
+

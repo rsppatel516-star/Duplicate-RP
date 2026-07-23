@@ -172,7 +172,7 @@ export default function Skills() {
   const categories = skills.map(s => s.category);
 
   // Flattened system technologies for global querying
-  const allSkills = skills.flatMap(cat => 
+  const allSkills = skills.flatMap(cat =>
     cat.technologies.map(t => ({ ...t, category: cat.category }))
   );
 
@@ -201,7 +201,7 @@ export default function Skills() {
       return normalize(projSkill) === normalize(selectedName);
     };
 
-    return projects.filter(proj => 
+    return projects.filter(proj =>
       proj.skillsUsed?.some(s => isMatch(s, techName)) ||
       proj.tags?.some(t => isMatch(t, techName))
     ).length;
@@ -220,7 +220,7 @@ export default function Skills() {
       />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-12 text-center lg:text-left">
           <div className="max-w-3xl mx-auto lg:mx-0">
@@ -308,7 +308,7 @@ export default function Skills() {
                       }}
                       className="group relative h-48 bg-white/[0.02] border border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center overflow-hidden transition-all duration-500 hover:bg-white/[0.04] cursor-default"
                     >
-                     
+
 
                       {/* Project Count Tech Stamp */}
                       <div className="absolute top-4 left-4 text-[7px] font-mono font-bold text-white/30 group-hover:text-white/60 transition-colors uppercase tracking-widest">

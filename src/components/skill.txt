@@ -1,0 +1,824 @@
+
+
+
+Reconstructed
+
+
+
+
+
+
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { skills } from '../data/skills';
+import { projects } from '../data/projects';
+import {
+  Code, Layout, Server, Smartphone, Cloud,
+  Database, Cpu, Layers, Zap, Target, Bot, Sparkles, BrainCircuit,
+  Search, X, ShieldCheck
+} from 'lucide-react';
+import {
+  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaJava,
+  FaFigma, FaAws, FaGithub, FaSwift
+} from 'react-icons/fa';
+import {
+  SiNextdotjs, SiTailwindcss, SiExpress, SiFlutter, SiMongodb,
+  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker, SiOpenai
+} from 'react-icons/si';
+import { BiServer } from 'react-icons/bi';
+import { DiGit } from 'react-icons/di';
+import { TbBrandReactNative, TbBrandVscode } from 'react-icons/tb';
+import GridBackground from './ui/GridBackground';
+import MagneticButton from './ui/MagneticButton';
+
+const iconMap = {
+  html5: <FaHtml5 />,
+  css3: <FaCss3Alt />,
+  javascript: <FaJs />,
+  react: <FaReact />,
+  nextjs: <SiNextdotjs />,
+  tailwindcss: <SiTailwindcss />,
+  nodejs: <FaNodeJs />,
+  express: <SiExpress />,
+  api: <BiServer />,
+  php: <FaPhp />,
+  java: <FaJava />,
+  flutter: <SiFlutter />,
+  swift: <FaSwift />,
+  reactnative: <TbBrandReactNative />,
+  dart: <SiDart />,
+  mongodb: <SiMongodb />,
+  mysql: <SiMysql />,
+  firebase: <SiFirebase />,
+  git: <DiGit />,
+  github: <FaGithub />,
+  vscode: <TbBrandVscode />,
+  figma: <FaFigma />,
+  vercel: <SiVercel />,
+  postman: <SiPostman />,
+  aws: <FaAws />,
+  docker: <SiDocker />,
+  storyboard: <Layers />,
+  mobiledesign: <Smartphone />,
+  uikit: <Layout />,
+  openai: <SiOpenai />,
+  cursor: <Sparkles />,
+  copilot: <FaGithub />,
+  claude: <BrainCircuit />
+};
+
+const techColors = {
+  html5: 'text-[#E34F26]', css3: 'text-[#1572B6]', javascript: 'text-[#F7DF1E]',
+  react: 'text-[#61DAFB]', nextjs: 'text-white', tailwindcss: 'text-[#06B6D4]',
+  nodejs: 'text-[#339933]', express: 'text-white', api: 'text-[#00E5FF]',
+  php: 'text-[#777BB4]', java: 'text-[#007396]', flutter: 'text-[#02569B]',
+  reactnative: 'text-[#61DAFB]', dart: 'text-[#0175C2]', mongodb: 'text-[#47A248]',
+  mysql: 'text-[#4479A1]', firebase: 'text-[#FFCA28]', git: 'text-[#F05032]',
+  github: 'text-white', vscode: 'text-[#007ACC]', figma: 'text-[#F24E1E]',
+  vercel: 'text-white', postman: 'text-[#FF6C37]', aws: 'text-[#FF9900]',
+  docker: 'text-[#2496ED]', swift: 'text-[#FA7343]',
+  storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]',
+  uikit: 'text-[#2AC3FF]',
+  openai: 'text-[#10A37F]', cursor: 'text-white', copilot: 'text-white', claude: 'text-[#D97757]'
+};
+
+const techHexColors = {
+  html5: '#E34F26', css3: '#1572B6', javascript: '#F7DF1E',
+  react: '#61DAFB', nextjs: '#ffffff', tailwindcss: '#06B6D4',
+  nodejs: '#339933', express: '#ffffff', api: '#00E5FF',
+  php: '#777BB4', java: '#007396', flutter: '#02569B',
+  reactnative: '#61DAFB', dart: '#0175C2', mongodb: '#47A248',
+  mysql: '#4479A1', firebase: '#FFCA28', git: '#F05032',
+  github: '#ffffff', vscode: '#007ACC', figma: '#F24E1E',
+  vercel: '#ffffff', postman: '#FF6C37', aws: '#FF9900',
+  docker: '#2496ED', swift: '#FA7343',
+  storyboard: '#818CF8', mobiledesign: '#F43F5E',
+  uikit: '#2AC3FF',
+  openai: '#10A37F', cursor: '#ffffff', copilot: '#ffffff', claude: '#D97757'
+};
+
+const categoryIcons = {
+  'All': <Layers size={14} />,
+  'Frontend': <Layout size={14} />,
+  'Backend': <Server size={14} />,
+  'Mobile': <Smartphone size={14} />,
+  'Database': <Database size={14} />,
+  'Tools & Platforms': <Layers size={14} />,
+  'Cloud & DevOps': <Cloud size={14} />,
+  'AI Tools': <Bot size={14} />,
+};
+
+const FilterButton = ({ cat, activeTab, onSelect, icon }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const buttonRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!buttonRef.current) return;
+    const { left, top } = buttonRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - left, y: e.clientY - top });
+  };
+
+  const isActive = activeTab === cat;
+
+  return (
+    <MagneticButton onClick={onSelect}>
+      <button
+        ref={buttonRef}
+        onMouseMove={handleMouseMove}
+        className={`relative flex items-center gap-2.5 px-6 py-3 rounded-xl text-xs font-bold transition-all duration-300 border overflow-hidden group/btn cursor-pointer font-code tracking-wider uppercase ${isActive
+          ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
+          : 'bg-white/[0.01] border-white/5 hover:border-violet-500/30 text-dark-textMuted hover:text-white'
+          }`}
+      >
+        {isActive && (
+          <motion.div
+            layoutId="activeSkillTab"
+            className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 backdrop-blur-md"
+            transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+          />
+        )}
+
+        <div
+          className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle 80px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.2), transparent)`,
+          }}
+        />
+
+        <span className="relative z-10 flex items-center gap-2">
+          {icon}
+          {cat}
+        </span>
+      </button>
+    </MagneticButton>
+  );
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+export default function Skills() {
+  const [activeTab, setActiveTab] = useState('All');
+  const [hoveredTech, setHoveredTech] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const categories = ['All', ...skills.map(s => s.category)];
+
+  // Flattened system technologies with category reference
+  const allSkills = skills.flatMap(cat =>
+    cat.technologies.map(t => ({ ...t, category: cat.category }))
+  );
+
+  const filteredSkills = allSkills.filter(t => {
+    const matchesCategory = activeTab === 'All' || t.category === activeTab;
+    const matchesSearch = searchQuery.trim() === '' || t.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  // Dynamic project count matcher
+  const getRelatedProjectsCount = (techName) => {
+    if (!techName) return 0;
+    const normalize = (name) => name.toLowerCase().replace(/\.js$/, '').replace(/5$/, '').replace(/3$/, '').replace(/[^a-z0-9]/g, '');
+    return projects.filter(proj =>
+      proj.skillsUsed?.some(s => normalize(s) === normalize(techName)) ||
+      proj.tags?.some(t => normalize(t) === normalize(techName))
+    ).length;
+  };
+
+  const handleCategorySelect = (cat) => {
+    setActiveTab(cat);
+  };
+
+  return (
+    <section id="skills" className="py-28 relative overflow-hidden text-white">
+      <GridBackground
+        opacity="05"
+        mask="radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%)"
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Section Header & Search */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-3 mb-4 text-indigo-400 font-code text-xs font-bold tracking-[0.3em] uppercase"
+            >
+              <Target size={16} className="animate-pulse" />
+              <span>Technical Arsenal</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] animated-gradient-text">
+              Engine & <span className="text-gradient">Stack</span>
+            </h2>
+          </div>
+
+          {/* Quick Search Input */}
+          <div className="relative w-full lg:w-80">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-dark-textMuted" size={18} />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search tech stack..."
+              className="w-full bg-white/[0.02] border border-white/10 rounded-2xl pl-11 pr-10 py-3.5 text-sm text-white placeholder:text-dark-textMuted/50 focus:outline-none focus:border-indigo-500/50 focus:shadow-[0_0_20px_rgba(99,102,241,0.15)] transition-all font-code"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-dark-textMuted hover:text-white transition-colors"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Category Filter Pills */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="flex flex-wrap items-center gap-3 mb-12"
+        >
+          {categories.map((cat) => (
+            <motion.div key={cat} variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}>
+              <FilterButton
+                cat={cat}
+                activeTab={activeTab}
+                onSelect={() => handleCategorySelect(cat)}
+                icon={categoryIcons[cat]}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Active Search/Category Readout */}
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/5 font-code text-xs text-dark-textMuted">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
+            <span>Showing <strong className="text-white">{filteredSkills.length}</strong> technologies</span>
+          </div>
+          <span className="hidden sm:block text-indigo-400 font-semibold">Active Category: {activeTab}</span>
+        </div>
+
+        {/* Reconstructed Skill Grid */}
+        <div className="min-h-[380px]">
+          <AnimatePresence mode="wait">
+            {filteredSkills.length === 0 ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col items-center justify-center py-20 text-center"
+              >
+                <Cpu className="text-white/20 w-12 h-12 mb-4 animate-bounce" />
+                <p className="font-code text-sm text-white/50 uppercase tracking-widest">No matching technologies found</p>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={activeTab + searchQuery}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
+              >
+                {filteredSkills.map((tech, index) => {
+                  const matchProjCount = getRelatedProjectsCount(tech.name);
+                  const brandHex = techHexColors[tech.icon] || '#6366f1';
+                  const isHovered = hoveredTech === tech.name;
+
+                  return (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.03 }}
+                      whileHover={{ y: -6, scale: 1.02 }}
+                      onMouseEnter={() => setHoveredTech(tech.name)}
+                      onMouseLeave={() => setHoveredTech(null)}
+                      style={{
+                        borderColor: isHovered ? `${brandHex}60` : undefined,
+                        boxShadow: isHovered ? `0 12px 30px -5px ${brandHex}30` : undefined
+                      }}
+                      className="group relative bg-dark-surface/40 backdrop-blur-md border border-white/10 rounded-2xl p-5 flex flex-col justify-between overflow-hidden transition-all duration-500 hover:bg-white/[0.04] cursor-default shadow-lg"
+                    >
+                      {/* Top Row: Icon Tile + Project Badge */}
+                      <div className="flex items-center justify-between mb-3 z-10">
+                        <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 text-2xl transition-transform duration-500 group-hover:scale-110 ${techColors[tech.icon]}`}>
+                          {iconMap[tech.icon]}
+                        </div>
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-code font-bold uppercase tracking-wider text-dark-textMuted group-hover:text-white transition-colors">
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                          {matchProjCount || tech.projectsCount || 0} Proj
+                        </div>
+                      </div>
+
+                      {/* Middle: Skill Name & Category */}
+                      <div className="z-10 my-2">
+                        <h4 className="text-base font-display font-bold text-white group-hover:text-gradient transition-colors">
+                          {tech.name}
+                        </h4>
+                        <span className="text-[10px] font-code text-dark-textMuted uppercase tracking-wider block mt-0.5 font-semibold">
+                          {tech.category}
+                        </span>
+                      </div>
+
+                      {/* Bottom: Mastery Progress Bar */}
+                      <div className="z-10 mt-2 pt-3 border-t border-white/5 flex flex-col gap-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-code font-bold">
+                          <span className="text-dark-textMuted uppercase tracking-widest">Mastery</span>
+                          <span className="text-white font-mono">{tech.proficiency || 85}%</span>
+                        </div>
+                        <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full transition-all duration-700 ease-out"
+                            style={{
+                              width: `${tech.proficiency || 85}%`,
+                              backgroundColor: brandHex
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Hover Ambient Radial Glow */}
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(circle 120px at 50% 50%, ${brandHex}15, transparent)`
+                        }}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* Footer Status Telemetry */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-4 text-xs font-code text-dark-textMuted">
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={16} className="text-emerald-400" />
+              <span className="text-white font-semibold">Production Ready Stack</span>
+            </div>
+            <span>•</span>
+            <span>Continuously Evolving</span>
+          </div>
+
+          <div className="flex items-center gap-3 text-xs font-code text-dark-textMuted">
+            <Zap size={14} className="text-indigo-400" />
+            <span>Always Building • Always Learning</span>
+          </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
+
+
+
+
+
+
+
+
+hero Reconstructed
+import React, { useState, useEffect } from 'react';
+import { TypeAnimation } from 'react-type-animation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link as ScrollLink } from 'react-scroll';
+import { Github, Linkedin, Instagram, Youtube, Facebook, ArrowRight, MapPin, Clock, Sparkles, Code2, Download, Terminal, ChevronRight } from 'lucide-react';
+import { FaSwift, FaReact, FaNodeJs } from 'react-icons/fa';
+import MagneticButton from './ui/MagneticButton';
+
+// Animated styles injected once
+const shimmerStyle = `
+  @keyframes gradientShimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes sweep {
+    0% { left: -100%; }
+    100% { left: 125%; }
+  }
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes spinCounterSlow {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.28; }
+  }
+  .hero-gradient-text {
+    background: linear-gradient(135deg, #a855f7, #7c3aed, #6366f1, #818cf8, #a855f7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShimmer 4s ease infinite;
+  }
+  .animate-spin-slow {
+    animation: spinSlow 28s linear infinite;
+  }
+  .animate-spin-counter-slow {
+    animation: spinCounterSlow 38s linear infinite;
+  }
+  .hero-grid-bg {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    animation: gridPulse 8s ease-in-out infinite alternate;
+  }
+`;
+
+const socialLinks = [
+  { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100082469136911', color: '#1877f2', name: 'Facebook' },
+  { icon: Instagram, href: 'https://www.instagram.com/rudraa_ptll/', color: '#B72B5F', name: 'Instagram' },
+  { icon: Github, href: 'https://github.com/Rudraptl16', color: '#ffffff', name: 'GitHub' },
+  { icon: Youtube, href: 'https://www.youtube.com/@rudrapatel4172', color: '#ff0000', name: 'YouTube' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/rudrapatel816/', color: '#0077b5', name: 'LinkedIn' },
+];
+
+export default function Hero() {
+  const [showBadge, setShowBadge] = useState(true);
+  const [decorativeElements, setDecorativeElements] = useState([]);
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBadge(false);
+    }, 5000);
+
+    // Live clock update in India (IST) Timezone
+    const updateClock = () => {
+      const options = {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      setCurrentTime(new Intl.DateTimeFormat('en-US', options).format(new Date()));
+    };
+
+    updateClock();
+    const clockInterval = setInterval(updateClock, 1000);
+
+    // Scatter decorative floaters
+    setTimeout(() => {
+      setDecorativeElements([...Array(10)].map(() => ({
+        x: Math.random() * 100 + "%",
+        y: Math.random() * 100 + "%",
+        duration: Math.random() * 5 + 5,
+        delay: Math.random() * 5
+      })));
+    }, 0);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(clockInterval);
+    };
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 25, filter: 'blur(6px)' },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.7,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const blobVariants = {
+    animate: {
+      scale: [1, 1.2, 1],
+      opacity: [0.12, 0.18, 0.12],
+      transition: {
+        duration: 8,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  return (
+    <section
+      id="home"
+      className="min-h-screen relative flex items-center overflow-hidden bg-black text-white"
+    >
+      <style>{shimmerStyle}</style>
+
+      {/* Cybernetic Tech Grid Background */}
+      <div className="absolute inset-0 hero-grid-bg z-0 pointer-events-none" />
+
+      {/* Glowing ambient blobs */}
+      <motion.div
+        variants={blobVariants}
+        animate="animate"
+        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-600/10 blur-[180px] pointer-events-none z-0"
+      />
+      <motion.div
+        variants={blobVariants}
+        animate="animate"
+        className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-indigo-600/10 blur-[160px] pointer-events-none z-0"
+      />
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {decorativeElements.map((el, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-indigo-400/40 rounded-full"
+            initial={{
+              x: el.x,
+              y: el.y,
+              opacity: 0
+            }}
+            animate={{
+              y: [null, "-25%"],
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: el.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: el.delay
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Screen-reader optimized SEO support */}
+      <p className="sr-only">
+        Welcome to the digital portfolio of Rudra Patel, a specialized Full-stack Developer in Vadodara, Gujarat, and an iOS developer in India. Expert in building performant Apple SwiftUI apps, React dashboards, Node.js REST APIs, and responsive mobile interfaces for global clients from India.
+      </p>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center pt-32 lg:pt-20">
+
+        {/* ── LEFT COLUMN: Main Hero Details ─────────────────── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1"
+        >
+          {/* Live Telemetry Status Pill */}
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-code text-xs font-bold uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span>Available for Hire • Full-Stack & iOS</span>
+          </motion.div>
+
+          {/* Social Icons Row */}
+          <motion.div
+            variants={containerVariants}
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-3 md:gap-4"
+          >
+            {socialLinks.map(({ icon: Icon, href, color, name }, i) => (
+              <motion.div key={i} variants={itemVariants}>
+                <MagneticButton>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Follow Rudra Patel on ${name}`}
+                  >
+                    <motion.div
+                      whileHover={{ y: -4, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative w-11 h-11 md:w-12 md:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 overflow-hidden"
+                    >
+                      <Icon
+                        className="w-5 h-5 relative z-10 transition-transform duration-500 group-hover:scale-110"
+                        style={{ color }}
+                        strokeWidth={2}
+                      />
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(circle 50px at center, ${color}33, transparent)`,
+                        }}
+                      />
+                      <div
+                        className="absolute bottom-0 left-0 w-full h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"
+                        style={{ backgroundColor: color }}
+                      />
+                    </motion.div>
+                  </a>
+                </MagneticButton>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Main Headline */}
+          <motion.div variants={itemVariants} className="space-y-2">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.1] text-white">
+              Hi, I'm <span className="hero-gradient-text">Rudra Patel</span>
+            </h1>
+          </motion.div>
+
+          {/* Subtitle Role Animation */}
+          <motion.div variants={itemVariants} className="h-[40px] flex items-center justify-center lg:justify-start">
+            <span className="text-xl font-mono text-indigo-400/60 mr-2 select-none">&gt;</span>
+            <TypeAnimation
+              sequence={[
+                'iOS Swift Developer', 3000,
+                'Frontend Engineer', 3000,
+                'MERN Stack Developer', 3000,
+              ]}
+              wrapper="p"
+              speed={60}
+              repeat={Infinity}
+              className="text-xl md:text-2xl font-bold font-display tracking-wide text-indigo-400"
+            />
+          </motion.div>
+
+          {/* Description Paragraph */}
+          <motion.p
+            variants={itemVariants}
+            className="font-bricolage text-dark-textMuted text-base md:text-lg max-w-xl leading-relaxed opacity-90"
+          >
+            Full-stack Developer based in Vadodara, Gujarat. I engineer high-performance iOS mobile applications and responsive MERN stack web platforms, focused on speed optimization, clean architecture, and fluid user experiences.
+          </motion.p>
+
+          {/* CTA Buttons Row */}
+          <motion.div variants={itemVariants} className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <MagneticButton>
+              <ScrollLink to="projects" smooth duration={900} className="cursor-pointer block">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative group font-display flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-white text-sm tracking-[0.2em] uppercase transition-all duration-500 overflow-hidden cursor-pointer shadow-[0_0_20px_rgba(99,102,241,0.2)] hover:shadow-[0_0_35px_rgba(124,58,237,0.4)]"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-500 group-hover:opacity-90 transition-opacity duration-500" />
+                  <span className="absolute inset-[1px] bg-black/40 backdrop-blur-xl rounded-[15px] z-0 transition-all duration-500 group-hover:bg-black/60" />
+                  <span className="absolute top-0 -left-[100%] h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
+                  <span className="relative z-10 flex items-center gap-3 text-white/90 group-hover:text-white transition-colors duration-300">
+                    Explore My Artifacts
+                    <motion.div
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ArrowRight size={18} className="text-indigo-300 group-hover:text-white transition-colors duration-300" />
+                    </motion.div>
+                  </span>
+                </motion.button>
+              </ScrollLink>
+            </MagneticButton>
+
+            <MagneticButton>
+              <ScrollLink to="contact" smooth duration={900} className="cursor-pointer block">
+                <button className="px-7 py-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-indigo-500/30 text-white font-bricolage text-sm font-bold tracking-wider transition-all duration-300 cursor-pointer">
+                  Get In Touch
+                </button>
+              </ScrollLink>
+            </MagneticButton>
+          </motion.div>
+        </motion.div>
+
+        {/* ── RIGHT COLUMN: Portrait Photo & Floating Tech HUD ─ */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, filter: 'blur(20px)' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+          className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2 relative z-10"
+        >
+          {/* Rotating Vector HUD Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 scale-75 md:scale-95 lg:scale-105">
+            <div className="absolute w-[440px] h-[440px] rounded-full border border-dashed border-indigo-500/15 animate-spin-slow" />
+            <div className="absolute w-[380px] h-[380px] rounded-full border border-double border-violet-500/20 animate-spin-counter-slow" />
+            <div className="absolute w-[500px] h-[500px] rounded-full border border-white/5" />
+          </div>
+
+          {/* Floating Photo & HUD Badges Frame */}
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            whileHover={{ scale: 1.01 }}
+            className="relative cursor-pointer group z-10"
+          >
+            {/* Outer Glow Backblur */}
+            <motion.div
+              className="absolute inset-0 rounded-[2rem] blur-3xl scale-105 bg-gradient-to-tr from-violet-600/30 via-indigo-500/25 to-transparent opacity-75 group-hover:opacity-100 transition-opacity duration-700"
+              animate={{ scale: [1.02, 1.07, 1.02] }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            />
+
+            {/* Photo frame */}
+            <div className="relative w-[300px] md:w-[350px] lg:w-[380px] aspect-[3/4] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+              <img
+                src="/images/DSC06139.webp"
+                alt="Rudra Patel portrait photo"
+                fetchPriority="high"
+                className="w-full h-full object-cover object-top transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            </div>
+
+            {/* Top-Right Floating Tech Badge: iOS Swift */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="absolute -right-4 top-8 bg-black/80 backdrop-blur-xl border border-white/10 p-3 rounded-2xl shadow-xl flex items-center gap-3 z-20 group/badge hover:border-orange-500/40 transition-colors"
+            >
+              <div className="p-2 rounded-xl bg-orange-500/10 text-[#FA7343]">
+                <FaSwift size={20} />
+              </div>
+              <div>
+                <span className="text-[11px] font-bold font-display text-white block leading-tight">iOS Developer</span>
+                <span className="text-[9px] font-code text-dark-textMuted uppercase tracking-wider">SwiftUI • Xcode</span>
+              </div>
+            </motion.div>
+
+            {/* Bottom-Left Floating Tech Badge: MERN Stack */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+              className="absolute -left-4 bottom-10 bg-black/80 backdrop-blur-xl border border-white/10 p-3 rounded-2xl shadow-xl flex items-center gap-3 z-20 group/badge hover:border-cyan-500/40 transition-colors"
+            >
+              <div className="flex items-center -space-x-1.5 p-2 rounded-xl bg-cyan-500/10">
+                <FaReact size={18} className="text-[#61DAFB]" />
+                <FaNodeJs size={18} className="text-[#339933]" />
+              </div>
+              <div>
+                <span className="text-[11px] font-bold font-display text-white block leading-tight">Full-Stack MERN</span>
+                <span className="text-[9px] font-code text-dark-textMuted uppercase tracking-wider">React • Node • Mongo</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+      </div>
+
+      {/* Welcome Toast Badge */}
+      <AnimatePresence>
+        {showBadge && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+            className="absolute top-24 md:top-auto md:bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 w-max"
+          >
+            <div id="homeWelcomeBadge" className="bg-white/5 backdrop-blur-2xl border border-white/10 px-6 py-3 lg:px-8 lg:py-4 rounded-2xl flex flex-col relative overflow-hidden group hover:border-white/20 transition-all" aria-live="polite" role="status">
+              <div className="flex items-center gap-3 z-10 mb-[2px]">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+                </span>
+                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to portfolio 💻</span>
+              </div>
+              <motion.div
+                initial={{ width: "100%" }}
+                animate={{ width: "0%" }}
+                transition={{ duration: 5, ease: "linear" }}
+                className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-violet-600 to-indigo-400"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}

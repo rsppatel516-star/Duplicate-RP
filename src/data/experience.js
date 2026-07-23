@@ -1,44 +1,34 @@
 export const experience = [
   {
     type: 'work',
-    role: "iOS Developer",
-    company: "Freelance / AATCe Labs",
-    duration: "2026 - Present",
-    points: [
-      "Build and ship SwiftUI-based apps with clean MVVM patterns, smooth animations, and API-driven experiences.",
-      "Focus on performance, accessibility, and App Store delivery."
-    ]
-  },
-  {
-    type: 'work',
-    role: "iOS Development",
+    role: "iOS Development Specialist",
     company: "Apple Authorised Training Center [AATCe]",
-    duration: "July 2025 - August 2025",
+    duration: "July 2025 - Continued",
     points: [
-      "iOS apps are built with Swift in Xcode, using SwiftUI or UIKit for the interface.",
-      "Code is structured with architectures like MVC or MVVM to manage logic, data, and networking.",
-      "Apps are tested on simulators and real devices before release on the App Store."
+      "Building native iOS applications using Swift, SwiftUI, and UIKit within Xcode.",
+      "Structuring clean code architecture using MVVM and MVC design patterns for robust data flow.",
+      "Testing and optimizing app performance on physical iOS devices and Xcode Simulators."
     ]
   },
   {
     type: 'work',
-    role: "Freelance Web Developer",
-    company: "Self-Employed",
+    role: "Full-Stack Web Developer",
+    company: "Independent / Freelance",
     duration: "2024 - Present",
     points: [
-      "Building modern, responsive web applications for various use cases.",
-      "Specializing in custom UI/UX design converted to pixel-perfect code.",
-      "Focusing on performant architectures using React, Node.js, and modern CSS techniques."
+      "Engineering modern MERN stack web applications with React.js, Next.js, Node.js, and MongoDB.",
+      "Crafting pixel-perfect responsive user interfaces with Tailwind CSS and Framer Motion micro-interactions.",
+      "Deploying scalable cloud microservices with RESTful API endpoints on Vercel and Node servers."
     ]
   },
   {
-    type: 'work',
+    type: 'education',
     role: "Bachelor's in Computer Science Engineering",
     company: "Parul University",
     duration: "2024 - 2028",
     points: [
-      "Currently pursuing a degree in Computer Science, focusing on full-stack development and software engineering principles.",
-      "Engaging deeply with Data Structures, Algorithms (Java), and modern web technologies."
+      "Pursuing Computer Science Engineering degree with focus on software architecture and system design.",
+      "Engaging deeply with Data Structures, Algorithms in Java, and modern full-stack development."
     ]
   }
 ];
@@ -46,38 +36,44 @@ export const experience = [
 export const certifications = [
   {
     title: "AWS Cloud Practitioner",
-    issuer: "Microsoft / AWS", 
+    issuer: "AWS / Microsoft",
     date: "2024",
     icon: "aws",
+    color: "#FF9900"
   },
   {
     title: "React.js Development",
     issuer: "Code With Harry",
     date: "2024",
     icon: "react",
+    color: "#61DAFB"
   },
   {
-    title: "Node.js Backend Development",
+    title: "Node.js Backend Architecture",
     issuer: "Code With Harry",
     date: "2024",
-    icon: "node"
+    icon: "node",
+    color: "#339933"
   },
   {
-    title: "MongoDB Database",
+    title: "MongoDB Database Management",
     issuer: "Code With Harry",
     date: "2024",
-    icon: "database"
+    icon: "database",
+    color: "#47A248"
   },
   {
-    title: "Data Structures & Algorithms (JAVA)",
-    issuer: "OWASP", // Extracted from the HTML "OWASP" placeholder
+    title: "Data Structures & Algorithms (Java)",
+    issuer: "OWASP",
     date: "2024",
-    icon: "shield"
+    icon: "shield",
+    color: "#818CF8"
   },
   {
-    title: "Git & GitHub Mastery",
-    issuer: "GitHub / YouTube",
+    title: "Git & GitHub Version Control",
+    issuer: "GitHub",
     date: "2024",
-    icon: "github"
+    icon: "github",
+    color: "#ffffff"
   }
 ];

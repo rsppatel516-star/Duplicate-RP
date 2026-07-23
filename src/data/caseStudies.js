@@ -12,16 +12,16 @@ export const caseStudies = [
     keyFeatures: [
       "Vite-based ultra-fast HMR architecture",
       "Custom CSS Variable integration with Tailwind",
-      "High-end 3D background particle systems",
+      "High-end ambient aurora mesh background system",
       "Context-based adaptive theme engine"
     ],
     problem: "The challenge was to move away from a traditional bento-grid layout toward a radical, editorial split-screen experience that maintains high performance and smooth interaction across all devices.",
-    solution: "Leveraged Framer Motion for sophisticated stagger effects and backdrop-blur gradients to create a 'Midnight Glass' aesthetic. Implemented a custom context-based theme system and high-end 3D background particles.",
+    solution: "Leveraged Framer Motion for sophisticated stagger effects and backdrop-blur gradients to create a 'Midnight Glass' aesthetic. Implemented a custom context-based theme system and high-end ambient aurora mesh background.",
     results: "Achieved a 98+ Lighthouse performance score, significantly reduced bounce rate through immersive interactions, and established a unique brand identity.",
     techDetails: [
       "Vite-based React architecture for ultra-fast HMR.",
       "Custom CSS Variables integrated with Tailwind v4 for a dynamic design system.",
-      "Three.js / React Three Fiber for the immersive global particles background."
+      "HTML5 Canvas 2D for the high-performance global ambient light mesh background."
     ],
     featured: true
   }

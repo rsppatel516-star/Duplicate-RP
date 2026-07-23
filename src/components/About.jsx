@@ -169,7 +169,7 @@ export default function About() {
             </div>
 
             {/* SVG Animation display */}
-            <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden rounded-2xl p-2 group/svg my-1">
+            <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden rounded-2xl  ">
               <img
                 src="/developer animation.svg"
                 alt="Developer Coding Animation Showcase"

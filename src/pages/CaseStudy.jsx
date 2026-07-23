@@ -82,7 +82,7 @@ export default function CaseStudy() {
 
   return (
     <div className="min-h-screen text-dark-textMain overflow-x-hidden">
-      <SEO 
+      <SEO
         title={`${study.title} | Case Study`}
         description={study.description}
         keywords={study.tags?.join(', ') || study.category}
@@ -174,31 +174,66 @@ export default function CaseStudy() {
 
       <div className="relative z-10">
         {/* ── METADATA ROW ─────────────────────────── */}
-        <div className="max-w-5xl mx-auto px-6 relative z-10 mt-12">
+        <div className="max-w-5xl mx-auto px-6 relative z-10 -mt-8 md:-mt-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={container}
-            className="grid grid-cols-2 md:grid-cols-4 bg-dark-surface/80 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl "
+            className="grid grid-cols-2 md:grid-cols-4 p-2 md:p-3 bg-dark-surface/90 backdrop-blur-2xl border border-white/15 rounded-3xl md:rounded-[2rem] gap-2 md:gap-3"
           >
             {[
-              { label: "Category", value: study.category, Icon: Tag },
-              { label: "My Role", value: study.role || "Lead Architect", Icon: User },
-              { label: "Stack", value: `${study.tags.length} Technologies`, Icon: Layers },
-              { label: "Features", value: `${study.keyFeatures?.length || 0} Key Points`, Icon: Target },
-            ].map(({ label, value, Icon: IconComponent }) => (
+              {
+                label: "Category",
+                value: study.category,
+                Icon: Tag,
+                accent: "from-indigo-500/20 to-purple-500/20 text-indigo-400 border-indigo-500/30",
+              },
+              {
+                label: "My Role",
+                value: study.role || "Lead Architect",
+                Icon: User,
+                accent: "from-purple-500/20 to-pink-500/20 text-purple-400 border-purple-500/30",
+              },
+              {
+                label: "Stack",
+                value: `${study.tags.length} Technologies`,
+                Icon: Layers,
+                accent: "from-cyan-500/20 to-blue-500/20 text-cyan-400 border-cyan-500/30",
+              },
+              {
+                label: "Features",
+                value: `${study.keyFeatures?.length || 0} Key Points`,
+                Icon: Target,
+                accent: "from-emerald-500/20 to-teal-500/20 text-emerald-400 border-emerald-500/30",
+              },
+            ].map(({ label, value, Icon: IconComponent, accent, glow }) => (
               <motion.div
                 key={label}
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 }
                 }}
-                className="px-4 py-6 md:px-8 md:py-8 flex flex-col gap-2 hover:bg-white/[0.03] transition-colors border-r border-white/5 last:border-0"
+                className="group relative p-5 md:p-6 rounded-2xl md:rounded-[1.5rem] bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col justify-between gap-3 overflow-hidden cursor-default hover:-translate-y-1"
               >
-                <IconComponent size={18} className="text-dark-primary/60 mb-1" />
-                <p className="text-[9px] md:text-[10px] text-dark-textMuted uppercase tracking-[0.2em] font-black">{label}</p>
-                <p className="text-xs md:text-sm lg:text-base font-bold text-white leading-tight">{value}</p>
+                {/* Top Ambient Soft Glow on Hover */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors pointer-events-none" />
+
+                <div className="flex items-center justify-between">
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${accent} border flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${glow}`}>
+                    <IconComponent size={18} />
+                  </div>
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white/60 transition-colors" />
+                </div>
+
+                <div className="space-y-1 z-10">
+                  <p className="text-[10px] md:text-[11px] text-white/50 group-hover:text-white/80 uppercase tracking-[0.25em] font-black transition-colors">
+                    {label}
+                  </p>
+                  <p className="text-xs md:text-sm lg:text-base font-bold text-white tracking-tight leading-snug group-hover:translate-x-0.5 transition-transform">
+                    {value}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>

@@ -51,7 +51,7 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
-      <SEO 
+      <SEO
         title="Insights & Thoughts"
         description="Deep dives into AI, full-stack development, and modern design principles."
         canonical="https://patelrudra.in/blog"
@@ -120,8 +120,8 @@ export default function Blog() {
                 <button
                   onClick={() => setActiveCategory(cat)}
                   className={`px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 relative group flex items-center gap-2 border ${activeCategory === cat
-                      ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
-                      : 'text-white/50 hover:text-white bg-white/[0.01] border-white/5 hover:border-violet-500/30'
+                    ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
+                    : 'text-white/50 hover:text-white bg-white/[0.01] border-white/5 hover:border-violet-500/30'
                     }`}
                 >
                   {activeCategory === cat && (
@@ -193,7 +193,7 @@ export default function Blog() {
                               </span>
                             </div>
                           </div>
-  
+
                           {/* Text Content */}
                           <div className="w-full lg:w-[45%] flex flex-col justify-center lg:pr-10">
                             <div className="flex items-center gap-6 text-[10px] font-code text-white/40 mb-8 uppercase tracking-[0.2em]">
@@ -206,15 +206,15 @@ export default function Blog() {
                                 {featuredBlog.readTime}
                               </span>
                             </div>
-  
+
                             <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-black text-white py-2 mb-6 group-hover:text-dark-primary transition-colors duration-500 leading-[1.15] break-words">
                               {featuredBlog.title}
                             </h2>
-  
+
                             <p className="text-white/60 text-lg leading-relaxed mb-10 line-clamp-3 font-medium">
                               {featuredBlog.excerpt}
                             </p>
-  
+
                             <div className="flex flex-wrap gap-2 mb-10">
                               {featuredBlog.tags?.map(tag => (
                                 <span key={tag} className="flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[9px] font-bold text-white/40 uppercase tracking-widest group-hover:border-dark-primary/20 transition-colors">
@@ -223,7 +223,7 @@ export default function Blog() {
                                 </span>
                               ))}
                             </div>
-  
+
                             <div className="mt-auto pt-8 flex items-center justify-between border-t border-white/5">
                               <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-dark-surface border border-white/10 flex items-center justify-center overflow-hidden">
@@ -273,21 +273,21 @@ export default function Blog() {
                               </span>
                             </div>
                           </div>
-  
+
                           <div className="p-8 flex flex-col flex-grow">
                             <div className="flex items-center gap-4 text-[9px] font-code text-white/30 mb-6 uppercase tracking-widest">
                               <span className="flex items-center gap-1.5"><Calendar size={10} /> {blog.date}</span>
                               <span className="flex items-center gap-1.5"><Clock size={10} /> {blog.readTime}</span>
                             </div>
-  
+
                             <h3 className="text-2xl font-display font-bold text-white mb-4 group-hover/card:text-dark-primary transition-colors duration-300 line-clamp-2 leading-tight">
                               {blog.title}
                             </h3>
-  
+
                             <p className="text-white/50 text-sm leading-relaxed mb-8 flex-grow line-clamp-3">
                               {blog.excerpt}
                             </p>
-  
+
                             <div className="flex flex-wrap gap-2 mb-8">
                               {blog.tags?.slice(0, 3).map(tag => (
                                 <span key={tag} className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-md text-[8px] font-bold text-white/30 uppercase tracking-widest">
@@ -295,7 +295,7 @@ export default function Blog() {
                                 </span>
                               ))}
                             </div>
-  
+
                             <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                               <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-full bg-dark-surface border border-white/10 flex items-center justify-center overflow-hidden">

@@ -139,7 +139,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen relative flex items-center overflow-hidden bg-black"
+      className="min-h-screen relative flex items-center overflow-hidden   "
     >
       <style>{shimmerStyle}</style>
 
@@ -257,10 +257,9 @@ export default function Hero() {
             <span className="text-xl font-mono text-white/30 mr-2 select-none">&gt;</span>
             <TypeAnimation
               sequence={[
-                'iOS Swift Specialist', 2200,
-                'Full-Stack MERN Developer', 2200,
-                'Creative UI/UX Engineer', 2200,
-                'Cloud Architecture Dev', 2200,
+                'iOS Swift Developer', 3000,
+                'Frontend Developer', 3000,
+                'MERN Developer', 3000,
               ]}
               wrapper="p"
               speed={60}

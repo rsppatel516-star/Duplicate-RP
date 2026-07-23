@@ -43,7 +43,7 @@ export default function Artifacts() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
-      <SEO 
+      <SEO
         title="Featured Artifacts"
         description="A curated collection of digital products and technical case studies by Rudra Patel."
         canonical="https://patelrudra.in/artifacts"
