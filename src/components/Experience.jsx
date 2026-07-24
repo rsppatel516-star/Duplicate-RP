@@ -26,13 +26,6 @@ const certColors = {
 };
 
 export default function Experience() {
-  const timelineRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start center", "end center"]
-  });
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
     <section id="experience" className="py-32 relative overflow-hidden text-white">
 
@@ -49,13 +42,15 @@ export default function Experience() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 mb-4 text-[#6366f1] font-code text-xs font-bold tracking-[0.3em] uppercase"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full  mb-4"
             >
-              <Award size={18} className="animate-pulse text-indigo-400" />
-              <span>Career & Growth</span>
+              <Award size={16} className="text-purple-400" />
+              <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
+                CAREER & GROWTH
+              </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] animated-gradient-text">
-              Architecting <span className="text-gradient">Success</span> One Milestone at a Time
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-display font-black tracking-tight text-white ">
+              Architecting <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Success</span> One Milestone at a Time
             </h2>
           </div>
         </div>
@@ -74,30 +69,16 @@ export default function Experience() {
               </div>
             </div>
 
-            <div ref={timelineRef} className="relative ml-4 sm:ml-6 space-y-8 pt-4">
-              {/* Background Timeline Line */}
-              <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-white/10" />
-
-              {/* Laser Animated Line */}
-              <motion.div
-                style={{ scaleY, transformOrigin: 'top' }}
-                className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.6)]"
-              />
-
+            <div className="space-y-6 pt-2">
               {experience.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1, duration: 0.6 }}
-                  className="relative pl-8 sm:pl-10 group"
+                  className="relative group"
                 >
-                  {/* Glowing Node Dot */}
-                  <div className="absolute -left-[6.5px] top-3 w-[14px] h-[14px] rounded-full bg-dark-bg border-2 border-white/20 group-hover:border-indigo-400 transition-all duration-500 z-10 shadow-[0_0_10px_rgba(99,102,241,0.3)]">
-                    <div className="absolute inset-0 rounded-full bg-indigo-500/0 group-hover:bg-indigo-500/40 animate-ping" />
-                  </div>
-
                   <div className="p-6 sm:p-8 rounded-3xl bg-dark-surface/30 backdrop-blur-md border border-white/10 hover:border-indigo-500/40 hover:bg-white/[0.03] hover:shadow-[0_12px_40px_-10px_rgba(99,102,241,0.2)] transition-all duration-500 group-hover:-translate-y-1 relative overflow-hidden">
                     {/* Hover Glow Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

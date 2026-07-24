@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import FeatureNavbar from './components/FeatureNavbar';
 import Footer from './components/Footer';
@@ -13,23 +12,12 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import GlobalParticles from './components/canvas/GlobalParticles';
 import ClickSpark from './components/ui/ClickSpark';
-import WelcomeScreen from './components/WelcomeScreen';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 function App() {
   const location = useLocation();
-
-  // Manage Welcome Screen state (persisted per browser session)
-  const [showWelcome, setShowWelcome] = useState(() => {
-    return !sessionStorage.getItem('hasSeenWelcome');
-  });
-
-  const handleEnterPortfolio = () => {
-    sessionStorage.setItem('hasSeenWelcome', 'true');
-    setShowWelcome(false);
-  };
 
   // Track pageviews on client-side route changes
   useEffect(() => {
@@ -50,13 +38,6 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-bg text-dark-textMain relative">
-      {/* Interactive Welcome Screen Overlay */}
-      <AnimatePresence mode="wait">
-        {showWelcome && (
-          <WelcomeScreen onEnter={handleEnterPortfolio} />
-        )}
-      </AnimatePresence>
-
       {/* Global Particle Background */}
       <GlobalParticles />
 

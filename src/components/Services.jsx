@@ -19,13 +19,15 @@ export default function Services() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 mb-6 text-dark-primary font-code text-sm tracking-widest uppercase"
+              className="inline-flex items-center gap-2.5 px-4 py-2 mb-4"
             >
-              <Zap size={18} />
-              <span>Core Capabilities</span>
+              <Zap size={16} className="text-purple-400" />
+              <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
+                SERVICES & CAPABILITIES
+              </span>
             </motion.div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
-              Solving <span className="text-gradient">Complex</span> <br /> Problems with Code
+            <h2 className="text-4xl md:text-5xl lg:text-5.5 xl font-display font-black tracking-tight leading-[1.15] text-white">
+              Solving <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Complex</span> Problems with Code
             </h2>
           </div>
         </div>

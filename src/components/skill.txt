@@ -320,10 +320,12 @@ export default function Skills() {
                         <div className={`p-2.5 rounded-xl bg-white/5 border border-white/10 text-2xl transition-transform duration-500 group-hover:scale-110 ${techColors[tech.icon]}`}>
                           {iconMap[tech.icon]}
                         </div>
+                        {/* 
                         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-code font-bold uppercase tracking-wider text-dark-textMuted group-hover:text-white transition-colors">
                           <span className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
                           {matchProjCount || tech.projectsCount || 0} Proj
                         </div>
+                        */}
                       </div>
 
                       {/* Middle: Skill Name & Category */}

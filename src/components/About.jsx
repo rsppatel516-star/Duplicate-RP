@@ -101,13 +101,15 @@ export default function About() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 mb-4 text-[#6366f1] font-code text-sm tracking-widest uppercase"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-purple-400 mb-4   "
             >
-              <User size={18} />
-              <span>Identity Profile</span>
+              <User size={16} className="text-purple-400" />
+              <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
+                IDENTITY PROFILE
+              </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] animated-gradient-text">
-              Crafting Digital <span className="text-gradient">Gold</span> from Lines of Code
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-display font-black tracking-tight leading-[1.15] text-white">
+              Crafting Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Gold</span> from Lines of Code
             </h2>
           </div>
           <ScrollLink to="projects" smooth duration={800} className="hidden md:block">

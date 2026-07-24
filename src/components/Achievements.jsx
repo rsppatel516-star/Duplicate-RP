@@ -368,36 +368,42 @@ export default function Achievements() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* Header section */}
-        <div className="flex flex-col items-center text-center mb-20">
+        {/* Header section (Left-aligned as per Blog.jsx) */}
+        <header className="mb-14 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex items-center gap-4 mb-6 text-dark-primary/60 font-code text-xs font-black tracking-[0.5em] uppercase"
+            className="flex items-center gap-3 mb-6 text-purple-400 font-mono text-xs font-bold tracking-[0.3em] uppercase"
           >
-            <Award size={16} />
-            <span>CREDENTIALS</span>
+            <div className="w-10 h-[1px] bg-purple-500/40" />
+            <Award size={15} />
+            <span>CREDENTIALS & CERTIFICATIONS</span>
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-display font-black tracking-tight mb-6 animated-gradient-text"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl sm:text-6xl md:text-7xl font-display font-black tracking-tight sm:tracking-tighter text-white mb-6 leading-none"
           >
-            Badges & <span className="text-gradient">Achievements</span>
+            Verified <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">
+              Credentials & Badges
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-dark-textMuted max-w-xl font-light leading-relaxed text-sm md:text-base"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-white/60 max-w-2xl font-display leading-relaxed text-sm md:text-base text-left"
           >
             Verified cloud proficiencies, programming languages, and software architectures validated through official certifications and industry credentials.
           </motion.p>
-        </div>
+        </header>
 
         {/* Credentials Grid */}
         <motion.div

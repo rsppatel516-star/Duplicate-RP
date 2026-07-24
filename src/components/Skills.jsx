@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '../data/skills';
 import { projects } from '../data/projects';
 import {
-  Code, Layout, Server, Smartphone, Cloud,
+  Code, Code2, Layout, Server, Smartphone, Cloud,
   Database, Cpu, Layers, ChevronRight, Zap, Target, Bot, Sparkles, BrainCircuit,
   Search, X, ExternalLink, Globe
 } from 'lucide-react';
@@ -229,13 +229,15 @@ export default function Skills() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-center justify-center lg:justify-start gap-3 mb-6 text-indigo-400 font-mono text-xs font-black tracking-[0.4em] uppercase"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 mb-4 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
             >
-              <Target size={14} className="animate-pulse" />
-              <span>THE ARSENAL</span>
+              <Code2 size={16} className="text-purple-400" />
+              <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
+                TECHNICAL ARSENAL
+              </span>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-none text-white">
-              Technical <br /> <span className="hero-gradient-text block mt-1">Engine & Stack</span>
+            <h2 className="text-4xl md:text-5xl lg:text-5xl font-display font-black tracking-tight leading-[1.15] text-white">
+              Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Engine & Stack</span>
             </h2>
           </div>
         </div>
@@ -311,10 +313,11 @@ export default function Skills() {
                     >
 
 
-                      {/* Project Count Tech Stamp */}
+                      {/* Project Count Tech Stamp 
                       <div className="absolute top-4 left-4 text-[7px] font-mono font-bold text-white/30 group-hover:text-white/60 transition-colors uppercase tracking-widest">
                         [{matchProjCount || tech.projectsCount || 0} PROJ]
                       </div>
+                      */}
 
                       {/* Floating Large Brand Glow */}
                       <div className={`absolute -bottom-10 -right-10 text-9xl opacity-[0.01] group-hover:opacity-[0.08] transition-opacity duration-700 pointer-events-none ${techColors[tech.icon]}`}>

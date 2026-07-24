@@ -260,6 +260,7 @@ export default function Hero() {
                 'iOS Swift Developer', 3000,
                 'Frontend Developer', 3000,
                 'MERN Developer', 3000,
+                'Vibe Coder', 3000,
               ]}
               wrapper="p"
               speed={60}

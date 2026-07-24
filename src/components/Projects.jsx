@@ -80,7 +80,7 @@ export default function Projects() {
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <section id="projects" className="py-32  relative overflow-hidden">
+    <section id="projects" className="py-16  relative overflow-hidden">
 
       {/* Background Gradients */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px]  rounded-full blur-[140px] pointer-events-none" />
@@ -90,20 +90,22 @@ export default function Projects() {
 
         {/* Header Section */}
         <div className="mb-20">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 -mb-24 -mt-12 ">
             <div>
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="flex items-center gap-3 mb-4 text-dark-secondary font-code text-sm tracking-widest uppercase"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 mb-4 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
               >
-                <Briefcase size={18} />
-                <span>The Exhibit</span>
+                <FolderOpen size={16} className="text-purple-400" />
+                <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
+                  FEATURED ARTIFACTS
+                </span>
               </motion.div>
 
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.2] md:leading-[1.15] animated-gradient-text">
-                Featured <br /> <span className="text-gradient">Artifacts</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] text-white">
+                Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Artifacts</span>
               </h2>
             </div>
 
