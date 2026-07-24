@@ -175,6 +175,10 @@ export default function About() {
               <img
                 src="/developer animation.svg"
                 alt="Developer Coding Animation Showcase"
+                loading="lazy"
+                decoding="async"
+                width="380"
+                height="380"
                 className="w-full h-full max-h-[320px] md:max-h-[360px] lg:max-h-[380px] object-contain relative z-10 scale-105 sm:scale-110 md:scale-115 drop-shadow-[0_0_25px_rgba(99,102,241,0.35)] transition-transform duration-500 group-hover/animCard:scale-120 select-none pointer-events-none"
               />
             </div>

@@ -121,7 +121,11 @@ export default function Projects() {
               <img
                 src="/project animation.svg"
                 alt="Project Showcase Animation"
-                className="w-500 h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-transform duration-500 group-hover/anim:scale-105 select-none pointer-events-none"
+                loading="lazy"
+                decoding="async"
+                width="360"
+                height="360"
+                className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-transform duration-500 group-hover/anim:scale-105 select-none pointer-events-none"
               />
             </motion.div>
           </div>

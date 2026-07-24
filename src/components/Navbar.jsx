@@ -239,7 +239,7 @@ export default function Navbar() {
 
           {/* Right side tools */}
           <div className="flex items-center gap-3 z-10">
-            {/* Quick Contact / Hire Me CTA button on desktop */}
+            {/* Quick Contact / Hire Me CTA button on desktop 
             {isHome && (
               <ScrollLink to="contact" smooth offset={-80} duration={800} className="hidden sm:block">
                 <motion.button
@@ -252,7 +252,7 @@ export default function Navbar() {
                   <ArrowRight size={13} className="text-indigo-300 group-hover:translate-x-0.5 transition-transform" />
                 </motion.button>
               </ScrollLink>
-            )}
+            )}*/}
 
             {/* Mobile Hamburger */}
             <MenuButton isOpen={isMobileMenuOpen} onClick={() => setMenuOpen(v => !v)} />

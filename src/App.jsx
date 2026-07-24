@@ -1,20 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import FeatureNavbar from './components/FeatureNavbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Artifacts from './pages/Artifacts';
-import CaseStudy from './pages/CaseStudy';
-import AchievementsPage from './pages/AchievementsPage';
-import ContactPage from './pages/ContactPage';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
 import GlobalParticles from './components/canvas/GlobalParticles';
 import ClickSpark from './components/ui/ClickSpark';
-import AdminLogin from './pages/admin/AdminLogin';
-import AdminDashboard from './pages/admin/AdminDashboard';
 import ProtectedRoute from './components/admin/ProtectedRoute';
+
+// Lazy loaded page components for optimal initial load performance
+const Artifacts = lazy(() => import('./pages/Artifacts'));
+const CaseStudy = lazy(() => import('./pages/CaseStudy'));
+const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+
+// Lightweight page loading indicator
+const PageFallback = () => (
+  <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 function App() {
   const location = useLocation();
@@ -55,21 +64,23 @@ function App() {
           {/* Conditionally render Navbar or FeatureNavbar (unless on Admin pages) */}
           {!isAdminPage && (isFeaturePage ? <FeatureNavbar /> : <Navbar />)}
           <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/artifacts" element={<Artifacts />} />
-              <Route path="/artifacts/:id" element={<CaseStudy />} />
-              <Route path="/achievements" element={<AchievementsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogPost />} />
+            <Suspense fallback={<PageFallback />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/artifacts" element={<Artifacts />} />
+                <Route path="/artifacts/:id" element={<CaseStudy />} />
+                <Route path="/achievements" element={<AchievementsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
 
-              {/* Admin Routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/admin/dashboard" element={<AdminDashboard />} />
-              </Route>
-            </Routes>
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                </Route>
+              </Routes>
+            </Suspense>
           </main>
           {!isFeaturePage && !isAdminPage && <Footer />}
         </div>

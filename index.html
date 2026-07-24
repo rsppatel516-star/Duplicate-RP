@@ -18,21 +18,21 @@
     <meta name="revisit-after" content="7 days">
     <meta property="og:locale" content="en_US" />
 
-    <!-- Google Analytics (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RUDRA_GA"></script>
+    <!-- Google Analytics (gtag.js) - Deferred loading to protect LCP & TBT -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      // Initialize with send_page_view: false since we'll track custom router events in React
       gtag('config', 'G-RUDRA_GA', { send_page_view: false });
     </script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-RUDRA_GA"></script>
     
     <!-- High-Speed CDN DNS Prefetching and Preconnections -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preload" as="image" href="/images/RP - LOGO.png">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">

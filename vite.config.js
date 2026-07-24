@@ -7,12 +7,37 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      // Forward all /api/* requests to the Vercel dev server
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
         secure: false,
       }
     }
+  },
+  build: {
+    target: 'es2020',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'vendor-react';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-framer';
+            }
+            if (id.includes('lucide-react') || id.includes('react-icons')) {
+              return 'vendor-icons';
+            }
+            return 'vendor-libs';
+          }
+        }
+      }
+    }
+  },
+  esbuild: {
+    drop: ['console', 'debugger'],
   }
 })
