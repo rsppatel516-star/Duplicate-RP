@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import GlobalParticles from './components/canvas/GlobalParticles';
 import ClickSpark from './components/ui/ClickSpark';
+import ScrollProgress from './components/ui/ScrollProgress';
+import CyberSpotlight from './components/ui/CyberSpotlight';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 // Lazy loaded page components for optimal initial load performance
@@ -47,6 +49,12 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-bg text-dark-textMain relative">
+      {/* Top Scroll Reading Progress Indicator */}
+      <ScrollProgress />
+
+      {/* Cyber Spotlight & Mouse Follower */}
+      <CyberSpotlight />
+
       {/* Global Particle Background */}
       <GlobalParticles />
 
