@@ -339,7 +339,7 @@ export default function Hero() {
               <img
                 src="/images/DSC06139.webp"
                 alt="Rudra Patel portrait photo"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="async"
                 width="440"
                 height="586"

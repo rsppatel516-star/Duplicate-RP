@@ -110,15 +110,28 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="pt-12 pb-12 relative overflow-hidden bg-[#040510]/90 backdrop-blur-2xl border-t border-white/10">
-      {/* Dynamic Scrolling Top Glowing Shimmer Border */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#6366f1] via-[#818cf8] to-transparent opacity-70 animate-pulse" />
+    <footer className="pt-16 pb-12 relative overflow-hidden bg-[#03040c]/95 backdrop-blur-3xl border-t border-white/[0.08] text-white">
+      {/* Animated Multi-Color Gradient Top Border Shimmer */}
+      <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-purple-500 via-indigo-400 via-cyan-400 to-transparent opacity-80 animate-pulse" />
 
-      {/* Immersive Glowing Backdrop Decor */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[350px] bg-gradient-to-tr from-indigo-600/10 to-purple-600/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* Layered Cybernetic Ambient Mesh Backglow */}
+      <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-0 right-1/4 translate-x-1/2 w-[700px] h-[350px] bg-indigo-600/12 rounded-full blur-[160px] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-gradient-to-r from-violet-600/5 via-cyan-500/5 to-purple-600/5 rounded-full blur-[180px] pointer-events-none z-0" />
 
-      {/* Ambient Visual Tech-Grid Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.015)_1px,transparent_0)] bg-[size:24px_24px] pointer-events-none opacity-50" />
+      {/* Cybernetic Tech-Grid Pattern Background */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0 opacity-40" 
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(ellipse at 50% 50%, black 40%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 50% 50%, black 40%, transparent 100%)'
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
@@ -183,7 +196,7 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Live System Operational Status Widget */}
+            {/* Live System Operational Status Widget
             <div className="pt-2 space-y-2.5">
               <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <div className="flex items-center gap-2 bg-[#08080f]/80 border border-white/10 py-1.5 px-3 rounded-full backdrop-blur-md shadow-inner">
@@ -208,7 +221,7 @@ export default function Footer() {
                   LOCAL TIME: <span className="text-white font-bold">{time || '00:00:00 IST'}</span>
                 </span>
               </div>
-            </div>
+            </div>*/}
           </div>
 
           {/* Column 2: Quick Links */}
@@ -316,7 +329,7 @@ export default function Footer() {
             
           </div>
 
-          {/* Scroll-To-Top Button */}
+          {/* Scroll-To-Top Button 
           <button
             onClick={scrollToTop}
             className="group flex flex-col items-center gap-1 focus:outline-none cursor-pointer"
@@ -326,7 +339,7 @@ export default function Footer() {
               <ArrowUp size={16} className="transition-transform relative z-10 group-hover:-translate-y-0.5" />
             </div>
             <span className="text-[8px] font-mono font-bold tracking-widest uppercase opacity-50 group-hover:opacity-100 group-hover:text-indigo-400 transition-all">TOP_UP</span>
-          </button>
+          </button>*/}
         </div>
       </div>
     </footer>

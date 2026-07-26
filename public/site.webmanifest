@@ -1,0 +1,24 @@
+{
+  "name": "Rudra Patel — Digital Architect & Full-Stack Engineer",
+  "short_name": "Rudra Patel",
+  "description": "Portfolio of Rudra Patel, specializing in premium web experiences, SwiftUI mobile applications, and full-stack engineering.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050510",
+  "theme_color": "#050510",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/RP - LOGO.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/RP - LOGO.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

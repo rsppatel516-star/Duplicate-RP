@@ -19,19 +19,19 @@ export default function SEO({
   noIndex = false,
 }) {
   const defaultUrl = 'https://patelrudra.in';
-  const defaultTitle = 'RUDRA | Digital Architect & Full-Stack Engineer';
+  const defaultTitle = 'Rudra Patel — Digital Architect & Full-Stack Engineer';
   const defaultDesc = 'Portfolio of Rudra Patel, a Digital Architect specializing in premium web experiences, high-performance mobile apps, and robust full-stack engineering.';
-  const defaultKeywords = 'Rudra Patel, Digital Architect, Full-Stack Developer, Mobile App Developer, React, Flutter, Node.js, Midnight Glass Design';
-  const defaultImage = '/images/about.webp';
+  const defaultKeywords = 'Rudra Patel, Digital Architect, Full-Stack Developer, Mobile App Developer, React, Swift, SwiftUI, Node.js, Midnight Glass Design, Vadodara, India';
+  const defaultImage = '/images/navbar-avatar.webp';
 
   const titleText = title ? `${title} | Rudra Patel` : defaultTitle;
   const descText = description || defaultDesc;
   const keywordsText = keywords || defaultKeywords;
   const fullUrl = ogUrl || canonical || defaultUrl;
   
-  // Format image URL properly
+  // Format image URL properly (always produce absolute URL for social crawlers)
   const imageToUse = ogImage || defaultImage;
-  const imgUrl = imageToUse.startsWith('http') ? imageToUse : `${defaultUrl}${imageToUse}`;
+  const imgUrl = imageToUse.startsWith('http') ? imageToUse : `${defaultUrl}${imageToUse.startsWith('/') ? '' : '/'}${imageToUse}`;
 
   return (
     <Helmet>
@@ -50,12 +50,16 @@ export default function SEO({
       {/* Canonical URL */}
       <link rel="canonical" href={fullUrl} />
 
-      {/* Open Graph / Facebook */}
+      {/* Open Graph / Facebook / WhatsApp */}
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={fullUrl} />
+      <meta property="og:site_name" content="Rudra Patel Portfolio" />
       <meta property="og:title" content={ogTitle || titleText} />
       <meta property="og:description" content={ogDescription || descText} />
       <meta property="og:image" content={imgUrl} />
+      <meta property="og:image:secure_url" content={imgUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter Cards */}
@@ -64,6 +68,7 @@ export default function SEO({
       <meta name="twitter:title" content={twitterTitle || ogTitle || titleText} />
       <meta name="twitter:description" content={twitterDescription || ogDescription || descText} />
       <meta name="twitter:image" content={twitterImage || imgUrl} />
+      <meta name="twitter:creator" content="@rudraa_ptll" />
 
       {/* AI Crawlers Optimization & Content Control Signals */}
       <meta name="ai-content-allowed" content="true" />

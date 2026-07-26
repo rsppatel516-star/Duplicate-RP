@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="Rudra Patel | Digital Architect & Full-Stack Engineerr"
+        title="Rudra Patel | Digital Architect & Full-Stack Engineer"
         description="Portfolio of Rudra Patel, a specialized Full-stack developer in Vadodara, Gujarat and iOS developer in India. Engineering high-performance web solutions and SwiftUI apps."
         keywords="Rudra Patel, Full-stack developer Vadodara, iOS developer Gujarat, React developer India, Swift developer Vadodara, MERN stack developer India, mobile app developer Vadodara, Gujarat software engineer"
         ogTitle="RUDRA | Full-Stack & iOS Developer Portfolio"
         ogDescription="Full-stack web engineering and native iOS application development based in Vadodara, Gujarat, India."
-        ogImage="/images/about.webp"
+        ogImage="/images/navbar-avatar.webp"
         canonical="https://patelrudra.in/"
       />
 
