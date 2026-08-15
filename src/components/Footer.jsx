@@ -1,94 +1,15 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
 import {
   Github, Linkedin, Instagram, Youtube, Facebook, ArrowUp,
   Globe, Cpu, Code2, MapPin, Mail, Phone,
-  Send, CheckCircle, Terminal, ShieldCheck
+  Send, CheckCircle, ShieldCheck
 } from 'lucide-react';
 import MagneticButton from './ui/MagneticButton';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [time, setTime] = useState('');
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // ── Live FPS counter ──
-  const [fps, setFps] = useState(0);
-  const frameRef = useRef(0);
-  const timeRef = useRef(performance.now());
-  const rafRef = useRef(null);
-  const tick = useCallback(() => {
-    frameRef.current += 1;
-    const now = performance.now();
-    const elapsed = now - timeRef.current;
-    if (elapsed >= 1000) {
-      setFps(Math.round((frameRef.current * 1000) / elapsed));
-      frameRef.current = 0;
-      timeRef.current = now;
-    }
-    rafRef.current = requestAnimationFrame(tick);
-  }, []);
-  useEffect(() => {
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [tick]);
-
-  // ── Live Ping ──
-  const [ping, setPing] = useState(0);
-  useEffect(() => {
-    const measure = () => {
-      const url = `/favicon.ico?_=${Date.now()}`;
-      const t0 = performance.now();
-      fetch(url, { method: 'HEAD', cache: 'no-store' })
-        .catch(() => { })
-        .finally(() => setPing(Math.round(performance.now() - t0)));
-    };
-    measure();
-    const id = setInterval(measure, 3000);
-    return () => clearInterval(id);
-  }, []);
-
-  const fpsColor = fps >= 55 ? '#22c55e' : fps >= 30 ? '#facc15' : '#ef4444';
-  const pingColor = ping <= 50 ? '#22c55e' : ping <= 150 ? '#facc15' : '#ef4444';
-
-  // Live ticking clock in IST (Vadodara local timezone standard context)
-  useEffect(() => {
-    const updateTime = () => {
-      const options = {
-        timeZone: 'Asia/Kolkata',
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      const formatted = new Intl.DateTimeFormat('en-US', options).format(new Date());
-      setTime(`${formatted} IST`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    if (!email || !email.includes('@')) return;
-    setIsSubmitting(true);
-
-    // Simulate premium visual submitting feedback
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setEmail('');
-      setTimeout(() => setIsSubmitted(false), 4000);
-    }, 1200);
-  };
 
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=100082469136911', color: '#1877f2', name: 'Facebook' },
@@ -195,33 +116,6 @@ export default function Footer() {
                 </MagneticButton>
               ))}
             </div>
-
-            {/* Live System Operational Status Widget
-            <div className="pt-2 space-y-2.5">
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-                <div className="flex items-center gap-2 bg-[#08080f]/80 border border-white/10 py-1.5 px-3 rounded-full backdrop-blur-md shadow-inner">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-[0.15em] text-emerald-400">SYSTEMS ONLINE</span>
-                </div>
-                <div className="flex items-center gap-2 bg-[#08080f]/80 border border-white/10 py-1.5 px-3 rounded-full backdrop-blur-md shadow-inner">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-                  </span>
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-[0.15em] text-indigo-400">AVAILABLE FOR HIRE</span>
-                </div>
-              </div>
-
-              <div className="inline-flex items-center gap-2 bg-[#08080f]/60 py-1.5 px-3 rounded-xl border border-white/10 w-max">
-                <Terminal size={12} className="text-indigo-400" />
-                <span className="text-[10px] font-mono text-white/60 tracking-wider">
-                  LOCAL TIME: <span className="text-white font-bold">{time || '00:00:00 IST'}</span>
-                </span>
-              </div>
-            </div>*/}
           </div>
 
           {/* Column 2: Quick Links */}
@@ -290,6 +184,12 @@ export default function Footer() {
                   <span className="truncate">patelrudra99098@gmail.com</span>
                 </a>
               </li>
+              <li>
+                <a href="tel:+916354825621" className="flex items-center gap-3 hover:text-white transition-colors group min-w-0">
+                  <Phone size={14} className="text-[#6366f1] group-hover:text-white transition-colors shrink-0" />
+                  <span className="truncate">+91 63548 25621</span>
+                </a>
+              </li>
               <li className="flex items-center gap-3">
                 <MapPin size={14} className="text-[#6366f1] shrink-0" />
                 <span className="text-white/90 font-bold">Vadodara, Gujarat, India</span>
@@ -318,7 +218,7 @@ export default function Footer() {
         </div>*/}
 
         {/* Bottom Bar: Copyright & Dashboard */}
-        <div className="pt-1 flex flex-col-reverse sm:flex-row justify-between items-center gap-4 sm:gap-6 mt-6 sm:mt-0 ">
+        <div className="pt-1 flex flex-col-reverse sm:flex-row justify-between items-center gap-1 sm:gap-4 mt-2 sm:mt-0 ">
           {/* Copyright text */}
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1 text-[10px] font-mono text-white/50 uppercase tracking-widest text-center sm:text-left">
             <div className="flex items-center gap-2">

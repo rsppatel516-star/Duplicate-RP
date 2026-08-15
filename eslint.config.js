@@ -29,14 +29,18 @@ export default defineConfig([
       react: { version: 'detect' },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-unused-vars': ['error', { 
+        varsIgnorePattern: '^[A-Z_]',
+        argsIgnorePattern: '^[A-Z_]',
+        caughtErrorsIgnorePattern: '^[A-Z_]'
+      }],
       'react/prop-types': 'off',
       'react/no-unknown-property': 'off', // Support React Three Fiber
       'react/no-unescaped-entities': 'off', // Support natural language in JSX
     },
   },
   {
-    files: ['api/**/*.js'],
+    files: ['api/**/*.js', '*.js'],
     languageOptions: {
       globals: {
         ...globals.node,

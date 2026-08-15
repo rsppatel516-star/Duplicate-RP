@@ -133,7 +133,7 @@ export default function GlobalParticles() {
           orb.radius
         );
         gradient.addColorStop(0, orb.colorStart);
-        gradient.addColorStop(0.5, orb.colorStart.replace(/[\d\.]+\)$/, '0.04)'));
+        gradient.addColorStop(0.5, orb.colorStart.replace(/[\d.]+\)$/, '0.04)'));
         gradient.addColorStop(1, orb.colorEnd);
 
         ctx.fillStyle = gradient;

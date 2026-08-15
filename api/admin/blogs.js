@@ -15,7 +15,7 @@ function authenticate(req) {
   const token = tokenMatch[1];
   try {
     return jwt.verify(token, JWT_SECRET);
-  } catch (e) {
+  } catch (_e) {
     return null;
   }
 }
@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     try {
       const blogs = await Blog.find({}).sort({ createdAt: -1 });
       return res.status(200).json({ success: true, data: blogs });
-    } catch (error) {
+    } catch (_error) {
       return res.status(500).json({ success: false, message: 'Server Error' });
     }
   }

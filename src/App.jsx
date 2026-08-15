@@ -6,8 +6,6 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import GlobalParticles from './components/canvas/GlobalParticles';
 import ClickSpark from './components/ui/ClickSpark';
-import ScrollProgress from './components/ui/ScrollProgress';
-import CyberSpotlight from './components/ui/CyberSpotlight';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 
 // Lazy loaded page components for optimal initial load performance
@@ -42,6 +40,7 @@ function App() {
   }, [location]);
 
   const isAdminPage = location.pathname.startsWith('/admin');
+  const isCaseStudyPage = location.pathname.startsWith('/artifacts/');
   const isFeaturePage = location.pathname.startsWith('/artifacts') ||
     location.pathname.startsWith('/blog') ||
     location.pathname.startsWith('/achievements') ||
@@ -49,12 +48,6 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-bg text-dark-textMain relative">
-      {/* Top Scroll Reading Progress Indicator */}
-      <ScrollProgress />
-
-      {/* Cyber Spotlight & Mouse Follower */}
-      <CyberSpotlight />
-
       {/* Global Particle Background */}
       <GlobalParticles />
 
@@ -69,8 +62,8 @@ function App() {
         extraScale={0.8}
       >
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Conditionally render Navbar or FeatureNavbar (unless on Admin pages) */}
-          {!isAdminPage && (isFeaturePage ? <FeatureNavbar /> : <Navbar />)}
+          {/* Conditionally render Navbar or FeatureNavbar (unless on Admin pages or Case Study pages) */}
+          {!isAdminPage && !isCaseStudyPage && (isFeaturePage ? <FeatureNavbar /> : <Navbar />)}
           <main className="flex-grow">
             <Suspense fallback={<PageFallback />}>
               <Routes>

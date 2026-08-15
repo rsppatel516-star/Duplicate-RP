@@ -28,7 +28,7 @@ export const projects = [
   category: 'React',
   liveUrl: 'https://note-sphere-16.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
-  caseStudyId: 7,
+  caseStudyId: 1,
   featured: true
 },
 
@@ -57,7 +57,7 @@ export const projects = [
     ],
     status: 'Completed',
     category: 'UI Design',
-    caseStudyId: 3,
+    caseStudyId: 2,
     featured: true
 },
 {
@@ -88,11 +88,47 @@ export const projects = [
   category: 'React',
   liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
+  caseStudyId: 3,
+  featured: true
+},
+
+{
+  id: 4,
+  title: 'SwiftTask',
+  subtitle: 'iOS Task & Productivity Manager',
+  description: 'SwiftTask is a high-performance native iOS application designed for effortless daily task management and productivity tracking. Built with SwiftUI 6 and SwiftData, it features adaptive Light/Dark mode themes, interactive lock screen widgets, custom haptic feedback, smooth gestures, and instant iCloud sync.',
+  image: '/project img/iOS Todo-app.webp',
+  tags: [
+    "iOS 18", 
+    "SwiftUI", 
+    "Swift 6", 
+    "SwiftData", 
+    "WidgetKit"
+  ],
+  skillsUsed: [
+    "Swift 6", 
+    "SwiftUI", 
+    "UIKit Integration", 
+    "Combine", 
+    "Haptic Engine"
+  ],
+  keyFeatures: [
+    "Native iOS 18 fluid UI with frosted glass design",
+    "Dynamic Dark & Light mode th eme engine",
+    "SwiftData local storage with iCloud sync",
+    "Interactive Lock Screen & Home Screen widgets",
+    "Custom drag-to-reorder and swipe action gestures"
+  ],
+  status: 'Completed',
+  category: 'iOS App',
+  liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
+  githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
   caseStudyId: 4,
   featured: true
 },
+
 {
-    id: 4,
+    id: 5,
     title: "Travel Website",
   subtitle: "A travel booking and destination showcase platform",
   description: "A responsive travel website that allows users to explore destinations, view travel packages, and get detailed information about trips.",
@@ -120,11 +156,11 @@ export const projects = [
     category: 'Javascript',
     liveUrl: 'https://travel-94546.web.app/',
     githubUrl: '#',
-    caseStudyId: 4,
+    caseStudyId: 5,
     featured: true
 },
 {
-    id: 5,
+    id: 6,
     title: "Personal Project Manager",
     subtitle: "A task and project management web application",
     description: "A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priorities, and progress tracking.",
@@ -151,11 +187,11 @@ export const projects = [
     category: 'Javascript',
     liveUrl: 'https://personal-project-manager-16pr.web.app/',
     githubUrl: '#',
-    caseStudyId: 5,
+    caseStudyId: 6,
     featured: true
 },
 {
-  id: 6,
+  id: 7,
   title: "Todo List Application",
   subtitle: "A simple task management and productivity tool",
   description: "A lightweight to-do list application that allows users to add, update, and delete daily tasks for better productivity.",
@@ -183,13 +219,13 @@ export const projects = [
   category: "Javascript",
   liveUrl: "https://todo-list-16pr.web.app/",
   githubUrl: "#",
-  caseStudyId: 6,
+  caseStudyId: 7,
   featured: true
 },
 
 {
 
-  id: 7,
+  id: 8,
   title: "Job Portal Website",
   subtitle: "An online platform for job seekers and recruiters",
   description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
@@ -222,7 +258,7 @@ export const projects = [
 },
 {
 
-  id: 8,
+  id: 9,
   title: "Calculator App",
   subtitle: "An online calculator web application with basic arithmetic operations",
   description: "A calculator web application with basic arithmetic operations.",
@@ -252,7 +288,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 9,
+  id: 10,
   title: "Nexify Landing Page",
   subtitle: "AI-powered workflow automation platform",
   description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
@@ -280,7 +316,7 @@ export const projects = [
   featured: true
 },
 {
-  id: 10,
+  id: 11,
   title: "Health Care Website",
   subtitle: "An online platform for healthcare services and information",
   image: "/project img/Health.webp",

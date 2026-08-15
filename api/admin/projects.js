@@ -9,7 +9,7 @@ function authenticate(req) {
   if (!cookieHeader) return null;
   const tokenMatch = cookieHeader.match(/admin_token=([^;]+)/);
   if (!tokenMatch) return null;
-  try { return jwt.verify(tokenMatch[1], JWT_SECRET); } catch (e) { return null; }
+  try { return jwt.verify(tokenMatch[1], JWT_SECRET); } catch (_e) { return null; }
 }
 
 export default async function handler(req, res) {
@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     try {
       const projects = await Project.find({}).sort({ createdAt: -1 });
       return res.status(200).json({ success: true, data: projects });
-    } catch (error) {
+    } catch (_error) {
       return res.status(500).json({ success: false, message: 'Server Error' });
     }
   }

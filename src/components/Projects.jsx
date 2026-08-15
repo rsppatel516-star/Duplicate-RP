@@ -96,7 +96,7 @@ export default function Projects() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 mb-4 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-purple-400 mb-4"
               >
                 <FolderOpen size={16} className="text-purple-400" />
                 <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">

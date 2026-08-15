@@ -36,7 +36,7 @@ export default function BlogPost() {
         }
         // Fallback
         setPost(fallbackBlogs.find(p => p.id === parseInt(id)));
-      } catch (error) {
+      } catch (_error) {
         setPost(fallbackBlogs.find(p => p.id === parseInt(id)));
       } finally {
         setIsLoading(false);
@@ -105,7 +105,7 @@ export default function BlogPost() {
       "url": "https://patelrudra.in",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://patelrudra.in/images/RP%20-%20LOGO.webp"
+        "url": "https://patelrudra.in/images/navbar-avatar.webp"
       }
     },
     "keywords": post.seo?.keywords?.join(', ') || post.tags?.join(', ') || post.category,

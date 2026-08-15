@@ -112,11 +112,11 @@ export default function About() {
               Crafting Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Gold</span> from Lines of Code
             </h2>
           </div>
-          <ScrollLink to="projects" smooth duration={800} className="hidden md:block">
+          {/* <ScrollLink to="projects" smooth duration={800} className="hidden md:block">
             <MagneticButton className="px-8 py-4 border border-dark-border rounded-2xl hover:bg-dark-primary/10 transition-all duration-300 cursor-pointer font-bricolage">
               Explore My Artifacts
             </MagneticButton>
-          </ScrollLink>
+          </ScrollLink> */}
         </div>
 
         {/* Bento Grid Layout */}

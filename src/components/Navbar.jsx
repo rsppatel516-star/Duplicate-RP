@@ -3,7 +3,6 @@ import { Link as ScrollLink } from 'react-scroll';
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, ArrowLeft, Laptop, Globe } from 'lucide-react';
-import { socialLinks } from '../data/socialLinks';
 
 const navLinks = [
   { name: 'Home', to: 'home' },
@@ -43,7 +42,7 @@ const MenuButton = ({ isOpen, onClick }) => {
 };
 
 /* shared scroll-link / button for a nav item */
-const NavLink = ({ link, mobile, isHome, close, handleClick, index }) => {
+const NavLink = ({ link, mobile, isHome, close, handleClick }) => {
   const cls = mobile
     ? 'flex items-center justify-between w-full px-4 py-3 rounded-xl font-display font-bold text-white/65 hover:text-white hover:bg-white/[0.5] transition-all text-base cursor-pointer'
     /* Navbar link hover effect*/

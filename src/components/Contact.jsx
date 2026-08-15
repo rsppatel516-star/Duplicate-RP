@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import {
   Mail, MapPin, Github, Linkedin,
   Send, MessageSquare, Globe,
   User, Copy, Check, Clock, Sparkles,
-  Smartphone, Layout, Briefcase, Coffee, ArrowUpRight
+  Smartphone, Layout, Briefcase, Coffee, ArrowUpRight, Phone
 } from 'lucide-react';
 import MagneticButton from './ui/MagneticButton';
 
@@ -34,46 +34,32 @@ const itemVariants = {
   }
 };
 
-const projectCategories = [
-  { id: 'Full-Stack Web', label: 'Full-Stack Web', icon: Globe },
-  { id: 'Native iOS App', label: 'iOS / SwiftUI', icon: Smartphone },
-  { id: 'UI/UX Design', label: 'UI/UX Design', icon: Layout },
-  { id: 'Engineering Role', label: 'Engineering Role', icon: Briefcase },
-  { id: 'General Inquiry', label: 'General / Chat', icon: Coffee },
-];
-
 export default function Contact({ isPage = false }) {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [istTime, setIstTime] = useState('');
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
   const HeadingTag = isPage ? motion.h1 : motion.h2;
 
-  // Live IST Clock Hook
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date();
-      const options = {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
-      };
-      setIstTime(new Intl.DateTimeFormat('en-US', options).format(now));
-    };
-    updateClock();
-    const timer = setInterval(updateClock, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
   // Copy Email to Clipboard
-  const handleCopyEmail = () => {
+  const handleCopyEmail = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     navigator.clipboard.writeText('patelrudra99098@gmail.com');
     setCopiedEmail(true);
     toast.success('Email copied to clipboard!');
     setTimeout(() => setCopiedEmail(false), 2200);
+  };
+
+  // Copy Phone to Clipboard
+  const handleCopyPhone = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigator.clipboard.writeText('+916354825621');
+    setCopiedPhone(true);
+    toast.success('Phone number copied to clipboard!');
+    setTimeout(() => setCopiedPhone(false), 2200);
   };
 
   const submitForm = async (e) => {
@@ -85,14 +71,29 @@ export default function Contact({ isPage = false }) {
     try {
       const formData = new FormData(formRef.current);
       const data = Object.fromEntries(formData.entries());
+      const payload = {
+        user_name: data.user_name || data.name || '',
+        user_email: data.user_email || data.email || '',
+        subject: data.subject || '',
+        message: data.message || '',
+        project_type: data.project_type || 'General Inquiry'
+      };
 
-      if (response.ok) {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success !== false) {
         toast.dismiss(loadingToast);
-        toast.success(result.message || 'Transmission successful. Data secured!');
+        toast.success(result.message || 'Transmission successful. Message stored in Database!');
         formRef.current.reset();
       } else {
         toast.dismiss(loadingToast);
-        toast.error(result.message || 'Transmission failed. Retrying sync...');
+        toast.error(result.message || 'Transmission failed. Please try again.');
       }
     } catch (error) {
       toast.dismiss(loadingToast);
@@ -154,33 +155,63 @@ export default function Contact({ isPage = false }) {
 
               {/* Interactive Contact Cards */}
               <div className="space-y-3.5 sm:space-y-4 mb-8 sm:mb-10">
-                {/* Email Card with One-Click Copy */}
+                {/* Email Card with Direct mailto: and Copy */}
                 <motion.div
                   variants={itemVariants}
                   whileHover={{ y: -3, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="flex items-center justify-between p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-indigo-500/40 hover:bg-white/[0.05] transition-all duration-300 group"
                 >
-                  <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
-                    <div className="p-3 sm:p-3.5 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all shrink-0">
+                  <a
+                    href="mailto:patelrudra99098@gmail.com"
+                    className="flex items-center gap-3.5 sm:gap-4 min-w-0 flex-1"
+                  >
+                    <div className="p-3 sm:p-3.5 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-indigo-400 group-hover:bg-indigo-500/40 group-hover:text-white transition-all shrink-0">
                       <Mail size={18} className="sm:w-5 sm:h-5" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 mb-0.5">Direct Email</p>
-                      <a
-                        href="mailto:patelrudra99098@gmail.com"
-                        className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage hover:text-indigo-300 truncate block"
-                      >
+                      <span className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage group-hover:text-indigo-300 truncate block">
                         patelrudra99098@gmail.com
-                      </a>
+                      </span>
                     </div>
-                  </div>
+                  </a>
                   <button
                     onClick={handleCopyEmail}
                     className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/15 text-white/60 hover:text-white transition-all shrink-0 ml-2 cursor-pointer"
                     title="Copy Email"
                   >
                     {copiedEmail ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
+                  </button>
+                </motion.div>
+
+                {/* Phone Card with Direct Dial tel: and Copy */}
+                <motion.div
+                  variants={itemVariants}
+                  whileHover={{ y: -3, scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="flex items-center justify-between p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-cyan-500/40 hover:bg-white/[0.05] transition-all duration-300 group"
+                >
+                  <a
+                    href="tel:+916354825621"
+                    className="flex items-center gap-3.5 sm:gap-4 min-w-0 flex-1"
+                  >
+                    <div className="p-3 sm:p-3.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 group-hover:bg-cyan-500/40 group-hover:text-white transition-all shrink-0">
+                      <Phone size={18} className="sm:w-5 sm:h-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 mb-0.5">Direct Phone / Call</p>
+                      <span className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage group-hover:text-cyan-300 truncate block">
+                        +91 63548 25621
+                      </span>
+                    </div>
+                  </a>
+                  <button
+                    onClick={handleCopyPhone}
+                    className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/15 text-white/60 hover:text-white transition-all shrink-0 ml-2 cursor-pointer"
+                    title="Copy Phone Number"
+                  >
+                    {copiedPhone ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
                   </button>
                 </motion.div>
 
@@ -191,11 +222,11 @@ export default function Contact({ isPage = false }) {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-purple-500/40 hover:bg-white/[0.05] transition-all duration-300 group"
                 >
-                  <div className="p-3 sm:p-3.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all shrink-0">
+                  <div className="p-3 sm:p-3.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:bg-purple-500/20 group-hover:text-white transition-all shrink-0">
                     <MapPin size={18} className="sm:w-5 sm:h-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 mb-0.5">Base Location</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 mb-0.5">Location</p>
                     <p className="text-xs sm:text-sm md:text-base font-bold text-white font-bricolage">Vadodara, Gujarat, India</p>
                   </div>
                 </motion.div>
@@ -310,11 +341,9 @@ export default function Contact({ isPage = false }) {
                       className={`w-full py-4 sm:py-4.5 rounded-xl sm:rounded-2xl font-display font-black text-xs sm:text-sm md:text-base leading-none tracking-wider transition-all duration-500 relative overflow-hidden group cursor-pointer ${
                         isSubmitting
                           ? 'bg-white/10 text-white/40 cursor-not-allowed border border-white/10'
-                          : 'bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 text-white hover:shadow-[0_0_40px_rgba(99,102,241,0.45)] border border-white/20'
+                          : 'bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 text-white border border-white/20'
                       }`}
                     >
-                      {/* Sliding Liquid Shimmer Highlight */}
-                      <div className="absolute inset-0 w-1/2 h-full z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[250%] transition-transform duration-1000 ease-out pointer-events-none" />
 
                       <div className="relative z-10 flex items-center justify-center gap-2.5 sm:gap-3 whitespace-nowrap">
                         {isSubmitting ? (

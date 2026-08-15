@@ -9,13 +9,13 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/images/RP - LOGO.png",
+      "src": "/images/navbar-avatar.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/images/RP - LOGO.png",
+      "src": "/images/navbar-avatar.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

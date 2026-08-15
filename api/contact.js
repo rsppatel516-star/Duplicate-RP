@@ -89,7 +89,11 @@ export default async function handler(req, res) {
     await dbConnect();
     console.log('Successfully connected to MongoDB');
 
-    const { user_name, user_email, subject, message, project_type } = req.body;
+    const user_name = req.body.user_name || req.body.name;
+    const user_email = req.body.user_email || req.body.email;
+    const subject = req.body.subject;
+    const message = req.body.message;
+    const project_type = req.body.project_type;
 
     // Basic validation
     if (!user_name || !user_email || !message) {

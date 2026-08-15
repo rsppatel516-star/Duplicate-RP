@@ -30,7 +30,7 @@ export default function AdminDashboard() {
         body: JSON.stringify({ action: 'logout' }),
       });
       toast.success('Logged out');
-    } catch (err) {
+    } catch (_err) {
       // Ignore network errors on logout since we redirect anyway
     }
     navigate('/admin/login');

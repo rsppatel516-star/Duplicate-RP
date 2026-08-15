@@ -14,7 +14,7 @@ export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [blogs, setBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [_isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -26,7 +26,7 @@ export default function Blog() {
         } else {
           setBlogs(fallbackBlogs); // Fallback to hardcoded if no DB connection or empty
         }
-      } catch (error) {
+      } catch (_error) {
         setBlogs(fallbackBlogs);
       } finally {
         setIsLoading(false);

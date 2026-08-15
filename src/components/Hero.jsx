@@ -62,27 +62,11 @@ const socialLinks = [
 export default function Hero() {
   const [showBadge, setShowBadge] = useState(true);
   const [decorativeElements, setDecorativeElements] = useState([]);
-  const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowBadge(false);
     }, 5000);
-
-    // Live clock update in India (IST) Timezone
-    const updateClock = () => {
-      const options = {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true
-      };
-      setCurrentTime(new Intl.DateTimeFormat('en-US', options).format(new Date()));
-    };
-
-    updateClock();
-    const clockInterval = setInterval(updateClock, 1000);
 
     // Scatter decorative floaters
     setTimeout(() => {
@@ -96,7 +80,6 @@ export default function Hero() {
 
     return () => {
       clearTimeout(timer);
-      clearInterval(clockInterval);
     };
   }, []);
 

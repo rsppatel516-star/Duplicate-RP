@@ -16,7 +16,7 @@ export default function MessagesTab() {
   const [replyMessage, setReplyMessage] = useState('');
   const [sendingReply, setSendingReply] = useState(false);
 
-  const fetch$ = async () => {
+  const fetch$ = React.useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch('/api/admin/messages');
@@ -27,16 +27,16 @@ export default function MessagesTab() {
           setSelectedId(data.data[0]._id);
         }
       }
-    } catch (e) {
+    } catch (_e) {
       toast.error('Failed to load messages');
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedId]);
 
   useEffect(() => {
     fetch$();
-  }, []);
+  }, [fetch$]);
 
   const deleteMessage = async (id) => {
     if (!confirm('Are you sure you want to permanently delete this message?')) return;

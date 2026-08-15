@@ -85,7 +85,7 @@ export default async function handler(req, res) {
       try {
         const decoded = jwt.verify(token, JWT_SECRET);
         return res.status(200).json({ success: true, user: { id: decoded.id, username: decoded.username } });
-      } catch (e) {
+      } catch (_e) {
         return res.status(401).json({ success: false, message: 'Invalid token' });
       }
     }

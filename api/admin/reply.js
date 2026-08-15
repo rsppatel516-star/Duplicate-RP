@@ -12,9 +12,9 @@ function authenticate(req) {
     if (!cookieHeader) return null;
     const tokenMatch = cookieHeader.match(/admin_token=([^;]+)/);
     if (!tokenMatch) return null;
-    try { return jwt.verify(tokenMatch[1], JWT_SECRET); } catch (e) { return null; }
+    try { return jwt.verify(tokenMatch[1], JWT_SECRET); } catch (_e) { return null; }
   }
-  try { return jwt.verify(token, JWT_SECRET); } catch (e) { return null; }
+  try { return jwt.verify(token, JWT_SECRET); } catch (_e) { return null; }
 }
 
 export default async function handler(req, res) {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, ArrowLeft, Laptop, Globe } from 'lucide-react';
-import { socialLinks } from '../data/socialLinks';
 
 import { useLocation } from 'react-router-dom';
 
@@ -41,7 +40,7 @@ const MenuButton = ({ isOpen, onClick }) => {
   );
 };
 
-const FeatureNavLink = ({ link, mobile, close, index }) => {
+const FeatureNavLink = ({ link, mobile, close }) => {
   const location = useLocation();
   const isActive = location.pathname === link.to;
 
@@ -165,8 +164,8 @@ export default function FeatureNavbar() {
           </RouterLink>
 
           {/* Desktop Links / Total Blur & Liquid Pill Capsule Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#050612]/60 backdrop-blur-[32px]  p-1.5 rounded-xl relative overflow-hidden group/nav">
-           
+          <nav className="hidden lg:flex items-center gap-1      p-1.5 rounded-xl relative overflow-hidden group/nav">
+
 
             {featureLinks.map((link, i) => (
               <FeatureNavLink key={link.name} link={link} mobile={false} close={close} index={i} />
@@ -174,18 +173,6 @@ export default function FeatureNavbar() {
           </nav>
 
           <div className="flex items-center gap-3 z-10">
-            <RouterLink to="/contact" className="hidden sm:block">
-              <motion.button
-                whileHover={{ scale: 1.05, y: -1 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="flex items-center gap-2 px-4.5 py-2 rounded-xl bg-gradient-to-r from-purple-600/40 via-indigo-600/40 to-purple-600/40 border border-white/20 backdrop-blur-xl text-white text-xs font-bold font-display tracking-wider hover:from-purple-600 hover:to-indigo-600 hover:border-white/40 transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.35),inset_0_1px_1px_rgba(255,255,255,0.25)]"
-              >
-                <span>Hire Me</span>
-                <ArrowRight size={13} className="text-indigo-300 group-hover:translate-x-0.5 transition-transform" />
-              </motion.button>
-            </RouterLink>
-
             <MenuButton isOpen={isMobileMenuOpen} onClick={() => setMenuOpen(v => !v)} />
           </div>
         </div>

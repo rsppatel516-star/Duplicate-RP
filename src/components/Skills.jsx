@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '../data/skills';
 import { projects } from '../data/projects';
@@ -182,7 +182,7 @@ export default function Skills() {
     : allSkills.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   // Dynamic system project matcher for the project count stamp
-  const getRelatedProjectsCount = (techName) => {
+  const _getRelatedProjectsCount = (techName) => {
     if (!techName) return 0;
 
     const isMatch = (projSkill, selectedName) => {
@@ -229,7 +229,7 @@ export default function Skills() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 mb-4 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-purple-400 mb-4"
             >
               <Code2 size={16} className="text-purple-400" />
               <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
@@ -295,7 +295,6 @@ export default function Skills() {
                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"
               >
                 {filteredSkills.map((tech, index) => {
-                  const matchProjCount = getRelatedProjectsCount(tech.name);
                   return (
                     <motion.div
                       key={tech.name}
@@ -354,14 +353,14 @@ export default function Skills() {
           <div className="flex items-center gap-8">
             <div className="flex -space-x-3">
               {['swift', 'nodejs', 'nextjs'].map((icon, i) => (
-                <div key={i} className={`w-9 h-9 rounded-full border-2 border-black bg-white/5 flex items-center justify-center text-base transition-transform hover:z-10 hover:scale-110 cursor-default ${techColors[icon]}`}>
+                <div key={i} className={`w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-base transition-transform hover:z-10 hover:scale-110 cursor-default ${techColors[icon]}`}>
                   {iconMap[icon]}
                 </div>
               ))}
-              <div className="w-9 h-9 rounded-full border-2 border-black bg-white/5 flex items-center justify-center text-base text-white/40 relative group/soon">
+              <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-base text-white/40 relative group/soon">
                 <div className="absolute inset-0 rounded-full bg-indigo-500/10 animate-pulse" />
                 <SiDocker className="opacity-40 group-hover/soon:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/90 backdrop-blur-md border border-indigo-500/20 rounded-lg text-[7px] font-black uppercase tracking-[0.2em] opacity-0 group-hover/soon:opacity-100 group-hover/soon:-top-12 transition-all duration-500 whitespace-nowrap pointer-events-none shadow-[0_0_20px_rgba(0,0,0,0.5)] flex items-center gap-2">
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-black/90 backdrop-blur-md rounded-lg text-[7px] font-black uppercase tracking-[0.2em] opacity-0 group-hover/soon:opacity-100 group-hover/soon:-top-12 transition-all duration-500 whitespace-nowrap pointer-events-none shadow-[0_0_20px_rgba(0,0,0,0.5)] flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full bg-indigo-500 animate-ping" />
                   Coming Soon: Docker
                 </div>
