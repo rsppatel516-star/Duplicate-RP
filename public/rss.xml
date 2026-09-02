@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rudra Patel — Digital Architect &amp; Full-Stack Engineer</title>
+    <link>https://patelrudra.in</link>
+    <description>Latest technical insights, case studies, and engineering thoughts by Rudra Patel.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://patelrudra.in/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>How AI Is Transforming Full Stack Development in 2026</title>
+      <link>https://patelrudra.in/blog/ai-transforming-full-stack-development-2026</link>
+      <guid>https://patelrudra.in/blog/ai-transforming-full-stack-development-2026</guid>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <description>AI tools are revolutionizing how full stack developers build, debug, and deploy applications.</description>
+    </item>
+    <item>
+      <title>The Future of Web Development in 2026</title>
+      <link>https://patelrudra.in/blog/1</link>
+      <guid>https://patelrudra.in/blog/1</guid>
+      <pubDate>Sat, 02 May 2026 00:00:00 GMT</pubDate>
+      <description>Exploring the latest trends in React, Next.js, and how AI tools are reshaping digital experiences.</description>
+    </item>
+    <item>
+      <title>Zerodha Trading Platform Case Study</title>
+      <link>https://patelrudra.in/artifacts/1</link>
+      <guid>https://patelrudra.in/artifacts/1</guid>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 GMT</pubDate>
+      <description>High-performance digital trading interface engineered with React 19, Framer Motion, and Tailwind CSS v4.</description>
+    </item>
+  </channel>
+</rss>

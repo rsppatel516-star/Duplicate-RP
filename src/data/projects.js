@@ -25,7 +25,7 @@ export const projects = [
     "Real-time updates"
   ],
   status: 'Completed',
-  category: 'React',
+  category: 'Web Apps',
   liveUrl: 'https://note-sphere-16.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
   caseStudyId: 1,
@@ -56,7 +56,7 @@ export const projects = [
       "Clear call-to-action buttons",
     ],
     status: 'Completed',
-    category: 'UI Design',
+    category: 'UI/UX Design',
     caseStudyId: 2,
     featured: true
 },
@@ -85,7 +85,7 @@ export const projects = [
     "Responsive 3D card hover effects"
   ],
   status: 'Completed',
-  category: 'React',
+  category: 'Web Apps',
   liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
   caseStudyId: 3,
@@ -114,13 +114,13 @@ export const projects = [
   ],
   keyFeatures: [
     "Native iOS 18 fluid UI with frosted glass design",
-    "Dynamic Dark & Light mode th eme engine",
+    "Dynamic Dark & Light mode theme engine",
     "SwiftData local storage with iCloud sync",
     "Interactive Lock Screen & Home Screen widgets",
     "Custom drag-to-reorder and swipe action gestures"
   ],
   status: 'Completed',
-  category: 'iOS App',
+  category: 'Mobile Apps',
   liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
   githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
   caseStudyId: 4,
@@ -153,7 +153,7 @@ export const projects = [
       "Smooth animations",
     ],
     status: 'Completed',
-    category: 'Javascript',
+    category: 'Web Apps',
     liveUrl: 'https://travel-94546.web.app/',
     githubUrl: '#',
     caseStudyId: 5,
@@ -184,7 +184,7 @@ export const projects = [
      "User-friendly dashboard",
     ],
     status: 'Completed',
-    category: 'Javascript',
+    category: 'Web Apps',
     liveUrl: 'https://personal-project-manager-16pr.web.app/',
     githubUrl: '#',
     caseStudyId: 6,
@@ -216,7 +216,7 @@ export const projects = [
     "Real-time updates"
   ],
   status: "Completed",
-  category: "Javascript",
+  category: "Web Apps",
   liveUrl: "https://todo-list-16pr.web.app/",
   githubUrl: "#",
   caseStudyId: 7,
@@ -250,7 +250,7 @@ export const projects = [
     "Job Details"
   ],
   status: "Completed",
-  category: "Javascript",
+  category: "Web Apps",
   liveUrl: "https://job-portal-9a78d.web.app/",
   githubUrl: "#",
   caseStudyId: 8,
@@ -281,7 +281,7 @@ export const projects = [
     "Responsive Design"
   ],
   status: "Completed",
-  category: "React",
+  category: "Web Apps",
   liveUrl: "https://calculator-rp16.vercel.app",
   githubUrl: "https://github.com/Rudraptl16/Calculator-",
   caseStudyId: 9,
@@ -309,7 +309,7 @@ export const projects = [
     "CTA section",
   ],
   status: "Completed",
-  category: "HTML / CSS",
+  category: "UI/UX Design",
   liveUrl: "https://rudraptl16.github.io/Nexify/",
   githubUrl: "https://github.com/Rudraptl16/Nexify",
   caseStudyId: 10,
@@ -338,7 +338,7 @@ export const projects = [
     "Health-related resources",
   ],
   status: "Completed",
-  category: "HTML / CSS",
+  category: "Web Apps",
   liveUrl: "https://health-care-4a149.web.app/",
   githubUrl: "https://github.com/Rudraptl16",
   caseStudyId: 11,
@@ -346,8 +346,5 @@ export const projects = [
 }
 ];
 
-// Derived: all unique filter categories with 'All' prepended
-export const projectFilters = [
-  'All',
-  ...Array.from(new Set(projects.map((p) => p.category))),
-];
+// Clean project filter categories: All, Web Apps, Mobile Apps, UI/UX Design
+export const projectFilters = ['All', 'Web Apps', 'Mobile Apps', 'UI/UX Design'];

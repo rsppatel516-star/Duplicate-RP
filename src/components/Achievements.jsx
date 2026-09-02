@@ -63,7 +63,7 @@ const certifications = [
     brandColor: '#0089D6',
     iconName: 'azure',
     imagePath: '/certificate img/Microsoft Azure.webp',
-    pdfPath: '/Microsoft Azure .pdf',
+    pdfPath: '/Microsoft-Azure.pdf',
     externalUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/',
     skills: ['Cloud Architecture', 'Azure Services', 'Cloud Security', 'Compliance Frameworks']
   },

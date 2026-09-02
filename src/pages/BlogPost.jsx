@@ -25,7 +25,7 @@ export default function BlogPost() {
     window.scrollTo(0, 0);
     const fetchPost = async () => {
       try {
-        const res = await fetch('/api/admin/blogs');
+        const res = await fetch('/api/blogs');
         const data = await res.json();
         if (data.success && data.data.length > 0) {
           const found = data.data.find(p => p._id === id || p.id === parseInt(id));
@@ -242,6 +242,7 @@ export default function BlogPost() {
           [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:mb-6
           [&>a]:text-dark-primary hover:[&>a]:text-dark-secondary
           [&>strong]:text-white [&>strong]:font-bold
+          [&>pre]:overflow-x-auto [&>pre]:custom-scrollbar [&>pre]:max-w-full [&>pre]:p-4 [&>pre]:rounded-2xl
           [&>blockquote]:border-l-4 [&>blockquote]:border-dark-primary [&>blockquote]:pl-6 [&>blockquote]:italic [&>blockquote]:text-white/90"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />

@@ -4,108 +4,122 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   
-  <!-- Main Pages -->
+  <!-- Primary Core Pages -->
   <url>
     <loc>https://patelrudra.in/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://patelrudra.in/images/navbar-avatar.webp</image:loc>
-      <image:title>Rudra Patel Portfolio Avatar</image:title>
+      <image:loc>https://patelrudra.in/images/0R7A7692.webp</image:loc>
+      <image:title>Rudra Patel - Digital Architect &amp; Full-Stack Engineer</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://patelrudra.in/artifacts</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://patelrudra.in/blog</loc>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/achievements</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/contact</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://patelrudra.in/blog</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
 
-  <!-- Case Studies -->
+  <!-- Featured Case Studies -->
   <url>
     <loc>https://patelrudra.in/artifacts/1</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://patelrudra.in/case%20img/Zerodha.webp</image:loc>
+      <image:title>Zerodha Trading Platform Case Study</image:title>
+    </image:image>
   </url>
 
-  <!-- Blog Posts -->
+  <!-- Blog Articles & Deep Dives -->
   <url>
     <loc>https://patelrudra.in/blog/ai-transforming-full-stack-development-2026</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://patelrudra.in/images/ai-fullstack.webp</image:loc>
+      <image:title>AI Transforming Full Stack Development in 2026</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://patelrudra.in/blog/6</loc>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/1</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/2</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/3</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/4</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/7</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/8</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/13</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/31</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://patelrudra.in/blog/34</loc>
-    <lastmod>2026-07-26</lastmod>
+    <lastmod>2026-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

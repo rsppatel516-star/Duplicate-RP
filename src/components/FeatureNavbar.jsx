@@ -9,7 +9,7 @@ const featureLinks = [
   { name: 'Home', to: '/' },
   { name: 'Artifacts', to: '/artifacts' },
   { name: 'Credentials', to: '/achievements' },
-  { name: 'Blog', to: '/blog' },
+  /* { name: 'Blog', to: '/blog' },*/
   { name: 'Contact', to: '/contact' }
 ];
 

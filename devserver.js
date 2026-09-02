@@ -9,12 +9,9 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 
-// Import all API handlers
-import authHandler from './api/admin/auth.js';
-import messagesHandler from './api/admin/messages.js';
-import blogsHandler from './api/admin/blogs.js';
-import projectsHandler from './api/admin/projects.js';
-import replyHandler from './api/admin/reply.js';
+// Import public API handlers
+import blogsHandler from './api/blogs.js';
+import projectsHandler from './api/projects.js';
 import contactHandler from './api/contact.js';
 import sitemapHandler from './api/sitemap.js';
 import feedHandler from './api/feed.js';
@@ -29,19 +26,13 @@ app.use(cookieParser());
 // Helper to convert Express req/res to a Vercel-compatible interface
 function makeHandler(handler) {
   return (req, res) => {
-    // Vercel provides req.cookies via the cookie header; Express provides it via cookieParser
     handler(req, res);
   };
 }
 
-// --- Admin Routes ---
-app.all('/api/admin/auth', makeHandler(authHandler));
-app.all('/api/admin/messages', makeHandler(messagesHandler));
-app.all('/api/admin/blogs', makeHandler(blogsHandler));
-app.all('/api/admin/projects', makeHandler(projectsHandler));
-app.all('/api/admin/reply', makeHandler(replyHandler));
-
 // --- Public Routes ---
+app.all('/api/blogs', makeHandler(blogsHandler));
+app.all('/api/projects', makeHandler(projectsHandler));
 app.all('/api/contact', makeHandler(contactHandler));
 app.all('/sitemap.xml', makeHandler(sitemapHandler));
 app.all('/feed.xml', makeHandler(feedHandler));

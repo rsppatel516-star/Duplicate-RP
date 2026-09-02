@@ -1,15 +1,27 @@
 import dbConnect from './_lib/db.js';
 import { Blog, Project } from './_lib/models.js';
+import { blogposts as fallbackBlogs } from '../src/data/blogposts.js';
+import { featuredArtifacts as fallbackProjects } from '../src/data/featuredArtifacts.js';
 
 export default async function handler(req, res) {
   try {
-    await dbConnect();
+    let blogs = [];
+    let projects = [];
 
-    // Fetch all active/published blogs and projects
-    const [blogs, projects] = await Promise.all([
-      Blog.find({}).select('id createdAt date').lean(),
-      Project.find({}).select('id createdAt').lean()
-    ]);
+    try {
+      await dbConnect();
+      const [dbBlogs, dbProjects] = await Promise.all([
+        Blog.find({}).select('id createdAt date').lean(),
+        Project.find({}).select('id createdAt').lean()
+      ]);
+      if (dbBlogs.length > 0) blogs = dbBlogs;
+      if (dbProjects.length > 0) projects = dbProjects;
+    } catch (dbErr) {
+      console.warn('⚠️ DB Connection warning in sitemap API, using static fallback:', dbErr.message);
+    }
+
+    if (blogs.length === 0) blogs = fallbackBlogs;
+    if (projects.length === 0) projects = fallbackProjects;
 
     const baseUrl = 'https://patelrudra.in';
 

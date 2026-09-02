@@ -147,7 +147,7 @@ export default function Contact({ isPage = false }) {
                 variants={itemVariants}
                 className="text-4xl sm:text-5xl md:text-6xl font-black font-display leading-[0.95] sm:leading-[0.9] mb-5 sm:mb-6 tracking-tighter text-white"
               >
-                Let’s Build <br />
+                Let ’s Build <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">
                   Something Epic.
                 </span>
@@ -160,18 +160,18 @@ export default function Contact({ isPage = false }) {
                   variants={itemVariants}
                   whileHover={{ y: -3, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="flex items-center justify-between p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-indigo-500/40 hover:bg-white/[0.05] transition-all duration-300 group"
+                  className="flex items-center justify-between p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-[var(--accent-primary)]/40 hover:bg-white/[0.05] transition-all duration-300 group"
                 >
                   <a
                     href="mailto:patelrudra99098@gmail.com"
                     className="flex items-center gap-3.5 sm:gap-4 min-w-0 flex-1"
                   >
-                    <div className="p-3 sm:p-3.5 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-indigo-400 group-hover:bg-indigo-500/40 group-hover:text-white transition-all shrink-0">
+                    <div className="p-3 sm:p-3.5 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-xl text-[var(--accent-primary)] group-hover:bg-[var(--accent-primary)]/30 group-hover:text-white transition-all shrink-0">
                       <Mail size={18} className="sm:w-5 sm:h-5" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 mb-0.5">Direct Email</p>
-                      <span className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage group-hover:text-indigo-300 truncate block">
+                      <span className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage group-hover:text-[var(--accent-primary)] truncate block">
                         patelrudra99098@gmail.com
                       </span>
                     </div>
@@ -190,18 +190,18 @@ export default function Contact({ isPage = false }) {
                   variants={itemVariants}
                   whileHover={{ y: -3, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="flex items-center justify-between p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-cyan-500/40 hover:bg-white/[0.05] transition-all duration-300 group"
+                  className="flex items-center justify-between p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-[var(--accent-primary)]/40 hover:bg-white/[0.05] transition-all duration-300 group"
                 >
                   <a
                     href="tel:+916354825621"
                     className="flex items-center gap-3.5 sm:gap-4 min-w-0 flex-1"
                   >
-                    <div className="p-3 sm:p-3.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 group-hover:bg-cyan-500/40 group-hover:text-white transition-all shrink-0">
+                    <div className="p-3 sm:p-3.5 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-xl text-[var(--accent-primary)] group-hover:bg-[var(--accent-primary)]/30 group-hover:text-white transition-all shrink-0">
                       <Phone size={18} className="sm:w-5 sm:h-5" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/40 mb-0.5">Direct Phone / Call</p>
-                      <span className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage group-hover:text-cyan-300 truncate block">
+                      <span className="text-xs sm:text-sm md:text-base font-bold text-white transition-colors font-bricolage group-hover:text-[var(--accent-primary)] truncate block">
                         +91 63548 25621
                       </span>
                     </div>
@@ -220,9 +220,9 @@ export default function Contact({ isPage = false }) {
                   variants={itemVariants}
                   whileHover={{ y: -3, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-purple-500/40 hover:bg-white/[0.05] transition-all duration-300 group"
+                  className="flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl hover:border-[var(--accent-primary)]/40 hover:bg-white/[0.05] transition-all duration-300 group"
                 >
-                  <div className="p-3 sm:p-3.5 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 group-hover:bg-purple-500/20 group-hover:text-white transition-all shrink-0">
+                  <div className="p-3 sm:p-3.5 bg-[var(--accent-primary)]/10 border border-[var(--accent-primary)]/20 rounded-xl text-[var(--accent-primary)] group-hover:bg-[var(--accent-primary)]/30 group-hover:text-white transition-all shrink-0">
                     <MapPin size={18} className="sm:w-5 sm:h-5" />
                   </div>
                   <div>
@@ -240,7 +240,7 @@ export default function Contact({ isPage = false }) {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="bg-[#050612]/75 backdrop-blur-[36px] border border-white/15 rounded-2xl sm:rounded-xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.8),inset_0_1px_2px_rgba(255,255,255,0.15)]"
+              className="backdrop-blur-[16px] border border-white/15 rounded-2xl sm:rounded-xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.8),inset_0_1px_2px_rgba(255,255,255,0.15)]"
             >
               {/* High-Tech HUD Ambient Header
               <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 sm:pb-4 border-b border-white/10">
@@ -333,21 +333,20 @@ export default function Contact({ isPage = false }) {
                 </div>
 
                 {/* Submit Action */}
-                <div className="pt-1 sm:pt-2">
-                  <MagneticButton disabled={isSubmitting} className="w-full cursor-pointer">
+                <div className="pt-1 sm:pt-2 flex justify-center">
+                  <MagneticButton disabled={isSubmitting} className="w-full max-w-md cursor-pointer flex justify-center">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full py-4 sm:py-4.5 rounded-xl sm:rounded-2xl font-display font-black text-xs sm:text-sm md:text-base leading-none tracking-wider transition-all duration-500 relative overflow-hidden group cursor-pointer ${
-                        isSubmitting
-                          ? 'bg-white/10 text-white/40 cursor-not-allowed border border-white/10'
-                          : 'bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 text-white border border-white/20'
-                      }`}
+                      className={`w-full py-4 sm:py-4.5 rounded-xl sm:rounded-2xl font-bricolage font-bold text-sm sm:text-base tracking-wider uppercase transition-all duration-500 relative overflow-hidden group cursor-pointer ${isSubmitting
+                        ? 'bg-white/10 text-white/40 cursor-not-allowed border border-white/10'
+                        : 'bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white border border-white/20 hover:shadow-[0_0_30px_rgba(99,102,241,0.35)]'
+                        }`}
                     >
 
                       <div className="relative z-10 flex items-center justify-center gap-2.5 sm:gap-3 whitespace-nowrap">
                         {isSubmitting ? (
-                          <span className="flex items-center gap-2">
+                          <span className="flex items-center gap-2 font-mono text-xs sm:text-sm font-bold tracking-wider">
                             <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.3s]" />
                             <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.15s]" />
                             <div className="w-2 h-2 bg-white rounded-full animate-bounce" />
@@ -355,8 +354,8 @@ export default function Contact({ isPage = false }) {
                           </span>
                         ) : (
                           <>
-                            <span>SEND TRANSMISSION</span>
-                            <Send className="w-4 h-4 group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                            <span className="font-bricolage font-bold tracking-wider" style={{ fontFamily: 'var(--font-bricolage)' }}>SEND TRANSMISSION</span>
+                            <Send className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
                           </>
                         )}
                       </div>

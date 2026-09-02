@@ -1,12 +1,5 @@
 import mongoose from 'mongoose';
 
-// --- Admin User Schema ---
-const AdminSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }, // Will store hashed password
-  createdAt: { type: Date, default: Date.now }
-});
-
 // --- Blog Post Schema ---
 const BlogSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -47,7 +40,7 @@ const ProjectSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-// --- Contact Schema (Already in contact.js, but good to centralize) ---
+// --- Contact Schema ---
 const ContactSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -57,7 +50,6 @@ const ContactSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export const Admin = mongoose.models.Admin || mongoose.model('Admin', AdminSchema);
 export const Blog = mongoose.models.Blog || mongoose.model('Blog', BlogSchema);
 export const Project = mongoose.models.Project || mongoose.model('Project', ProjectSchema);
 export const Contact = mongoose.models.Contact || mongoose.model('Contact', ContactSchema);

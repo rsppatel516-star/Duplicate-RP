@@ -1,7 +1,7 @@
 import dbConnect from './_lib/db.js';
 import { Blog } from './_lib/models.js';
+import { blogposts as fallbackBlogs } from '../src/data/blogposts.js';
 
-// Simple helper to clean up XML-invalid characters
 function escapeXml(unsafe) {
   if (!unsafe) return '';
   return unsafe.replace(/[<>&'"]/g, (c) => {
@@ -18,10 +18,16 @@ function escapeXml(unsafe) {
 
 export default async function handler(req, res) {
   try {
-    await dbConnect();
+    let blogs = [];
+    try {
+      await dbConnect();
+      const dbBlogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
+      if (dbBlogs.length > 0) blogs = dbBlogs;
+    } catch (dbErr) {
+      console.warn('⚠️ DB Connection warning in feed API, using static fallback:', dbErr.message);
+    }
 
-    // Fetch blogs, latest first
-    const blogs = await Blog.find({}).sort({ createdAt: -1 }).lean();
+    if (blogs.length === 0) blogs = fallbackBlogs;
 
     const baseUrl = 'https://patelrudra.in';
     const lastBuildDate = new Date().toUTCString();
@@ -39,8 +45,7 @@ export default async function handler(req, res) {
     blogs.forEach((post) => {
       const identifier = post.id || post._id;
       const postUrl = `${baseUrl}/blog/${identifier}`;
-      
-      // Parse the date (try post.date string first, then post.createdAt, fallback to current time)
+
       let pubDate = new Date().toUTCString();
       if (post.date) {
         const parsed = Date.parse(post.date);

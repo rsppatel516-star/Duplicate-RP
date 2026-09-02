@@ -37,9 +37,7 @@ export default function Services() {
 
   return (
     <section id="services" className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
-      {/* Background Lighting & Glows */}
-      <div className="absolute top-0 left-1/4 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-purple-600/10 rounded-full blur-[120px] sm:blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-indigo-600/10 rounded-full blur-[120px] sm:blur-[140px] pointer-events-none" />
+      
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
@@ -50,7 +48,7 @@ export default function Services() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-purple-400 mb-4 sm:mb-5 backdrop-blur-md"
+              className="inline-flex items-center gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-white mb-4 sm:mb-5 backdrop-blur-md"
             >
               <Zap size={15} className="text-purple-400 animate-pulse" />
               <span className="font-mono text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.25em] uppercase text-purple-300">
@@ -61,9 +59,9 @@ export default function Services() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tight leading-[1.15] text-white">
               Solving <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Complex</span> Problems with Code
             </h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-dark-textMuted leading-relaxed max-w-2xl font-syne">
+            {/*<p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-dark-textMuted leading-relaxed max-w-2xl font-syne">
               Architecting resilient digital applications, high-performance user interfaces, and robust systems built to scale.
-            </p>
+            </p>*/}
           </div>
         </div>
 
@@ -77,18 +75,18 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08, duration: 0.4 }}
               onClick={() => setSelectedService(service)}
-              className="bg-white/[0.03] hover:bg-white/[0.06] backdrop-blur-xl border border-white/10 hover:border-purple-500/40 rounded-2xl sm:rounded-3xl group p-6 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1.5"
+              className="bg-white/[0.03] hover:bg-white/[0.06] backdrop-blur-xl border border-white/10 hover:border-accent-primary rounded-2xl sm:rounded-3xl group p-6 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden cursor-pointer transition-all duration-500 hover:-translate-y-1.5"
             >
               {/* Radial Glow on Hover */}
-              <div className="absolute top-0 right-0 w-32 sm:w-36 h-32 sm:h-36 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 sm:w-36 h-32 sm:h-36 bg-gradient-to-bl from-accent-primary/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               <div>
                 {/* Icon Box */}
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-2xl sm:text-3xl text-purple-400 mb-6 sm:mb-8 group-hover:text-purple-300 group-hover:border-purple-500/50 group-hover:bg-purple-500/10 transition-all duration-500 group-hover:scale-110 shadow-2xl relative z-10">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center text-2xl sm:text-3xl text-[var(--accent-primary)] mb-6 sm:mb-8 group-hover:border-[var(--accent-primary)]/50 group-hover:bg-[var(--accent-primary)]/10 transition-all duration-500 group-hover:scale-110 shadow-2xl relative z-10">
                   <service.icon />
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-white mb-2.5 sm:mb-3 group-hover:text-purple-300 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-display font-bold text-[var(--accent-secondary)] mb-2.5 sm:mb-3 transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-dark-textMuted leading-relaxed text-xs sm:text-sm mb-6 sm:mb-8 font-syne line-clamp-3">
@@ -141,11 +139,11 @@ export default function Services() {
               <div className="overflow-y-auto custom-scrollbar pr-2 sm:pr-3 space-y-6 sm:space-y-8 -webkit-overflow-scrolling-touch">
 
                 {/* Header Info */}
-                <div className="pr-8 sm:pr-0">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-500/20 via-indigo-500/10 to-cyan-500/10 border border-purple-500/30 flex items-center justify-center text-2xl sm:text-3xl text-purple-400 mb-4 sm:mb-6 shadow-[0_0_25px_rgba(124,58,237,0.2)]">
+                <div className="pr-12 sm:pr-14 md:pr-16">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[var(--accent-primary)]/20 via-[var(--accent-secondary)]/10 to-cyan-500/10 border border-[var(--accent-primary)]/30 flex items-center justify-center text-2xl sm:text-3xl text-[var(--accent-primary)] mb-4 sm:mb-6 shadow-[0_0_25px_rgba(99,102,241,0.2)]">
                     <selectedService.icon />
                   </div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-extrabold text-white mb-2 sm:mb-3 tracking-tight">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-extrabold text-[var(--accent-secondary)] mb-2 sm:mb-3 tracking-tight">
                     {selectedService.title}
                   </h3>
                   <p className="text-dark-textMuted leading-relaxed text-xs sm:text-base md:text-lg font-syne">
@@ -154,7 +152,7 @@ export default function Services() {
                 </div>
 
                 {/* Grid Layout for Desktop & Tablet */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
 
                   {/* What's Included (Features) */}
                   {selectedService.features && selectedService.features.length > 0 && (

@@ -19,7 +19,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch('/api/admin/blogs');
+        const res = await fetch('/api/blogs');
         const data = await res.json();
         if (data.success && data.data.length > 0) {
           setBlogs(data.data);
@@ -47,14 +47,48 @@ export default function Blog() {
   }, [blogs, activeCategory, searchQuery]);
 
   const featuredBlog = filteredBlogs.length > 0 ? filteredBlogs[0] : null;
-  const standardBlogs = filteredBlogs.slice(1);
+  const blogPageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://patelrudra.in"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://patelrudra.in/blog"
+          }
+        ]
+      },
+      {
+        "@type": "Blog",
+        "name": "Insights & Thoughts by Rudra Patel",
+        "url": "https://patelrudra.in/blog",
+        "description": "Deep dives into AI, full-stack development, and modern design principles.",
+        "publisher": {
+          "@type": "Person",
+          "name": "Rudra Patel",
+          "url": "https://patelrudra.in"
+        }
+      }
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
       <SEO
-        title="Insights & Thoughts"
-        description="Deep dives into AI, full-stack development, and modern design principles."
+        title="Insights & Thoughts | Blog"
+        description="Deep dives into AI, full-stack development, SwiftUI iOS apps, and modern design principles by Rudra Patel."
+        keywords="Rudra Patel blog, software engineering articles, full stack development tutorials, React 19, SwiftUI, AI integration"
         canonical="https://patelrudra.in/blog"
+        schema={blogPageSchema}
       />
 
       {/* Background Decorative Elements */}

@@ -20,10 +20,34 @@ export default function Artifacts() {
   const [searchQuery, setSearchQuery] = useState('');
   const [quickViewProject, setQuickViewProject] = useState(null);
 
+  // Lock body scroll & hide navbar when project quick view modal is open
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setQuickViewProject(null);
+      }
+    };
+
+    if (quickViewProject) {
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [quickViewProject]);
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch('/api/admin/projects');
+        const res = await fetch('/api/projects');
         const data = await res.json();
         if (data.success && data.data.length > 0) {
           setProjects(data.data);
@@ -39,19 +63,23 @@ export default function Artifacts() {
     fetchProjects();
   }, []);
 
-  // Compute unique categories dynamically
-  const categories = useMemo(() => {
-    const set = new Set(projects.map((p) => p.category).filter(Boolean));
-    return ['All', ...Array.from(set)];
-  }, [projects]);
+  // Fixed filter categories: All, Web Apps, Mobile Apps, UI/UX Design
+  const categories = ['All', 'Web Apps', 'Mobile Apps', 'UI/UX Design'];
 
   // Filtered projects list based on search and category
   const filteredProjects = useMemo(() => {
     return projects.filter((p) => {
-      const matchesCategory =
-        activeCategory === 'All' ||
-        (p.category && p.category.toLowerCase() === activeCategory.toLowerCase());
-      
+      const cat = (p.category || '').toLowerCase();
+      const target = activeCategory.toLowerCase();
+
+      let matchesCategory = activeCategory === 'All';
+      if (!matchesCategory) {
+        if (target.includes('web')) matchesCategory = cat.includes('web') || cat.includes('react') || cat.includes('javascript') || cat.includes('html') || cat.includes('full-stack');
+        else if (target.includes('mobile')) matchesCategory = cat.includes('mobile') || cat.includes('ios') || cat.includes('swift');
+        else if (target.includes('design')) matchesCategory = cat.includes('design') || cat.includes('ui') || cat.includes('figma');
+        else matchesCategory = cat === target;
+      }
+
       const query = searchQuery.trim().toLowerCase();
       if (!query) return matchesCategory;
 
@@ -73,12 +101,48 @@ export default function Artifacts() {
     );
   }
 
+  const artifactsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://patelrudra.in"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Artifacts",
+            "item": "https://patelrudra.in/artifacts"
+          }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "name": "Featured Artifacts & Case Studies by Rudra Patel",
+        "url": "https://patelrudra.in/artifacts",
+        "description": "A curated digital vault of high-performance web products, full-stack applications, and technical case studies by Rudra Patel.",
+        "author": {
+          "@type": "Person",
+          "name": "Rudra Patel",
+          "url": "https://patelrudra.in"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-28 md:pt-36 pb-24 relative overflow-hidden">
       <SEO
         title="Featured Artifacts & Case Studies"
         description="A curated digital vault of high-performance web products, full-stack applications, and technical case studies by Rudra Patel."
+        keywords="Rudra Patel projects, portfolio case studies, full-stack web apps, SwiftUI iOS apps, React projects, Web development portfolio"
         canonical="https://patelrudra.in/artifacts"
+        schema={artifactsSchema}
       />
 
       {/* Ambient background glows */}
@@ -162,19 +226,17 @@ export default function Artifacts() {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl sm:rounded-2xl text-xs font-bold tracking-wider uppercase transition-all duration-300 whitespace-nowrap ${
-                      isActive
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl sm:rounded-2xl text-xs font-bold tracking-wider uppercase transition-all duration-300 whitespace-nowrap ${isActive
                         ? 'bg-dark-primary text-white shadow-lg shadow-dark-primary/30 scale-[1.02]'
                         : 'bg-white/[0.03] text-dark-textMuted hover:text-white hover:bg-white/[0.08]'
-                    }`}
+                      }`}
                   >
                     <span>{cat}</span>
                     <span
-                      className={`px-1.5 py-0.5 rounded-full text-[10px] ${
-                        isActive
+                      className={`px-1.5 py-0.5 rounded-full text-[10px] ${isActive
                           ? 'bg-white/20 text-white'
                           : 'bg-white/10 text-dark-textMuted'
-                      }`}
+                        }`}
                     >
                       {catCount}
                     </span>
@@ -249,9 +311,8 @@ export default function Artifacts() {
                       transition: { staggerChildren: 0.15, delayChildren: 0.05 }
                     }
                   }}
-                  className={`flex flex-col ${
-                    isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  } gap-10 md:gap-16 lg:gap-24 items-center`}
+                  className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                    } gap-10 md:gap-16 lg:gap-24 items-center`}
                 >
                   {/* Image Card Side */}
                   <motion.div

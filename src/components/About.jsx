@@ -93,7 +93,7 @@ export default function About() {
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-dark-secondary/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Section Header */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-14 gap-8 text-left">
           <div className="max-w-2xl">
@@ -125,7 +125,7 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:auto-rows-[180px]"
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:auto-rows-min"
         >
           {/* Main Bio Card */}
           <BentoCard className="col-span-2 md:col-span-4 lg:col-span-3 lg:row-span-2 relative overflow-hidden group h-auto md:h-full border-white/10 hover:border-indigo-500/30 transition-all duration-500">
@@ -209,8 +209,8 @@ export default function About() {
             <div className="flex flex-col h-full justify-between relative z-10">
               <div className="flex justify-between items-start">
                 <a
-                  href="/Rudra Patel Resume.pdf"
-                  download="Rudra Patel Resume.pdf"
+                  href="/Rudra-Patel-Resume.pdf"
+                  download="Rudra-Patel-Resume.pdf"
                   onClick={(e) => {
                     e.stopPropagation();
                     setShowResumeModal(true);
@@ -368,8 +368,8 @@ export default function About() {
                 className="absolute top-5 right-5 flex items-center gap-3 z-50"
               >
                 <a
-                  href="/Rudra Patel Resume.pdf"
-                  download="Rudra Patel Resume.pdf"
+                  href="/Rudra-Patel-Resume.pdf"
+                  download="Rudra-Patel-Resume.pdf"
                   className="p-2.5 bg-white/5 hover:bg-dark-secondary/20 border border-white/10 hover:border-dark-secondary/30 rounded-xl text-dark-secondary transition-all cursor-pointer flex items-center justify-center shadow-lg"
                   title="Download Resume PDF"
                 >

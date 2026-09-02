@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import GlobalParticles from './components/canvas/GlobalParticles';
 import ClickSpark from './components/ui/ClickSpark';
-import ProtectedRoute from './components/admin/ProtectedRoute';
 
 // Lazy loaded page components for optimal initial load performance
 const Artifacts = lazy(() => import('./pages/Artifacts'));
@@ -15,8 +14,6 @@ const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
-const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
-const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 
 // Lightweight page loading indicator
 const PageFallback = () => (
@@ -39,7 +36,6 @@ function App() {
     }
   }, [location]);
 
-  const isAdminPage = location.pathname.startsWith('/admin');
   const isCaseStudyPage = location.pathname.startsWith('/artifacts/');
   const isFeaturePage = location.pathname.startsWith('/artifacts') ||
     location.pathname.startsWith('/blog') ||
@@ -62,8 +58,8 @@ function App() {
         extraScale={0.8}
       >
         <div className="relative z-10 flex flex-col min-h-screen">
-          {/* Conditionally render Navbar or FeatureNavbar (unless on Admin pages or Case Study pages) */}
-          {!isAdminPage && !isCaseStudyPage && (isFeaturePage ? <FeatureNavbar /> : <Navbar />)}
+          {/* Conditionally render Navbar or FeatureNavbar (unless on Case Study pages) */}
+          {!isCaseStudyPage && (isFeaturePage ? <FeatureNavbar /> : <Navbar />)}
           <main className="flex-grow">
             <Suspense fallback={<PageFallback />}>
               <Routes>
@@ -74,16 +70,10 @@ function App() {
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<BlogPost />} />
-
-                {/* Admin Routes */}
-                <Route path="/admin/login" element={<AdminLogin />} />
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/admin/dashboard" element={<AdminDashboard />} />
-                </Route>
               </Routes>
             </Suspense>
           </main>
-          {!isFeaturePage && !isAdminPage && <Footer />}
+          {!isFeaturePage && <Footer />}
         </div>
       </ClickSpark>
     </div>

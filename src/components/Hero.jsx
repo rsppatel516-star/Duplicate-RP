@@ -295,10 +295,10 @@ export default function Hero() {
           className="flex justify-center lg:justify-end order-1 lg:order-2 relative z-10"
         >
           {/* Rotating vector overlays */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 scale-75 md:scale-95 lg:scale-105">
-            <div className="absolute w-[460px] h-[460px] rounded-full border border-dashed border-violet-500/10 animate-spin-slow" />
-            <div className="absolute w-[400px] h-[400px] rounded-full border border-double border-indigo-500/15 animate-spin-counter-slow" />
-            <div className="absolute w-[520px] h-[520px] rounded-full border border-white/5" />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 scale-75 md:scale-95 lg:scale-105 overflow-hidden">
+            <div className="absolute w-[460px] h-[460px] max-w-full max-h-full rounded-full border border-dashed border-violet-500/10 animate-spin-slow" />
+            <div className="absolute w-[400px] h-[400px] max-w-full max-h-full rounded-full border border-double border-indigo-500/15 animate-spin-counter-slow" />
+            <div className="absolute w-[520px] h-[520px] max-w-full max-h-full rounded-full border border-white/5" />
           </div>
 
           {/* Image & Badges frame */}
@@ -306,7 +306,7 @@ export default function Hero() {
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             whileHover={{ scale: 1.01 }}
-            className="relative cursor-pointer group z-10"
+            className="relative cursor-pointer group z-10 max-w-full"
           >
             {/* Ambient outer backglow */}
             <motion.div
@@ -318,7 +318,7 @@ export default function Hero() {
             />
 
             {/* Photo frame */}
-            <div className="relative w-[320px] md:w-[380px] lg:w-[440px] aspect-[3/4] rounded-[1rem] overflow-hidden">
+            <div className="relative w-[280px] sm:w-[320px] md:w-[380px] lg:w-[440px] max-w-[calc(100vw-3rem)] aspect-[3/4] rounded-[1rem] overflow-hidden">
               <img
                 src="/images/DSC06139.webp"
                 alt="Rudra Patel portrait photo"
@@ -358,15 +358,15 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-            className="absolute top-24 md:top-auto md:bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 w-max"
+            className="absolute top-28 md:top-auto md:bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 z-50 max-w-[90vw]"
           >
-            <div id="homeWelcomeBadge" className="bg-white/5 backdrop-blur-2xl border border-white/10 px-6 py-3 lg:px-8 lg:py-4 rounded-2xl flex flex-col relative overflow-hidden group hover:border-white/20 transition-all" aria-live="polite" role="status">
+            <div id="homeWelcomeBadge" className="bg-white/5 backdrop-blur-2xl border border-white/10 px-5 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-2xl flex flex-col relative overflow-hidden group hover:border-white/20 transition-all" aria-live="polite" role="status">
               <div className="flex items-center gap-3 z-10 mb-[2px]">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
                 </span>
-                <span className="text-white/90 font-display font-medium text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to portfolio 💻</span>
+                <span className="text-white/90 font-display font-medium text-xs sm:text-sm lg:text-base tracking-wide whitespace-nowrap">Welcome to portfolio 💻</span>
               </div>
               <motion.div
                 initial={{ width: "100%" }}

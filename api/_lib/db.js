@@ -31,10 +31,15 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 3000,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       return mongoose;
+    }).catch((err) => {
+      cached.promise = null;
+      console.warn('⚠️ MONGODB Connection Warning:', err.message);
+      throw err;
     });
   }
 

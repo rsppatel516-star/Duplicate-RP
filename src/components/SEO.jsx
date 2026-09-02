@@ -22,7 +22,7 @@ export default function SEO({
   const defaultTitle = 'Rudra Patel — Digital Architect & Full-Stack Engineer';
   const defaultDesc = 'Portfolio of Rudra Patel, a Digital Architect specializing in premium web experiences, high-performance mobile apps, and robust full-stack engineering.';
   const defaultKeywords = 'Rudra Patel, Digital Architect, Full-Stack Developer, Mobile App Developer, React, Swift, SwiftUI, Node.js, Midnight Glass Design, Vadodara, India';
-  const defaultImage = '/images/navbar-avatar.webp';
+  const defaultImage = '/images/0R7A7692.webp';
 
   const titleText = title ? `${title} | Rudra Patel` : defaultTitle;
   const descText = description || defaultDesc;
@@ -40,6 +40,8 @@ export default function SEO({
       <meta name="description" content={descText} />
       <meta name="keywords" content={keywordsText} />
       <meta name="author" content="Rudra Patel" />
+      <meta name="theme-color" content="#0a0a0a" />
+      <meta name="application-name" content="Rudra Patel Portfolio" />
       
       {noIndex ? (
         <meta name="robots" content="noindex, nofollow" />
@@ -47,8 +49,13 @@ export default function SEO({
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       )}
 
-      {/* Canonical URL */}
+      {/* Canonical & Language Alternate URL */}
       <link rel="canonical" href={fullUrl} />
+      <link rel="alternate" hrefLang="en" href={fullUrl} />
+
+      {/* Google Search Thumbnail & Image Preview Signals */}
+      <meta name="thumbnail" content={imgUrl} />
+      <link rel="image_src" href={imgUrl} />
 
       {/* Open Graph / Facebook / WhatsApp */}
       <meta property="og:type" content={ogType} />

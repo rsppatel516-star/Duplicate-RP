@@ -1,57 +1,72 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, projectFilters } from '../data/projects';
-import { ExternalLink, Github, Briefcase, ArrowUpRight, X, Zap, ArrowRight, FolderOpen, Tag, Calendar, Layout } from 'lucide-react';
+import { ExternalLink, Github, Briefcase, ArrowUpRight, X, Zap, ArrowRight, FolderOpen, Tag, Calendar, Layout, LayoutGrid, Globe, Smartphone, Palette, Sparkles, Layers } from 'lucide-react';
 import MagneticButton from './ui/MagneticButton';
 import ClickSpark from './ui/ClickSpark';
 
-const ProjectFilterButton = ({ filter, activeFilter, setActiveFilter, setVisibleCount }) => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const buttonRef = useRef(null);
+const categoryIcons = {
+  'All': LayoutGrid,
+  'Web Apps': Globe,
+  'Mobile Apps': Smartphone,
+  'UI/UX Design': Palette,
+};
 
-  const handleMouseMove = (e) => {
-    if (!buttonRef.current) return;
-    const { left, top } = buttonRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - left, y: e.clientY - top });
-  };
+const AnimatedCountBadge = ({ value }) => {
+  return (
+    <span className="inline-flex items-center justify-center overflow-hidden h-[1.25em] leading-none relative">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={value}
+          initial={{ y: 12, opacity: 0, scale: 0.8 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          exit={{ y: -12, opacity: 0, scale: 0.8 }}
+          transition={{ type: 'spring', stiffness: 500, damping: 28 }}
+          className="inline-block"
+        >
+          {value}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+};
 
+const ProjectFilterButton = ({ filter, count, activeFilter, setActiveFilter, setVisibleCount }) => {
   const isActive = activeFilter === filter;
+  const Icon = categoryIcons[filter] || Layers;
 
   return (
     <MagneticButton onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}>
       <button
-        ref={buttonRef}
-        onMouseMove={handleMouseMove}
-        className={`relative px-7 py-3.5 rounded-xl text-base md:text-lg font-bold transition-all duration-300 focus:outline-none overflow-hidden group/btn border tracking-wide cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${isActive
-          ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
-          : 'text-dark-textMuted bg-white/[0.01] border-white/5 hover:border-violet-500/30 hover:text-white hover:bg-white/[0.03]'
-          }`}
+        className={`relative px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm md:text-base font-bold transition-all duration-300 focus:outline-none flex items-center gap-2.5 cursor-pointer select-none group border ${
+          isActive
+            ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(99,102,241,0.35)]'
+            : 'text-white/60 border-white/5 bg-white/[0.01] hover:text-white hover:border-violet-500/30 hover:bg-white/[0.04]'
+        }`}
       >
         {isActive && (
           <motion.div
-            layoutId="activeProjectTab"
-            className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-indigo-600/35 backdrop-blur-md"
+            layoutId="activeProjectFilterPill"
+            className="absolute inset-0 bg-gradient-to-r from-violet-600/30 via-indigo-600/40 to-violet-600/30 backdrop-blur-md rounded-xl"
             transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
           />
         )}
 
-        <div
-          className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
-          style={{
-            background: `radial-gradient(circle 80px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.18), transparent)`,
-          }}
-        />
+        <span className="relative z-10 flex items-center gap-2">
+          <Icon size={16} className={`transition-transform duration-300 ${isActive ? 'scale-110 text-violet-300' : 'text-purple-400 group-hover:text-purple-300'}`} />
+          <span className="font-display tracking-wide">{filter}</span>
+        </span>
 
-        <span className="relative z-10 flex items-center gap-2 justify-center">
-          {isActive && (
-            <motion.span
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 shadow-[0_0_8px_#a78bfa]"
-            />
-          )}
-          {filter}
+        {/* Animated Count Badge */}
+        <span
+          className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold transition-all flex items-center justify-center min-w-[22px] ${
+            isActive
+              ? 'bg-violet-500/30 text-white border border-violet-400/40 shadow-[0_0_10px_rgba(167,139,250,0.3)]'
+              : 'bg-white/5 text-white/50 border border-white/10 group-hover:border-white/20 group-hover:text-white/80'
+          }`}
+        >
+          <AnimatedCountBadge value={count} />
         </span>
       </button>
     </MagneticButton>
@@ -63,11 +78,42 @@ export default function Projects() {
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedProject, setSelectedProject] = useState(null);
 
+  // Lock body scroll & hide navbar when project modal is open
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedProject(null);
+      }
+    };
+
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
+
   const filters = projectFilters;
 
   const filteredProjects = activeFilter === 'All'
     ? projects
-    : projects.filter(p => p.category === activeFilter);
+    : projects.filter(p => {
+      const cat = (p.category || '').toLowerCase();
+      const target = activeFilter.toLowerCase();
+      if (target.includes('web')) return cat.includes('web') || cat.includes('react') || cat.includes('javascript') || cat.includes('html');
+      if (target.includes('mobile')) return cat.includes('mobile') || cat.includes('ios') || cat.includes('swift');
+      if (target.includes('design')) return cat.includes('design') || cat.includes('ui') || cat.includes('figma');
+      return cat === target;
+    });
 
   const visibleProjects = filteredProjects.slice(0, visibleCount);
 
@@ -82,9 +128,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-16  relative overflow-hidden">
 
-      {/* Background Gradients */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px]  rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px]  rounded-full blur-[140px] pointer-events-none" />
+      
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
@@ -132,50 +176,44 @@ export default function Projects() {
         </div>
 
         {/* Filter Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-16">
-          {/* Individual Filter Buttons */}
-          <div className="flex flex-wrap items-center gap-3 font-syne">
-            {filters.map((filter) => (
-              <ProjectFilterButton
-                key={filter}
-                filter={filter}
-                activeFilter={activeFilter}
-                setActiveFilter={setActiveFilter}
-                setVisibleCount={setVisibleCount}
-              />
-            ))}
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-16">
+          {/* Category Filter Pills Dock */}
+          <div className="flex flex-wrap items-center gap-2  rounded-xl">
+            {filters.map((filter) => {
+              const count = filter === 'All'
+                ? projects.length
+                : projects.filter(p => {
+                    const cat = (p.category || '').toLowerCase();
+                    const target = filter.toLowerCase();
+                    if (target.includes('web')) return cat.includes('web') || cat.includes('react') || cat.includes('javascript') || cat.includes('html');
+                    if (target.includes('mobile')) return cat.includes('mobile') || cat.includes('ios') || cat.includes('swift');
+                    if (target.includes('design')) return cat.includes('design') || cat.includes('ui') || cat.includes('figma');
+                    return cat === target;
+                  }).length;
+
+              return (
+                <ProjectFilterButton
+                  key={filter}
+                  filter={filter}
+                  count={count}
+                  activeFilter={activeFilter}
+                  setActiveFilter={setActiveFilter}
+                  setVisibleCount={setVisibleCount}
+                />
+              );
+            })}
           </div>
 
-          {/* Project Count — right side with animated circular progress indicator */}
-          <div className="flex items-center gap-3 px-5 py-3.5 rounded-xl border border-white/5 bg-white/[0.01] backdrop-blur-md text-base md:text-lg font-medium text-dark-textMuted whitespace-nowrap font-syne hover:border-violet-500/30 hover:shadow-[0_0_25px_rgba(124,58,237,0.15)] transition-all duration-500">
-            <svg className="w-5 h-5 -rotate-90 shrink-0" viewBox="0 0 20 20">
-              {/* Track */}
-              <circle
-                cx="10"
-                cy="10"
-                r={radius}
-                className="stroke-dark-border/30 fill-none"
-                strokeWidth="2.5"
-              />
-              {/* Progress */}
-              <motion.circle
-                cx="10"
-                cy="10"
-                r={radius}
-                className="stroke-violet-400 fill-none [filter:drop-shadow(0_0_3px_rgba(167,139,250,0.6))]"
-                strokeWidth="2.5"
-                strokeDasharray={circumference}
-                initial={{ strokeDashoffset: circumference }}
-                animate={{ strokeDashoffset }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                strokeLinecap="round"
-              />
-            </svg>
-            <span className="text-white font-black text-lg md:text-xl leading-none">
-              {filteredCount}
+          {/* Animated Project Count Indicator */}
+          <div className="flex items-center gap-3 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl border border-white/10 bg-white/[0.02] backdrop-blur-md text-xs sm:text-sm font-medium text-white/60 whitespace-nowrap font-syne hover:border-violet-500/30 hover:shadow-[0_0_20px_rgba(124,58,237,0.2)] transition-all duration-500">
+            <div className="relative w-4 h-4 flex items-center justify-center shrink-0">
+              <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_#a78bfa]" />
+            </div>
+            <span className="text-white font-black text-sm sm:text-base font-mono flex items-center gap-1">
+              <AnimatedCountBadge value={filteredCount} />
             </span>
-            <span className="text-sm">
-              of <span className="font-semibold text-white">{totalCount}</span> projects
+            <span className="text-white/40">
+              of <span className="font-bold text-white"><AnimatedCountBadge value={totalCount} /></span> projects
             </span>
           </div>
         </div>
@@ -192,7 +230,7 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 onClick={() => setSelectedProject(project)}
-                className="group relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden border border-dark-border bg-dark-surface cursor-pointer"
+                className="group relative h-[340px] sm:h-[420px] md:h-[500px] rounded-3xl overflow-hidden border border-dark-border bg-dark-surface cursor-pointer"
               >
                 <ClickSpark sparkColor="rgba(var(--dark-primary-rgb), 1)" sparkColor2="rgba(var(--dark-secondary-rgb), 1)">
                   <div className="w-full h-full relative">
@@ -234,7 +272,7 @@ export default function Projects() {
           {visibleCount < filteredProjects.length && (
             <MagneticButton
               onClick={() => setVisibleCount(filteredProjects.length)}
-              className="px-6 py-3.5 sm:px-10 sm:py-4.5 bg-dark-surface border border-dark-border rounded-full font-bold hover:border-dark-primary transition-all group overflow-hidden relative font-syne tracking-tighter-tight"
+              className="px-6 py-3.5 sm:px-10 sm:py-4.5 border border-dark-border rounded-full font-bold hover:border-dark-primary transition-all group overflow-hidden relative font-syne tracking-tighter-tight"
             >
               <span className="relative z-10 flex items-center gap-2 sm:gap-3 uppercase tracking-wider sm:tracking-widest whitespace-nowrap text-xs sm:text-sm">
                 More Artifacts
@@ -260,114 +298,124 @@ export default function Projects() {
 
       </div>
 
-      {/* Modal */}
+      {/* Responsive Project Detail Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center pt-10 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-xl"
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ scale: 0.92, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-dark-surface/50 border border-dark-border/50   p-6 md:p-10 rounded-3xl max-w-5xl w-full relative overflow-hidden flex flex-col max-h-[90vh]"
+              exit={{ scale: 0.92, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="bg-[#070814]/95 backdrop-blur-2xl border border-white/15 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl md:rounded-[16px] max-w-5xl w-full relative flex flex-col max-h-[90vh] md:max-h-[85vh] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Floating Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-20 p-3 backdrop-blur-md rounded-full text-dark-primary hover:bg-white/10 hover:text-white transition-colors"
+                className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 p-2 sm:p-2.5 bg-black/60 hover:bg-purple-600/30 backdrop-blur-xl border border-white/15 hover:border-purple-500/50 rounded-full text-white/80 hover:text-white transition-all shadow-xl hover:scale-105 cursor-pointer"
                 aria-label="Close modal"
               >
-                <X size={24} />
+                <X size={18} className="sm:w-5 sm:h-5" />
               </button>
 
-              <div className="overflow-y-auto no-scrollbar pb-6 ">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              {/* Modal Body Content (Scrollable with custom scrollbar) */}
+              <div className="overflow-y-auto custom-scrollbar pr-1 sm:pr-2 space-y-6 sm:space-y-8 -webkit-overflow-scrolling-touch">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
 
                   {/* Left Column: Image and Actions */}
-                  <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden relative shadow-2xl border border-dark-border/50 group">
+                  <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
+                    <div className="w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden relative shadow-2xl border border-white/10 group">
                       <img
                         src={selectedProject.image}
-                        alt={`${selectedProject.title} project case study image - ${selectedProject.category} by Rudra Patel`}
+                        alt={`${selectedProject.title} project preview - ${selectedProject.category} by Rudra Patel`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/90 pb-8 items-end flex to-transparent opacity-90" />
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <span className="px-4 py-1.5 bg-dark-primary/20 backdrop-blur-md rounded-full text-xs font-bold text-dark-primary border border-dark-primary/30 tracking-[0.2em] uppercase inline-block mb-3">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#070814] via-[#070814]/40 to-transparent opacity-90" />
+                      <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
+                        <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 bg-purple-500/20 backdrop-blur-md rounded-full text-[10px] sm:text-xs font-bold text-purple-300 border border-purple-500/30 tracking-[0.2em] uppercase inline-block mb-2 sm:mb-3">
                           {selectedProject.category}
                         </span>
-                        <h3 className="text-3xl font-display font-bold text-white">
+                        <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-extrabold text-white tracking-tight leading-tight">
                           {selectedProject.title}
                         </h3>
                       </div>
                     </div>
 
-                    <div className="flex flex-col gap-3">
-                      <a
-                        href={selectedProject.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-3 w-full py-4 bg-dark-primary text-dark-bg font-bold rounded-2xl hover:bg-white/15 hover:text-white transition-transform duration-400 hover:scale-95 "
-                      >
-                        <ExternalLink size={20} /> Launch Project
-                      </a>
-                      <a
-                        href={selectedProject.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-3 w-full py-4 text-white font-bold rounded-2xl border border-dark-border hover:border-dark-primary transition-colors bg-dark-surface/15 hover:text-white"
-                      >
-                        <Github size={20} /> Source Code
-                      </a>
+                    {/* Action Link Buttons */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5 sm:gap-3">
+                      {selectedProject.liveUrl && selectedProject.liveUrl !== '#' && (
+                        <a
+                          href={selectedProject.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2.5 py-3 sm:py-3.5 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm rounded-xl sm:rounded-2xl transition-all shadow-lg hover:shadow-purple-500/25"
+                        >
+                          <ExternalLink size={16} /> <span>Launch Project</span>
+                        </a>
+                      )}
+                      {selectedProject.githubUrl && selectedProject.githubUrl !== '#' && (
+                        <a
+                          href={selectedProject.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2.5 py-3 sm:py-3.5 px-4 bg-white/5 hover:bg-white/10 text-white font-bold text-xs sm:text-sm rounded-xl sm:rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all"
+                        >
+                          <Github size={16} /> <span>Source Code</span>
+                        </a>
+                      )}
                     </div>
                   </div>
 
-                  {/* Right Column: Details */}
-                  <div className="lg:col-span-7 flex flex-col pt-2 md:pt-4 lg:pr-4">
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border backdrop-blur-sm ${selectedProject.status === 'Completed'
-                        ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
-                        : 'text-amber-400 bg-amber-500/10 border-amber-500/25'
-                        }`}>
-                        <span className={`w-2 h-2 rounded-full ${selectedProject.status === 'Completed' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-pulse'
-                          }`} />
+                  {/* Right Column: Project Details */}
+                  <div className="lg:col-span-7 flex flex-col pt-1 sm:pt-2">
+                    <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border backdrop-blur-sm ${
+                        selectedProject.status === 'Completed'
+                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
+                          : 'text-amber-400 bg-amber-500/10 border-amber-500/25'
+                      }`}>
+                        <span className={`w-2 h-2 rounded-full ${
+                          selectedProject.status === 'Completed' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-pulse'
+                        }`} />
                         {selectedProject.status}
                       </div>
                     </div>
 
-                    <h4 className="text-xl font-display font-bold mb-4 text-dark-primary">About the Project</h4>
-                    <p className="text-dark-textMuted leading-relaxed text-base md:text-lg mb-10">
+                    <h4 className="text-lg sm:text-xl font-display font-bold mb-3 sm:mb-4 text-purple-300">About the Project</h4>
+                    <p className="text-white/70 leading-relaxed text-xs sm:text-sm md:text-base mb-6 sm:mb-8 font-syne">
                       {selectedProject.description}
                     </p>
 
                     {selectedProject.keyFeatures && selectedProject.keyFeatures.length > 0 && (
-                      <div className="mb-10">
-                        <h4 className="flex items-center gap-3 text-sm font-bold text-white uppercase tracking-wider mb-6 border-b border-dark-border pb-3">
-                          <Zap size={18} className="text-dark-secondary" /> Core Features
+                      <div className="mb-6 sm:mb-8">
+                        <h4 className="flex items-center gap-2 text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2.5 font-mono">
+                          <Zap size={16} className="text-purple-400" /> Core Features
                         </h4>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                           {selectedProject.keyFeatures.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-3 bg-dark-surface/20 p-4 rounded-xl border border-dark-border/50 shadow-sm group transition-colors">
-                              <span className="mt-[4px] w-2 h-2 rounded-xl bg-dark-secondary shrink-0 transition-all duration-300" />
-                              <span className="text-white text-sm group-hover:translate-x-2 transition-transform duration-300">{feature}</span>
+                            <li key={idx} className="flex items-start gap-2.5 bg-white/[0.02] p-3 sm:p-3.5 rounded-xl border border-white/10 shadow-sm group hover:border-purple-500/30 transition-colors">
+                              <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 group-hover:scale-125 transition-transform" />
+                              <span className="text-white/80 text-xs sm:text-sm group-hover:text-white transition-colors">{feature}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-auto">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-auto">
                       {/* Tech Stack */}
                       <div>
-                        <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5 border-b border-dark-border pb-3">Tech Stack</h4>
+                        <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-3 sm:mb-4 border-b border-white/10 pb-2.5 font-mono">Tech Stack</h4>
                         <div className="flex flex-wrap gap-2">
                           {selectedProject.tags.map(tag => (
-                            <span key={tag} className="text-xs font-code text-dark-secondary bg-dark-secondary/10 px-3 py-2 rounded-lg border border-dark-secondary/20 hover:border-dark-secondary hover:bg-dark-secondary/30 hover:-translate-y-1 transition-all cursor-default">
+                            <span key={tag} className="text-[11px] sm:text-xs font-mono text-purple-300 bg-purple-500/10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-purple-500/20 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all cursor-default">
                               {tag}
                             </span>
                           ))}
@@ -377,10 +425,10 @@ export default function Projects() {
                       {/* Skills Used */}
                       {selectedProject.skillsUsed && selectedProject.skillsUsed.length > 0 && (
                         <div>
-                          <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-5 border-b border-dark-border pb-3">Skills Utilized</h4>
+                          <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-3 sm:mb-4 border-b border-white/10 pb-2.5 font-mono">Skills Utilized</h4>
                           <div className="flex flex-wrap gap-2">
                             {selectedProject.skillsUsed.map(skill => (
-                              <span key={skill} className="text-xs font-code text-dark-primary bg-dark-primary/10 px-3 py-2 rounded-lg border border-dark-primary/20 hover:border-dark-primary hover:bg-dark-primary/30 hover:-translate-y-1 transition-all cursor-default">
+                              <span key={skill} className="text-[11px] sm:text-xs font-mono text-cyan-300 bg-cyan-500/10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-cyan-500/20 hover:border-cyan-500/50 hover:bg-cyan-500/20 transition-all cursor-default">
                                 {skill}
                               </span>
                             ))}
