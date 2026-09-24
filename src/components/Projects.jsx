@@ -39,11 +39,10 @@ const ProjectFilterButton = ({ filter, count, activeFilter, setActiveFilter, set
   return (
     <MagneticButton onClick={() => { setActiveFilter(filter); setVisibleCount(6); }}>
       <button
-        className={`relative px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm md:text-base font-bold transition-all duration-300 focus:outline-none flex items-center gap-2.5 cursor-pointer select-none group border ${
-          isActive
-            ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(99,102,241,0.35)]'
-            : 'text-white/60 border-white/5 bg-white/[0.01] hover:text-white hover:border-violet-500/30 hover:bg-white/[0.04]'
-        }`}
+        className={`relative px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm md:text-base font-bold transition-all duration-300 focus:outline-none flex items-center gap-2.5 cursor-pointer select-none group border ${isActive
+          ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(99,102,241,0.35)]'
+          : 'text-white/60 border-white/5 bg-white/[0.01] hover:text-white hover:border-violet-500/30 hover:bg-white/[0.04]'
+          }`}
       >
         {isActive && (
           <motion.div
@@ -60,11 +59,10 @@ const ProjectFilterButton = ({ filter, count, activeFilter, setActiveFilter, set
 
         {/* Animated Count Badge */}
         <span
-          className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold transition-all flex items-center justify-center min-w-[22px] ${
-            isActive
-              ? 'bg-violet-500/30 text-white border border-violet-400/40 shadow-[0_0_10px_rgba(167,139,250,0.3)]'
-              : 'bg-white/5 text-white/50 border border-white/10 group-hover:border-white/20 group-hover:text-white/80'
-          }`}
+          className={`relative z-10 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold transition-all flex items-center justify-center min-w-[22px] ${isActive
+            ? 'bg-violet-500/30 text-white border border-violet-400/40 shadow-[0_0_10px_rgba(167,139,250,0.3)]'
+            : 'bg-white/5 text-white/50 border border-white/10 group-hover:border-white/20 group-hover:text-white/80'
+            }`}
         >
           <AnimatedCountBadge value={count} />
         </span>
@@ -72,6 +70,8 @@ const ProjectFilterButton = ({ filter, count, activeFilter, setActiveFilter, set
     </MagneticButton>
   );
 };
+
+import ProjectModal from './ui/ProjectModal';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -128,8 +128,6 @@ export default function Projects() {
   return (
     <section id="projects" className="py-16  relative overflow-hidden">
 
-      
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header Section */}
@@ -183,13 +181,13 @@ export default function Projects() {
               const count = filter === 'All'
                 ? projects.length
                 : projects.filter(p => {
-                    const cat = (p.category || '').toLowerCase();
-                    const target = filter.toLowerCase();
-                    if (target.includes('web')) return cat.includes('web') || cat.includes('react') || cat.includes('javascript') || cat.includes('html');
-                    if (target.includes('mobile')) return cat.includes('mobile') || cat.includes('ios') || cat.includes('swift');
-                    if (target.includes('design')) return cat.includes('design') || cat.includes('ui') || cat.includes('figma');
-                    return cat === target;
-                  }).length;
+                  const cat = (p.category || '').toLowerCase();
+                  const target = filter.toLowerCase();
+                  if (target.includes('web')) return cat.includes('web') || cat.includes('react') || cat.includes('javascript') || cat.includes('html');
+                  if (target.includes('mobile')) return cat.includes('mobile') || cat.includes('ios') || cat.includes('swift');
+                  if (target.includes('design')) return cat.includes('design') || cat.includes('ui') || cat.includes('figma');
+                  return cat === target;
+                }).length;
 
               return (
                 <ProjectFilterButton
@@ -232,7 +230,7 @@ export default function Projects() {
                 onClick={() => setSelectedProject(project)}
                 className="group relative h-[340px] sm:h-[420px] md:h-[500px] rounded-3xl overflow-hidden border border-dark-border bg-dark-surface cursor-pointer"
               >
-                <ClickSpark sparkColor="rgba(var(--dark-primary-rgb), 1)" sparkColor2="rgba(var(--dark-secondary-rgb), 1)">
+                <ClickSpark sparkColor="#8b5cf6" sparkColor2="#6366f1">
                   <div className="w-full h-full relative">
                     {/* Immersive Full Image */}
                     <img
@@ -299,150 +297,10 @@ export default function Projects() {
       </div>
 
       {/* Responsive Project Detail Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-xl"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.92, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.92, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="bg-[#070814]/95 backdrop-blur-2xl border border-white/15 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl md:rounded-[16px] max-w-5xl w-full relative flex flex-col max-h-[90vh] md:max-h-[85vh] shadow-[0_25px_60px_rgba(0,0,0,0.85)] overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Floating Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 p-2 sm:p-2.5 bg-black/60 hover:bg-purple-600/30 backdrop-blur-xl border border-white/15 hover:border-purple-500/50 rounded-full text-white/80 hover:text-white transition-all shadow-xl hover:scale-105 cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X size={18} className="sm:w-5 sm:h-5" />
-              </button>
-
-              {/* Modal Body Content (Scrollable with custom scrollbar) */}
-              <div className="overflow-y-auto custom-scrollbar pr-1 sm:pr-2 space-y-6 sm:space-y-8 -webkit-overflow-scrolling-touch">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
-
-                  {/* Left Column: Image and Actions */}
-                  <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-                    <div className="w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[4/5] rounded-2xl sm:rounded-3xl overflow-hidden relative shadow-2xl border border-white/10 group">
-                      <img
-                        src={selectedProject.image}
-                        alt={`${selectedProject.title} project preview - ${selectedProject.category} by Rudra Patel`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#070814] via-[#070814]/40 to-transparent opacity-90" />
-                      <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6">
-                        <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 bg-purple-500/20 backdrop-blur-md rounded-full text-[10px] sm:text-xs font-bold text-purple-300 border border-purple-500/30 tracking-[0.2em] uppercase inline-block mb-2 sm:mb-3">
-                          {selectedProject.category}
-                        </span>
-                        <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-extrabold text-white tracking-tight leading-tight">
-                          {selectedProject.title}
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* Action Link Buttons */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5 sm:gap-3">
-                      {selectedProject.liveUrl && selectedProject.liveUrl !== '#' && (
-                        <a
-                          href={selectedProject.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2.5 py-3 sm:py-3.5 px-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm rounded-xl sm:rounded-2xl transition-all shadow-lg hover:shadow-purple-500/25"
-                        >
-                          <ExternalLink size={16} /> <span>Launch Project</span>
-                        </a>
-                      )}
-                      {selectedProject.githubUrl && selectedProject.githubUrl !== '#' && (
-                        <a
-                          href={selectedProject.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2.5 py-3 sm:py-3.5 px-4 bg-white/5 hover:bg-white/10 text-white font-bold text-xs sm:text-sm rounded-xl sm:rounded-2xl border border-white/10 hover:border-purple-500/40 transition-all"
-                        >
-                          <Github size={16} /> <span>Source Code</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Right Column: Project Details */}
-                  <div className="lg:col-span-7 flex flex-col pt-1 sm:pt-2">
-                    <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border backdrop-blur-sm ${
-                        selectedProject.status === 'Completed'
-                          ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25'
-                          : 'text-amber-400 bg-amber-500/10 border-amber-500/25'
-                      }`}>
-                        <span className={`w-2 h-2 rounded-full ${
-                          selectedProject.status === 'Completed' ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400 animate-pulse'
-                        }`} />
-                        {selectedProject.status}
-                      </div>
-                    </div>
-
-                    <h4 className="text-lg sm:text-xl font-display font-bold mb-3 sm:mb-4 text-purple-300">About the Project</h4>
-                    <p className="text-white/70 leading-relaxed text-xs sm:text-sm md:text-base mb-6 sm:mb-8 font-syne">
-                      {selectedProject.description}
-                    </p>
-
-                    {selectedProject.keyFeatures && selectedProject.keyFeatures.length > 0 && (
-                      <div className="mb-6 sm:mb-8">
-                        <h4 className="flex items-center gap-2 text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-white/10 pb-2.5 font-mono">
-                          <Zap size={16} className="text-purple-400" /> Core Features
-                        </h4>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-                          {selectedProject.keyFeatures.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5 bg-white/[0.02] p-3 sm:p-3.5 rounded-xl border border-white/10 shadow-sm group hover:border-purple-500/30 transition-colors">
-                              <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 group-hover:scale-125 transition-transform" />
-                              <span className="text-white/80 text-xs sm:text-sm group-hover:text-white transition-colors">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-auto">
-                      {/* Tech Stack */}
-                      <div>
-                        <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-3 sm:mb-4 border-b border-white/10 pb-2.5 font-mono">Tech Stack</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedProject.tags.map(tag => (
-                            <span key={tag} className="text-[11px] sm:text-xs font-mono text-purple-300 bg-purple-500/10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-purple-500/20 hover:border-purple-500/50 hover:bg-purple-500/20 transition-all cursor-default">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Skills Used */}
-                      {selectedProject.skillsUsed && selectedProject.skillsUsed.length > 0 && (
-                        <div>
-                          <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider mb-3 sm:mb-4 border-b border-white/10 pb-2.5 font-mono">Skills Utilized</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedProject.skillsUsed.map(skill => (
-                              <span key={skill} className="text-[11px] sm:text-xs font-mono text-cyan-300 bg-cyan-500/10 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-cyan-500/20 hover:border-cyan-500/50 hover:bg-cyan-500/20 transition-all cursor-default">
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 }

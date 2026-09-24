@@ -15,16 +15,16 @@ const homeSchema = {
       "@type": "Person",
       "@id": "https://patelrudra.in/#person",
       "name": "Rudra Patel",
-      "alternateName": ["Rudra Patel Vadodara", "Rudra Patel iOS Developer"],
+      "alternateName": ["Rudra Patel Vadodara", "Rudra Patel iOS Developer", "Rudra Patel Frontend Developer"],
       "url": "https://patelrudra.in",
       "image": {
         "@type": "ImageObject",
         "@id": "https://patelrudra.in/#primaryimage",
         "url": "https://patelrudra.in/images/0R7A7692.webp",
         "contentUrl": "https://patelrudra.in/images/0R7A7692.webp",
-        "caption": "Rudra Patel - Digital Architect & Full-Stack Engineer"
+        "caption": "Rudra Patel - Digital Architect, Frontend & iOS Developer"
       },
-      "jobTitle": "Full-Stack Engineer & iOS Developer",
+      "jobTitle": "Digital Architect, Frontend & iOS Developer",
       "worksFor": {
         "@type": "Organization",
         "name": "Independent Digital Architect"
@@ -43,24 +43,24 @@ const homeSchema = {
         "https://www.youtube.com/@rudrapatel4172"
       ],
       "knowsAbout": [
+        "Frontend Web Development",
+        "iOS Mobile App Development",
         "React",
         "Next.js",
         "Swift",
         "SwiftUI",
-        "Node.js",
-        "Full-Stack Web Development",
-        "iOS Development",
         "Tailwind CSS",
         "JavaScript",
-        "TypeScript"
+        "TypeScript",
+        "UI/UX Architecture"
       ]
     },
     {
       "@type": "WebSite",
       "@id": "https://patelrudra.in/#website",
       "url": "https://patelrudra.in",
-      "name": "Rudra Patel | Digital Architect & Full-Stack Engineer",
-      "description": "Portfolio of Rudra Patel, a specialized Full-stack developer in Vadodara, Gujarat and iOS developer in India.",
+      "name": "Rudra Patel | Digital Architect, Frontend & iOS Developer",
+      "description": "Portfolio of Rudra Patel, a Digital Architect specializing in Frontend Web Development (React/Next.js) and Native iOS Apps (SwiftUI) in Vadodara, Gujarat, India.",
       "publisher": {
         "@id": "https://patelrudra.in/#person"
       },
@@ -74,7 +74,7 @@ const homeSchema = {
       "@type": "ProfilePage",
       "@id": "https://patelrudra.in/#profilepage",
       "url": "https://patelrudra.in",
-      "name": "Rudra Patel Digital Architect Portfolio",
+      "name": "Rudra Patel Digital Architect & Developer Portfolio",
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "@id": "https://patelrudra.in/#primaryimage"
@@ -90,11 +90,11 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Rudra Patel | Digital Architect & Full-Stack Engineer"
-        description="Portfolio of Rudra Patel, a specialized Full-stack developer in Vadodara, Gujarat and iOS developer in India. Engineering high-performance web solutions and SwiftUI apps."
-        keywords="Rudra Patel, Full-stack developer Vadodara, iOS developer Gujarat, React developer India, Swift developer Vadodara, MERN stack developer India, mobile app developer Vadodara, Gujarat software engineer"
-        ogTitle="RUDRA | Full-Stack & iOS Developer Portfolio"
-        ogDescription="Full-stack web engineering and native iOS application development based in Vadodara, Gujarat, India."
+        title="Rudra Patel - Digital Architect | Frontend & iOS Developer"
+        description="Official Portfolio of Rudra Patel — Digital Architect, Frontend Web Developer & Native iOS Developer based in Vadodara, Gujarat, India. Engineering high-performance React/Next.js web platforms and native SwiftUI mobile apps."
+        keywords="Rudra Patel, Digital Architect, Frontend Developer Vadodara, iOS Developer Gujarat, React developer India, Swift developer Vadodara, SwiftUI developer, Next.js developer India, UI/UX design, mobile app developer Vadodara"
+        ogTitle="Rudra Patel — Digital Architect | Frontend & iOS Developer"
+        ogDescription="Frontend web engineering and native iOS application development based in Vadodara, Gujarat, India."
         ogImage="/images/navbar-avatar.webp"
         canonical="https://patelrudra.in/"
         schema={homeSchema}

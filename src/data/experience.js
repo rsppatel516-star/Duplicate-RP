@@ -12,13 +12,13 @@ export const experience = [
   },
   {
     type: 'work',
-    role: "Full-Stack Web Developer",
+    role: "Frontend Web Developer",
     company: "Independent / Freelance",
     duration: "2024 - Present",
     points: [
-      "Engineering modern MERN stack web applications with React.js, Next.js, Node.js, and MongoDB.",
-      "Crafting pixel-perfect responsive user interfaces with Tailwind CSS and Framer Motion micro-interactions.",
-      "Deploying scalable cloud microservices with RESTful API endpoints on Vercel and Node servers."
+      "Engineering modern, high-performance web applications with React.js, Next.js, TypeScript, and Tailwind CSS.",
+      "Crafting pixel-perfect responsive user interfaces with fluid animations and SEO-optimized architecture.",
+      "Deploying fast-loading web applications with RESTful API integrations on Vercel and Netlify."
     ]
   },
   {
@@ -35,9 +35,9 @@ export const experience = [
 
 export const certifications = [
   {
-    title: "AWS Cloud Practitioner",
-    issuer: "AWS / Microsoft",
-    date: "2024",
+    title: "AWS Academy Cloud Foundations",
+    issuer: "AWS Academy",
+    date: "Sep 2026",
     icon: "aws",
     color: "#FF9900"
   },

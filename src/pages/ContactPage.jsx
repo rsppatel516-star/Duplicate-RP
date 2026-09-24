@@ -24,7 +24,7 @@ const contactSchema = {
     },
     {
       "@type": "ContactPage",
-      "name": "Contact Rudra Patel | Digital Architect & Full-Stack Engineer",
+      "name": "Contact Rudra Patel | Digital Architect, Frontend & iOS Developer",
       "url": "https://patelrudra.in/contact",
       "description": "Get in touch with Rudra Patel in Vadodara, Gujarat, India for digital projects, software development, and iOS engineering.",
       "mainEntity": {

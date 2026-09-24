@@ -14,7 +14,7 @@ export const blogposts = [
       metaTitle: "AI in Full Stack Development (2026 Guide)",
       metaDescription: "Discover how AI is changing full stack development, improving productivity, and transforming modern web applications.",
       keywords: ["AI development", "full stack AI", "MERN AI apps", "AI coding tools"],
-      canonical: "https://yourdomain.com/blog/ai-transforming-full-stack-development-2026"
+      canonical: "https://patelrudra.in/blog/ai-transforming-full-stack-development-2026"
     },
     content: `
       <h2>Introduction: The Paradigm Shift</h2>

@@ -7,13 +7,13 @@ import Home from './pages/Home';
 import GlobalParticles from './components/canvas/GlobalParticles';
 import ClickSpark from './components/ui/ClickSpark';
 
-// Lazy loaded page components for optimal initial load performance
-const Artifacts = lazy(() => import('./pages/Artifacts'));
-const CaseStudy = lazy(() => import('./pages/CaseStudy'));
-const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const Blog = lazy(() => import('./pages/Blog'));
-const BlogPost = lazy(() => import('./pages/BlogPost'));
+import Artifacts from './pages/Artifacts';
+import CaseStudy from './pages/CaseStudy';
+import AchievementsPage from './pages/AchievementsPage';
+import ContactPage from './pages/ContactPage';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+
 
 // Lightweight page loading indicator
 const PageFallback = () => (

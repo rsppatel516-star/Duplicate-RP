@@ -10,6 +10,7 @@ export const skills = [
       { name: 'Tailwind CSS', icon: 'tailwindcss', proficiency: 94, projectsCount: 10 }
     ]
   },
+  /*
   {
     category: 'Backend',
     technologies: [
@@ -19,13 +20,15 @@ export const skills = [
       { name: 'Java', icon: 'java', proficiency: 75, projectsCount: 3 }
     ]
   },
+  */
   {
     category: 'Mobile',
     technologies: [
       { name: 'Swift', icon: 'swift', proficiency: 80, projectsCount: 4 },
       { name: 'Storyboard', icon: 'storyboard', proficiency: 78, projectsCount: 3 },
       { name: 'Mobile Design', icon: 'mobiledesign', proficiency: 85, projectsCount: 5 },
-      { name: 'UIKit', icon: 'uikit', proficiency: 75, projectsCount: 2 }
+      { name: 'UIKit', icon: 'uikit', proficiency: 75, projectsCount: 2 },
+      { name: 'MVVM', icon: 'mvvm', proficiency: 82, projectsCount: 4 }
     ]
   },
   {
@@ -42,6 +45,8 @@ export const skills = [
       { name: 'Git', icon: 'git', proficiency: 90, projectsCount: 15 },
       { name: 'GitHub', icon: 'github', proficiency: 92, projectsCount: 15 },
       { name: 'VS Code', icon: 'vscode', proficiency: 95, projectsCount: 15 },
+      { name: 'Xcode', icon: 'xcode', proficiency: 88, projectsCount: 6 },
+      { name: 'Firebase', icon: 'firebase', proficiency: 88, projectsCount: 7 },
       { name: 'Figma', icon: 'figma', proficiency: 85, projectsCount: 8 },
       { name: 'Postman', icon: 'postman', proficiency: 88, projectsCount: 10 }
     ]
@@ -62,6 +67,7 @@ export const skills = [
       { name: 'Claude', icon: 'claude', proficiency: 92, projectsCount: 10 },
       { name: 'Antigravity', icon: 'antigravity', proficiency: 95, projectsCount: 12 },
       { name: 'Gemini', icon: 'gemini', proficiency: 92, projectsCount: 10 },
+      { name: 'Cursor', icon: 'cursor', proficiency: 92, projectsCount: 10 },
     ]
   }
 ];

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { services } from '../data/services';
 import { Zap, Terminal, Cpu, X, CheckCircle2, ArrowRight, Sparkles, MessageSquare } from 'lucide-react';
+import MagneticButton from './ui/MagneticButton';
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
@@ -16,13 +17,16 @@ export default function Services() {
 
     if (selectedService) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
       window.addEventListener('keydown', handleKeyDown);
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedService]);
@@ -123,16 +127,17 @@ export default function Services() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="bg-[#0b0c13]/95 backdrop-blur-2xl border border-white/15 p-5 sm:p-7 md:p-10 rounded-2xl sm:rounded-3xl md:rounded-[36px] max-w-3xl lg:max-w-4xl w-full relative flex flex-col max-h-[90vh] md:max-h-[85vh] shadow-[0_25px_60px_rgba(0,0,0,0.8)]"
+              className="bg-[#0b0c13]/95 backdrop-blur-2xl border border-white/15 p-5 sm:p-7 md:p-10 rounded-2xl sm:rounded-3xl md:rounded-[36px] max-w-3xl lg:max-w-4xl w-full relative flex flex-col max-h-[90vh] md:max-h-[85vh] shadow-[0_25px_60px_rgba(0,0,0,0.8)] overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
+              {/* Floating Close Button */}
               <button
                 onClick={() => setSelectedService(null)}
-                className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 z-20 text-dark-textMuted hover:text-white transition-all bg-white/5 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500/40 rounded-full p-2 sm:p-2.5 hover:scale-105"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 md:top-6 md:right-6 z-30 p-2.5 bg-black/70 hover:bg-purple-600/30 backdrop-blur-xl border border-white/15 hover:border-purple-500/50 rounded-full text-white/80 hover:text-white transition-all shadow-xl hover:scale-105 cursor-pointer flex items-center justify-center group/close"
                 aria-label="Close modal"
+                title="Close Modal (Esc)"
               >
-                <X size={18} className="sm:w-5 sm:h-5" />
+                <X size={18} className="sm:w-5 sm:h-5 group-hover/close:rotate-90 transition-transform duration-300" />
               </button>
 
               {/* Modal Body Content (Scrollable with custom scrollbar) */}
@@ -216,14 +221,28 @@ export default function Services() {
                 )}
 
                 {/* Modal CTA Button */}
-                <div className="pt-4 border-t border-white/10 flex justify-end">
-                  <button
-                    onClick={handleInquire}
-                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow-lg hover:shadow-purple-500/20 flex items-center gap-2 cursor-pointer"
-                  >
-                    <span>Inquire About This Service</span>
-                    <ArrowRight size={16} />
-                  </button>
+                <div className="pt-4 sm:pt-6 border-t border-white/10 flex justify-end">
+                  <MagneticButton>
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={handleInquire}
+                      className="relative group font-display flex items-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-bold text-white text-xs sm:text-sm tracking-[0.12em] uppercase transition-all duration-500 overflow-hidden cursor-pointer shadow-[0_0_25px_rgba(147,51,234,0.3)] hover:shadow-[0_0_35px_rgba(99,102,241,0.5)]"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 group-hover:opacity-95 transition-opacity duration-500" />
+                      <span className="absolute inset-[1px] bg-black/30 backdrop-blur-md rounded-[15px] z-0 transition-all duration-500 group-hover:bg-black/40" />
+                      <span className="absolute top-0 -left-[100%] h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
+                      <span className="relative z-10 flex items-center gap-2.5 text-white">
+                        Inquire About This Service
+                        <motion.div
+                          animate={{ x: [0, 4, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <ArrowRight size={17} className="text-indigo-200 group-hover:text-white" />
+                        </motion.div>
+                      </span>
+                    </motion.button>
+                  </MagneticButton>
                 </div>
 
               </div>

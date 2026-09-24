@@ -7,6 +7,10 @@ import MagneticButton from './ui/MagneticButton';
 import GridBackground from './ui/GridBackground';
 
 // Custom Premium SVG Icons for Tech Brands
+const AWSIcon = () => (
+  <img src="/certificate img/aws-academy-graduate-cloud-foundations-training-logo.png" alt="AWS Academy Cloud Foundations" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
+);
+
 const AzureIcon = () => (
   <img src="/images/microsoft-azure.svg" alt="Microsoft Azure" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
 );
@@ -43,6 +47,7 @@ const IOSIcon = () => (
 );
 
 const iconMap = {
+  aws: <AWSIcon />,
   azure: <AzureIcon />,
   python: <PythonIcon />,
   dsa: <DSAIcon />,
@@ -52,6 +57,21 @@ const iconMap = {
 };
 
 const certifications = [
+  {
+    id: 'aws-cloud-foundations',
+    title: 'AWS Academy Cloud Foundations',
+    issuer: 'AWS Academy',
+    date: 'Sep 2026',
+    verificationId: 'AWS Academy Graduate',
+    verificationHash: 'Cloud Foundations - Training Badge',
+    description: 'Demonstrates foundational knowledge of cloud computing architecture, core AWS services (compute, storage, database, networking), security principles, compliance, and cloud economics.',
+    brandColor: '#FF9900',
+    iconName: 'aws',
+    imagePath: '/certificate img/AWS_Academy_Graduate___Cloud_Foundations___Training_Badge_Badge20260923-20-u3dphj_page-0001.jpg',
+    pdfPath: '',
+    externalUrl: 'https://www.credly.com/go/Dhh9SshN',
+    skills: ['AWS Cloud', 'Cloud Architecture', 'Security & Compliance', 'EC2 & S3', 'Cloud Economics', 'Identity & Access (IAM)']
+  },
   {
     id: 'microsoft-azure',
     title: 'Microsoft Azure',

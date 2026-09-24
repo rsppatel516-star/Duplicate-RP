@@ -1,350 +1,415 @@
 export const projects = [
-{
-  id: 1,
-  title: 'Note Sphere',
-  subtitle: 'Smart and Simple Note Management App',
-  description: 'NoteSphere is a modern web-based note-taking application that allows users to create, edit, delete, and organize their notes efficiently. It provides a clean and user-friendly interface, helping users stay productive by managing their daily tasks, ideas, and important information in one place. The app focuses on simplicity, speed, and accessibility, making it ideal for students and professionals.',
-  image: '/project img/Note.webp',
-  tags: [
-    "Notes App",
-    "Productivity", 
-    "Web App", 
-    "CRUD", 
-    "Note Management"
-  ],
-  skillsUsed: [
-    "Tailwind CSS", 
-    "JavaScript", 
-    "React", 
-    "Next.js", 
-  ],
-  keyFeatures: [
-    "Create, edit, and delete notes",
-    "Real-time updates of notes",
-    "Simple and clean UI",
-    "Real-time updates"
-  ],
-  status: 'Completed',
-  category: 'Web Apps',
-  liveUrl: 'https://note-sphere-16.vercel.app/',
-  githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
-  caseStudyId: 1,
-  featured: true
-},
-
-{
-    id: 2,
-    title: 'Panto - Furniture Landing Page',
-    subtitle: 'Furniture e-commerce landing page with modern design and responsive layout',
-    description: 'A modern and visually appealing landing page for a furniture e-commerce website. It features a clean design, responsive layout, and smooth animations to showcase products effectively and attract potential customers.',
-    image: '/project img/Panto - Furniture Landing Page Design.webp',
+  {
+    id: 1,
+    title: 'Note Sphere',
+    subtitle: 'Smart and Simple Note Management App',
+    description: 'NoteSphere is a modern web-based note-taking application designed to help users create, edit, delete, and organize their personal notes and daily tasks efficiently. Engineered with React and Next.js, it provides a clean, clutter-free minimalist UI focused on speed, accessibility, and client-side persistence.',
+    image: '/project img/Note.webp',
+    role: 'Frontend Architect',
+    year: '2025',
+    platform: 'Web / Next.js SPA',
+    performance: '99/100 Lighthouse',
     tags: [
-      "E-commerce", 
-      "Landing Page", 
-      "Web Design"
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "JavaScript",
+      "Notes App",
+      "Productivity"
     ],
     skillsUsed: [
-      "Figma",
-      "UI Design",
-      "Prototyping",
-      "Web Application Design",
+      "React / Next.js",
+      "Tailwind CSS",
+      "JavaScript ES6+",
+      "Local Storage API",
+      "Vercel Deployment"
     ],
     keyFeatures: [
-      "Modern and clean design",
-      "Product showcase with high-quality images",
-      "Smooth animations and interactions",
-      "Clear call-to-action buttons",
+      "Instant CRUD (Create, Read, Update, Delete) note operations",
+      "Real-time search and tag filtering for quick note retrieval",
+      "Minimalist responsive dark-mode UI optimized for readability",
+      "Persistent browser state storage for seamless offline usability"
+    ],
+    status: 'Completed',
+    category: 'Web Apps',
+    liveUrl: 'https://note-sphere-16.vercel.app/',
+    githubUrl: 'https://github.com/Rudraptl16/Note-Sphere',
+    caseStudyId: 1,
+    featured: true
+  },
+  {
+    id: 2,
+    title: 'Panto - Furniture Landing Page',
+    subtitle: 'E-Commerce Furniture Showcase & Modern UI Design',
+    description: 'Panto is a high-fidelity furniture e-commerce landing page design prototype crafted in Figma. It showcases a modern aesthetic with spatial product layouts, interactive hero banner elements, curated category filtering, and micro-interactions designed to elevate user engagement and conversion rates for interior brands.',
+    image: '/project img/Panto - Furniture Landing Page Design.webp',
+    role: 'UI/UX Architect',
+    year: '2025',
+    platform: 'Figma Design System',
+    performance: 'Spatial Token Library',
+    tags: [
+      "UI/UX Design",
+      "Figma",
+      "E-Commerce",
+      "Landing Page",
+      "Prototyping"
+    ],
+    skillsUsed: [
+      "Figma Design",
+      "UI Design System",
+      "Interactive Prototyping",
+      "Design Tokens",
+      "Responsive Layouts"
+    ],
+    keyFeatures: [
+      "High-fidelity interactive e-commerce product showcase",
+      "Modern glassmorphism navigation and elevated visual hierarchy",
+      "Curated spatial furniture collection grid layouts",
+      "Custom color palette and typography design tokens"
     ],
     status: 'Completed',
     category: 'UI/UX Design',
     caseStudyId: 2,
     featured: true
-},
-{
-  id: 3,
-  title: ' Furniqlo Premium Furniture Store',
-  subtitle: ' Premium Furniture Store Landing Page',
-  description: 'Furniqlo is a premium, modern e-commerce furniture store built with React 19, TypeScript, and Vite. It delivers a stunning shopping experience with fluid animations, a fully functional cart, and an immersive product catalogue.',
-  image: '/project img/Furniture.webp',
-  tags: [
-    "E-commerce",
-    "Furniture",
-    "Landing Page",
-    "Web App"
-  ],
-  skillsUsed: [
-    "React 19 / TypeScript", 
-    "Vanilla CSS", 
-    "React Router DOM v7", 
-    "i18next", 
-  ],
-  keyFeatures: [
-    "Premium furniture catalog with detailed product pages",
-    "Multi-language support (English, Hindi, Marathi)",
-    "Light/Dark mode toggle",
-    "Responsive 3D card hover effects"
-  ],
-  status: 'Completed',
-  category: 'Web Apps',
-  liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
-  githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
-  caseStudyId: 3,
-  featured: true
-},
-
-{
-  id: 4,
-  title: 'SwiftTask',
-  subtitle: 'iOS Task & Productivity Manager',
-  description: 'SwiftTask is a high-performance native iOS application designed for effortless daily task management and productivity tracking. Built with SwiftUI 6 and SwiftData, it features adaptive Light/Dark mode themes, interactive lock screen widgets, custom haptic feedback, smooth gestures, and instant iCloud sync.',
-  image: '/project img/iOS Todo-app.webp',
-  tags: [
-    "iOS 18", 
-    "SwiftUI", 
-    "Swift 6", 
-    "SwiftData", 
-    "WidgetKit"
-  ],
-  skillsUsed: [
-    "Swift 6", 
-    "SwiftUI", 
-    "UIKit Integration", 
-    "Combine", 
-    "Haptic Engine"
-  ],
-  keyFeatures: [
-    "Native iOS 18 fluid UI with frosted glass design",
-    "Dynamic Dark & Light mode theme engine",
-    "SwiftData local storage with iCloud sync",
-    "Interactive Lock Screen & Home Screen widgets",
-    "Custom drag-to-reorder and swipe action gestures"
-  ],
-  status: 'Completed',
-  category: 'Mobile Apps',
-  liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
-  githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
-  caseStudyId: 4,
-  featured: true
-},
-
-{
-    id: 5,
-    title: "Travel Website",
-  subtitle: "A travel booking and destination showcase platform",
-  description: "A responsive travel website that allows users to explore destinations, view travel packages, and get detailed information about trips.",
-    image: '/project img/Travel img.webp',
+  },
+  {
+    id: 3,
+    title: 'Furniqlo Premium Furniture Store',
+    subtitle: 'Luxury E-Commerce Web Application with React 19 & TypeScript',
+    description: 'Furniqlo is a full-featured luxury furniture store web application built with React 19, TypeScript, and Vite. It delivers a stunning shopping experience complete with interactive product catalogs, multi-language internationalization (i18n), dynamic light/dark theme switching, persistent shopping cart management, and 3D card tilt hover effects.',
+    image: '/project img/Furniture.webp',
+    role: 'Lead Frontend Developer',
+    year: '2025',
+    platform: 'React 19 + TypeScript',
+    performance: 'Sub-50ms i18n Render',
     tags: [
-      "Travel",
-      "UI Design", 
-      "Frontend"
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "E-Commerce",
+      "Tailwind CSS"
     ],
     skillsUsed: [
-      "HTML", 
-      "CSS", 
-      "JavaScript",
-      "Animation",
-      "Responsive Design",
-      "Firebase Hosting",
+      "React 19 / TypeScript",
+      "Vanilla CSS Tokens",
+      "React Router DOM v7",
+      "i18next Internationalization",
+      "Vercel Hosting"
     ],
     keyFeatures: [
-      "Destination browsing",
-      "Travel package listings",
-      "Interactive UI",
-      "Smooth animations",
+      "Full product catalog with detailed item view and category search",
+      "Multi-language support (English, Hindi, Marathi)",
+      "Interactive shopping cart modal with real-time price calculations",
+      "Responsive 3D card tilt hover effects and smooth micro-animations"
+    ],
+    status: 'Completed',
+    category: 'Web Apps',
+    liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
+    githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
+    caseStudyId: 3,
+    featured: true
+  },
+  {
+    id: 4,
+    title: 'SwiftTask',
+    subtitle: 'Native iOS Task & Productivity Manager in SwiftUI 6',
+    description: 'SwiftTask is a high-performance native iOS application engineered for daily task management and habit tracking. Built using SwiftUI 6, Swift 6, and SwiftData, it features native frosted glass UI components, adaptive Light/Dark mode themes, interactive Lock Screen widgets via WidgetKit, custom haptic engine feedback, and instant iCloud sync.',
+    image: '/project img/iOS Todo-app.webp',
+    role: 'Native iOS Engineer',
+    year: '2025',
+    platform: 'iOS 18 + SwiftUI 6',
+    performance: '60 FPS Native SwiftData',
+    tags: [
+      "iOS 18",
+      "SwiftUI 6",
+      "Swift 6",
+      "SwiftData",
+      "WidgetKit",
+      "Mobile App"
+    ],
+    skillsUsed: [
+      "Swift 6",
+      "SwiftUI",
+      "SwiftData Persistence",
+      "WidgetKit Integration",
+      "Haptic Engine API",
+      "Combine Framework"
+    ],
+    keyFeatures: [
+      "Native iOS 18 fluid UI with interactive frosted glass aesthetics",
+      "SwiftData local persistence with automatic iCloud synchronisation",
+      "Interactive Home Screen & Lock Screen WidgetKit widgets",
+      "Custom drag-to-reorder tasks and swipe-to-complete gestures"
+    ],
+    status: 'Completed',
+    category: 'Mobile Apps',
+    liveUrl: 'https://furniqlo-store-gmtf.vercel.app/',
+    githubUrl: 'https://github.com/Rudraptl16/Furniqlo-Store',
+    caseStudyId: 4,
+    featured: true
+  },
+  {
+    id: 5,
+    title: 'Travel Website',
+    subtitle: 'Destination Exploration & Travel Booking Platform',
+    description: 'A responsive travel website that allows users to explore world destinations, view curated travel packages, inspect interactive trip details, and request trip inquiries. Built with responsive layout structures, smooth scroll animations, and optimized media assets for fast loading across all device viewports.',
+    image: '/project img/Travel img.webp',
+    role: 'Frontend Developer',
+    year: '2024',
+    platform: 'Responsive Web',
+    performance: 'Optimized Media Delivery',
+    tags: [
+      "Travel",
+      "UI Design",
+      "Frontend",
+      "JavaScript",
+      "Web App"
+    ],
+    skillsUsed: [
+      "HTML5",
+      "CSS3",
+      "JavaScript ES6+",
+      "CSS Animations",
+      "Responsive Design",
+      "Firebase Hosting"
+    ],
+    keyFeatures: [
+      "Destination browsing with high-resolution gallery view",
+      "Comprehensive travel package listings and itineraries",
+      "Interactive booking inquiry form with validation",
+      "Smooth scroll transitions and responsive navigation"
     ],
     status: 'Completed',
     category: 'Web Apps',
     liveUrl: 'https://travel-94546.web.app/',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Rudraptl16',
     caseStudyId: 5,
     featured: true
-},
-{
+  },
+  {
     id: 6,
-    title: "Personal Project Manager",
-    subtitle: "A task and project management web application",
-    description: "A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priorities, and progress tracking.",
+    title: 'Personal Project Manager',
+    subtitle: 'Productivity Dashboard for Task & Milestone Tracking',
+    description: 'A web-based project management tool that allows users to create, manage, and track tasks efficiently. It helps organize work with deadlines, priority tags, status updates, user authentication, and persistent cloud data hosting on Firebase.',
     image: '/project img/Project Management.webp',
+    role: 'Full-Stack Developer',
+    year: '2024',
+    platform: 'Firebase Cloud Platform',
+    performance: 'Real-time Firestore Sync',
     tags: [
-      "Productivity", 
-      "Task Management", 
-      "Web App"
+      "Productivity",
+      "Task Management",
+      "Web App",
+      "Firebase",
+      "Dashboard"
     ],
     skillsUsed: [
-      "HTML", 
-      "CSS", 
-      "JavaScript", 
-      "User authentication", 
-      "Firebase hosting"
+      "HTML5 / CSS3",
+      "JavaScript ES6+",
+      "Firebase Auth & Firestore",
+      "Dashboard UI Design",
+      "Firebase Hosting"
     ],
     keyFeatures: [
-     "Create and manage projects",
-     "Task tracking with status",
-     "Deadline management",
-     "User-friendly dashboard",
+      "Create, edit, and track project milestones and daily tasks",
+      "Task status tracking (To Do, In Progress, Completed)",
+      "Deadline management with visual priority indicators",
+      "User-friendly responsive dashboard layout"
     ],
     status: 'Completed',
     category: 'Web Apps',
     liveUrl: 'https://personal-project-manager-16pr.web.app/',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Rudraptl16',
     caseStudyId: 6,
     featured: true
-},
-{
-  id: 7,
-  title: "Todo List Application",
-  subtitle: "A simple task management and productivity tool",
-  description: "A lightweight to-do list application that allows users to add, update, and delete daily tasks for better productivity.",
-  image: "/project img/Todo.webp",
-  tags: [
-    "Productivity", 
-    "Todo App", 
-    "Task Management",
+  },
+  {
+    id: 7,
+    title: 'Todo List Application',
+    subtitle: 'Lightweight Task Planner & Daily Checklist App',
+    description: 'A lightweight to-do list web application that allows users to add, update, and delete daily tasks for better productivity. Optimized for speed and clarity with instant DOM updates, completion filters, and clean dark theme aesthetics.',
+    image: '/project img/Todo.webp',
+    role: 'Frontend Developer',
+    year: '2024',
+    platform: 'Web / Local Storage',
+    performance: 'Instant State Updates',
+    tags: [
+      "Productivity",
+      "Todo App",
+      "Task Management",
+      "JavaScript",
+      "Web App"
     ],
-  skillsUsed: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "Animation",
-    "Responsive Design",
-    "Firebase Hosting",
-  ],
-  keyFeatures: [
-    "Add, Update, Delete tasks",
-    "Mark tasks as completed",
-    "Simple and clean UI",
-    "Real-time updates"
-  ],
-  status: "Completed",
-  category: "Web Apps",
-  liveUrl: "https://todo-list-16pr.web.app/",
-  githubUrl: "#",
-  caseStudyId: 7,
-  featured: true
-},
-
-{
-
-  id: 8,
-  title: "Job Portal Website",
-  subtitle: "An online platform for job seekers and recruiters",
-  description: "A job portal web application where users can search for jobs, apply online, and explore career opportunities.",
-  image: "/project img/Job Portal.webp",
-  tags: [
-    "Job Portal", 
-    "Career", 
-    "Web App"
+    skillsUsed: [
+      "HTML5",
+      "CSS3",
+      "JavaScript ES6+",
+      "DOM Manipulation",
+      "Responsive Design",
+      "Firebase Hosting"
     ],
-  skillsUsed: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "Animation",
-    "Responsive Design",
-    "Firebase Hosting",
-  ],
-  keyFeatures: [
-    "Job listings",
-    "Search jobs and Apply for jobs",
-    "User authentication",
-    "Job Details"
-  ],
-  status: "Completed",
-  category: "Web Apps",
-  liveUrl: "https://job-portal-9a78d.web.app/",
-  githubUrl: "#",
-  caseStudyId: 8,
-  featured: true
-},
-{
-
-  id: 9,
-  title: "Calculator App",
-  subtitle: "An online calculator web application with basic arithmetic operations",
-  description: "A calculator web application with basic arithmetic operations.",
-  image: "/project img/Calculator.webp",
-  tags: [
-    "Calculator", 
-    "Web App", 
-    "React"
+    keyFeatures: [
+      "Add, update, inline edit, and delete tasks",
+      "One-click mark tasks as completed with visual strikethrough",
+      "Task filtering (All, Active, Completed)",
+      "Simple, clean UI with real-time updates"
     ],
-  skillsUsed: [
-    "Tailwind CSS",
-    "JavaScript",
-    "React",
-    "Github"
-  ],
-  keyFeatures: [
-    "add ,subtract,multiply,divide numbers",
-    "Fast and efficient",
-    "Simple and clean UI",
-    "Responsive Design"
-  ],
-  status: "Completed",
-  category: "Web Apps",
-  liveUrl: "https://calculator-rp16.vercel.app",
-  githubUrl: "https://github.com/Rudraptl16/Calculator-",
-  caseStudyId: 9,
-  featured: true
-},
-{
-  id: 10,
-  title: "Nexify Landing Page",
-  subtitle: "AI-powered workflow automation platform",
-  description: "Responsive SaaS landing page built with HTML/CSS, featuring hero section with stats, feature cards, documentation panel, code snippets, pricing CTA, and smooth interactions.",
-  image: "/project img/Nexify landing page.webp",
-  tags: [
-    "Landing Page","Product Launch","AI Platform", "Web Design"
+    status: 'Completed',
+    category: 'Web Apps',
+    liveUrl: 'https://todo-list-16pr.web.app/',
+    githubUrl: 'https://github.com/Rudraptl16',
+    caseStudyId: 7,
+    featured: true
+  },
+  {
+    id: 8,
+    title: 'Job Portal Website',
+    subtitle: 'Career Discovery & Online Job Application Platform',
+    description: 'A job portal web application where job seekers can search for open job positions, filter by domain or location, view detailed role responsibilities, and apply online through an intuitive candidate portal.',
+    image: '/project img/Job Portal.webp',
+    role: 'Frontend Developer',
+    year: '2024',
+    platform: 'Web Application',
+    performance: 'Fast Client Search Query',
+    tags: [
+      "Job Portal",
+      "Career Platform",
+      "Web App",
+      "Frontend",
+      "Firebase"
     ],
-  skillsUsed: [
-    "HTML",
-    "CSS",
-    "Animation",
-    "Responsive Design",
-  ],
-  keyFeatures: [
-    "Responsive layout",
-    "Interactive stats section",
-    "Glassmorphism-inspired card design",
-    "CTA section",
-  ],
-  status: "Completed",
-  category: "UI/UX Design",
-  liveUrl: "https://rudraptl16.github.io/Nexify/",
-  githubUrl: "https://github.com/Rudraptl16/Nexify",
-  caseStudyId: 10,
-  featured: true
-},
-{
-  id: 11,
-  title: "Health Care Website",
-  subtitle: "An online platform for healthcare services and information",
-  image: "/project img/Health.webp",
-  description: "A healthcare website that provides information about medical services, doctors, and health-related resources for users.",
-  tags: [
-    "Healthcare", 
-    "Web Design", 
-    "Frontend"
-  ],
-  skillsUsed: [
-    "HTML",
-    "CSS",
-    "Animation",
-    "Firebase Hosting",
-  ],
-  keyFeatures: [
-    "Healthcare services",
-    "Doctor information",
-    "Health-related resources",
-  ],
-  status: "Completed",
-  category: "Web Apps",
-  liveUrl: "https://health-care-4a149.web.app/",
-  githubUrl: "https://github.com/Rudraptl16",
-  caseStudyId: 11,
-  featured: true
-}
+    skillsUsed: [
+      "HTML5",
+      "CSS3",
+      "JavaScript ES6+",
+      "Search & Filter Engines",
+      "Responsive Design",
+      "Firebase Hosting"
+    ],
+    keyFeatures: [
+      "Searchable job listings with category and location filters",
+      "Job application submission workflow",
+      "Detailed job description modal views",
+      "Clean responsive portal interface"
+    ],
+    status: 'Completed',
+    category: 'Web Apps',
+    liveUrl: 'https://job-portal-9a78d.web.app/',
+    githubUrl: 'https://github.com/Rudraptl16',
+    caseStudyId: 8,
+    featured: true
+  },
+  {
+    id: 9,
+    title: 'Calculator App',
+    subtitle: 'Modern React Calculator with Glassmorphism UI',
+    description: 'A web calculator application built with React and Tailwind CSS supporting basic arithmetic operations, expression evaluation, clean button interactions, responsive grid layouts, and keyboard shortcut support.',
+    image: '/project img/Calculator.webp',
+    role: 'React Developer',
+    year: '2024',
+    platform: 'React SPA',
+    performance: 'Client-Side Math Evaluation',
+    tags: [
+      "Calculator",
+      "React",
+      "Tailwind CSS",
+      "JavaScript",
+      "Web App"
+    ],
+    skillsUsed: [
+      "React",
+      "Tailwind CSS",
+      "JavaScript Math Logic",
+      "Keyboard Event Bindings",
+      "Vercel Hosting"
+    ],
+    keyFeatures: [
+      "Add, subtract, multiply, and divide calculations",
+      "Fast and efficient client-side evaluation",
+      "Simple, modern glassmorphism UI",
+      "Fully responsive mobile & desktop design"
+    ],
+    status: 'Completed',
+    category: 'Web Apps',
+    liveUrl: 'https://calculator-rp16.vercel.app',
+    githubUrl: 'https://github.com/Rudraptl16/Calculator-',
+    caseStudyId: 9,
+    featured: true
+  },
+  {
+    id: 10,
+    title: 'Nexify Landing Page',
+    subtitle: 'SaaS & AI Workflow Automation Platform Landing Page',
+    description: 'A responsive SaaS landing page designed for an AI workflow automation platform. Features a hero section with live stats counters, feature cards, documentation panel, code snippet previews, pricing tables, and smooth UI animations.',
+    image: '/project img/Nexify landing page.webp',
+    role: 'UI/UX & Web Designer',
+    year: '2024',
+    platform: 'SaaS Landing Page',
+    performance: 'High-Impact Micro-Animations',
+    tags: [
+      "Landing Page",
+      "Product Launch",
+      "AI Platform",
+      "UI/UX Design",
+      "Web Design"
+    ],
+    skillsUsed: [
+      "HTML5",
+      "CSS3",
+      "JavaScript Animations",
+      "Responsive Layouts",
+      "GitHub Pages"
+    ],
+    keyFeatures: [
+      "Responsive layout optimized for all device sizes",
+      "Interactive metrics and stats section",
+      "Glassmorphism card designs with glowing hover states",
+      "Pricing comparison table and call-to-action sections"
+    ],
+    status: 'Completed',
+    category: 'UI/UX Design',
+    liveUrl: 'https://rudraptl16.github.io/Nexify/',
+    githubUrl: 'https://github.com/Rudraptl16/Nexify',
+    caseStudyId: 10,
+    featured: true
+  },
+  {
+    id: 11,
+    title: 'Health Care Website',
+    subtitle: 'Medical Services Information & Doctor Appointment Portal',
+    description: 'A modern healthcare website that provides users with comprehensive details about medical services, specialist doctor profiles, health-related resources, and online appointment booking request forms.',
+    image: '/project img/Health.webp',
+    role: 'Frontend Developer',
+    year: '2024',
+    platform: 'Healthcare Web Portal',
+    performance: 'Accessible UX Layout',
+    tags: [
+      "Healthcare",
+      "Medical Platform",
+      "Web Design",
+      "Frontend",
+      "Web App"
+    ],
+    skillsUsed: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Form Validation",
+      "Firebase Hosting"
+    ],
+    keyFeatures: [
+      "Healthcare services and department overview",
+      "Doctor information and specialist directory",
+      "Health-related educational resources and advice",
+      "Responsive emergency contact & appointment form UI"
+    ],
+    status: 'Completed',
+    category: 'Web Apps',
+    liveUrl: 'https://health-care-4a149.web.app/',
+    githubUrl: 'https://github.com/Rudraptl16',
+    caseStudyId: 11,
+    featured: true
+  }
 ];
 
-// Clean project filter categories: All, Web Apps, Mobile Apps, UI/UX Design
 export const projectFilters = ['All', 'Web Apps', 'Mobile Apps', 'UI/UX Design'];

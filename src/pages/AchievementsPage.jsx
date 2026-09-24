@@ -32,7 +32,7 @@ export default function AchievementsPage() {
       <SEO 
         title="Technical Credentials & Certifications"
         description="Explore the technical credentials, specialized badges, and verified achievements of Rudra Patel."
-        keywords="Rudra Patel certifications, technical credentials, verified achievements, software engineering badges, full-stack credentials"
+        keywords="Rudra Patel certifications, technical credentials, verified achievements, software engineering badges, Frontend & iOS credentials"
         canonical="https://patelrudra.in/achievements"
         schema={achievementsSchema}
       />

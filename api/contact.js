@@ -61,7 +61,7 @@ async function sendNotificationEmails({ name, email, subject, message, project_t
         </div>
         <hr style="border: 0; border-top: 1px solid #ffffff1a; margin-bottom: 16px;" />
         <div style="font-size: 12px; color: rgba(248, 250, 252, 0.4); text-align: center;">
-          Rudra Patel — Digital Architect & Full-Stack Alchemist<br/>
+          Rudra Patel — Digital Architect, Frontend & iOS Developer<br/>
           <a href="https://patelrudra.in" style="color: #ec4899; text-decoration: none;">patelrudra.in</a>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { projects } from '../data/projects';
 import {
   Code, Code2, Layout, Server, Smartphone, Cloud,
   Database, Cpu, Layers, ChevronRight, Zap, Target, Bot, Sparkles, BrainCircuit,
-  Search, X, ExternalLink, Globe
+  Search, X, ExternalLink, Globe, Workflow
 } from 'lucide-react';
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPhp, FaJava,
@@ -14,7 +14,7 @@ import {
 } from 'react-icons/fa';
 import {
   SiNextdotjs, SiTailwindcss, SiExpress, SiFlutter, SiMongodb,
-  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker, SiOpenai
+  SiMysql, SiFirebase, SiVercel, SiPostman, SiDart, SiDocker, SiOpenai, SiXcode
 } from 'react-icons/si';
 import { BiServer } from 'react-icons/bi';
 import { DiGit } from 'react-icons/di';
@@ -40,11 +40,12 @@ const iconMap = {
   dart: <SiDart />,
   mongodb: <SiMongodb />,
   mysql: <SiMysql />,
-  firebase: <SiFirebase />,
+  firebase: <img src="/Firebase_Color_Logo.svg" alt="Firebase" className="w-[1em] h-[1em] inline-block object-contain" />,
   git: <DiGit />,
   github: <FaGithub />,
   vscode: <TbBrandVscode />,
-  figma: <FaFigma />,
+  xcode: <img src="/Xcode.svg" alt="Xcode" className="w-[1em] h-[1em] inline-block object-contain" />,
+  figma: <img src="/Figma.svg" alt="Figma" className="w-[1em] h-[1em] inline-block object-contain" />,
   vercel: <SiVercel />,
   postman: <SiPostman />,
   aws: <FaAws />,
@@ -52,11 +53,13 @@ const iconMap = {
   storyboard: <Layers />,
   mobiledesign: <Smartphone />,
   uikit: <Layout />,
+  mvvm: <img src="/MVVM.svg" alt="MVVM" className="w-[1em] h-[1em] inline-block object-contain" />,
   openai: <SiOpenai />,
   antigravity: <img src="/antigravity-skill.svg" alt="Antigravity" className="w-[1em] h-[1em] inline-block object-contain" />,
   gemini: <img src="/gemini-skill.svg" alt="Gemini" className="w-[1em] h-[1em] inline-block object-contain" />,
   copilot: <FaGithub />,
-  claude: <img src="/claude-skill.svg" alt="Claude AI" className="w-[1em] h-[1em] inline-block object-contain" />
+  claude: <img src="/claude-skill.svg" alt="Claude AI" className="w-[1em] h-[1em] inline-block object-contain" />,
+  cursor: <img src="/cursor.svg" alt="Cursor" className="w-[1em] h-[1em] inline-block object-contain" />
 };
 
 const techColors = {
@@ -66,12 +69,13 @@ const techColors = {
   php: 'text-[#777BB4]', java: 'text-[#007396]', flutter: 'text-[#02569B]',
   reactnative: 'text-[#61DAFB]', dart: 'text-[#0175C2]', mongodb: 'text-[#47A248]',
   mysql: 'text-[#4479A1]', firebase: 'text-[#FFCA28]', git: 'text-[#F05032]',
-  github: 'text-white', vscode: 'text-[#007ACC]', figma: 'text-[#F24E1E]',
+  github: 'text-white', vscode: 'text-[#007ACC]', xcode: 'text-[#147EFB]', figma: 'text-[#F24E1E]',
   vercel: 'text-white', postman: 'text-[#FF6C37]', aws: 'text-[#FF9900]',
   docker: 'text-[#2496ED]', swift: 'text-[#FA7343]',
   storyboard: 'text-[#818CF8]', mobiledesign: 'text-[#F43F5E]',
-  uikit: 'text-[#2AC3FF]',
-  openai: 'text-[#10A37F]', antigravity: 'text-[#3186FF]', gemini: 'text-[#8E75FF]', copilot: 'text-white', claude: 'text-[#D97757]'
+  uikit: 'text-[#2AC3FF]', mvvm: 'text-[#3ED6FF]',
+  openai: 'text-[#10A37F]', antigravity: 'text-[#3186FF]', gemini: 'text-[#8E75FF]', copilot: 'text-white', claude: 'text-[#D97757]',
+  cursor: 'text-white'
 };
 
 const techHexColors = {
@@ -81,12 +85,13 @@ const techHexColors = {
   php: '#777BB4', java: '#007396', flutter: '#02569B',
   reactnative: '#61DAFB', dart: '#0175C2', mongodb: '#47A248',
   mysql: '#4479A1', firebase: '#FFCA28', git: '#F05032',
-  github: '#ffffff', vscode: '#007ACC', figma: '#F24E1E',
+  github: '#ffffff', vscode: '#007ACC', xcode: '#147EFB', figma: '#F24E1E',
   vercel: '#ffffff', postman: '#FF6C37', aws: '#FF9900',
   docker: '#2496ED', swift: '#FA7343',
   storyboard: '#818CF8', mobiledesign: '#F43F5E',
-  uikit: '#2AC3FF',
-  openai: '#10A37F', antigravity: '#3186FF', gemini: '#8E75FF', copilot: '#ffffff', claude: '#D97757'
+  uikit: '#2AC3FF', mvvm: '#3ED6FF',
+  openai: '#10A37F', antigravity: '#3186FF', gemini: '#8E75FF', copilot: '#ffffff', claude: '#D97757',
+  cursor: '#ffffff'
 };
 
 const categoryIcons = {
@@ -114,7 +119,7 @@ const FilterButton = ({ cat, activeTab, onSelect, icon }) => {
       <button
         ref={buttonRef}
         onMouseMove={handleMouseMove}
-        className={`relative flex items-center gap-3 px-8 py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer ${activeTab === cat
+        className={`relative flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-5 md:px-7 py-2.5 sm:py-3 md:py-3.5 rounded-xl text-[9px] sm:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.25em] transition-all duration-500 border overflow-hidden group/btn cursor-pointer whitespace-nowrap ${activeTab === cat
           ? 'text-white border-violet-500/50 shadow-[0_0_25px_rgba(124,58,237,0.25)]'
           : ' bg-white/[0.01] border-white/5 hover:border-violet-500/30 text-dark-textMuted hover:text-white'
           }`}
@@ -130,7 +135,7 @@ const FilterButton = ({ cat, activeTab, onSelect, icon }) => {
         <div
           className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
-            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.25), transparent)`,
+            background: `radial-gradient(circle 100px at ${mousePos.x}px ${mousePos.y}px, rgba(99, 101, 241, 0), transparent)`,
           }}
         />
 
@@ -222,14 +227,14 @@ export default function Skills() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-12 text-center lg:text-left">
-          <div className="max-w-3xl mx-auto lg:mx-0">
+        {/* Header Section with Developer Animation SVG Graphic */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-16 gap-8 text-center lg:text-left">
+          <div className="max-w-2xl mx-auto lg:mx-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-purple-400 mb-4"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-purple-400 mb-4 "
             >
               <Code2 size={16} className="text-purple-400" />
               <span className="font-mono text-xs font-bold tracking-[0.25em] uppercase text-purple-300">
@@ -240,6 +245,22 @@ export default function Skills() {
               Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400">Engine & Stack</span>
             </h2>
           </div>
+
+          {/* Developer Coding Animation Showcase Graphic */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-full max-w-xs sm:max-w-sm mx-auto lg:mx-0 min-h-[80px] flex items-center justify-center p-4 rounded-3xl "
+          >
+            <img
+              src="/developer animation.svg"
+              alt="Developer Coding Animation"
+              loading="lazy"
+              decoding="async"
+              className="w-full max-h-[200px] object-contain drop-shadow-[0_0_25px_rgba(99,102,241,0.3)] select-none pointer-events-none"
+            />
+          </motion.div>
         </div>
 
         {/* System Category Controller */}

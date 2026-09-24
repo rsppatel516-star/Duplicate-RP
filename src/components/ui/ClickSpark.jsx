@@ -94,8 +94,10 @@ const ClickSpark = ({
         ctx.globalAlpha = opacity;
 
         const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
-        gradient.addColorStop(0, sparkColor);
-        gradient.addColorStop(1, sparkColor2);
+        let safeColor1 = sparkColor && !sparkColor.includes('var(') ? sparkColor : '#8b5cf6';
+        let safeColor2 = sparkColor2 && !sparkColor2.includes('var(') ? sparkColor2 : '#6366f1';
+        gradient.addColorStop(0, safeColor1);
+        gradient.addColorStop(1, safeColor2);
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 1.5 * (1 - progress); // Thinner, tapers off

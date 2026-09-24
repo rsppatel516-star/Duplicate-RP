@@ -8,7 +8,7 @@ import {
 import { FaAws, FaReact, FaNodeJs, FaDatabase, FaShieldAlt, FaGithub } from 'react-icons/fa';
 
 const iconMap = {
-  aws: <FaAws className="text-[#FF9900]" />,
+  aws: <img src="/certificate img/aws-academy-graduate-cloud-foundations-training-logo.png" alt="AWS Academy" className="w-7 h-7 object-contain" />,
   react: <FaReact className="text-[#61DAFB]" />,
   node: <FaNodeJs className="text-[#339933]" />,
   database: <FaDatabase className="text-[#47A248]" />,
@@ -55,12 +55,12 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 ">
 
           {/* Left Column: Timeline Section (Professional Path) */}
           <div className="lg:col-span-6 space-y-10">
             <div className="flex items-center gap-4 mb-2">
-              <div className="w-12 h-12 bg-dark-surface rounded-2xl border border-white/10 flex items-center justify-center text-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.15)]">
+              <div className="w-12 h-12 backdrop-blur-md rounded-md border border-white/10 flex items-center justify-center text-indigo-400 ">
                 <Briefcase size={22} />
               </div>
               <div>
@@ -79,13 +79,13 @@ export default function Experience() {
                   transition={{ delay: idx * 0.1, duration: 0.6 }}
                   className="relative group"
                 >
-                  <div className="p-6 sm:p-8 rounded-3xl bg-dark-surface/30 backdrop-blur-md border border-white/10 hover:border-indigo-500/40 hover:bg-white/[0.03] hover:shadow-[0_12px_40px_-10px_rgba(99,102,241,0.2)] transition-all duration-500 group-hover:-translate-y-1 relative overflow-hidden">
+                  <div className="p-6 sm:p-8 rounded-lg backdrop-blur-md border border-white/10 hover:border-indigo-500/40 hover:bg-white/[0.03] hover:shadow-[0_12px_40px_-10px_rgba(99,102,241,0.2)] transition-all duration-500 group-hover:-translate-y-1 relative overflow-hidden">
                     {/* Hover Glow Gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                     <div className="relative z-10 space-y-4">
                       <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-code text-[10px] font-bold uppercase tracking-wider">
+                        <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 font-code text-[10px] font-bold uppercase tracking-wider">
                           <Calendar size={12} className="text-indigo-400" />
                           {item.duration}
                         </div>
@@ -124,8 +124,8 @@ export default function Experience() {
           {/* Right Column: Achievements & Badges Grid */}
           <div className="lg:col-span-6 space-y-10">
             <div className="flex items-center gap-4 mb-2">
-              <div className="w-12 h-12 bg-dark-surface rounded-2xl border border-white/10 flex items-center justify-center text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.15)] relative overflow-hidden group">
-                <Trophy size={22} className="relative z-10 group-hover:scale-110 transition-transform duration-300" />
+              <div className="w-12 h-12 backdrop-blur-md rounded-md border border-white/10 flex items-center justify-center text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.15)] relative overflow-hidden group">
+                <Trophy size={22} className="relative z-10 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <div>
                 <h3 className="text-2xl font-display font-bold text-white tracking-tight">Badges & Achievements</h3>
@@ -144,7 +144,7 @@ export default function Experience() {
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.08, duration: 0.5 }}
                     whileHover={{ y: -6, scale: 1.02 }}
-                    className="group relative bg-dark-surface/40 backdrop-blur-md border border-white/10 hover:border-white/20 rounded-3xl p-6 flex flex-col justify-between overflow-hidden transition-all duration-500 cursor-default shadow-lg"
+                    className="group relative backdrop-blur-md border border-white/10 hover:border-white/20 rounded-lg p-6 flex flex-col justify-between overflow-hidden transition-all duration-500 cursor-default shadow-lg"
                   >
                     {/* Top Row: Icon + Verified Badge */}
                     <div className="flex items-center justify-between mb-4 z-10">

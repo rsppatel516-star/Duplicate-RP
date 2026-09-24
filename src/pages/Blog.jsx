@@ -85,8 +85,8 @@ export default function Blog() {
     <div className="min-h-screen bg-dark-bg text-dark-textMain pt-32 pb-20 relative overflow-hidden">
       <SEO
         title="Insights & Thoughts | Blog"
-        description="Deep dives into AI, full-stack development, SwiftUI iOS apps, and modern design principles by Rudra Patel."
-        keywords="Rudra Patel blog, software engineering articles, full stack development tutorials, React 19, SwiftUI, AI integration"
+        description="Deep dives into AI, Frontend web development, SwiftUI iOS apps, and modern UI/UX design principles by Rudra Patel."
+        keywords="Rudra Patel blog, software engineering articles, Frontend web development tutorials, React 19, Next.js, SwiftUI iOS, UI/UX design"
         canonical="https://patelrudra.in/blog"
         schema={blogPageSchema}
       />

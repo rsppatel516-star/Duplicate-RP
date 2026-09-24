@@ -93,7 +93,7 @@ export default function CaseStudy() {
     "creator": {
       "@type": "Person",
       "name": "Rudra Patel",
-      "jobTitle": "Digital Architect & Full-Stack Engineer",
+      "jobTitle": "Digital Architect, Frontend & iOS Developer",
       "url": "https://patelrudra.in"
     },
     "genre": study.category,
@@ -217,7 +217,7 @@ export default function CaseStudy() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={container}
-          className="grid grid-cols-2 md:grid-cols-4 p-2.5 sm:p-3.5 bg-[#080a14]/90 backdrop-blur-2xl border border-white/15 rounded-3xl gap-2.5 sm:gap-3.5 shadow-2xl"
+          className="grid grid-cols-2 md:grid-cols-4 p-2.5 sm:p-3.5 bg-[#080a14]/90 backdrop-blur-2xl border border-white/15 rounded-[10px] gap-2.5 sm:gap-3.5 shadow-2xl"
         >
           {[
             {
@@ -251,13 +251,13 @@ export default function CaseStudy() {
                 hidden: { opacity: 0, y: 15 },
                 visible: { opacity: 1, y: 0 }
               }}
-              className="p-4 sm:p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col justify-between gap-3 overflow-hidden group hover:-translate-y-0.5"
+              className="p-4 sm:p-5 rounded-[10px] bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/20 transition-all duration-300 flex flex-col justify-between gap-3 overflow-hidden group hover:-translate-y-0.5"
             >
               <div className="flex items-center justify-between">
-                <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${accent} border flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-9 h-9 rounded-[6px] bg-gradient-to-br ${accent} border flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                   <IconComponent size={17} />
                 </div>
-                <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover:bg-white/70 transition-colors" />
+                <span className="w-1.5 h-1.5 rounded-[2px] bg-white/30 group-hover:bg-white/70 transition-colors" />
               </div>
 
               <div className="space-y-0.5">
@@ -282,7 +282,7 @@ export default function CaseStudy() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={sv}
-          className="relative overflow-hidden p-8 sm:p-12 rounded-3xl md:rounded-[2.5rem] border border-indigo-500/20 bg-gradient-to-br from-[#0c0e1a]/90 via-[#070913]/90 to-[#0c0e1a]/90 backdrop-blur-2xl shadow-2xl space-y-6"
+          className="relative overflow-hidden p-8 sm:p-12 rounded-[10px] md:rounded-[12px] border border-indigo-500/20 bg-gradient-to-br from-[#0c0e1a]/90 via-[#070913]/90 to-[#0c0e1a]/90 backdrop-blur-2xl shadow-2xl space-y-4"
         >
           {/* Subtle Ambient Background Mesh */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
@@ -290,7 +290,7 @@ export default function CaseStudy() {
 
           <div className="flex items-center justify-between">
             <SectionLabel icon={Lightbulb} label="Overview & Architectural Narrative" color="text-indigo-400" />
-            <span className="px-3 py-1 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 font-code text-[10px] font-bold uppercase tracking-widest rounded-full">
+            <span className="px-3 py-1 border border-indigo-500/30 text-indigo-300 font-code text-[10px] font-bold uppercase tracking-widest rounded-md">
               System Context
             </span>
           </div>
@@ -310,12 +310,12 @@ export default function CaseStudy() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden p-8 sm:p-10 rounded-3xl border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.06] via-amber-500/[0.02] to-transparent backdrop-blur-xl shadow-xl flex flex-col justify-between space-y-6 group hover:border-amber-500/40 transition-all duration-300"
+            className="relative overflow-hidden p-8 sm:p-10 rounded-[10px] md:rounded-[12px] border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.06] via-amber-500/[0.02] to-transparent backdrop-blur-xl shadow-xl flex flex-col justify-between space-y-6 group hover:border-amber-500/40 transition-all duration-300"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <SectionLabel icon={AlertTriangle} label="The Challenge" color="text-amber-400" />
-                <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                <div className="w-8 h-8 flex items-center justify-center text-amber-400">
                   <Zap size={16} />
                 </div>
               </div>
@@ -335,12 +335,12 @@ export default function CaseStudy() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden p-8 sm:p-10 rounded-3xl border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.06] via-emerald-500/[0.02] to-transparent backdrop-blur-xl shadow-xl flex flex-col justify-between space-y-6 group hover:border-emerald-500/40 transition-all duration-300"
+            className="relative overflow-hidden p-8 sm:p-10 rounded-[10px] md:rounded-[12px] border border-emerald-500/25 bg-gradient-to-br from-emerald-500/[0.06] via-emerald-500/[0.02] to-transparent backdrop-blur-xl shadow-xl flex flex-col justify-between space-y-6 group hover:border-emerald-500/40 transition-all duration-300"
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <SectionLabel icon={Cpu} label="Engineered Solution" color="text-emerald-400" />
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <div className="w-8 h-8 flex items-center justify-center text-emerald-400">
                   <Sparkles size={16} />
                 </div>
               </div>
@@ -379,9 +379,9 @@ export default function CaseStudy() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="flex items-center gap-4 p-5 sm:p-6 bg-[#080a14]/60 border border-white/10 hover:border-purple-500/40 rounded-2xl transition-all duration-300 group hover:bg-purple-500/[0.03] hover:-translate-y-0.5 shadow-lg"
+                  className="flex items-center gap-4 p-5 sm:p-6 bg-[#080a14]/60 border border-white/10 hover:border-purple-500/40 rounded-xl transition-all duration-300 group hover:bg-purple-500/[0.03] hover:-translate-y-0.5 shadow-lg"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 border border-purple-500/30 text-purple-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-[8px] border border-purple-500/30 text-purple-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <CheckCircle2 size={18} />
                   </div>
                   <div className="space-y-0.5">
@@ -429,12 +429,12 @@ export default function CaseStudy() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={sv}
-            className="relative overflow-hidden p-8 sm:p-10 rounded-3xl border border-indigo-500/25 bg-gradient-to-br from-indigo-500/[0.08] via-purple-500/[0.03] to-transparent backdrop-blur-2xl shadow-2xl flex flex-col justify-between space-y-8"
+            className="relative overflow-hidden p-8 sm:p-10 rounded-md border border-indigo-500/25 bg-gradient-to-br from-indigo-500/[0.08] via-purple-500/[0.03] to-transparent backdrop-blur-2xl shadow-2xl flex flex-col justify-between space-y-8"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
 
             <div className="space-y-4">
-              <SectionLabel icon={TrendingUp} label="Impact & Outcome" color="text-indigo-400" />
+              <SectionLabel icon={TrendingUp} label="Impact & Outcome" color="text-indigo-400 back" />
               <p className="text-xl sm:text-2xl font-display font-medium text-white italic leading-relaxed">
                 &quot;{study.results}&quot;
               </p>
@@ -452,7 +452,7 @@ export default function CaseStudy() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={sv}
-            className="flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0c0e1a] to-[#060812] border border-white/15 shadow-2xl space-y-8"
+            className="flex flex-col justify-between p-8 sm:p-10 rounded-md  bg-gradient-to-br from-[#0c0e1a] to-[#060812] border border-white/15 shadow-2xl space-y-8"
           >
             <div className="space-y-3">
               <SectionLabel icon={MessageSquare} label="Explore Live Project" color="text-indigo-400" />
